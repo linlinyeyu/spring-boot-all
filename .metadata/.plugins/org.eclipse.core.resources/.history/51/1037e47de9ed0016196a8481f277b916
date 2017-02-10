@@ -1,0 +1,9 @@
+package com.ybliu;
+/**
+* @author 作者 ybliu:
+* @version 创建时间：2017年2月8日 下午6:28:11
+* 类说明
+*/
+public class Person {
+
+}

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: restart
+Implementation-Version: 1.0.0
+Built-By: linlinyeyu
+Implementation-Vendor-Id: com.ybliu
+Build-Jdk: 1.8.0_45
+Implementation-URL: http://projects.spring.io/spring-boot/restart/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

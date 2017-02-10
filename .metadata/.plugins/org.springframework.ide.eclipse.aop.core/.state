@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="WebSocket"/>
+<aop-project name="SSL"/>
+<aop-project name="test_starter"/>
+<aop-project name="restart"/>
+<aop-project name="thymeleaf"/>
+<aop-project name="spring-boot-starter-hello"/>
+</aop-reference-model>

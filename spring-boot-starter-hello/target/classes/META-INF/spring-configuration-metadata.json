@@ -1,0 +1,13 @@
+{
+  "groups": [{
+    "name": "hello",
+    "type": "com.ybliu.spring_boot_starter_hello.HelloServiceProperties",
+    "sourceType": "com.ybliu.spring_boot_starter_hello.HelloServiceProperties"
+  }],
+  "properties": [{
+    "name": "hello.msg",
+    "type": "java.lang.String",
+    "sourceType": "com.ybliu.spring_boot_starter_hello.HelloServiceProperties"
+  }],
+  "hints": []
+}

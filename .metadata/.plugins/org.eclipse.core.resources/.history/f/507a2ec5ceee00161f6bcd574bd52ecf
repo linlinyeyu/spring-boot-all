@@ -1,0 +1,23 @@
+package com.ybliu.controller;
+
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.stereotype.Controller;
+
+import com.ybliu.domain.YbliuMessage;
+import com.ybliu.domain.YbliuResponse;
+
+/**
+* @author 作者 ybliu:
+* @version 创建时间：2017年2月9日 下午6:43:14
+* 类说明
+*/
+@Controller
+public class WsController {
+	@MessageMapping("/welcome")
+	@SendTo("/topic/getResponse")
+	public YbliuResponse say(YbliuMessage message) throws Exception{
+		Thread.sleep(1000);
+		return new YbliuResponse("Welcome,"+message.getName()+"!");
+	}
+}

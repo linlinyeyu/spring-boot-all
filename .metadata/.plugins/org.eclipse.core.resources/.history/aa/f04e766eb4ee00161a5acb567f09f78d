@@ -1,0 +1,9 @@
+package com.ybliu.domain;
+/**
+* @author 作者 ybliu:
+* @version 创建时间：2017年2月9日 下午6:41:22
+* 类说明
+*/
+public class YbliuResponse {
+
+}
