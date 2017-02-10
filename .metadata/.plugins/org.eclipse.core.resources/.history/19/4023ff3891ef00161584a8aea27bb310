@@ -1,0 +1,12 @@
+package com.ybliu;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class AngularBootstrapApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(AngularBootstrapApplication.class, args);
+	}
+}
