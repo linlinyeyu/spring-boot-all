@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.UserMerchantMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.UserMerchantKey" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <id column="merchant_id" property="merchantId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.ibenben.domain.UserMerchantKey" >
+    delete from user_merchant
+    where user_id = #{userId,jdbcType=INTEGER}
+      and merchant_id = #{merchantId,jdbcType=INTEGER}
+  </delete>
+  
+  <select id="getUserMerchantList" resultMap="com.ibenben.mapper.MerchantMapper.BaseResultMap">
+  	select m.*,p.platform_name from user_merchant um
+  	inner join user u on u.user_id = um.user_id
+  	inner join merchant m on m.merchant_id = um.merchant_id and m.status='OK'
+  	inner join platform p on m.platform_id = p.platform_id and p.status='OK'
+  	where u.user_id = #{userId}
+  </select>
+  
+  <insert id="insert" parameterType="com.ibenben.domain.UserMerchantKey" >
+    insert into user_merchant (user_id, merchant_id)
+    values (#{userId,jdbcType=INTEGER}, #{merchantId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.UserMerchantKey" >
+    insert into user_merchant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="merchantId != null" >
+        merchant_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

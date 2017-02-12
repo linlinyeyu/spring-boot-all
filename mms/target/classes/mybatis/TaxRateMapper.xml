@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.TaxRateMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.TaxRate" >
+    <id column="tax_rate_id" property="taxRateId" jdbcType="INTEGER" />
+    <result column="tax_rate" property="taxRate" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tax_rate_id, tax_rate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tax_rate
+    where tax_rate_id = #{taxRateId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from tax_rate
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tax_rate
+    where tax_rate_id = #{taxRateId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.TaxRate" >
+    insert into tax_rate (tax_rate_id, tax_rate)
+    values (#{taxRateId,jdbcType=INTEGER}, #{taxRate,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.TaxRate" >
+    insert into tax_rate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="taxRateId != null" >
+        tax_rate_id,
+      </if>
+      <if test="taxRate != null" >
+        tax_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="taxRateId != null" >
+        #{taxRateId,jdbcType=INTEGER},
+      </if>
+      <if test="taxRate != null" >
+        #{taxRate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.TaxRate" >
+    update tax_rate
+    <set >
+      <if test="taxRate != null" >
+        tax_rate = #{taxRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where tax_rate_id = #{taxRateId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.TaxRate" >
+    update tax_rate
+    set tax_rate = #{taxRate,jdbcType=DECIMAL}
+    where tax_rate_id = #{taxRateId,jdbcType=INTEGER}
+  </update>
+</mapper>

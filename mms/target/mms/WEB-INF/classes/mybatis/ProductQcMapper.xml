@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibenben.mapper.ProductQcMapper">
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductQc">
+    <id column="product_qc_id" jdbcType="INTEGER" property="productQcId" />
+    <result column="party_id" jdbcType="INTEGER" property="partyId" />
+    <result column="party_name" jdbcType="VARCHAR" property="partyName" />
+    <result column="product_qc_code" jdbcType="VARCHAR" property="productQcCode" />
+    <result column="product_qc_name" jdbcType="VARCHAR" property="productQcName" />
+    <result column="attach" jdbcType="VARCHAR" property="attach" />
+    <result column="attach_path" jdbcType="VARCHAR" property="attachPath" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="created_user" jdbcType="VARCHAR" property="createdUser" />
+    <result column="last_updated_time" jdbcType="TIMESTAMP" property="lastUpdatedTime" />
+    <result column="last_updated_user" jdbcType="VARCHAR" property="lastUpdatedUser" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+  
+  <resultMap id="ProductQcProdutResultMap" type="com.ibenben.domain.ProductQc" extends="BaseResultMap">
+  	<collection property="products" javaType="java.util.List" ofType="com.ibenben.domain.Product">
+	    <id column="product_id" jdbcType="INTEGER" property="productId" />
+	    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+	    <result column="product_desc" jdbcType="VARCHAR" property="productDesc" />
+	    <result column="p_party_id" jdbcType="INTEGER" property="partyId" />
+	    <result column="product_type" jdbcType="VARCHAR" property="productType" />
+	    <result column="product_sub_type" jdbcType="VARCHAR" property="productSubType" />
+	    <result column="p_status" jdbcType="CHAR" property="status" />
+	    <result column="producing_region" jdbcType="VARCHAR" property="producingRegion" />
+	    <result column="purchasing_cycle" jdbcType="DECIMAL" property="purchasingCycle" />
+	    <result column="barcode" jdbcType="VARCHAR" property="barcode" />
+	    <result column="secrect_code" jdbcType="VARCHAR" property="secrectCode" />
+	    <result column="unit_code" jdbcType="VARCHAR" property="unitCode" />
+	    <result column="unit_code_name" jdbcType="VARCHAR" property="unitCodeName" />
+	    <result column="purchase_unit_code" jdbcType="VARCHAR" property="purchaseUnitCode" />
+	    <result column="sale_unit_code" jdbcType="VARCHAR" property="saleUnitCode" />
+	    <result column="shipping_service_id" jdbcType="INTEGER" property="shippingServiceId" />
+	    <result column="p_note" jdbcType="VARCHAR" property="note" />
+	    <result column="width" jdbcType="DECIMAL" property="width" />
+	    <result column="height" jdbcType="DECIMAL" property="height" />
+	    <result column="length" jdbcType="DECIMAL" property="length" />
+	    <result column="imgs" jdbcType="VARCHAR" property="imgs" />
+	    <result column="valid_days" jdbcType="DECIMAL" property="validDays" />
+	    <result column="pre_selection" jdbcType="BIT" property="preSelection" />
+	    <result column="net_weight_min" jdbcType="DECIMAL" property="netWeightMin" />
+	    <result column="net_weight_max" jdbcType="DECIMAL" property="netWeightMax" />
+	    <result column="gross_weight_min" jdbcType="DECIMAL" property="grossWeightMin" />
+	    <result column="gross_weight_max" jdbcType="DECIMAL" property="grossWeightMax" />
+	    <result column="sync_to_merchant_district" jdbcType="BIT" property="syncToMerchantDistrict" />
+	    <result column="cross_regional" jdbcType="BIT" property="crossRegional" />
+	    <result column="delivery_facility_type" jdbcType="CHAR" property="deliveryFacilityType" />
+	    <result column="product_category_id" jdbcType="INTEGER" property="productCategoryId" />
+	    <result column="product_category_sec_id" jdbcType="INTEGER" property="productCategorySecId" />
+	    <result column="product_category_third_id" jdbcType="INTEGER" property="productCategoryThirdId" />
+	    <result column="p_created_user" jdbcType="VARCHAR" property="createdUser" />
+	    <result column="p_created_time" jdbcType="TIMESTAMP" property="createdTime" />
+	    <result column="p_last_updated_user" jdbcType="VARCHAR" property="lastUpdatedUser" />
+	    <result column="p_last_updated_time" jdbcType="TIMESTAMP" property="lastUpdatedTime" />
+  	</collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    product_qc_id, party_id, product_qc_code, product_qc_name, attach, attach_path, 
+    note, created_time, created_user, last_updated_time, last_updated_user, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_qc
+    where product_qc_id = #{productQcId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAll"  resultMap="BaseResultMap">
+    select 
+    	product_qc_id, product_qc_code, product_qc_name,status
+    from product_qc
+    <where>
+	    <if test="status != null and status != ''">
+	    	 status = #{status}
+	    </if>
+    </where>
+  </select>
+  
+  <select id="selectMaxQcCode" parameterType ="java.util.Date"  resultType="String">
+  	SELECT max(product_qc_code) FROM product_qc where created_time &gt;= #{date,jdbcType=TIMESTAMP};
+  </select>
+  
+  
+  <select id="selectByProductQc" parameterType="com.ibenben.domain.ProductQc" resultMap="ProductQcProdutResultMap">
+	select 
+		qc.*, pt.party_id, p.product_id, p.product_name
+	from product_qc qc 
+	left join party pt on qc.party_id = pt.party_id and pt.status='OK'
+	left join product_qc_mapping pqm on pqm.product_qc_id = qc.product_qc_id
+	left join product p on p.product_id = pqm.product_id
+	<where>
+	  <if test="productQcId != null">
+        qc.product_qc_id = #{productQcId,jdbcType=INTEGER}
+      </if>
+      <if test="partyId != null">
+        and qc.party_id = #{partyId,jdbcType=INTEGER}
+      </if>
+      <if test="productQcCode != null">
+        and qc.product_qc_code = #{productQcCode,jdbcType=VARCHAR}
+      </if>
+      <if test="productQcName != null">
+        and qc.product_qc_name like CONCAT('%', #{productQcName,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="status != null">
+         and qc.status = #{status,jdbcType=CHAR}
+      </if>
+	</where>
+  </select>
+  
+  <select id="selectByMapParams" parameterType="java.util.Map" resultMap="ProductQcProdutResultMap">
+	select 
+		qc.*, pt.party_name, p.product_id, p.product_name
+	from product_qc qc 
+	left join party pt on qc.party_id = pt.party_id and pt.status='OK'
+	left join product_qc_mapping pqm on pqm.product_qc_id = qc.product_qc_id
+	left join product p on p.product_id = pqm.product_id
+
+	<where>
+		<if test="product_qc_id != null and product_qc_id != '' ">
+			qc.product_qc_id = #{product_qc_id,jdbcType=INTEGER}
+		</if>
+		<if test="party_id != null and party_id != '' ">
+			and qc.party_id = #{party_id,jdbcType=INTEGER}
+		</if>
+		<if test="product_qc_code != null and product_qc_code !='' ">
+			and qc.product_qc_code = #{product_qc_code,jdbcType=VARCHAR}
+		</if>
+		<if test="product_qc_name != null and product_qc_name != '' ">
+			and qc.product_qc_name like CONCAT('%', #{product_qc_name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="status != null and status != '' ">
+			and qc.status = #{status,jdbcType=CHAR}
+		</if>
+		<if test="start_time != null and start_time != '' ">
+			and qc.created_time &gt;= #{start_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="end_time != null and end_time != '' ">
+			and qc.created_time &lt;= #{end_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="product_id != null and product_id != '' ">
+			and p.product_id = #{product_id,jdbcType=INTEGER}
+		</if>
+		<if test="product_name != null and product_name != '' ">
+			and p.product_name  like CONCAT('%', #{product_name,jdbcType=VARCHAR},'%')
+		</if>
+	</where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_qc
+    where product_qc_id = #{productQcId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductQc">
+    insert into product_qc (product_qc_id, party_id, product_qc_code, 
+      product_qc_name, attach, attach_path, 
+      note, created_time, created_user, 
+      last_updated_time, last_updated_user, status
+      )
+    values (#{productQcId,jdbcType=INTEGER}, #{partyId,jdbcType=INTEGER}, #{productQcCode,jdbcType=VARCHAR}, 
+      #{productQcName,jdbcType=VARCHAR}, #{attach,jdbcType=VARCHAR}, #{attachPath,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=VARCHAR}, 
+      #{lastUpdatedTime,jdbcType=TIMESTAMP}, #{lastUpdatedUser,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}
+      )
+  </insert>
+  <!--useGeneratedKeys="true" keyProperty="productQcId"-->
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductQc" useGeneratedKeys="true" keyProperty="productQcId"> 
+    insert into product_qc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productQcId != null">
+        product_qc_id,
+      </if>
+      <if test="partyId != null">
+        party_id,
+      </if>
+      <if test="productQcCode != null">
+        product_qc_code,
+      </if>
+      <if test="productQcName != null">
+        product_qc_name,
+      </if>
+      <if test="attach != null">
+        attach,
+      </if>
+      <if test="attachPath != null">
+        attach_path,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="createdUser != null">
+        created_user,
+      </if>
+      <if test="lastUpdatedTime != null">
+        last_updated_time,
+      </if>
+      <if test="lastUpdatedUser != null">
+        last_updated_user,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productQcId != null">
+        #{productQcId,jdbcType=INTEGER},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=INTEGER},
+      </if>
+      <if test="productQcCode != null">
+        #{productQcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productQcName != null">
+        #{productQcName,jdbcType=VARCHAR},
+      </if>
+      <if test="attach != null">
+        #{attach,jdbcType=VARCHAR},
+      </if>
+      <if test="attachPath != null">
+        #{attachPath,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null">
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null">
+        #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null">
+        #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductQc">
+    update product_qc
+    <set>
+      <if test="partyId != null">
+        party_id = #{partyId,jdbcType=INTEGER},
+      </if>
+      <if test="productQcCode != null">
+        product_qc_code = #{productQcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productQcName != null">
+        product_qc_name = #{productQcName,jdbcType=VARCHAR},
+      </if>
+      <if test="attach != null">
+        attach = #{attach,jdbcType=VARCHAR},
+      </if>
+      <if test="attachPath != null">
+        attach_path = #{attachPath,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null">
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null">
+        last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null">
+        last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where product_qc_id = #{productQcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductQc">
+    update product_qc
+    set party_id = #{partyId,jdbcType=INTEGER},
+      product_qc_code = #{productQcCode,jdbcType=VARCHAR},
+      product_qc_name = #{productQcName,jdbcType=VARCHAR},
+      attach = #{attach,jdbcType=VARCHAR},
+      attach_path = #{attachPath,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR}
+    where product_qc_id = #{productQcId,jdbcType=INTEGER}
+  </update>
+</mapper>

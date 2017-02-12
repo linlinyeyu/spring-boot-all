@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.RegionMappingMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.RegionMapping" >
+    <id column="region_mapping_id" property="regionMappingId" jdbcType="INTEGER" />
+    <result column="region_id" property="regionId" jdbcType="INTEGER" />
+    <result column="platform_id" property="platformId" jdbcType="INTEGER" />
+    <result column="outer_region_id" property="outerRegionId" jdbcType="INTEGER" />
+    <result column="outer_region_name" property="outerRegionName" jdbcType="VARCHAR" />
+    <result column="outer_parent_id" property="outerParentId" jdbcType="SMALLINT" />
+    <result column="outer_region_type" property="outerRegionType" jdbcType="TINYINT" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    region_mapping_id, region_id, platform_id, outer_region_id, outer_region_name, outer_parent_id, 
+    outer_region_type, status, created_user, created_time, delete_user, delete_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from region_mapping
+    where region_mapping_id = #{regionMappingId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByMapParams" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select
+  	<include refid="Base_Column_List" />
+  	from region_mapping
+  	<where>
+  		<if test="platform_id != null and platform != '' ">
+  			platform_id = #{platform_id}
+  		</if>
+  		<if test="region_id != null and region_id != '' ">
+  			and region_id = #{region_id}
+  		</if>
+  		<if test="outer_region_id != null and outer_region_id != '' ">
+  			and outer_region_id = #{outer_region_id}
+  		</if>
+  		<if test="outer_region_name != null and outer_region_name != '' ">
+  			and outer_region_name = #{outer_region_name}
+  		</if>
+  		<if test="outer_region_type != null and outer_region_type != '' ">
+  			and outer_region_type = #{outer_region_type}
+  		</if>
+  		<if test="outer_parent_id != null and outer_parent_id != '' ">
+  			and outer_parent_id = #{outer_parent_id}
+  		</if>
+  		<if test="status != null and status != '' ">
+  			and status = #{status}
+  		</if>
+  	</where>
+  </select>
+  
+  <select id="getParentRegionMappingByOutRegionId" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+     * 
+     from 
+     region_mapping where outer_region_id = #{parent_id,jdbcType=INTEGER} and 
+     platform_id = #{platform_id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getRegionMappingByOutRegionId" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    *
+    from
+    region_mapping where out_region_id = #{region_id,jdbcType=INTEGER} and
+    platform_id = #{platform_id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from region_mapping
+    where region_mapping_id = #{regionMappingId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByOuterRegionId" parameterType="java.lang.Integer" >
+    delete from region_mapping
+    where outer_region_id = #{outerRegionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.RegionMapping" >
+    insert into region_mapping (region_mapping_id, region_id, platform_id, 
+      outer_region_id, outer_region_name, outer_parent_id, 
+      outer_region_type, status, created_user, 
+      created_time, delete_user, delete_time
+      )
+    values (#{regionMappingId,jdbcType=INTEGER}, #{regionId,jdbcType=INTEGER}, #{platformId,jdbcType=INTEGER}, 
+      #{outerRegionId,jdbcType=INTEGER}, #{outerRegionName,jdbcType=VARCHAR}, #{outerParentId,jdbcType=SMALLINT}, 
+      #{outerRegionType,jdbcType=TINYINT}, #{status,jdbcType=CHAR}, #{createdUser,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{deleteUser,jdbcType=VARCHAR}, #{deleteTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.RegionMapping" >
+    insert into region_mapping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="regionMappingId != null" >
+        region_mapping_id,
+      </if>
+      <if test="regionId != null" >
+        region_id,
+      </if>
+      <if test="platformId != null" >
+        platform_id,
+      </if>
+      <if test="outerRegionId != null" >
+        outer_region_id,
+      </if>
+      <if test="outerRegionName != null" >
+        outer_region_name,
+      </if>
+      <if test="outerParentId != null" >
+        outer_parent_id,
+      </if>
+      <if test="outerRegionType != null" >
+        outer_region_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdUser != null" >
+        created_user,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="regionMappingId != null" >
+        #{regionMappingId,jdbcType=INTEGER},
+      </if>
+      <if test="regionId != null" >
+        #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="platformId != null" >
+        #{platformId,jdbcType=INTEGER},
+      </if>
+      <if test="outerRegionId != null" >
+        #{outerRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="outerRegionName != null" >
+        #{outerRegionName,jdbcType=VARCHAR},
+      </if>
+      <if test="outerParentId != null" >
+        #{outerParentId,jdbcType=SMALLINT},
+      </if>
+      <if test="outerRegionType != null" >
+        #{outerRegionType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdUser != null" >
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.RegionMapping" >
+    update region_mapping
+    <set >
+      <if test="regionId != null" >
+        region_id = #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="platformId != null" >
+        platform_id = #{platformId,jdbcType=INTEGER},
+      </if>
+      <if test="outerRegionId != null" >
+        outer_region_id = #{outerRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="outerRegionName != null" >
+        outer_region_name = #{outerRegionName,jdbcType=VARCHAR},
+      </if>
+      <if test="outerParentId != null" >
+        outer_parent_id = #{outerParentId,jdbcType=SMALLINT},
+      </if>
+      <if test="outerRegionType != null" >
+        outer_region_type = #{outerRegionType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where region_mapping_id = #{regionMappingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.RegionMapping" >
+    update region_mapping
+    set region_id = #{regionId,jdbcType=INTEGER},
+      platform_id = #{platformId,jdbcType=INTEGER},
+      outer_region_id = #{outerRegionId,jdbcType=INTEGER},
+      outer_region_name = #{outerRegionName,jdbcType=VARCHAR},
+      outer_parent_id = #{outerParentId,jdbcType=SMALLINT},
+      outer_region_type = #{outerRegionType,jdbcType=TINYINT},
+      status = #{status,jdbcType=CHAR},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP}
+    where region_mapping_id = #{regionMappingId,jdbcType=INTEGER}
+  </update>
+</mapper>

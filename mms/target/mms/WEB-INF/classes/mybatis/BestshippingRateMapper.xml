@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.BestshippingRateMapper" >
+  <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.BestshippingRate" >
+    <id column="bestshipping_rate_id" property="bestshippingRateId" jdbcType="INTEGER" />
+    <result column="system_rate" property="systemRate" jdbcType="DECIMAL" />
+    <result column="manual_rate" property="manualRate" jdbcType="DECIMAL" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bestshipping_rate_id, system_rate, manual_rate, created_time, created_user
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bestshipping_rate
+    where bestshipping_rate_id = #{bestshippingRateId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectOne" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from bestshipping_rate
+  	limit 1;
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bestshipping_rate
+    where bestshipping_rate_id = #{bestshippingRateId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.BestshippingRate" >
+    insert into bestshipping_rate (bestshipping_rate_id, system_rate, manual_rate, 
+      created_time, created_user)
+    values (#{bestshippingRateId,jdbcType=INTEGER}, #{systemRate,jdbcType=DECIMAL}, #{manualRate,jdbcType=DECIMAL}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.BestshippingRate" >
+    insert into bestshipping_rate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bestshippingRateId != null" >
+        bestshipping_rate_id,
+      </if>
+      <if test="systemRate != null" >
+        system_rate,
+      </if>
+      <if test="manualRate != null" >
+        manual_rate,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createdUser != null" >
+        created_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bestshippingRateId != null" >
+        #{bestshippingRateId,jdbcType=INTEGER},
+      </if>
+      <if test="systemRate != null" >
+        #{systemRate,jdbcType=DECIMAL},
+      </if>
+      <if test="manualRate != null" >
+        #{manualRate,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.BestshippingRate" >
+    update bestshipping_rate
+    <set >
+      <if test="systemRate != null" >
+        system_rate = #{systemRate,jdbcType=DECIMAL},
+      </if>
+      <if test="manualRate != null" >
+        manual_rate = #{manualRate,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bestshipping_rate_id = #{bestshippingRateId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.BestshippingRate" >
+    update bestshipping_rate
+    set system_rate = #{systemRate,jdbcType=DECIMAL},
+      manual_rate = #{manualRate,jdbcType=DECIMAL},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_user = #{createdUser,jdbcType=VARCHAR}
+    where bestshipping_rate_id = #{bestshippingRateId,jdbcType=INTEGER}
+  </update>
+</mapper>

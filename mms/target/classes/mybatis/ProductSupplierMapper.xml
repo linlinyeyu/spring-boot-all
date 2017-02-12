@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductSupplierMapper" >
+  <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductSupplier" >
+    <id column="product_supplier_id" property="productSupplierId" jdbcType="BIGINT" />
+    <result column="product_supplier_name" property="productSupplierName" jdbcType="VARCHAR" />
+    <result column="product_supplier_code" property="productSupplierCode" jdbcType="VARCHAR" />
+    <result column="supplier_type" property="supplierType" jdbcType="CHAR" />
+    <result column="product_type" property="productType" jdbcType="VARCHAR" />
+    <result column="product_supplier_address" property="productSupplierAddress" jdbcType="VARCHAR" />
+    <result column="supplier_contact_name" property="supplierContactName" jdbcType="VARCHAR" />
+    <result column="supplier_contact_mobile" property="supplierContactMobile" jdbcType="VARCHAR" />
+    <result column="business_license" property="businessLicense" jdbcType="VARCHAR" />
+    <result column="opening_bank" property="openingBank" jdbcType="VARCHAR" />
+    <result column="bank_account" property="bankAccount" jdbcType="VARCHAR" />
+    <result column="bank_account_name" property="bankAccountName" jdbcType="VARCHAR" />
+    <result column="payment_cycle" property="paymentCycle" jdbcType="INTEGER" />
+    <result column="supplier_level" property="supplierLevel" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="last_updated_user" property="lastUpdatedUser" jdbcType="VARCHAR" />
+    <result column="last_updated_time" property="lastUpdatedTime" jdbcType="TIMESTAMP" />
+    <result column="product_supplier_quanlification" property="productSupplierQuanlification" jdbcType="VARCHAR" />
+    <result column="bill_type" property="billType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    product_supplier_id, product_supplier_name, product_supplier_code, supplier_type, 
+    product_type, product_supplier_address, supplier_contact_name, supplier_contact_mobile, 
+    business_license, opening_bank, bank_account, bank_account_name, payment_cycle, supplier_level, 
+    note, status, created_user, created_time, last_updated_user, last_updated_time,product_supplier_quanlification,
+    bill_type
+  </sql>
+  
+  <select id="getSimpleProductSupplierList" resultType="java.util.Map">
+    select
+    product_supplier_id,
+    product_supplier_name
+    from
+    product_supplier
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_supplier
+    where product_supplier_id = #{product_supplier_id,jdbcType=BIGINT}
+  </select>
+  <select id="isExist" parameterType="com.ibenben.domain.ProductSupplier" resultMap="BaseResultMap">
+    select
+    *
+    from product_supplier
+    where product_supplier_name = #{productSupplierName,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getApiProductSupplierList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    *
+    from product_supplier
+    <where>
+      <if test="id_list != '' and id_list != null">
+      	product_supplier_id in
+        <foreach collection="id_list" index="index" item="id" open="(" separator="," close=")">
+          #{id,jdbcType=BIGINT}
+        </foreach>
+      </if>
+      <if test="product_supplier_name != '' and product_supplier_name != null">
+        and product_supplier_name like concat('%',#{product_supplier_name,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="supplier_type != '' and supplier_type != null">
+        and supplier_type = #{supplier_type,jdbcType=CHAR}
+      </if>
+      <if test="product_type != '' and product_type != null">
+        and product_type = #{product_type,jdbcType=VARCHAR}
+      </if>
+      <if test="status != '' and status != null">
+        and status = #{status,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  
+  <select id="findProductSupplierList" resultMap="BaseResultMap" parameterType="java.util.Map">
+  select
+  distinct ps.*
+  from product_supplier ps
+  <if test="tax_status != '' and tax_status != null">
+    inner join supplier_product_mapping spm on spm.product_supplier_id = ps.product_supplier_id
+  </if>
+  <where>
+  <if test="start_time != '' and end_time != '' ">
+  	ps.created_time between #{start_time} and #{end_time}
+  </if>
+  <if test="start_time != '' and end_time == ''">
+    ps.created_time >= #{start_time}
+  </if>
+  <if test="start_time == '' and end_time != ''">
+    ps.created_time &lt;#{end_time}
+  </if>
+  <if test="created_user != '' and created_user != null">
+    and ps.created_user = #{created_user,jdbcType=VARCHAR}
+  </if>
+  <if test="product_type != '' and product_type != null">
+    and ps.product_type = #{product_type,jdbcType=VARCHAR}
+  </if>
+  <if test="status != '' and status != null">
+    and ps.status = #{status,jdbcType=CHAR}
+  </if>
+  <if test="product_supplier_name != '' and product_supplier_name != null">
+    and ps.product_supplier_name like concat('%',#{product_supplier_name,jdbcType=VARCHAR},'%')
+  </if>
+  <if test="supplier_type != '' and supplier_type != null">
+    and ps.supplier_type = #{supplier_type,jdbcType=CHAR}
+  </if>
+  <if test="tax_status != '' and tax_status != null">
+    and spm.status = #{tax_status,jdbcType=CHAR}
+  </if>
+  <if test="product_supplier_id != '' and product_supplier_id != null">
+    and ps.product_supplier_id = #{product_supplier_id,jdbcType=BIGINT}
+  </if>
+  </where>
+   order by created_time desc
+  </select>
+  
+  <update id="activeButton" parameterType="java.util.Map">
+    update
+    product_supplier
+    set status = #{status,jdbcType=CHAR}
+    where
+    product_supplier_id = #{product_supplier_id,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from product_supplier
+    where product_supplier_id = #{productSupplierId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductSupplier" >
+    insert into product_supplier (product_supplier_id, product_supplier_name, 
+      product_supplier_code, supplier_type, product_type, 
+      product_supplier_address, supplier_contact_name, 
+      supplier_contact_mobile, business_license, 
+      opening_bank, bank_account, bank_account_name, 
+      payment_cycle, supplier_level, note, 
+      status, created_user, created_time, 
+      last_updated_user, last_updated_time,
+      product_supplier_quanlification,bill_type)
+    values (#{productSupplierId,jdbcType=BIGINT}, #{productSupplierName,jdbcType=VARCHAR}, 
+      #{productSupplierCode,jdbcType=VARCHAR}, #{supplierType,jdbcType=CHAR}, #{productType,jdbcType=VARCHAR}, 
+      #{productSupplierAddress,jdbcType=VARCHAR}, #{supplierContactName,jdbcType=VARCHAR}, 
+      #{supplierContactMobile,jdbcType=VARCHAR}, #{businessLicense,jdbcType=VARCHAR}, 
+      #{openingBank,jdbcType=VARCHAR}, #{bankAccount,jdbcType=VARCHAR}, #{bankAccountName,jdbcType=VARCHAR}, 
+      #{paymentCycle,jdbcType=INTEGER}, #{supplierLevel,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{createdUser,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdatedUser,jdbcType=VARCHAR}, #{lastUpdatedTime,jdbcType=TIMESTAMP},#{productSupplierQuanlification,jdbcType=VARCHAR},
+      #{billType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductSupplier" >
+    insert into product_supplier
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productSupplierId != null" >
+        product_supplier_id,
+      </if>
+      <if test="productSupplierName != null" >
+        product_supplier_name,
+      </if>
+      <if test="productSupplierCode != null" >
+        product_supplier_code,
+      </if>
+      <if test="supplierType != null" >
+        supplier_type,
+      </if>
+      <if test="productType != null" >
+        product_type,
+      </if>
+      <if test="productSupplierAddress != null" >
+        product_supplier_address,
+      </if>
+      <if test="supplierContactName != null" >
+        supplier_contact_name,
+      </if>
+      <if test="supplierContactMobile != null" >
+        supplier_contact_mobile,
+      </if>
+      <if test="businessLicense != null" >
+        business_license,
+      </if>
+      <if test="openingBank != null" >
+        opening_bank,
+      </if>
+      <if test="bankAccount != null" >
+        bank_account,
+      </if>
+      <if test="bankAccountName != null" >
+        bank_account_name,
+      </if>
+      <if test="paymentCycle != null" >
+        payment_cycle,
+      </if>
+      <if test="supplierLevel != null" >
+        supplier_level,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdUser != null" >
+        created_user,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="lastUpdatedUser != null" >
+        last_updated_user,
+      </if>
+      <if test="lastUpdatedTime != null" >
+        last_updated_time,
+      </if>
+      <if test="productSupplierQuanlification != null">
+        product_supplier_quanlification,
+      </if>
+      <if test="billType != null">
+        bill_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productSupplierId != null" >
+        #{productSupplierId,jdbcType=BIGINT},
+      </if>
+      <if test="productSupplierName != null" >
+        #{productSupplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="productSupplierCode != null" >
+        #{productSupplierCode,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierType != null" >
+        #{supplierType,jdbcType=CHAR},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productSupplierAddress != null" >
+        #{productSupplierAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierContactName != null" >
+        #{supplierContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierContactMobile != null" >
+        #{supplierContactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicense != null" >
+        #{businessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="openingBank != null" >
+        #{openingBank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountName != null" >
+        #{bankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentCycle != null" >
+        #{paymentCycle,jdbcType=INTEGER},
+      </if>
+      <if test="supplierLevel != null" >
+        #{supplierLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdUser != null" >
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null" >
+        #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null" >
+        #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productSupplierQuanlification != null">
+        #{productSupplierQuanlification,jdbcType=VARCHAR},
+      </if>
+      <if test="billType != null">
+        #{billType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductSupplier" >
+    update product_supplier
+    <set >
+      <if test="productSupplierName != null" >
+        product_supplier_name = #{productSupplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="productSupplierCode != null" >
+        product_supplier_code = #{productSupplierCode,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierType != null" >
+        supplier_type = #{supplierType,jdbcType=CHAR},
+      </if>
+      <if test="productType != null" >
+        product_type = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productSupplierAddress != null" >
+        product_supplier_address = #{productSupplierAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierContactName != null" >
+        supplier_contact_name = #{supplierContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierContactMobile != null" >
+        supplier_contact_mobile = #{supplierContactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicense != null" >
+        business_license = #{businessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="openingBank != null" >
+        opening_bank = #{openingBank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        bank_account = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountName != null" >
+        bank_account_name = #{bankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentCycle != null" >
+        payment_cycle = #{paymentCycle,jdbcType=INTEGER},
+      </if>
+      <if test="supplierLevel != null" >
+        supplier_level = #{supplierLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null" >
+        last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null" >
+        last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productSupplierQuanlification != null">
+        product_supplier_quanlification = #{productSupplierQuanlification,jdbcType=VARCHAR},
+      </if>
+      <if test="billType != null">
+        bill_type = #{billType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_supplier_id = #{productSupplierId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductSupplier" >
+    update product_supplier
+    set product_supplier_name = #{productSupplierName,jdbcType=VARCHAR},
+      product_supplier_code = #{productSupplierCode,jdbcType=VARCHAR},
+      supplier_type = #{supplierType,jdbcType=CHAR},
+      product_type = #{productType,jdbcType=VARCHAR},
+      product_supplier_address = #{productSupplierAddress,jdbcType=VARCHAR},
+      supplier_contact_name = #{supplierContactName,jdbcType=VARCHAR},
+      supplier_contact_mobile = #{supplierContactMobile,jdbcType=VARCHAR},
+      business_license = #{businessLicense,jdbcType=VARCHAR},
+      opening_bank = #{openingBank,jdbcType=VARCHAR},
+      bank_account = #{bankAccount,jdbcType=VARCHAR},
+      bank_account_name = #{bankAccountName,jdbcType=VARCHAR},
+      payment_cycle = #{paymentCycle,jdbcType=INTEGER},
+      supplier_level = #{supplierLevel,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      product_supplier_quanlification = #{productSupplierQuanlification,jdbcType=VARCHAR},
+      bill_type = #{billType,jdbcType=VARCHAR}
+    where product_supplier_id = #{productSupplierId,jdbcType=BIGINT}
+  </update>
+</mapper>

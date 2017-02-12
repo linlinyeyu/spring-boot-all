@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductEfficiencyCoefficientApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductEfficiencyCoefficientApply" >
+    <id column="product_efficiency_coefficient_apply_id" property="productEfficiencyCoefficientApplyId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="merchant_id" property="merchantId" jdbcType="INTEGER" />
+    <result column="facility_id" property="facilityId" jdbcType="INTEGER" />
+    <result column="supplies_product_id" property="suppliesProductId" jdbcType="INTEGER" />
+    <result column="circulation_processing_coff" property="circulationProcessingCoff" jdbcType="DECIMAL" />
+    <result column="production_packaging_coff" property="productionPackagingCoff" jdbcType="DECIMAL" />
+    <result column="others_coff" property="othersCoff" jdbcType="DECIMAL" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="DATE" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    product_efficiency_coefficient_apply_id, product_id, merchant_id, facility_id, supplies_product_id, 
+    circulation_processing_coff, production_packaging_coff, others_coff, created_time, 
+    created_user, start_date, note, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_efficiency_coefficient_apply
+    where product_efficiency_coefficient_apply_id = #{productEfficiencyCoefficientApplyId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectByProductEfficiencyCoefficientApply" parameterType="com.ibenben.domain.ProductEfficiencyCoefficientApply" resultMap="BaseResultMap">
+  	select * from product_efficiency_coefficient_apply
+  	<where>
+  		<if test="productId != null">
+  			and product_id = #{productId}
+  		</if>
+  		<if test="merchantId != null">
+  			and merchant_id = #{merchantId}
+  		</if>
+  		<if test="facilityId != null">
+  			and facility_id = #{facilityId}
+  		</if>
+  		<if test="suppliesProductId != null">
+  			and supplies_product_id = #{suppliesProductId}
+  		</if>
+  		<if test="status != null">
+  			and status = #{status}
+  		</if>
+  	</where>
+  </select>
+  
+  <select id="getProductCoefficientList" resultType="java.util.Map">
+  	select
+		p.product_id,
+		p.product_name,
+		m.merchant_id,
+		m.merchant_name,
+		f.facility_id,
+		f.facility_name,
+		peca.circulation_processing_coff,
+		peca.production_packaging_coff,
+		peca.others_coff,
+		peca.note,
+		peca.start_date,
+		peca.created_time,
+		peca.created_user,
+		peca.status,
+		ec.distribution_shipping_coff,
+		ec.document_management_coff,
+		ec.inventory_management_coff,
+		ec.note as facility_note,
+		sp.product_id as supplies_product_id,
+		sp.product_name as supplies_product_name,
+		group_concat(distinct concat(cp.product_name,'*',truncate(pm.quantity,2)) separator '+') as supplies_component_detail,
+		sp.temperature_package_type
+	from
+		product_efficiency_coefficient_apply peca
+	inner join product p on peca.product_id = p.product_id and p.status='OK'
+	inner join product_packaging pp on pp.goods_product_id = p.product_id
+	inner join merchant m on pp.merchant_id = m. merchant_id 
+		and pp.status='OK'
+		and pp.facility_id = peca.facility_id
+		and pp.supplies_product_id = peca.supplies_product_id
+	inner join facility f on f.facility_id = pp.facility_id and f.status='OK'
+	inner join product sp on sp.product_id = pp.supplies_product_id and sp.`status`='OK'
+	inner join product_mapping pm on pm.product_id = sp.product_id and pm.`status`='OK'
+	inner join product cp on cp.product_id = pm.product_component_id and cp.`status`='OK'
+	inner join efficiency_coefficient ec on ec.facility_id = f.facility_id
+		and ec.merchant_id = p.merchant_id
+		and ec.is_now = 1
+	where
+		p.product_type = 'goods'
+		and p.product_sub_type = 'finished'
+	<if test="status != null and status != ''">
+		and peca.status=#{status}
+	</if>
+	<if test="product_id != null and product_id != ''">
+		and p.product_id = #{product_id}
+	</if>
+	<if test="product_name != null and product_name != '' ">
+		and p.product_name like concat('%',#{product_name},'%')
+	</if>
+	<if test="merchant_id != null and merchant_id != '' ">
+		and m.merchant_id = #{merchant_id}
+	</if>
+	<if test="facility_id != null and facility_id != '' ">
+		and f.facility_id = #{facility_id}
+	</if>
+	<if test="start_created_time != null and start_created_time != ''">
+		and peca.created_time &gt;= #{start_created_time}
+	</if>
+	<if test="end_created_time != null and end_created_time != ''">
+		and peca.created_time &lt;= #{end_created_time}
+	</if>
+	<if test="start_start_date != null and start_start_date != '' ">
+		and peca.start_date &gt;= #{start_start_date}
+	</if>
+	<if test="end_start_date != null and end_start_date != ''">
+		and peca.start_date &lt;= #{end_start_date}
+	</if>
+	group by pp.goods_product_id, pp.facility_id, pp.supplies_product_id
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from product_efficiency_coefficient_apply
+    where product_efficiency_coefficient_apply_id = #{productEfficiencyCoefficientApplyId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductEfficiencyCoefficientApply" >
+    insert into product_efficiency_coefficient_apply (product_efficiency_coefficient_apply_id, product_id, 
+      merchant_id, facility_id, supplies_product_id, 
+      circulation_processing_coff, production_packaging_coff, 
+      others_coff, created_time, created_user, 
+      start_date, note, status)
+    values (#{productEfficiencyCoefficientApplyId,jdbcType=BIGINT}, #{productId,jdbcType=INTEGER}, 
+      #{merchantId,jdbcType=INTEGER}, #{facilityId,jdbcType=INTEGER}, #{suppliesProductId,jdbcType=INTEGER}, 
+      #{circulationProcessingCoff,jdbcType=DECIMAL}, #{productionPackagingCoff,jdbcType=DECIMAL}, 
+      #{othersCoff,jdbcType=DECIMAL}, #{createdTime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=VARCHAR}, 
+      #{startDate,jdbcType=DATE}, #{note,jdbcType=VARCHAR}, #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductEfficiencyCoefficientApply" >
+    insert into product_efficiency_coefficient_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productEfficiencyCoefficientApplyId != null" >
+        product_efficiency_coefficient_apply_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="merchantId != null" >
+        merchant_id,
+      </if>
+      <if test="facilityId != null" >
+        facility_id,
+      </if>
+      <if test="suppliesProductId != null" >
+        supplies_product_id,
+      </if>
+      <if test="circulationProcessingCoff != null" >
+        circulation_processing_coff,
+      </if>
+      <if test="productionPackagingCoff != null" >
+        production_packaging_coff,
+      </if>
+      <if test="othersCoff != null" >
+        others_coff,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createdUser != null" >
+        created_user,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productEfficiencyCoefficientApplyId != null" >
+        #{productEfficiencyCoefficientApplyId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityId != null" >
+        #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="suppliesProductId != null" >
+        #{suppliesProductId,jdbcType=INTEGER},
+      </if>
+      <if test="circulationProcessingCoff != null" >
+        #{circulationProcessingCoff,jdbcType=DECIMAL},
+      </if>
+      <if test="productionPackagingCoff != null" >
+        #{productionPackagingCoff,jdbcType=DECIMAL},
+      </if>
+      <if test="othersCoff != null" >
+        #{othersCoff,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <insert id="insertBatch">
+  	insert into product_efficiency_coefficient_apply
+  	<trim prefix="(" suffix=")" suffixOverrides=",">
+  		product_id,
+  		merchant_id,
+  		facility_id,
+  		supplies_product_id,
+  		circulation_processing_coff,
+  		production_packaging_coff,
+  		others_coff,
+  		created_time,
+  		created_user,
+  		start_date,
+  		note,
+  		status
+  	</trim>
+  	values
+  	<foreach collection="list" item="item" index="index" separator=",">
+  		(#{item.productId},
+  		#{item.merchantId},
+  		#{item.facilityId},
+  		#{item.suppliesProductId},
+  		#{item.circulationProcessingCoff},
+  		#{item.productionPackagingCoff},
+  		#{item.othersCoff},
+  		#{item.createdTime},
+  		#{item.createdUser},
+  		#{item.startDate},
+  		#{item.note},
+  		#{item.status}
+  		)
+  	</foreach>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductEfficiencyCoefficientApply" >
+    update product_efficiency_coefficient_apply
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null" >
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityId != null" >
+        facility_id = #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="suppliesProductId != null" >
+        supplies_product_id = #{suppliesProductId,jdbcType=INTEGER},
+      </if>
+      <if test="circulationProcessingCoff != null" >
+        circulation_processing_coff = #{circulationProcessingCoff,jdbcType=DECIMAL},
+      </if>
+      <if test="productionPackagingCoff != null" >
+        production_packaging_coff = #{productionPackagingCoff,jdbcType=DECIMAL},
+      </if>
+      <if test="othersCoff != null" >
+        others_coff = #{othersCoff,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where product_efficiency_coefficient_apply_id = #{productEfficiencyCoefficientApplyId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductEfficiencyCoefficientApply" >
+    update product_efficiency_coefficient_apply
+    set product_id = #{productId,jdbcType=INTEGER},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      facility_id = #{facilityId,jdbcType=INTEGER},
+      supplies_product_id = #{suppliesProductId,jdbcType=INTEGER},
+      circulation_processing_coff = #{circulationProcessingCoff,jdbcType=DECIMAL},
+      production_packaging_coff = #{productionPackagingCoff,jdbcType=DECIMAL},
+      others_coff = #{othersCoff,jdbcType=DECIMAL},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=DATE},
+      note = #{note,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR}
+    where product_efficiency_coefficient_apply_id = #{productEfficiencyCoefficientApplyId,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateAppliedRecordsToFinish">
+  	update product_efficiency_coefficient_apply set status='finish' where status='applied'
+  </update>
+  
+  <update id="overrideApply">
+  	update product_efficiency_coefficient_apply set status='finish' 
+  	where
+  	<foreach collection="list" item="item" index="index" separator="or">
+  		(product_id = #{item.productId} 
+  		and supplies_product_id = #{item.suppliesProductId}
+  		and merchant_id = #{item.merchantId}
+  		and facility_id = #{item.facilityId}
+  		and status = 'applied')
+  	</foreach>
+  </update>
+</mapper>

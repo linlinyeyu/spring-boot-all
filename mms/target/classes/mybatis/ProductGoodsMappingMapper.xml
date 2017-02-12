@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibenben.mapper.ProductGoodsMappingMapper">
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductGoodsMapping">
+    <id column="product_goods_mapping_id" jdbcType="INTEGER" property="productGoodsMappingId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="merchant_id" jdbcType="INTEGER" property="merchantId" />
+    <result column="platform_id" jdbcType="INTEGER" property="platformId" />
+    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="created_user" jdbcType="VARCHAR" property="createdUser" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_user" jdbcType="VARCHAR" property="deleteUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    product_goods_mapping_id, product_id, merchant_id, goods_id, status, created_time, 
+    created_user, delete_time, delete_user
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_goods_mapping
+    where product_goods_mapping_id = #{productGoodsMappingId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getGoodsByProduct" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+    goods_id
+    from product_goods_mapping
+    where product_id = #{product_id,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="selectByMapParams" parameterType="java.util.Map" resultType="java.util.Map">
+   	SELECT 
+   		pgm.*,
+   		g.goods_name,
+   		pf.platform_name,
+   		m.merchant_name
+   	from product_goods_mapping pgm 
+	LEFT JOIN goods g on g.goods_id = pgm.goods_id
+	left join platform pf on pgm.platform_id = pf.platform_id and pf.status='OK'
+	left join merchant m on pgm.merchant_id = m.merchant_id and m.status='OK'
+    <where>
+		<if test="product_id != null and product_id != '' ">
+			pgm.product_id = #{product_id,jdbcType=INTEGER}
+		</if>
+		<if test="merchant_id != null and merchant_id != '' ">
+			and pgm.merchant_id = #{merchant_id,jdbcType=INTEGER}
+		</if>
+		<if test="goods_id != null and goods_id != '' ">
+			and pgm.goods_id = #{goods_id,jdbcType=BIGINT}
+		</if>
+		<if test="status != null">
+			and pgm.status = #{status,jdbcType=CHAR}
+		</if>
+		<if test="start_time != null and start_time != '' ">
+			and pgm.created_time &gt;= #{start_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="end_time != null and end_time != '' ">
+			and pgm.created_time &lt;= #{end_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="created_user != null and created_user != '' ">
+			and pgm.created_user = #{created_user,jdbcType=VARCHAR}
+		</if>
+    </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_goods_mapping
+    where product_goods_mapping_id = #{productGoodsMappingId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByProductId" parameterType="java.lang.Integer">
+    delete from product_goods_mapping
+    where product_id = #{productId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductGoodsMapping">
+    insert into product_goods_mapping (product_goods_mapping_id, product_id, 
+      merchant_id, goods_id, status, 
+      created_time, created_user, delete_time, 
+      delete_user)
+    values (#{productGoodsMappingId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, 
+      #{merchantId,jdbcType=INTEGER}, #{goodsId,jdbcType=BIGINT}, #{status,jdbcType=CHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=VARCHAR}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{deleteUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductGoodsMapping">
+    insert into product_goods_mapping
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productGoodsMappingId != null">
+        product_goods_mapping_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="platformId != null">
+        platform_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="createdUser != null">
+        created_user,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+      <if test="deleteUser != null">
+        delete_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productGoodsMappingId != null">
+        #{productGoodsMappingId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="platformId != null">
+        #{platformId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null">
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null">
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductGoodsMapping">
+    update product_goods_mapping
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="platformId != null">
+        platform_id = #{platformId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null">
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null">
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_goods_mapping_id = #{productGoodsMappingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductGoodsMapping">
+    update product_goods_mapping
+    set product_id = #{productId,jdbcType=INTEGER},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      status = #{status,jdbcType=CHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR}
+    where product_goods_mapping_id = #{productGoodsMappingId,jdbcType=INTEGER}
+  </update>
+</mapper>

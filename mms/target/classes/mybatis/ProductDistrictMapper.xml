@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductDistrictMapper" >
+
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductDistrictKey" >
+    <id column="district_id" property="districtId" jdbcType="INTEGER" />
+    <id column="product_id" property="productId" jdbcType="INTEGER" />
+    <id column="merchant_id" property="merchantId" jdbcType="INTEGER"/>
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="ProvinceResultMap">
+	  <id column="province_id" property="province_id" jdbcType="SMALLINT" />
+	  <result column="province_name" property="province_name" jdbcType="VARCHAR" />
+	  <collection property="city_list" javaType="java.util.List" ofType="java.util.Map">
+	    <id column="city_id" property="city_id" jdbcType="SMALLINT" />
+	    <result column="city_name" property="city_name" jdbcType="VARCHAR" />
+	    <collection property="district_list" javaType="java.util.List" ofType="java.util.Map">
+		    <id column="district_id" property="district_id" jdbcType="SMALLINT" />
+		    <result column="district_name" property="district_name" jdbcType="VARCHAR" />
+		    <result column="is_set" property="is_set" jdbcType="INTEGER"/>
+	    </collection>
+    </collection>
+  </resultMap>
+  
+  <select id="selectByMapParams" parameterType="java.util.Map" resultMap="ProvinceResultMap">
+  	select 
+  	 d.region_id district_id, 
+  	 d.region_name district_name, 
+  	 c.region_id city_id, 
+  	 c.region_name city_name,
+  	 p.region_id province_id, 
+  	 p.region_name province_name,
+  	 pd.product_id
+  	from product_district pd
+	LEFT JOIN region d on d.region_id = pd.district_id and d.status='OK'
+	LEFT JOIN region c on c.region_id = d.parent_id and c.status='OK'
+	LEFT JOIN region p on p.region_id = c.parent_id and p.status='OK'
+	<where>
+		
+		<if test="product_id != null and product_id != '' ">
+			and pd.product_id = #{product_id, jdbcType=INTEGER}
+		</if>
+		<if test="district_id and district_id != '' ">
+			and pd.district_id = #{district_id, jdbcType=INTEGER}
+		</if>
+		<if test="merchant_id and merchant_id != '' ">
+			and pd.merchant_id = #{merchant_id, jdbcType=INTEGER}
+		</if>
+	</where>
+  </select>
+  
+  <select id="gerHaveSetedMerchant" parameterType="java.lang.Integer" resultType="java.util.Map">
+   	select
+   	m.merchant_id,
+   	m.merchant_name
+   	from product_district pd
+   	inner join merchant m on pd.merchant_id = m.merchant_id and m.status = 'OK'
+   	where pd.product_id = #{product_id,jdbcType=INTEGER}
+   	group by m.merchant_id
+  </select>
+  
+  <select id="selectAvaliableDistrictForSetting" parameterType="java.util.Map" resultMap="ProvinceResultMap">
+  	select 
+		 d.region_id district_id, 
+		 d.region_name district_name, 
+		 c.region_id city_id, 
+		 c.region_name city_name,
+		 p.region_id province_id, 
+		 p.region_name province_name,
+		 if(pd.district_id is null, 0 ,1) as is_set
+	from region d 
+	inner join region c on c.region_id = d.parent_id and c.status='OK'
+	inner join region p on p.region_id = c.parent_id and p.status='OK'
+	LEFT JOIN product_district pd on pd.district_id = d.region_id 
+		<if test="productId != null"> and pd.product_id = #{productId, jdbcType=INTEGER}</if>
+		<if test="merchantId != null"> and pd.merchant_id = #{merchantId, jdbcType=INTEGER}</if>
+	where d.region_type='district' and d.status='OK'
+  </select>
+  
+  <select id="getDistrictsByProductAndMerchant" resultType="java.lang.Integer">
+  	select district_id from product_district where product_id = #{productId} and merchant_id = #{merchantId}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.ibenben.domain.ProductDistrictKey" >
+    delete from product_district
+    where district_id = #{districtId,jdbcType=INTEGER}
+      and product_id = #{productId,jdbcType=INTEGER}
+  </delete>
+  <delete id = "deleteByProdutId" parameterType = "java.lang.Integer">
+  	 delete from product_district
+     where product_id = #{product_id,jdbcType=INTEGER}
+  </delete>
+  <delete id = "deleteByProductMerchant" parameterType = "java.lang.Integer">
+  	 delete from product_district
+     where product_id = #{productId} and 
+           merchant_id = #{merchantId}
+  </delete>
+    
+  <insert id="insert" parameterType="com.ibenben.domain.ProductDistrictKey" >
+    insert into product_district (district_id, product_id)
+    values (#{districtId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductDistrictKey" >
+    insert into product_district
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="districtId != null" >
+        district_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="merchantId != null">
+      	merchant_id
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="districtId != null" >
+        #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatchRecord" parameterType="java.util.List">
+  	insert into product_district
+  	<trim prefix="(" suffix=")" suffixOverrides=",">
+  		district_id,product_id,merchant_id,
+  	</trim>
+  	values
+  	<foreach item="item" index="index" collection="list" separator=",">
+  		(#{item.districtId},#{item.productId},#{item.merchantId})
+  	</foreach>
+  </insert>
+</mapper>

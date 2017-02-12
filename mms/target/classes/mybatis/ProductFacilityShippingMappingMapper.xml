@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductFacilityShippingMappingMapper" >
+  <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductFacilityShippingMapping" >
+    <id column="product_facility_shipping_mapping_id" property="productFacilityShippingMappingId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="merchant_id" property="merchantId" jdbcType="INTEGER" />
+    <result column="facility_id" property="facilityId" jdbcType="INTEGER" />
+    <result column="shipping_id" property="shippingId" jdbcType="INTEGER" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="SimpleResultMap" type="java.util.Map">
+  	<id column="product_facility_shipping_mapping_id" property="product_facility_shipping_mapping_id" jdbcType="INTEGER" />
+    <result column="product_id" property="product_id" jdbcType="INTEGER" />
+    <result column="merchant_id" property="merchant_id" jdbcType="INTEGER" />
+    <result column="facility_id" property="facility_id" jdbcType="INTEGER" />
+    <result column="shipping_id" property="shipping_id" jdbcType="INTEGER" />
+    <result column="product_name" property="product_name" jdbcType="VARCHAR"/>
+    <result column="facility_name" property="facility_name" jdbcType="VARCHAR"/>
+    <result column="shipping_name" property="shipping_name" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    product_facility_shipping_mapping_id, product_id, merchant_id, facility_id, shipping_id, created_time, 
+    created_user
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_facility_shipping_mapping
+    where product_facility_shipping_mapping_id = #{productFacilityShippingMappingId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="gerHaveSetedMerchant" parameterType="java.lang.Integer" resultType="java.util.Map">
+  	select
+  	m.merchant_id,
+  	m.merchant_name
+  	from product_facility_shipping_mapping pfsm
+  	inner join merchant m on pfsm.merchant_id = m.merchant_id and m.status = 'OK'
+  	where pfsm.product_id = #{product_id,jdbcType=INTEGER}
+  	group by m.merchant_id
+  </select>
+  
+  <select id="selectByMapParams" resultMap="SimpleResultMap">
+  	SELECT 
+  		pfsm.product_facility_shipping_mapping_id,
+  		pfsm.product_id,
+  		pfsm.shipping_id,
+  		pfsm.facility_id,
+  		pfsm.merchant_id,
+  		p.product_name,
+  		s.shipping_name,
+  		f.facility_name,
+  		m.merchant_name
+  	from product_facility_shipping_mapping pfsm 
+	inner join facility f on f.facility_id = pfsm.facility_id and f.`status` = 'OK'
+	inner join shipping s on s.shipping_id = pfsm.shipping_id and s.`status` = 'OK'
+	inner join product p on p.product_id = pfsm.product_id and p.`status` = 'OK'
+	inner join merchant m on m.merchant_id = pfsm.merchant_id and m.status='OK'
+  	<where>
+  		<if test="product_id != null and product_id !='' ">
+  			and pfsm.product_id = #{product_id}
+  		</if>
+  		<if test="facility_id != null and facility_id !='' ">
+  			and pfsm.facility_id = #{facility_id}
+  		</if>
+  		<if test="shipping_id != null and shipping_id !='' ">
+  			and pfsm.shipping_id = #{shipping_id}
+  		</if>
+  		<if test="merchant_id != null and merchant_id != '' ">
+  			and pfsm.merchant_id = #{merchant_id}
+  		</if>
+  		<if test="product_name != null and product_name !='' ">
+  			and p.product_name like concat('%',#{product_name},'%')
+  		</if>
+  	</where>
+  </select>
+  
+  <select id="getProductFacilityShipping" parameterType="java.lang.Integer" resultMap="com.ibenben.mapper.FacilityShippingMapper.productFacilityShippingResultMap">
+	select 
+		f.facility_id, 
+		f.facility_name, 
+		s.shipping_id, 
+		s.shipping_name, 
+		s.shipping_type , 
+		pfsm.product_facility_shipping_mapping_id, 
+		pfsm.product_id,
+		if(pfsm.product_facility_shipping_mapping_id is null,0,1) as 'is_select',
+		1 as result_type
+	from product p
+	inner join party pt on p.party_id = pt.party_id and pt.status='OK'
+	inner join merchant m on pt.party_id = m.party_id and m.`status`='OK'
+	inner join merchant_facility_mapping mfm on mfm.merchant_id = m.merchant_id and mfm.status='OK'
+	inner join facility f on f.facility_id = mfm.facility_id and f.status='OK'
+	inner join facility_shipping fs on f.facility_id = fs.facility_id and fs.`status`='OK'
+	inner join shipping s on fs.shipping_id = s.shipping_id and s.status = 'OK'
+	left join product_facility_shipping_mapping pfsm on p.product_id = pfsm.product_id 
+		and fs.facility_id = pfsm.facility_id 
+		and fs.shipping_id = pfsm.shipping_id
+		and m.merchant_id = pfsm.merchant_id
+	<if test="productId != null">
+		where p.product_id = #{productId, jdbcType=INTEGER}
+	</if>
+	<if test="merchantId != null">
+		and m.merchant_id = #{merchantId, jdbcType=INTEGER}
+	</if>
+	group by f.facility_id, s.shipping_id
+  </select>
+  
+  <select id="getUnResonableFacilityShipping" parameterType="java.lang.Integer" resultMap="com.ibenben.mapper.FacilityShippingMapper.productFacilityShippingResultMap">
+  	select 
+		f.facility_id,
+		f.facility_name,
+		s.shipping_id,
+		s.shipping_name,
+		s.shipping_type,
+		pfsm.product_id,
+		0 as is_select,
+		1 as result_type
+	from product_facility_district_shipping_mapping pfdsm
+	inner join facility f on pfdsm.facility_id = f.facility_id and f.`status` = 'OK'
+	inner join shipping s on pfdsm.shipping_id = s.shipping_id and s.`status` = 'OK' 
+	left join product_facility_shipping_mapping pfsm on pfdsm.product_id = pfsm.product_id
+		and pfdsm.facility_id = pfsm.facility_id 
+		and pfdsm.shipping_id = pfsm.shipping_id
+		and pfdsm.merchant_id = pfsm.merchant_id
+	where pfdsm.`STATUS`='OK' 
+		and pfsm.product_id is null 
+		and pfdsm.product_id = #{productId, jdbcType=INTEGER}
+		and pfdsm.merchant_id = #{merchantId, jdbcType=INTEGER}
+	group by pfdsm.facility_id, pfdsm.shipping_id
+  </select>
+  
+  <select id="getCandidateFacilityShipping" resultType="java.util.Map">
+  select
+		fsc.facility_id,
+		fsc.shipping_id,
+		pp.supplies_product_id,
+		c.carriage_id,
+		c.first_fee,
+		c.first_weight,
+		c.continued_fee,
+		c.rule_id,
+		c.interval_weight,
+		c.interval_type,
+		s.shipping_type,
+		(fs.pickup_upper_limit + (- 1.0) * fs.pickup_left) as pickup_left
+	from
+		product_facility_shipping_mapping pfsm
+	inner join facility_shipping_coverage fsc on fsc.facility_id = pfsm.facility_id
+		and fsc.shipping_id = pfsm.shipping_id
+	inner join product_district pd on pd.product_id = pfsm.product_id
+		and pd.district_id = fsc.district_id
+		and pd.merchant_id = pfsm.merchant_id
+	inner join facility_shipping fs on fs.facility_id = fsc.facility_id
+		and fs.shipping_id = fsc.shipping_id
+	inner join shipping s on s.shipping_id = fs.shipping_id and s.status='OK'
+	inner join product_packaging pp on pp.facility_id = pfsm.facility_id
+		and pp.shipping_id = pfsm.shipping_id
+		and pp.goods_product_id = pfsm.product_id
+		and pp.merchant_id = pfsm.merchant_id
+		and pp.status='OK'
+	left join carriage c on c.facility_id = fsc.facility_id
+		and c.shipping_id = fsc.shipping_id
+		and c.region_id = fsc.district_id
+	where
+		pfsm.product_id = #{product_id}
+		and pfsm.merchant_id = #{merchant_id}
+		and fsc.district_id = #{district_id}
+		and fs.status = 'OK'
+		and fsc.status = 'OK'
+		and pp.status = 'OK'
+		<if test="facility_id != null and facility_id !='' ">
+			and fsc.facility_id = #{facility_id}
+		</if>
+	order by
+		pickup_left desc
+  </select>
+  
+  <select id="getProductFacilityShippingAndCoverged" resultType="java.util.Map">
+	select
+		fsc.facility_id,
+		fsc.shipping_id
+	from
+		product_facility_shipping_mapping pfsm
+	inner join facility_shipping_coverage fsc on fsc.facility_id = pfsm.facility_id
+	and fsc.shipping_id = pfsm.shipping_id
+	and fsc.district_id = #{district_id}
+	and fsc.status = 'ok'
+	where
+		pfsm.product_id = #{product_id}
+		and pfsm.merchant_id = #{merchant_id}
+  </select>
+  
+  <select id="getProductFacilityShippingMappingList" resultType="java.util.Map">
+  	select
+  		pfsm.product_id,
+  		p.product_name,
+		pfsm.facility_id,
+		pfsm.shipping_id,
+		m.merchant_id,
+		m.merchant_name,
+		pf.platform_id,
+		pf.platform_name
+  	from product_facility_shipping_mapping pfsm
+	inner join product p on p.product_id = pfsm.product_id and p.status='OK'
+	inner join merchant m on m.merchant_id = pfsm.merchant_id and m.`status`='OK'
+	inner join platform pf on pf.platform_id = m.platform_id and pf.status='OK'
+  	<where>
+  		<if test="product_id != null and product_id != ''">
+  			pfsm.product_id = #{product_id}
+  		</if>
+  		<if test="product_name != null and product_name != ''">
+  			and p.product_name like concat('%',#{product_name},'%')
+  		</if>
+  		<if test="merchant_ids != null and merchant_ids != ''">
+			and m.merchant_id in 
+			<foreach item="item" index="index" collection="merchant_ids" open="(" close=")" separator=",">
+				#{item}
+			</foreach>
+		</if>
+  		<if test="platform_ids != null and platform_ids != ''">
+			and pf.platform_id in 
+			<foreach item="item" index="index" collection="platform_ids" open="(" close=")" separator=",">
+				#{item}
+			</foreach>
+		</if>
+  		<if test="facility_ids != null and facility_ids != '' ">
+  			and pfsm.facility_id in 
+  			<foreach item="item" index="index" collection="facility_ids" open="(" close=")" separator=",">
+				#{item}
+			</foreach>
+  		</if>
+  	</where>
+  </select>
+  
+  <select id="getFacilityIdListByProductId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+    facility_id
+    from
+    product_facility_shipping_mapping
+    where product_id = #{product_id,jdbcType=INTEGER}
+    group by facility_id
+  </select>
+  
+  <select id="getAvaliableProductFacilityShipping" resultType="java.util.Map">
+	select 
+		pfsm.product_id,
+		pfsm.shipping_id,
+		pfsm.facility_id,
+		pfbp.business_type as order_type,
+		pp.supplies_product_id,
+		s.shipping_type,
+		s.bestshipping_manual_score
+	from product_facility_shipping_mapping pfsm 
+	inner join product_facility_business_process pfbp on pfsm.product_id = pfbp.product_id 
+		and pfsm.facility_id = pfbp.facility_id 
+		and pfbp.`status`='OK'
+	inner join facility f on f.facility_id = pfsm.facility_id and f.`status`='OK'
+	inner join shipping s on s.shipping_id = pfsm.shipping_id and s.`status`='OK'
+	inner join facility_shipping fs on fs.facility_id = pfsm.facility_id 
+		and fs.shipping_id = pfsm.shipping_id
+		and fs.`status`='OK'
+	left join product_packaging pp on pp.facility_id = pfsm.facility_id 
+		and pp.shipping_id = pfsm.shipping_id
+		and pp.goods_product_id = pfsm.product_id
+		and pp.merchant_id = pfsm.merchant_id
+		and pp.status='OK'
+	where pfsm.product_id = #{product_id}
+	and pfsm.merchant_id = #{merchant_id}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_facility_shipping_mapping
+    where product_facility_shipping_mapping_id = #{productFacilityShippingMappingId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByProductId" parameterType="java.lang.Integer" >
+    delete from product_facility_shipping_mapping
+    where 
+    	product_id = #{product_id,jdbcType=INTEGER} and 
+    	merchant_id = #{merchant_id, jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductFacilityShippingMapping" >
+    insert into product_facility_shipping_mapping (product_facility_shipping_mapping_id, product_id, 
+      merchant_id, facility_id, shipping_id, created_time, 
+      created_user)
+    values (#{productFacilityShippingMappingId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{merchantId, jdbcType=INTEGER}
+      #{facilityId,jdbcType=INTEGER}, #{shippingId,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{createdUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductFacilityShippingMapping" >
+    insert into product_facility_shipping_mapping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productFacilityShippingMappingId != null" >
+        product_facility_shipping_mapping_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="merchantId != null" >
+        merchant_id,
+      </if>
+      <if test="facilityId != null" >
+        facility_id,
+      </if>
+      <if test="shippingId != null" >
+        shipping_id,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createdUser != null" >
+        created_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productFacilityShippingMappingId != null" >
+        #{productFacilityShippingMappingId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityId != null" >
+        #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingId != null" >
+        #{shippingId,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <insert id="insertBatch">
+  	insert into product_facility_shipping_mapping
+  	<trim prefix="(" suffix=")" suffixOverrides=",">
+  		product_id, merchant_id, facility_id, shipping_id, created_time, created_user,
+  	</trim>
+  		values
+	<foreach item="item" index="index" separator="," collection="list">
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			#{item.productId,jdbcType=INTEGER},
+			#{item.merchantId,jdbcType=INTEGER},
+			#{item.facilityId,jdbcType=INTEGER},
+			#{item.shippingId,jdbcType=INTEGER},
+			#{item.createdTime,jdbcType=TIMESTAMP},
+			#{item.createdUser,jdbcType=VARCHAR},
+		</trim>
+  	</foreach>
+  </insert>
+  
+  <insert id="copySetting">
+  	insert into product_facility_shipping_mapping (
+		product_id,
+		merchant_id,
+		facility_id,
+		shipping_id,
+		created_time,
+		created_user
+	) select
+		product_id,
+		#{toMerchantId} as merchant_id,
+		facility_id,
+		shipping_id,
+		created_time,
+		created_user
+	from
+		product_facility_shipping_mapping
+	where
+		product_id = #{productId}
+		and merchant_id = #{fromMerchantId}
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductFacilityShippingMapping" >
+    update product_facility_shipping_mapping
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null" >
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityId != null" >
+        facility_id = #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingId != null" >
+        shipping_id = #{shippingId,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_facility_shipping_mapping_id = #{productFacilityShippingMappingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductFacilityShippingMapping" >
+    update product_facility_shipping_mapping
+    set product_id = #{productId,jdbcType=INTEGER},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      facility_id = #{facilityId,jdbcType=INTEGER},
+      shipping_id = #{shippingId,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_user = #{createdUser,jdbcType=VARCHAR}
+    where product_facility_shipping_mapping_id = #{productFacilityShippingMappingId,jdbcType=INTEGER}
+  </update>
+</mapper>

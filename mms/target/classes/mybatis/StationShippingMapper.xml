@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.StationShippingMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.StationShipping" >
+    <id column="station_shipping_id" property="stationShippingId" jdbcType="TINYINT" />
+    <result column="station_id" property="stationId" jdbcType="TINYINT" />
+    <result column="shipping_id" property="shippingId" jdbcType="SMALLINT" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="send_addr_code" property="sendAddrCode" jdbcType="VARCHAR" />
+    <result column="sf_account" property="sfAccount" jdbcType="VARCHAR" />
+    <result column="station_shipping_name" property="stationShippingName" jdbcType="VARCHAR" />
+    <result column="station_shipping_user" property="stationShippingUser" jdbcType="VARCHAR" />
+    <result column="station_shipping_password" property="stationShippingPassword" jdbcType="VARCHAR" />
+    <result column="station_shipping_site" property="stationShippingSite" jdbcType="VARCHAR" />
+    <result column="station_shipping_account" property="stationShippingAccount" jdbcType="VARCHAR" />
+    <result column="start_pickup_time" property="startPickupTime" jdbcType="VARCHAR" />
+    <result column="end_pickup_time" property="endPickupTime" jdbcType="VARCHAR" />
+    <result column="pickup_upper_limit" property="pickupUpperLimit" jdbcType="BIGINT" />
+    <result column="pickup_left" property="pickupLeft" jdbcType="BIGINT" />
+    <result column="facility_id" property="facilityId" jdbcType="TINYINT"/>
+    <collection property="shippingArea" javaType="java.util.List" ofType="com.ibenben.domain.Area">
+      <id column="area_id" property="areaId" jdbcType="INTEGER" />
+      <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  
+  <resultMap type="com.ibenben.domain.StationShipping" id="ShippingMap" extends="BaseResultMap">
+    <result column="shipping_name" property="shippingName" jdbcType="VARCHAR" />
+    <result column="facility_name" property="facilityName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    station_shipping_id, station_id, shipping_id, status, send_addr_code, sf_account, 
+    station_shipping_name, station_shipping_user, station_shipping_password, station_shipping_site, 
+    station_shipping_account, start_pickup_time, end_pickup_time, pickup_upper_limit, 
+    pickup_left,facility_id
+  </sql>
+  
+  <select id="getStationShippingList" parameterType="java.util.Map" resultType="java.util.Map">
+    select 
+                ss.station_id,
+                ss.shipping_id,
+                ss.send_addr_code,
+                ss.sf_account,
+                ss.station_shipping_name,
+                ss.station_shipping_user,
+                ss.station_shipping_password,
+                s.open_key as station_shipping_key,
+                ss.station_shipping_site,
+                ss.station_shipping_account,
+                s1.station_name,
+                s.send_order_url,
+                s.get_station_url,
+                s.shipping_type,
+                s.is_cod,
+                s.push_type,
+                s.shipping_code
+            from 
+                station_shipping ss
+                inner join shipping s on s.shipping_id = ss.shipping_id
+                inner join station s1 on s1.station_id = ss.station_id
+    <where>
+      ss.status = 'OK'
+      and s1.status = 'OK'
+      and s.status = 'OK'
+      <if test="station_id != '' and station_id != null">
+        and ss.station_id = #{station_id,jdbcType=INTEGER}
+      </if>
+      <if test="shipping_id != '' and shipping_id != null">
+        and ss.shipping_id = #{shipping_id,jdbcType=SMALLINT}
+      </if>
+      <if test="facility_id != '' and facility_id != null">
+        and ss.facility_id = #{facility_id,jdbcType=TINYINT}
+      </if>
+    </where>
+  </select>
+  
+  <select id="getOtherStation" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+    station_id
+    from
+    station_shipping
+    where
+    shipping_id = #{shipping_id,jdbcType=SMALLINT} and
+    station_id &lt;&gt; #{station_id,jdbcType=INTEGER} and
+    status = 'OK'
+    <if test="facility_id !='' and facility_id != null">
+      facility_id = #{facility_id,jdbcType=TINYINT}
+    </if>
+  </select>
+  
+  <select id="getAllStationByShipping" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    *
+    from 
+    station_shipping
+    where
+    shipping_id = #{shipping_id,jdbcType=SMALLINT}
+    and status = 'OK'
+    <if test="facility_id != '' and facility_id != null">
+      and facility_id = #{facility_id,jdbcType=TINYINT}
+    </if>
+  </select>
+  
+  <insert id="createStationShipping" parameterType="java.util.List">
+    insert into station_shipping
+    (station_id,facility_id,shipping_id,station_shipping_user,station_shipping_password,station_shipping_account,station_shipping_site)
+    values
+    	<foreach collection="list" index="index" item="item" open="(" separator="),(" close=")">
+    	  #{item.stationId,jdbcType=TINYINT},
+    	  #{item.facilityId,jdbcType=TINYINT},
+    	  #{item.shippingId,jdbcType=SMALLINT},
+    	  #{item.stationShippingUser,jdbcType=VARCHAR},
+    	  #{item.stationShippingPassword,jdbcType=VARCHAR},
+    	  #{item.stationShippingAccount,jdbcType=VARCHAR},
+    	  #{item.stationShippingSite,jdbcType=VARCHAR}
+    	</foreach>
+  </insert>
+  <delete id="delStationShippingByStationId" parameterType="com.ibenben.domain.StationShipping">
+    delete
+    from station_shipping
+    where station_id = #{stationId,jdbcType=TINYINT} and facility_id = #{facilityId,jdbcType=TINYINT}
+  </delete>
+  
+  <update id="setDeleteStationShipping">
+    update
+    station_shipping
+    set
+    status = 'DELETE'
+    where station_id = #{station_id,jdbcType=INTEGER}
+    and facility_id = #{facility_id,jdbcType=TINYINT}
+  </update>
+  
+  <select id="getSimStationShippingList" parameterType="java.lang.Integer" resultType="java.util.Map">
+    select
+    ss.shipping_id,
+    s.shipping_name
+    from
+    station_shipping ss
+    inner join shipping s on s.shipping_id = ss.shipping_id
+    where
+    ss.station_id = #{station_id,jdbcType=INTEGER}
+    and s.status = 'OK' and ss.status = 'OK'
+  </select>
+  
+  <select id="getStationShippingId" parameterType="com.ibenben.domain.StationShipping" resultType="java.lang.Integer">
+    select
+    station_shipping_id
+    from station_shipping
+    where station_id = #{stationId,jdbcType=TINYINT} and shipping_id = #{shippingId,jdbcType=TINYINT}
+    and facility_id = #{facilityId,jdbcType=TINYINT}
+  </select>
+  
+  <select id="getStationShipping" parameterType="java.lang.Integer" resultMap="ShippingMap">
+    select
+    	distinct ss.*,
+    	a.area_id,
+    	a.area_name,
+    	s.shipping_name,
+    	f.facility_name,
+    	f.facility_id
+    from station_shipping ss
+    left join facility f on f.facility_id = ss.facility_id
+    left join shipping s on ss.shipping_id = s.shipping_id
+    left join station_shipping_coverage ssc on ssc.shipping_id = ss.shipping_id and ssc.station_id = ss.station_id
+    left join region r on r.region_id = ssc.district_id
+    left join region r1 on r1.region_id = r.parent_id
+    left join region r2 on r2.region_id = r1.parent_id
+    left join area_province_mapping apm on apm.province_id = r2.region_id
+    left join area a on a.area_id = apm.area_id
+    where ss.station_id = #{stationId,jdbcType=TINYINT}
+    <if test="facilityId != null and facilityId != ''">
+      and ss.facility_id = #{facilityId,jdbcType=TINYINT}
+    </if>
+  </select>
+  
+  <select id="isExist" parameterType="com.ibenben.domain.StationShipping" resultType="java.lang.Integer">
+    select
+    count(station_shipping_id)
+    from station_shipping
+    where station_id = #{stationId,jdbcType=SMALLINT} and shipping_id = #{shippingId,jdbcType=SMALLINT}
+    <if test="facilityId != null">
+      and facility_id = #{facilityId,jdbcType=TINYINT}
+    </if>
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from station_shipping
+    where station_shipping_id = #{stationShippingId,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from station_shipping
+    where station_shipping_id = #{stationShippingId,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.StationShipping" >
+    insert into station_shipping (station_shipping_id, station_id, shipping_id, 
+      status, send_addr_code, sf_account, 
+      station_shipping_name, station_shipping_user, 
+      station_shipping_password, station_shipping_site, 
+      station_shipping_account, start_pickup_time, 
+      end_pickup_time, pickup_upper_limit, pickup_left,facility_id
+      )
+    values (#{stationShippingId,jdbcType=TINYINT}, #{stationId,jdbcType=TINYINT}, #{shippingId,jdbcType=SMALLINT}, 
+      #{status,jdbcType=CHAR}, #{sendAddrCode,jdbcType=VARCHAR}, #{sfAccount,jdbcType=VARCHAR}, 
+      #{stationShippingName,jdbcType=VARCHAR}, #{stationShippingUser,jdbcType=VARCHAR}, 
+      #{stationShippingPassword,jdbcType=VARCHAR}, #{stationShippingSite,jdbcType=VARCHAR}, 
+      #{stationShippingAccount,jdbcType=VARCHAR}, #{startPickupTime,jdbcType=VARCHAR}, 
+      #{endPickupTime,jdbcType=VARCHAR}, #{pickupUpperLimit,jdbcType=BIGINT}, #{pickupLeft,jdbcType=BIGINT},
+      #{facilityId,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.StationShipping" >
+    insert into station_shipping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stationShippingId != null" >
+        station_shipping_id,
+      </if>
+      <if test="stationId != null" >
+        station_id,
+      </if>
+      <if test="shippingId != null" >
+        shipping_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="sendAddrCode != null" >
+        send_addr_code,
+      </if>
+      <if test="sfAccount != null" >
+        sf_account,
+      </if>
+      <if test="stationShippingName != null" >
+        station_shipping_name,
+      </if>
+      <if test="stationShippingUser != null" >
+        station_shipping_user,
+      </if>
+      <if test="stationShippingPassword != null" >
+        station_shipping_password,
+      </if>
+      <if test="stationShippingSite != null" >
+        station_shipping_site,
+      </if>
+      <if test="stationShippingAccount != null" >
+        station_shipping_account,
+      </if>
+      <if test="startPickupTime != null" >
+        start_pickup_time,
+      </if>
+      <if test="endPickupTime != null" >
+        end_pickup_time,
+      </if>
+      <if test="pickupUpperLimit != null" >
+        pickup_upper_limit,
+      </if>
+      <if test="pickupLeft != null" >
+        pickup_left,
+      </if>
+      <if test="facilityId != null">
+        facility_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stationShippingId != null" >
+        #{stationShippingId,jdbcType=TINYINT},
+      </if>
+      <if test="stationId != null" >
+        #{stationId,jdbcType=TINYINT},
+      </if>
+      <if test="shippingId != null" >
+        #{shippingId,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="sendAddrCode != null" >
+        #{sendAddrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sfAccount != null" >
+        #{sfAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="stationShippingName != null" >
+        #{stationShippingName,jdbcType=VARCHAR},
+      </if>
+      <if test="stationShippingUser != null" >
+        #{stationShippingUser,jdbcType=VARCHAR},
+      </if>
+      <if test="stationShippingPassword != null" >
+        #{stationShippingPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="stationShippingSite != null" >
+        #{stationShippingSite,jdbcType=VARCHAR},
+      </if>
+      <if test="stationShippingAccount != null" >
+        #{stationShippingAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="startPickupTime != null" >
+        #{startPickupTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endPickupTime != null" >
+        #{endPickupTime,jdbcType=VARCHAR},
+      </if>
+      <if test="pickupUpperLimit != null" >
+        #{pickupUpperLimit,jdbcType=BIGINT},
+      </if>
+      <if test="pickupLeft != null" >
+        #{pickupLeft,jdbcType=BIGINT},
+      </if>
+      <if test="facilityId != null">
+        #{facilityId,jdbcType=TINYINT}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.StationShipping" >
+    update station_shipping
+    <set >
+      <if test="stationId != null" >
+        station_id = #{stationId,jdbcType=TINYINT},
+      </if>
+      <if test="shippingId != null" >
+        shipping_id = #{shippingId,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="sendAddrCode != null" >
+        send_addr_code = #{sendAddrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sfAccount != null" >
+        sf_account = #{sfAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="stationShippingName != null" >
+        station_shipping_name = #{stationShippingName,jdbcType=VARCHAR},
+      </if>
+      <if test="stationShippingUser != null" >
+        station_shipping_user = #{stationShippingUser,jdbcType=VARCHAR},
+      </if>
+      <if test="stationShippingPassword != null" >
+        station_shipping_password = #{stationShippingPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="stationShippingSite != null" >
+        station_shipping_site = #{stationShippingSite,jdbcType=VARCHAR},
+      </if>
+      <if test="stationShippingAccount != null" >
+        station_shipping_account = #{stationShippingAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="startPickupTime != null" >
+        start_pickup_time = #{startPickupTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endPickupTime != null" >
+        end_pickup_time = #{endPickupTime,jdbcType=VARCHAR},
+      </if>
+      <if test="pickupUpperLimit != null" >
+        pickup_upper_limit = #{pickupUpperLimit,jdbcType=BIGINT},
+      </if>
+      <if test="pickupLeft != null" >
+        pickup_left = #{pickupLeft,jdbcType=BIGINT},
+      </if>
+      <if test="facilityId != null">
+        facility_id = #{facilityId,jdbcType=TINYINT}
+      </if>
+    </set>
+    where station_shipping_id = #{stationShippingId,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.StationShipping" >
+    update station_shipping
+    set station_id = #{stationId,jdbcType=TINYINT},
+      shipping_id = #{shippingId,jdbcType=SMALLINT},
+      status = #{status,jdbcType=CHAR},
+      send_addr_code = #{sendAddrCode,jdbcType=VARCHAR},
+      sf_account = #{sfAccount,jdbcType=VARCHAR},
+      station_shipping_name = #{stationShippingName,jdbcType=VARCHAR},
+      station_shipping_user = #{stationShippingUser,jdbcType=VARCHAR},
+      station_shipping_password = #{stationShippingPassword,jdbcType=VARCHAR},
+      station_shipping_site = #{stationShippingSite,jdbcType=VARCHAR},
+      station_shipping_account = #{stationShippingAccount,jdbcType=VARCHAR},
+      start_pickup_time = #{startPickupTime,jdbcType=VARCHAR},
+      end_pickup_time = #{endPickupTime,jdbcType=VARCHAR},
+      pickup_upper_limit = #{pickupUpperLimit,jdbcType=BIGINT},
+      pickup_left = #{pickupLeft,jdbcType=BIGINT},
+      facility_id = #{facilityId,jdbcType=TINYINT}
+    where station_shipping_id = #{stationShippingId,jdbcType=TINYINT}
+  </update>
+</mapper>

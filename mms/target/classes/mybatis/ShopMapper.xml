@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ShopMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.Shop" >
+    <id column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <id column="platform_id" property="platformId" jdbcType="INTEGER" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    shop_id, platform_id, shop_name, created_user, created_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ibenben.domain.ShopKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    where shop_id = #{shopId,jdbcType=INTEGER}
+      and platform_id = #{platformId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getShopInfo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    shop_id,shop_name,platform_id
+    from shop
+    where
+    shop_id = #{shop_id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getShopByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    shop_id,shop_name
+    from shop
+    where
+    shop_name = #{shop_name,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getMerchantShop" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    s.shop_id,s.shop_name
+    from
+    merchant m
+    inner join merchant_shop_mapping msp on msp.merchant_id = m.merchant_id
+    inner join shop s on s.shop_id = msp.shop_id
+    where
+    m.merchant_id = #{merchant_id,jdbcType=INTEGER}
+  </select>
+  
+  <insert id="addMerchantShop" parameterType="java.util.Map">
+    insert into
+    merchant_shop_mapping
+    values
+    <foreach collection="shop_id_list" index="index" item="sId" open="(" separator="),(" close=")" >
+      #{merchant_id,jdbcType=INTEGER},#{sId,jdbcType=INTEGER}
+    </foreach>
+  </insert>
+  
+  <delete id="delMerchantShop" parameterType="java.util.Map">
+    delete
+    from merchant_shop_mapping
+    where
+    merchant_id = #{merchant_id,jdbcType=INTEGER} and
+    shop_id = #{shop_id,jdbcType=INTEGER}
+  </delete>
+  
+  <select id="isShopExist" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+    count(merchant_id)
+    from merchant_shop_mapping
+    where
+    merchant_id = #{merchant_id,jdbcType=INTEGER} and
+    shop_id in
+    <foreach collection="shop_id_list" index="index" item="sId" open="(" separator="," close=")">
+      #{sId,jdbcType=INTEGER}
+    </foreach>
+  </select>
+  
+  <select id="isExist" parameterType="com.ibenben.domain.Shop" resultType="java.lang.Integer">
+    select
+    count(shop_id)
+    from shop
+    where
+    shop_id = #{shopId,jdbcType=INTEGER} and
+    platform_id =#{platformId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getShopList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    shop_id,shop_name
+    from shop
+    <where>
+     <if test="shop_id != ''">
+       shop_id = #{shop_id,jdbcType=INTEGER}
+     </if>
+    </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.ibenben.domain.ShopKey" >
+    delete from shop
+    where shop_id = #{shopId,jdbcType=INTEGER}
+      and platform_id = #{platformId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.Shop" >
+    insert into shop (shop_id, platform_id, shop_name, 
+      created_user, created_time)
+    values (#{shopId,jdbcType=INTEGER}, #{platformId,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, 
+      #{createdUser,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.Shop" >
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="platformId != null" >
+        platform_id,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="createdUser != null" >
+        created_user,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="platformId != null" >
+        #{platformId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUser != null" >
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.Shop" >
+    update shop
+    <set >
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where shop_id = #{shopId,jdbcType=INTEGER}
+      and platform_id = #{platformId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.Shop" >
+    update shop
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP}
+    where shop_id = #{shopId,jdbcType=INTEGER}
+      and platform_id = #{platformId,jdbcType=INTEGER}
+  </update>
+</mapper>

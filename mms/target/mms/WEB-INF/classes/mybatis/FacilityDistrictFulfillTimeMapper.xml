@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.FacilityDistrictFulfillTimeMapper" >
+  <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.FacilityDistrictFulfillTime" >
+    <id column="facility_district_fulfill_time_id" property="facilityDistrictFulfillTimeId" jdbcType="INTEGER" />
+    <result column="facility_id" property="facilityId" jdbcType="TINYINT" />
+    <result column="district_id" property="districtId" jdbcType="SMALLINT" />
+    <result column="fulfill_end_time_name" property="fulfillEndTimeName" jdbcType="VARCHAR" />
+    <result column="last_updated_time" property="lastUpdatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap type="com.ibenben.domain.Area" id="FulTimeMap">
+    <id column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <collection property="provinceList" javaType="java.util.List" ofType="com.ibenben.domain.Province">
+      <id column="province_id" property="provinceId" jdbcType="SMALLINT" />
+      <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+        <collection property="cityList" javaType="java.util.List" ofType="com.ibenben.domain.City">
+          <id column="city_id" property="cityId" jdbcType="SMALLINT" />
+          <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+            <collection property="districtList" javaType="java.util.List" ofType="com.ibenben.domain.District">
+              <id column="district_id" property="districtId" jdbcType="SMALLINT" />
+              <result column="district_name" property="districtName" jdbcType="SMALLINT" />
+              <result column="fulfill_end_time_name" property="fulfillEndTimeName" jdbcType="VARCHAR" />
+              <result column="fulfill_end_time_value" property="fulfillEndTimeValue" jdbcType="VARCHAR" />
+            </collection>
+        </collection>
+    </collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    facility_district_fulfill_time_id, facility_id, district_id, fulfill_end_time_name, 
+    last_updated_time
+  </sql>
+  
+  <select id="getAttrValue" parameterType="java.util.Map" resultType="com.ibenben.domain.FacilityAttribute">
+    select
+    fa.attr_value attrValue
+    from
+    facility_district_fulfill_time fdft
+    inner join facility_attribute fa on fdft.facility_id = fa.facility_id and fdft.fulfill_end_time_name = fa.attr_name
+    <where>
+    <if test="facility_id != '' and facility_id != null">
+      fdft.facility_id = #{facility_id,jdbcType=TINYINT}
+    </if>
+    <if test="district_id != '' and district_id != null">
+      and fdft.district_id = #{district_id,jdbcType=SMALLINT}
+    </if>
+    </where>
+  </select>
+  
+  <select id="getFacilityDistrictFulfillTime" parameterType="java.lang.Integer" resultMap="FulTimeMap">
+    select
+    a.area_id,
+    a.area_name,
+    p.region_id as province_id,
+    p.region_name as province_name,
+    c.region_id as city_id,
+    c.region_name as city_name,
+    d.region_id as district_id,
+    d.region_name as district_name,
+    ft.fulfill_end_time_name,
+    fa.attr_value as fulfill_end_time_value
+	from area a
+	inner join area_province_mapping apm on a.area_id = apm.area_id
+	INNER JOIN region p on p.region_id = apm.province_id
+	INNER JOIN region c on c.parent_id = p.region_id
+	INNER JOIN region d on d.parent_id = c.region_id
+	LEFT JOIN facility_district_fulfill_time ft on ft.district_id = d.region_id and ft.facility_id = #{facility_id,jdbcType=INTEGER}
+	LEFT JOIN facility_attribute fa on ft.facility_id = fa.facility_id and ft.fulfill_end_time_name = fa.attr_name
+	where a.area_type = 'regional'
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from facility_district_fulfill_time
+    where facility_district_fulfill_time_id = #{facilityDistrictFulfillTimeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from facility_district_fulfill_time
+    where facility_district_fulfill_time_id = #{facilityDistrictFulfillTimeId,jdbcType=INTEGER}
+  </delete>
+  
+  <delete id="deleteByFacilityIdAndDistrictIds" >
+    delete from facility_district_fulfill_time
+    <where>
+    	facility_id = #{facility_id}
+    	and district_id in 
+    	<foreach item="item" index="index" open="(" close=")" separator="," collection="district_ids">
+    		#{item}
+    	</foreach>
+    </where>
+  </delete>
+  
+  <insert id="insert" parameterType="com.ibenben.domain.FacilityDistrictFulfillTime" >
+    insert into facility_district_fulfill_time (facility_district_fulfill_time_id, facility_id, 
+      district_id, fulfill_end_time_name, last_updated_time
+      )
+    values (#{facilityDistrictFulfillTimeId,jdbcType=INTEGER}, #{facilityId,jdbcType=TINYINT}, 
+      #{districtId,jdbcType=SMALLINT}, #{fulfillEndTimeName,jdbcType=VARCHAR}, #{lastUpdatedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.FacilityDistrictFulfillTime" >
+    insert into facility_district_fulfill_time
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="facilityDistrictFulfillTimeId != null" >
+        facility_district_fulfill_time_id,
+      </if>
+      <if test="facilityId != null" >
+        facility_id,
+      </if>
+      <if test="districtId != null" >
+        district_id,
+      </if>
+      <if test="fulfillEndTimeName != null" >
+        fulfill_end_time_name,
+      </if>
+      <if test="lastUpdatedTime != null" >
+        last_updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="facilityDistrictFulfillTimeId != null" >
+        #{facilityDistrictFulfillTimeId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityId != null" >
+        #{facilityId,jdbcType=TINYINT},
+      </if>
+      <if test="districtId != null" >
+        #{districtId,jdbcType=SMALLINT},
+      </if>
+      <if test="fulfillEndTimeName != null" >
+        #{fulfillEndTimeName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null" >
+        #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <insert id="insertBatch">
+  	insert into facility_district_fulfill_time
+  	(facility_id, district_id, fulfill_end_time_name, last_updated_time)
+  	values
+  	<foreach item="item" index="index" collection="list" separator=",">
+  		<trim prefix="(" suffix = ")" suffixOverrides=",">
+  			#{item.facilityId},
+  			#{item.districtId},
+  			#{item.fulfillEndTimeName},
+  			#{item.lastUpdatedTime},
+  		</trim>
+  	</foreach>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.FacilityDistrictFulfillTime" >
+    update facility_district_fulfill_time
+    <set >
+      <if test="facilityId != null" >
+        facility_id = #{facilityId,jdbcType=TINYINT},
+      </if>
+      <if test="districtId != null" >
+        district_id = #{districtId,jdbcType=SMALLINT},
+      </if>
+      <if test="fulfillEndTimeName != null" >
+        fulfill_end_time_name = #{fulfillEndTimeName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null" >
+        last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where facility_district_fulfill_time_id = #{facilityDistrictFulfillTimeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.FacilityDistrictFulfillTime" >
+    update facility_district_fulfill_time
+    set facility_id = #{facilityId,jdbcType=TINYINT},
+      district_id = #{districtId,jdbcType=SMALLINT},
+      fulfill_end_time_name = #{fulfillEndTimeName,jdbcType=VARCHAR},
+      last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP}
+    where facility_district_fulfill_time_id = #{facilityDistrictFulfillTimeId,jdbcType=INTEGER}
+  </update>
+</mapper>

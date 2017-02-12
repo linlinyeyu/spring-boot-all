@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ActionMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.Action" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="method" property="method" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="error" property="error" jdbcType="VARCHAR" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+    <result column="is_api" property="isApi" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, url, method, type, created_time, error,created_user,is_api
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from action
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from action
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.Action" >
+    insert into action (id, url, method, 
+      type, created_time, 
+      error,created_user,is_api)
+    values (#{id,jdbcType=BIGINT}, #{url,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{error,jdbcType=VARCHAR},#{createdUser,jdbcType=VARCHAR},#{isApi,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.Action" keyProperty="id" useGeneratedKeys="true">
+    insert into action
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="method != null" >
+        method,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="error != null" >
+        error,
+      </if>
+      <if test="createdUser != null">
+        created_user,
+      </if>
+      <if test="isApi != null">
+        is_api,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="error != null" >
+        #{error,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUser != null">
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="isApi != null">
+        #{isApi,jdbcType=TINYINT}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.Action" >
+    update action
+    <set >
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="error != null" >
+        error = #{error,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUser != null">
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="isApi != null">
+        is_api = #{isApi,jdbcType=TINYINT}
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.Action" >
+    update action
+    set url = #{url,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      error = #{error,jdbcType=VARCHAR},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      is_api = #{isApi,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,6 @@
+com\ibenben\service\UserService.class
+com\ibenben\service\UserSessionService.class
+com\ibenben\controller\api\UserApiController.class
+com\ibenben\service\FacilityShippingCoverageService$1.class
+com\ibenben\util\GetIpAddrUtil.class
+com\ibenben\service\ProductApplyService$1.class

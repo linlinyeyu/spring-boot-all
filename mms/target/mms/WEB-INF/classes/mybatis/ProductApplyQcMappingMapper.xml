@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductApplyQcMappingMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductApplyQcMapping" >
+    <id column="product_apply_qc_mapping_id" property="productApplyQcMappingId" jdbcType="INTEGER" />
+    <result column="product_apply_id" property="productApplyId" jdbcType="INTEGER" />
+    <result column="product_qc_id" property="productQcId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="VerBoseResultMap" type="com.ibenben.domain.ProductApplyQcMapping" extends='BaseResultMap'>
+  	<result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_qc_code" property="productQcCode" jdbcType="VARCHAR" />
+    <result column="product_qc_name" property="productQcName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    product_apply_qc_mapping_id, product_apply_id, product_qc_id, product_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_apply_qc_mapping
+    where product_apply_qc_mapping_id = #{productApplyQcMappingId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByMapParams" resultMap="VerBoseResultMap" parameterType="java.util.Map">
+  	select 
+  	 	paqm.*, p.product_name, qc.product_qc_code, qc.product_qc_name
+	from product_apply_qc_mapping paqm
+	left join product p on p.product_id = paqm.product_id
+	left join product_qc qc on qc.product_qc_id = paqm.product_qc_id and qc.status in ('INIT','OK')
+	<where>
+		<if test = "product_apply_id != null and product_apply_id != '' ">
+			paqm.product_apply_id = #{product_apply_id, jdbcType=INTEGER}
+		</if>
+		<if test = "product_id != null and product_id != '' ">
+			and paqm.product_id = #{product_id, jdbcType=INTEGER}
+		</if>
+		<if test = "product_apply_qc_mapping_id != null and product_apply_qc_mapping_id != '' ">
+			and paqm.product_apply_qc_mapping_id = #{product_apply_qc_mapping_id, jdbcType=INTEGER}
+		</if>
+	</where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_apply_qc_mapping
+    where product_apply_qc_mapping_id = #{productApplyQcMappingId,jdbcType=INTEGER}
+  </delete>
+  
+  <delete id="deleteByParamsSelective" parameterType="com.ibenben.domain.ProductApplyQcMapping" >
+    delete from product_apply_qc_mapping
+    <where>
+       <if test="productApplyQcMappingId != null" >
+        product_apply_qc_mapping_id = #{productApplyQcMappingId,jdbcType=INTEGER}
+      </if>
+      <if test="productApplyId != null" >
+        and product_apply_id = #{productApplyId,jdbcType=INTEGER}
+      </if>
+      <if test="productQcId != null" >
+        and product_qc_id = #{productQcId,jdbcType=INTEGER}
+      </if>
+      <if test="productId != null" >
+        and product_id = #{productId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </delete>
+  
+  <insert id="insert" parameterType="com.ibenben.domain.ProductApplyQcMapping" >
+    insert into product_apply_qc_mapping (product_apply_qc_mapping_id, product_apply_id, 
+      product_qc_id, product_id)
+    values (#{productApplyQcMappingId,jdbcType=INTEGER}, #{productApplyId,jdbcType=INTEGER}, 
+      #{productQcId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductApplyQcMapping" useGeneratedKeys="true" keyProperty="productApplyQcMappingId">
+    insert into product_apply_qc_mapping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productApplyQcMappingId != null" >
+        product_apply_qc_mapping_id,
+      </if>
+      <if test="productApplyId != null" >
+        product_apply_id,
+      </if>
+      <if test="productQcId != null" >
+        product_qc_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productApplyQcMappingId != null" >
+        #{productApplyQcMappingId,jdbcType=INTEGER},
+      </if>
+      <if test="productApplyId != null" >
+        #{productApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="productQcId != null" >
+        #{productQcId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductApplyQcMapping" >
+    update product_apply_qc_mapping
+    <set >
+      <if test="productApplyId != null" >
+        product_apply_id = #{productApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="productQcId != null" >
+        product_qc_id = #{productQcId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where product_apply_qc_mapping_id = #{productApplyQcMappingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductApplyQcMapping" >
+    update product_apply_qc_mapping
+    set product_apply_id = #{productApplyId,jdbcType=INTEGER},
+      product_qc_id = #{productQcId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER}
+    where product_apply_qc_mapping_id = #{productApplyQcMappingId,jdbcType=INTEGER}
+  </update>
+</mapper>

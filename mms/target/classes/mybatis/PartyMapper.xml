@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibenben.mapper.PartyMapper">
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.Party">
+    <id column="party_id" jdbcType="INTEGER" property="partyId" />
+    <result column="party_code" jdbcType="VARCHAR" property="partyCode" />
+    <result column="party_name" jdbcType="VARCHAR" property="partyName" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="merchant_info" jdbcType="VARCHAR" property="merchantInfo"/>
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="PartyMerchantMap">
+    <id column="party_id" jdbcType="INTEGER" property="party_id" />
+    <result column="party_name" jdbcType="VARCHAR" property="party_name" />
+    <result column="party_code" jdbcType="VARCHAR" property="party_code" />
+    <collection property="merchant_list" javaType="java.util.List" ofType="java.util.Map">
+      <id column="merchant_id" jdbcType="INTEGER" property="merchant_id" />
+      <result column="merchant_name" jdbcType="VARCHAR" property="merchant_name" />
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    party_id, party_code, party_name, status, contact, telephone, address
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from party
+    where party_id = #{partyId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getPartyByUser" parameterType="java.lang.String" resultType="java.util.Map">
+    select
+    p.party_id,
+    p.party_name
+    from party p
+    inner join merchant m on m.party_id = p.party_id
+    inner join user_merchant um on um.merchant_id = m.merchant_id
+    inner join user_session us on us.user_id = um.user_id
+    where us.access_token = #{token,jdbcType=VARCHAR}
+    group by p.party_id
+  </select>
+  
+  <select id="getPartyMerchant" parameterType="java.util.Map" resultMap="PartyMerchantMap">
+    select
+    p.party_name,
+    p.party_id,
+    p.party_code,
+    m.merchant_id,
+    m.merchant_name
+    from party p
+    inner join merchant m on m.party_id = p.party_id and m.status = 'OK'
+    <where>
+    	p.status = 'OK'
+      <if test="party_name != null and party_name != ''">
+        and p.party_name = #{party_name,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  
+  <select id="getApiPartyList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    *
+    from party
+    <where>
+      status = 'OK'
+      <if test="party_ids != null and party_ids != ''">
+      and party_id in
+        <foreach collection="party_ids" index="index" item="item" open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+  </select>
+  
+  <select id="selectByMapParams" resultMap="BaseResultMap">
+  	select 
+  		p.*,
+  		GROUP_CONCAT(CONCAT(m.merchant_id,',',m.merchant_name) SEPARATOR ';') as merchant_info
+  	from party p
+  	left join merchant m on m.party_id = p.party_id and m.status='OK'
+  	<where>
+  		<if test="party_id != null and party_id != '' ">
+  			and p.party_id = #{party_id}
+  		</if>
+  		<if test="status != null and party_id != '' ">
+  			and p.status = #{status}
+  		</if>
+  		<if test="party_code != null and party_code != '' ">
+  			and p.party_code = #{party_code}
+  		</if>
+  		<if test="party_name != null and party_name != '' ">
+  			and p.party_name like concat('%', #{party_name}, '%')
+  		</if>
+  	</where>
+  	group by p.party_id
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from party
+    where party_id = #{partyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.Party">
+    insert into party (party_id, party_code, party_name, 
+      status, contact, telephone, 
+      address)
+    values (#{partyId,jdbcType=INTEGER}, #{partyCode,jdbcType=VARCHAR}, #{partyName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{contact,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.Party" useGeneratedKeys="true" keyProperty="partyId">
+    insert into party
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        party_id,
+      </if>
+      <if test="partyCode != null">
+        party_code,
+      </if>
+      <if test="partyName != null">
+        party_name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        #{partyId,jdbcType=INTEGER},
+      </if>
+      <if test="partyCode != null">
+        #{partyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="partyName != null">
+        #{partyName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.Party">
+    update party
+    <set>
+      <if test="partyCode != null">
+        party_code = #{partyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="partyName != null">
+        party_name = #{partyName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where party_id = #{partyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.Party">
+    update party
+    set party_code = #{partyCode,jdbcType=VARCHAR},
+      party_name = #{partyName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
+    where party_id = #{partyId,jdbcType=INTEGER}
+  </update>
+</mapper>

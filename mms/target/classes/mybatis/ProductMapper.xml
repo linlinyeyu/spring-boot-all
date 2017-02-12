@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibenben.mapper.ProductMapper">
+   <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.Product">
+    <id column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_desc" jdbcType="VARCHAR" property="productDesc" />
+    <result column="party_id" jdbcType="INTEGER" property="partyId" />
+    <result column="party_name" jdbcType="VARCHAR" property="partyName" />
+    <result column="product_type" jdbcType="VARCHAR" property="productType" />
+    <result column="product_sub_type" jdbcType="VARCHAR" property="productSubType" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="producing_region" jdbcType="VARCHAR" property="producingRegion" />
+    <result column="purchasing_cycle" jdbcType="DECIMAL" property="purchasingCycle" />
+    <result column="barcode" jdbcType="VARCHAR" property="barcode" />
+    <result column="secrect_code" jdbcType="VARCHAR" property="secrectCode" />
+    <result column="unit_code" jdbcType="VARCHAR" property="unitCode" />
+    <result column="unit_code_name" jdbcType="VARCHAR" property="unitCodeName" />
+    <result column="purchase_unit_code" jdbcType="VARCHAR" property="purchaseUnitCode" />
+    <result column="sale_unit_code" jdbcType="VARCHAR" property="saleUnitCode" />
+    <result column="shipping_service_id" jdbcType="INTEGER" property="shippingServiceId" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="width" jdbcType="DECIMAL" property="width" />
+    <result column="height" jdbcType="DECIMAL" property="height" />
+    <result column="length" jdbcType="DECIMAL" property="length" />
+    <result column="imgs" jdbcType="VARCHAR" property="imgs" />
+    <result column="valid_days" jdbcType="DECIMAL" property="validDays" />
+    <result column="pre_selection" jdbcType="BIT" property="preSelection" />
+    <result column="net_weight_min" jdbcType="DECIMAL" property="netWeightMin" />
+    <result column="net_weight_max" jdbcType="DECIMAL" property="netWeightMax" />
+    <result column="gross_weight_min" jdbcType="DECIMAL" property="grossWeightMin" />
+    <result column="gross_weight_max" jdbcType="DECIMAL" property="grossWeightMax" />
+    <result column="sync_to_merchant_district" jdbcType="BIT" property="syncToMerchantDistrict" />
+    <result column="cross_regional" jdbcType="BIT" property="crossRegional" />
+    <result column="delivery_facility_type" jdbcType="CHAR" property="deliveryFacilityType" />
+    <result column="product_category_id" jdbcType="INTEGER" property="productCategoryId" />
+    <result column="product_category_sec_id" jdbcType="INTEGER" property="productCategorySecId" />
+    <result column="product_category_third_id" jdbcType="INTEGER" property="productCategoryThirdId" />
+    <result column="product_category_four_id" jdbcType="INTEGER" property="productCategoryFourId" />
+    <result column="product_apply_id" jdbcType="INTEGER" property="productApplyId" />
+    <result column="product_apply_name" jdbcType="VARCHAR" property="productApplyName" />
+    <result column="product_apply_code" jdbcType="VARCHAR" property="productApplyCode" />
+    <result column="apply_status" property="applyStatus" jdbcType="CHAR" />
+    <result column="temperature_package_type" jdbcType="CHAR" property="temperaturePackageType" />
+    <result column="instructions" jdbcType="VARCHAR" property="instructions" />
+    <result column="instructions_path" jdbcType="VARCHAR" property="instructionsPath" />
+    <result column="created_user" jdbcType="VARCHAR" property="createdUser" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="last_updated_user" jdbcType="VARCHAR" property="lastUpdatedUser" />
+    <result column="last_updated_time" jdbcType="TIMESTAMP" property="lastUpdatedTime" />
+    <result column="is_dispatch" jdbcType="TINYINT" property="isDispatch"/>
+  </resultMap>
+  <resultMap id="ProductAssociateProductQcResultMap" type="com.ibenben.domain.Product" extends="BaseResultMap">
+  	<association property="productQc" javaType="com.ibenben.domain.ProductQc">
+  		<id column="product_qc_id" jdbcType="INTEGER" property="productQcId" />
+	    <result column="product_qc_code" jdbcType="VARCHAR" property="productQcCode" />
+	    <result column="product_qc_name" jdbcType="VARCHAR" property="productQcName" />
+  	</association>
+  </resultMap>
+  
+  <resultMap id="FinishProductMappingsResultMap" type="com.ibenben.domain.FinishedGoodsProduct" extends="BaseResultMap">
+  	<collection property="productMappings" javaType="java.util.List" ofType="com.ibenben.domain.ProductMapping" columnPrefix="pm_">
+		<id column="mapping_id" property="mappingId" jdbcType="INTEGER" />
+	    <result column="product_id" property="productId" jdbcType="INTEGER" />
+	    <result column="product_component_id" property="productComponentId" jdbcType="INTEGER" />
+	    <result column="component_name" property="productComponentName" jdbcType="VARCHAR" />
+	    <result column="quantity" property="quantity" jdbcType="DECIMAL" />
+	    <result column="mapping_type" property="mappingType" jdbcType="VARCHAR" />
+	    <result column="status" property="status" jdbcType="CHAR" />
+	    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+	    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+	    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />  			
+  	</collection>
+  	<collection property="productGoodsMappings" javaType="java.util.List" ofType="com.ibenben.domain.ProductGoodsMapping" columnPrefix="pgm_">
+  		<id column="product_goods_mapping_id" jdbcType="INTEGER" property="productGoodsMappingId" />
+	    <result column="product_id" jdbcType="INTEGER" property="productId" />
+	    <result column="merchant_id" jdbcType="INTEGER" property="merchantId" />
+	    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+	    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+	    <result column="status" jdbcType="CHAR" property="status" />
+	    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+	    <result column="created_user" jdbcType="VARCHAR" property="createdUser" />
+	    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+	    <result column="delete_user" jdbcType="VARCHAR" property="deleteUser" />
+	    <result column="merchant_name" jdbcType="VARCHAR" property="merchantName" />
+	    <result column="platform_name" jdbcType="VARCHAR" property="platformName" />
+  	</collection>
+  </resultMap>
+  <resultMap id="SimpleProductResultMap" type="java.util.Map">
+  	<id column="product_id" jdbcType="INTEGER" property="product_id" />
+    <result column="product_name" jdbcType="VARCHAR" property="product_name" />
+    <result column="product_type" jdbcType="VARCHAR" property="product_type" />
+    <result column="product_sub_type" jdbcType="VARCHAR" property="product_sub_type" />
+    <result column="unit_code" jdbcType="VARCHAR" property="unit_code" />
+    <result column="unit_code_name" jdbcType="VARCHAR" property="unit_code_name" />
+    <result column="party_id" jdbcType="VARCHAR" property="party_id"/>
+    <result column="party_name" jdbcType="VARCHAR" property="party_name"/>
+    <result column="secrect_code" jdbcType="VARCHAR" property="secrect_code"/>
+    <result column="temperature_package_type" jdbcType="CHAR" property="temperature_package_type" />
+  </resultMap>
+  
+  <resultMap id="FinishedProductPackagingAndMappingResultMap" type="java.util.Map">
+  	<id column="product_id" jdbcType="INTEGER" property="product_id" />
+    <result column="product_name" jdbcType="VARCHAR" property="product_name" />
+    <collection property="supplies_product_list" javaType="java.util.List" ofType="java.util.Map">
+    	<id column="supplies_product_id" jdbcType="INTEGER" property="supplies_product_id" />
+    	<result column="supplies_product_name" jdbcType="VARCHAR" property="supplies_product_name" />
+    </collection>
+    <collection property="product_mapping_list" javaType="java.util.List" ofType="java.util.Map">
+    	<id column="product_component_id" jdbcType="INTEGER" property="product_component_id" />
+    	<result column="product_component_name" jdbcType="VARCHAR" property="product_component_name" />
+    	<result column="quantity" jdbcType="DECIMAL" property="quantity"/>
+    </collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    product_id, product_name, product_desc, party_id, product_type, product_sub_type, 
+    status, producing_region, purchasing_cycle, barcode, secrect_code, unit_code, unit_code_name, 
+    purchase_unit_code, sale_unit_code, shipping_service_id, note, width, height, length, 
+    imgs, valid_days, pre_selection, net_weight_min, net_weight_max, gross_weight_min, 
+    gross_weight_max, sync_to_merchant_district, cross_regional, delivery_facility_type, 
+    product_category_id, product_category_sec_id, product_category_third_id,product_category_four_id, created_user, 
+    created_time, last_updated_user, last_updated_time,is_dispatch
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    p.*,
+    pt.party_name partyName
+    from product p
+    inner join party pt on p.party_id = pt.party_id and pt.status='OK'
+    where p.product_id = #{productId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getProductByGoodsList" parameterType="com.ibenben.domain.ProductGoodsMapping" resultType="java.util.Map">
+    select
+    p.product_id,
+    p.product_name,
+    pgm.goods_id,
+    pgm.merchant_id,
+    pgm.platform_id
+    from product_goods_mapping pgm
+    inner join product p on p.product_id = pgm.product_id
+    where
+    <foreach collection="goods_list" index="index" item="item" open="(" separator=") or (" close=")">
+   	 	pgm.goods_id = #{item.goodsId,jdbcType=INTEGER} 
+   	 	and pgm.merchant_id = #{item.merchantId,jdbcType=INTEGER}
+   	 	and pgm.platform_id = #{item.platformId,jdbcType=INTEGER}
+    </foreach>
+  </select>
+  
+  <select id="checkIsDispatch" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+    is_dispatch
+	from product
+	where product_id = #{product_id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getMerchantIdById" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+    merchant_id
+    from
+    product
+    where product_id = #{product_id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    	product_id, product_name
+    from product
+  </select>
+  
+  <select id="selectIdAndNames" parameterType="java.util.Map" resultType="java.util.Map">
+	  select 
+	  	p.product_id,
+	  	p.product_name
+	  from product p
+	<where>
+		<if test="product_id != null and product_id !='' ">
+			p.product_id = #{product_id,jdbcType=INTEGER}
+		</if>
+		<if test="product_type != null and product_type != '' ">
+			and p.product_type = #{product_type, jdbcType=VARCHAR}
+		</if>
+		<if test="product_sub_type != null and product_sub_type != '' ">
+			and p.product_sub_type = #{product_sub_type, jdbcType=VARCHAR}
+		</if>
+		<if test="status != null and status != '' ">
+			and p.status = #{status,jdbcType=CHAR}
+		</if>
+		<if test="party_id != null and party_id != '' ">
+		    and p.party_id = #{party_id,jdbcType=INTEGER}
+		</if>
+	</where>
+  </select>
+  
+  <select id="selectSimpleProduct" parameterType="java.util.Map" resultMap="SimpleProductResultMap">
+  	select 
+  		p.product_id,
+  		p.product_name,
+  		p.unit_code,
+  		p.unit_code_name,
+  		p.product_type,
+  		p.product_sub_type,
+  		p.secrect_code,
+  		p.temperature_package_type,
+  		p.party_id,
+  		pt.party_name
+  	from product p
+  	left join product_goods_mapping pgm on p.merchant_id = pgm.merchant_id and p.platform_id = pgm.platform_id and p.product_id = pgm.product_id
+  	left join merchant m on m.merchant_id = pgm.merchant_id and m.`status`='OK'
+  	left join platform pf on pf.platform_id = pgm.platform_id and pf.status='OK'
+  	left join party pt on pt.party_id = p.party_id and pt.`status`='OK'
+  	<where>
+		<if test="product_id != null and product_id !='' ">
+			p.product_id = #{product_id,jdbcType=INTEGER}
+		</if>
+		<if test="platform_id != null and platform_id !='' ">
+			and pgm.platform_id = #{platform_id,jdbcType=INTEGER}
+		</if>
+		<if test="platform_ids != null and platform_ids != '' ">
+			and pgm.platform_id in 
+			<foreach item="item" index="index" collection="platform_ids" open="(" close=")" separator=",">
+				#{item}
+			</foreach>
+		</if>
+		<if test="merchant_id != null and merchant_id != '' ">
+			and pgm.merchant_id = #{merchant_id,jdbcType=INTEGER}
+		</if>
+		<if test="merchant_ids != null and merchant_ids != ''">
+			and pgm.merchant_id in 
+			<foreach item="item" index="index" collection="merchant_ids" open="(" close=")" separator=",">
+				#{item}
+			</foreach>
+		</if>
+		<if test="party_id != null and party_id !='' ">
+			and p.party_id = #{party_id,jdbcType=INTEGER}
+		</if>
+		<if test="party_ids != null and party_ids != ''">
+		    and p.party_id in
+		    <foreach collection="party_ids" item="item" index="index" open="(" separator="," close=")">
+		      #{item}
+		    </foreach>
+		</if>
+		<if test="status != null and status != '' ">
+			and p.status = #{status,jdbcType=CHAR}
+		</if>
+		<if test="start_time != null and start_time != '' ">
+			and p.created_time &gt;= #{start_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="end_time != null and start_time != '' ">
+			and p.created_time &lt;= #{end_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="product_name != null and product_name != '' ">
+			and p.product_name like concat('%',#{product_name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="product_type != null and product_type != '' ">
+			and p.product_type = #{product_type, jdbcType=VARCHAR}
+		</if>
+		<if test="product_sub_type != null and product_sub_type != '' ">
+			and p.product_sub_type = #{product_sub_type, jdbcType=VARCHAR}
+		</if>
+		<if test="sync_to_merchant_district != null and sync_to_merchant_district != '' ">
+			and p.sync_to_merchant_district = #{sync_to_merchant_district, jdbcType=BIT}
+		</if>
+		<if test="cross_regional != null and cross_regional != '' ">
+			and p.cross_regional = #{cross_regional, jdbcType=BIT}
+		</if>
+		<if test="delivery_facility_type != null and delivery_facility_type != '' ">
+			and p.delivery_facility_type = #{delivery_facility_type, jdbcType=BYTE}
+		</if>
+		<if test="barcode != null and barcode != '' ">
+			and barcode = #{barcode}
+		</if>
+		<if test="product_sub_types != null and product_sub_types != ''">
+			and p.product_sub_type in 
+			<foreach item="item" index="index" collection="product_sub_types" open="(" close=")" separator=",">
+				#{item}
+			</foreach>
+		</if>
+	</where>
+  </select>
+  
+  <select id="selectByMapParams" parameterType="java.util.Map" resultMap="ProductAssociateProductQcResultMap">
+  	SELECT 
+		p.*,
+		pt.party_name,
+		pq.product_qc_id,
+		pq.product_qc_code,
+		pq.product_qc_name,
+		pa.product_apply_code,
+		pa.product_apply_name,
+		pa.apply_status
+	from product p
+	left join product_goods_mapping pgm on pgm.merchant_id = p.merchant_id and p.platform_id = pgm.platform_id and pgm.product_id = p.product_id
+	left JOIN merchant m on pgm.merchant_id = m.merchant_id and m.`status`='OK'
+	left JOIN platform pf on pgm.platform_id = pf.platform_id and pf.`status`='OK'
+	LEFT JOIN party pt on pt.party_id = p.party_id and pt.`status`='OK'
+	left join product_qc_mapping pqm on pqm.product_id = p.product_id
+	LEFT JOIN product_qc pq on pq.product_qc_id = pqm.product_qc_id
+	LEFT JOIN product_apply pa on pa.product_apply_id = p.product_apply_id and pa.status = 'OK'
+	<where>
+		<if test="product_id != null and product_id !='' ">
+			p.product_id = #{product_id,jdbcType=INTEGER}
+		</if>
+		<if test="platform_id != null and platform_id !='' ">
+			and pgm.platform_id = #{platform_id,jdbcType=INTEGER}
+		</if>
+		<if test="merchant_id != null and merchant_id != '' ">
+			and pgm.merchant_id = #{merchant_id,jdbcType=INTEGER}
+		</if>
+		<if test="party_id != null and party_id !='' ">
+			and p.party_id = #{party_id,jdbcType=INTEGER}
+		</if>
+		<if test="party_ids != null and party_ids != ''">
+		    and p.party_id in
+		    <foreach collection="party_ids" item="item" index="index" open="(" separator="," close=")">
+		       #{item}
+		    </foreach>
+		</if>
+		<if test="product_qc_id != null and product_qc_id != ''">
+			and pq.product_qc_id = #{product_qc_id,jdbcType=INTEGER}
+		</if>
+		<if test="product_qc_code != null and product_qc_code !='' ">
+			and pq.product_qc_code = #{product_qc_code,jdbcType=VARCHAR}
+		</if>
+		<if test="product_qc_name != null and product_qc_name != '' ">
+			and pq.product_qc_name = #{product_qc_name,jdbcType=VARCHAR}
+		</if>
+		<if test="product_apply_id != null and product_apply_id != ''">
+			and p.product_apply_id = #{product_apply_id,jdbcType=INTEGER}
+		</if>
+		<if test="status != null and status != '' ">
+			and p.status = #{status,jdbcType=CHAR}
+		</if>
+		<if test="start_time != null and start_time != '' ">
+			and p.created_time &gt;= #{start_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="end_time != null and start_time != '' ">
+			and p.created_time &lt;= #{end_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="product_name != null and product_name != '' ">
+			and p.product_name like concat('%',#{product_name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="product_type != null and product_type != '' ">
+			and p.product_type = #{product_type, jdbcType=VARCHAR}
+		</if>
+		<if test="product_sub_type != null and product_sub_type != '' ">
+			and p.product_sub_type = #{product_sub_type, jdbcType=VARCHAR}
+		</if>
+	</where>
+  </select>
+  
+  <select id="getProductListByIds" parameterType="java.util.List" resultMap="BaseResultMap">
+    select
+    p.*,
+    pt.party_name
+    from
+    product p
+    left join party pt on p.party_id = pt.party_id and pt.status='OK'
+    where
+    p.status='OK' and
+    p.product_id in
+    <foreach collection="list" index="index" item="id" open="(" separator="," close=")">
+      #{id,jdbcType=INTEGER}
+    </foreach>
+  </select>
+  
+  <select id="selectFinishGoodsMapping" parameterType="java.util.Map" resultMap="FinishProductMappingsResultMap">
+	SELECT 
+		p.*,
+		m.merchant_id,
+		m.merchant_name pgm_merchant_name,
+		pf.platform_id,
+		pf.platform_name pgm_platform_name,
+		pm.mapping_id as pm_mapping_id,
+		pm.product_id as pm_product_id,
+		pm.product_component_id as pm_product_component_id, 
+		pmp.product_name as pm_component_name,
+		pgm.product_goods_mapping_id as pgm_product_goods_mapping_id,  
+		pgm.goods_id as pgm_goods_id ,
+		g.goods_name as pgm_goods_name,
+		pgm.product_id as pgm_product_id
+	from product p
+	LEFT JOIN product_mapping pm on pm.product_id = p.product_id and pm.status='OK'
+	LEFT JOIN product pmp on pm.product_component_id = pmp.product_id and pmp.status='OK'
+	LEFT JOIN product_goods_mapping pgm on pgm.product_id = p.product_id and pgm.status='OK'
+	LEFT JOIN merchant m on m.merchant_id = pgm.merchant_id and m.status='OK'
+	LEFT JOIN platform pf on pf.platform_id = pgm.platform_id and pf.status='OK'
+	LEFT JOIN goods g on pgm.goods_id = g.goods_id
+	<where>
+		p.product_type = 'goods' 
+		and p.product_sub_type = 'finished' 
+		<if test="product_id != null and product_id != ''">
+			and p.product_id = #{product_id, jdbcType=INTEGER}
+		</if>
+		<if test="party_id != null and party_id != '' ">
+			and p.party_id = #{party_id, jdbcType=INTEGER}
+		</if>
+		<if test="goods_id != null and goods_id != '' ">
+			and g.goods_id = #{goods_id, jdbcType=INTEGER}
+		</if>
+		<if test="merchant_id != null and merchant_id != '' ">
+			and m.merchant_id = #{merchant_id, jdbcType=INTEGER}
+		</if>
+		<if test="platform_id != null and platform_id != '' ">
+			and pf.platform_id = #{platform_id, jdbcType=INTEGER}
+		</if>
+		<if test="product_component_id != null and product_component_id != '' ">
+			and pm.product_component_id = #{product_component_id, jdbcType=INTEGER}
+		</if>
+		<if test="status != null and status != '' ">
+			and p.status = #{status, jdbcType=CHAR}
+		</if>
+		<if test="start_time != null and start_time != '' ">
+			and p.created_time &gt;= #{start_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="end_time != null and start_time != '' ">
+			and p.created_time &lt;= #{end_time,jdbcType=TIMESTAMP}
+		</if>
+	</where>
+  </select>
+  
+  <select id="selectVerboseByMapParams" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	SELECT 
+		p.*,
+		pt.party_name,
+		pa.product_apply_code, 
+		pa.product_apply_name
+	from product p
+	LEFT JOIN party pt on p.party_id = pt.party_id and pt.`status`='OK'
+	LEFT JOIN product_apply pa on pa.product_apply_id = p.product_apply_id and pa.status='OK'
+	<where>
+		<if test="product_id != null and product_id !='' ">
+			p.product_id = #{product_id,jdbcType=INTEGER}
+		</if>
+		<if test="party_id != null and party_id != '' ">
+			and p.party_id = #{party_id,jdbcType=INTEGER}
+		</if>
+		<if test="product_apply_id != null and product_apply_id != ''">
+			and p.product_apply_id = #{product_apply_id,jdbcType=INTEGER}
+		</if>
+		<if test="status != null and status != '' ">
+			and p.status = #{status,jdbcType=CHAR}
+		</if>
+		<if test="start_time != null and start_time != '' ">
+			and p.created_time &gt;= #{start_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="end_time != null and start_time != '' ">
+			and p.created_time &lt;= #{end_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="product_name != null and product_name != '' ">
+			and p.product_name = #{value,jdbcType=VARCHAR}
+		</if>
+		<if test="product_type != null and product_type != '' ">
+			and p.product_type = #{product_type, jdbcType=VARCHAR}
+		</if>
+		<if test="product_sub_type != null and product_sub_type != '' ">
+			and p.product_sub_type = #{product_sub_type, jdbcType=VARCHAR}
+		</if>
+	</where>
+  </select>
+  
+  <select id="getProductByGoods" resultMap="SimpleProductResultMap">
+  	select 
+		pgm.product_id,
+		p.product_name,
+		p.secrect_code
+	from product_goods_mapping pgm 
+	inner join product p on pgm.product_id = p.product_id and p.`status`='OK'
+	where 
+		pgm.status='OK'
+		and pgm.goods_id = #{goods_id} 
+		and pgm.platform_id = #{platform_id} 
+		and pgm.merchant_id = #{merchant_id}
+	limit 1
+  </select>
+  
+  <select id = "getFinishedProductPackagingAndMappingDetailList" resultMap="FinishedProductPackagingAndMappingResultMap">
+  	select 
+		p.product_id,
+		p.product_name,
+		sp.product_id as supplies_product_id,
+		sp.product_name as supplies_product_name,
+		pm.product_component_id,
+		cp.product_name as product_component_name,
+		pm.quantity
+	from product_packaging pg
+	inner JOIN product p on pg.goods_product_id = p.product_id and p.`status`= 'OK'
+	inner join product sp on pg.supplies_product_id = sp.product_id and sp.status='OK'
+	inner join product_mapping pm on pm.product_id = p.product_id and pm.`status`='OK'
+	inner join product cp on cp.product_id = pm.product_component_id and cp.`status`='OK'
+	where pg.facility_id = #{facility_id}
+	group by pg.goods_product_id, pg.supplies_product_id,cp.product_id
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product
+    where product_id = #{productId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.Product">
+    insert into product (product_id, product_name, product_desc, 
+      party_id, product_type, 
+      product_sub_type, status, producing_region, 
+      purchasing_cycle, barcode, secrect_code, 
+      unit_code, unit_code_name, purchase_unit_code, 
+      sale_unit_code, shipping_service_id, note, 
+      width, height, length, 
+      imgs, valid_days, pre_selection, 
+      net_weight_min, net_weight_max, gross_weight_min, 
+      gross_weight_max, sync_to_merchant_district, cross_regional, 
+      delivery_facility_type, product_category_id, product_category_sec_id, 
+      product_category_third_id, product_category_four_id,created_user, created_time, 
+      last_updated_user, last_updated_time,is_dispatch)
+    values (#{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{productDesc,jdbcType=VARCHAR}, 
+      #{partyId,jdbcType=INTEGER}, #{productType,jdbcType=VARCHAR}, 
+      #{productSubType,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{producingRegion,jdbcType=VARCHAR}, 
+      #{purchasingCycle,jdbcType=DECIMAL}, #{barcode,jdbcType=VARCHAR}, #{secrectCode,jdbcType=VARCHAR}, 
+      #{unitCode,jdbcType=VARCHAR}, #{unitCodeName,jdbcType=VARCHAR}, #{purchaseUnitCode,jdbcType=VARCHAR}, 
+      #{saleUnitCode,jdbcType=VARCHAR}, #{shippingServiceId,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}, 
+      #{width,jdbcType=DECIMAL}, #{height,jdbcType=DECIMAL}, #{length,jdbcType=DECIMAL}, 
+      #{imgs,jdbcType=VARCHAR}, #{validDays,jdbcType=DECIMAL}, #{preSelection,jdbcType=BIT}, 
+      #{netWeightMin,jdbcType=DECIMAL}, #{netWeightMax,jdbcType=DECIMAL}, #{grossWeightMin,jdbcType=DECIMAL}, 
+      #{grossWeightMax,jdbcType=DECIMAL}, #{syncToMerchantDistrict,jdbcType=BIT}, #{crossRegional,jdbcType=BIT}, 
+      #{deliveryFacilityType,jdbcType=CHAR}, #{productCategoryId,jdbcType=INTEGER}, #{productCategorySecId,jdbcType=INTEGER}, 
+      #{productCategoryThirdId,jdbcType=INTEGER}, #{productCategoryFourId,jdbcType=INTEGER},#{createdUser,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdatedUser,jdbcType=VARCHAR}, #{lastUpdatedTime,jdbcType=TIMESTAMP},#{isDispatch,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.Product" useGeneratedKeys="true" keyProperty="productId">
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="productDesc != null">
+        product_desc,
+      </if>
+      <if test="partyId != null">
+        party_id,
+      </if>
+      <if test="productType != null">
+        product_type,
+      </if>
+      <if test="productSubType != null">
+        product_sub_type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="producingRegion != null">
+        producing_region,
+      </if>
+      <if test="purchasingCycle != null">
+        purchasing_cycle,
+      </if>
+      <if test="barcode != null">
+        barcode,
+      </if>
+      <if test="secrectCode != null">
+        secrect_code,
+      </if>
+      <if test="unitCode != null">
+        unit_code,
+      </if>
+      <if test="unitCodeName != null">
+        unit_code_name,
+      </if>
+      <if test="purchaseUnitCode != null">
+        purchase_unit_code,
+      </if>
+      <if test="saleUnitCode != null">
+        sale_unit_code,
+      </if>
+      <if test="shippingServiceId != null">
+        shipping_service_id,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="width != null">
+        width,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="length != null">
+        length,
+      </if>
+      <if test="imgs != null">
+        imgs,
+      </if>
+      <if test="validDays != null">
+        valid_days,
+      </if>
+      <if test="preSelection != null">
+        pre_selection,
+      </if>
+      <if test="netWeightMin != null">
+        net_weight_min,
+      </if>
+      <if test="netWeightMax != null">
+        net_weight_max,
+      </if>
+      <if test="grossWeightMin != null">
+        gross_weight_min,
+      </if>
+      <if test="grossWeightMax != null">
+        gross_weight_max,
+      </if>
+      <if test="syncToMerchantDistrict != null">
+        sync_to_merchant_district,
+      </if>
+      <if test="crossRegional != null">
+        cross_regional,
+      </if>
+      <if test="deliveryFacilityType != null">
+        delivery_facility_type,
+      </if>
+      <if test="productCategoryId != null">
+        product_category_id,
+      </if>
+      <if test="productCategorySecId != null">
+        product_category_sec_id,
+      </if>
+      <if test="productCategoryThirdId != null">
+        product_category_third_id,
+      </if>
+      <if test="productCategoryFourId != null">
+        product_category_four_id,
+      </if>
+      <if test="productApplyId != null">
+      	product_apply_id,
+      </if>
+      <if test="temperaturePackageType != null">
+      	temperature_package_type,
+      </if>
+      <if test="instructions != null">
+      	instructions,
+      </if>
+      <if test="instructionsPath != null">
+      	instructions_path,
+      </if>
+      <if test="createdUser != null">
+        created_user,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="lastUpdatedUser != null">
+        last_updated_user,
+      </if>
+      <if test="lastUpdatedTime != null">
+        last_updated_time,
+      </if>
+      <if test="isDispatch != null">
+        is_dispatch,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productDesc != null">
+        #{productDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=INTEGER},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productSubType != null">
+        #{productSubType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="producingRegion != null">
+        #{producingRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasingCycle != null">
+        #{purchasingCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="barcode != null">
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="secrectCode != null">
+        #{secrectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCode != null">
+        #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCodeName != null">
+        #{unitCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseUnitCode != null">
+        #{purchaseUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="saleUnitCode != null">
+        #{saleUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingServiceId != null">
+        #{shippingServiceId,jdbcType=INTEGER},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=DECIMAL},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="length != null">
+        #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="imgs != null">
+        #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="validDays != null">
+        #{validDays,jdbcType=DECIMAL},
+      </if>
+      <if test="preSelection != null">
+        #{preSelection,jdbcType=BIT},
+      </if>
+      <if test="netWeightMin != null">
+        #{netWeightMin,jdbcType=DECIMAL},
+      </if>
+      <if test="netWeightMax != null">
+        #{netWeightMax,jdbcType=DECIMAL},
+      </if>
+      <if test="grossWeightMin != null">
+        #{grossWeightMin,jdbcType=DECIMAL},
+      </if>
+      <if test="grossWeightMax != null">
+        #{grossWeightMax,jdbcType=DECIMAL},
+      </if>
+      <if test="syncToMerchantDistrict != null">
+        #{syncToMerchantDistrict,jdbcType=BIT},
+      </if>
+      <if test="crossRegional != null">
+        #{crossRegional,jdbcType=BIT},
+      </if>
+      <if test="deliveryFacilityType != null">
+        #{deliveryFacilityType,jdbcType=CHAR},
+      </if>
+      <if test="productCategoryId != null">
+        #{productCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="productCategorySecId != null">
+        #{productCategorySecId,jdbcType=INTEGER},
+      </if>
+      <if test="productCategoryThirdId != null">
+        #{productCategoryThirdId,jdbcType=INTEGER},
+      </if>
+      <if test="productCategoryFourId != null">
+        #{productCategoryFourId,jdbcType=INTEGER},
+      </if>
+      <if test="productApplyId">
+      	#{productApplyId, jdbcType=INTEGER},
+      </if>
+      <if test="temperaturePackageType != null">
+      	#{temperaturePackageType,jdbcType=CHAR},
+      </if>
+      <if test="instructions != null">
+      	#{instructions,jdbcType=CHAR},
+      </if>
+      <if test="instructionsPath != null">
+      	#{instructionsPath,jdbcType=CHAR},
+      </if>
+      <if test="createdUser != null">
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null">
+        #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null">
+        #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDispatch != null">
+        #{isDispatch,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.Product">
+    update product
+    <set>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productDesc != null">
+        product_desc = #{productDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        party_id = #{partyId,jdbcType=INTEGER},
+      </if>
+      <if test="productType != null">
+        product_type = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productSubType != null">
+        product_sub_type = #{productSubType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="producingRegion != null">
+        producing_region = #{producingRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasingCycle != null">
+        purchasing_cycle = #{purchasingCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="barcode != null">
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="secrectCode != null">
+        secrect_code = #{secrectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCode != null">
+        unit_code = #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCodeName != null">
+        unit_code_name = #{unitCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseUnitCode != null">
+        purchase_unit_code = #{purchaseUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="saleUnitCode != null">
+        sale_unit_code = #{saleUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingServiceId != null">
+        shipping_service_id = #{shippingServiceId,jdbcType=INTEGER},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="width != null">
+        width = #{width,jdbcType=DECIMAL},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="length != null">
+        length = #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="imgs != null">
+        imgs = #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="validDays != null">
+        valid_days = #{validDays,jdbcType=DECIMAL},
+      </if>
+      <if test="preSelection != null">
+        pre_selection = #{preSelection,jdbcType=BIT},
+      </if>
+      <if test="netWeightMin != null">
+        net_weight_min = #{netWeightMin,jdbcType=DECIMAL},
+      </if>
+      <if test="netWeightMax != null">
+        net_weight_max = #{netWeightMax,jdbcType=DECIMAL},
+      </if>
+      <if test="grossWeightMin != null">
+        gross_weight_min = #{grossWeightMin,jdbcType=DECIMAL},
+      </if>
+      <if test="grossWeightMax != null">
+        gross_weight_max = #{grossWeightMax,jdbcType=DECIMAL},
+      </if>
+      <if test="syncToMerchantDistrict != null">
+        sync_to_merchant_district = #{syncToMerchantDistrict,jdbcType=BIT},
+      </if>
+      <if test="crossRegional != null">
+        cross_regional = #{crossRegional,jdbcType=BIT},
+      </if>
+      <if test="deliveryFacilityType != null">
+        delivery_facility_type = #{deliveryFacilityType,jdbcType=CHAR},
+      </if>
+      <if test="productCategoryId != null">
+        product_category_id = #{productCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="productCategorySecId != null">
+        product_category_sec_id = #{productCategorySecId,jdbcType=INTEGER},
+      </if>
+      <if test="productCategoryThirdId != null">
+        product_category_third_id = #{productCategoryThirdId,jdbcType=INTEGER},
+      </if>
+      <if test="productCategoryFourId != null">
+        product_category_four_id = #{productCategoryFourId,jdbcType=INTEGER},
+      </if>
+      <if test="productApplyId != null">
+      	product_apply_id = #{productApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="temperaturePackageType != null">
+      	temperature_package_type = #{temperaturePackageType,jdbcType=CHAR},
+      </if>
+      <if test="instructions != null">
+      	instructions = #{instructions, jdbcType=VARCHAR},
+      </if>
+      <if test="instructionsPath">
+      	instructions_path = #{instructionsPath, jdbcType=VARCHAR},
+      </if>
+      <if test="createdUser != null">
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null">
+        last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null">
+        last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDispatch != null">
+        is_dispatch = #{isDispatch,jdbcType=TINYINT}
+      </if>
+    </set>
+    where product_id = #{productId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.Product">
+    update product
+    set product_name = #{productName,jdbcType=VARCHAR},
+      product_desc = #{productDesc,jdbcType=VARCHAR},
+      party_id = #{partyId,jdbcType=INTEGER},
+      product_type = #{productType,jdbcType=VARCHAR},
+      product_sub_type = #{productSubType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      producing_region = #{producingRegion,jdbcType=VARCHAR},
+      purchasing_cycle = #{purchasingCycle,jdbcType=DECIMAL},
+      barcode = #{barcode,jdbcType=VARCHAR},
+      secrect_code = #{secrectCode,jdbcType=VARCHAR},
+      unit_code = #{unitCode,jdbcType=VARCHAR},
+      unit_code_name = #{unitCodeName,jdbcType=VARCHAR},
+      purchase_unit_code = #{purchaseUnitCode,jdbcType=VARCHAR},
+      sale_unit_code = #{saleUnitCode,jdbcType=VARCHAR},
+      shipping_service_id = #{shippingServiceId,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR},
+      width = #{width,jdbcType=DECIMAL},
+      height = #{height,jdbcType=DECIMAL},
+      length = #{length,jdbcType=DECIMAL},
+      imgs = #{imgs,jdbcType=VARCHAR},
+      valid_days = #{validDays,jdbcType=DECIMAL},
+      pre_selection = #{preSelection,jdbcType=BIT},
+      net_weight_min = #{netWeightMin,jdbcType=DECIMAL},
+      net_weight_max = #{netWeightMax,jdbcType=DECIMAL},
+      gross_weight_min = #{grossWeightMin,jdbcType=DECIMAL},
+      gross_weight_max = #{grossWeightMax,jdbcType=DECIMAL},
+      sync_to_merchant_district = #{syncToMerchantDistrict,jdbcType=BIT},
+      cross_regional = #{crossRegional,jdbcType=BIT},
+      delivery_facility_type = #{deliveryFacilityType,jdbcType=CHAR},
+      product_category_id = #{productCategoryId,jdbcType=INTEGER},
+      product_category_sec_id = #{productCategorySecId,jdbcType=INTEGER},
+      product_category_third_id = #{productCategoryThirdId,jdbcType=INTEGER},
+      product_category_four_id = #{productCategoryFourId,jdbcType=INTEGER},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      is_dispatch = #{isDispatch,jdbcType=TINYINT}
+    where product_id = #{productId,jdbcType=INTEGER}
+  </update>
+  <update id="clearCache" parameterType="java.lang.String">
+  	update product set product_name = #{product_name} where product_id = 1; 
+  </update>
+</mapper>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.AllowedIpMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.AllowedIp" >
+    <id column="allowed_ip_id" property="allowedIpId" jdbcType="INTEGER" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="ip_type" property="ipType" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+    <result column="last_updated_time" property="lastUpdatedTime" jdbcType="TIMESTAMP" />
+    <result column="last_updated_user" property="lastUpdatedUser" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    allowed_ip_id, ip, ip_type, note, status, created_time, created_user, last_updated_time, 
+    last_updated_user, company_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from allowed_ip
+    where allowed_ip_id = #{allowedIpId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getIpList" resultType="java.lang.String">
+    select
+    ip
+    from allowed_ip
+    where status = 'OK'
+  </select>
+  
+  <select id="getAllowedIpList" resultType="java.util.Map" parameterType="java.util.Map">
+    select
+    	*
+    from allowed_ip ai
+    inner join company c on ai.company_id = c.company_id
+    <where>
+	    <if test="status != '' and status != null">
+	     and ai.status = #{status,jdbcType=VARCHAR}
+	    </if>
+	    <if test="ip != '' and ip != null">
+	     and ai.ip = #{ip,jdbcType=VARCHAR}
+	    </if>
+	     <if test="company_id != '' and company_id != null">
+	     and ai.company_id = #{company_id,jdbcType=INTEGER}
+	    </if>
+    </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from allowed_ip
+    where allowed_ip_id = #{allowedIpId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.AllowedIp" >
+    insert into allowed_ip (allowed_ip_id, ip, ip_type, 
+      note, status, created_time, 
+      created_user, last_updated_time, last_updated_user, 
+      company_id)
+    values (#{allowedIpId,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{ipType,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{createdUser,jdbcType=VARCHAR}, #{lastUpdatedTime,jdbcType=TIMESTAMP}, #{lastUpdatedUser,jdbcType=VARCHAR}, 
+      #{companyId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.AllowedIp" useGeneratedKeys="true" keyProperty="allowedIpId">
+    insert into allowed_ip
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="allowedIpId != null" >
+        allowed_ip_id,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="ipType != null" >
+        ip_type,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createdUser != null" >
+        created_user,
+      </if>
+      <if test="lastUpdatedTime != null" >
+        last_updated_time,
+      </if>
+      <if test="lastUpdatedUser != null" >
+        last_updated_user,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="allowedIpId != null" >
+        #{allowedIpId,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="ipType != null" >
+        #{ipType,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null" >
+        #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null" >
+        #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.AllowedIp" >
+    update allowed_ip
+    <set >
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="ipType != null" >
+        ip_type = #{ipType,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null" >
+        last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null" >
+        last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where allowed_ip_id = #{allowedIpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.AllowedIp" >
+    update allowed_ip
+    set ip = #{ip,jdbcType=VARCHAR},
+      ip_type = #{ipType,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=INTEGER}
+    where allowed_ip_id = #{allowedIpId,jdbcType=INTEGER}
+  </update>
+</mapper>

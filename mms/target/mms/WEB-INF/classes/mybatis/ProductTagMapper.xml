@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductTagMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductTag" >
+    <id column="product_tag_id" property="productTagId" jdbcType="INTEGER" />
+    <result column="product_tag_name" property="productTagName" jdbcType="VARCHAR" />
+    <result column="tag_type" property="tagType" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="last_updated_user" property="lastUpdatedUser" jdbcType="VARCHAR" />
+    <result column="last_updated_time" property="lastUpdatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap id="TopToBottomResultMap" type="com.ibenben.domain.ProductTag" extends="BaseResultMap">
+  	<collection property="childProductTags" javaType="java.util.List"  ofType="com.ibenben.domain.ProductTag">
+  		<id column="child_tag_id" property="productTagId" jdbcType="INTEGER" />
+	    <result column="child_tag_name" property="productTagName" jdbcType="VARCHAR" />
+	    <result column="child_tag_type" property="tagType" jdbcType="INTEGER" />
+	    <result column="child_parent_id" property="parentId" jdbcType="INTEGER" />
+	    <result column="child_status" property="status" jdbcType="VARCHAR" />
+  	</collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    product_tag_id, product_tag_name, tag_type, parent_id, status, created_user, created_time, 
+    last_updated_user, last_updated_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_tag
+    where product_tag_id = #{productTagId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByProductId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+   	select
+   		t.* 
+   	from product p
+	INNER JOIN product_tag_mapping ptm on p.product_id = ptm.product_id
+	INNER JOIN product_tag t on ptm.product_tag_id = t.product_tag_id
+	where p.product_id = #{product_id, jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from product_tag where 1
+  </select>
+  
+  <select id="selectByMapParams" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from product_tag
+  	<where>
+  		<if test="product_tag_id != null and product_tag_id !='' " >
+  			and product_tag_id = #{product_tag_id, jdbcType=INTEGER}
+  		</if>
+  		<if test="product_tag_name != null and product_tag_name !='' " >
+  			and product_tag_name = #{product_tag_name, jdbcType=VARCHAR}
+  		</if>
+  		<if test="tag_type != null and tag_type !='' ">
+  			and tag_type = #{tag_type, jdbcType=INTEGER}
+  		</if>
+  		<if test="parent_id != null and parent_id != '' ">
+  			and parent_id = #{parent_id, jdbcType=INTEGER}
+  		</if>
+  		<if test="status != null and status != '' ">
+  			and status = #{status, jdbcType=VARCHAR}
+  		</if>
+  		<if test="start_time != null and start_time != '' ">
+			and created_time &gt;= #{start_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="end_time != null and end_time != '' ">
+			and created_time &lt;= #{end_time,jdbcType=TIMESTAMP}
+		</if>
+  	</where>
+  </select>
+  
+  <select id="selectLevelByMapParams" resultMap="TopToBottomResultMap" parameterType="java.util.Map">
+	select 
+		p.*,s.product_tag_id as child_tag_id, s.product_tag_name as child_tag_name, s.tag_type as child_tag_type, s.parent_id as child_parent_id, s.status as child_status
+	from product_tag p
+	left join product_tag s on s.parent_id = p.product_tag_id 
+  	<where>
+  		p.tag_type = 1 
+  		<if test="product_tag_id != null and product_tag_id !='' " >
+  			and p.product_tag_id = #{product_tag_id, jdbcType=INTEGER}
+  		</if>
+  		<if test="product_tag_name != null and product_tag_name !='' " >
+  			and p.product_tag_name like CONCAT('%', #{product_tag_name, jdbcType=VARCHAR}, '%')
+  		</if>
+  		<if test="parent_id != null and parent_id != '' ">
+  			and p.parent_id = #{parent_id, jdbcType=INTEGER}
+  		</if>
+  		<if test="status != null and status != '' ">
+  			and p.status = #{status, jdbcType=VARCHAR}
+  		</if>
+  		<if test="start_time != null and start_time != '' ">
+			and p.created_time &gt;= #{start_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="end_time != null and end_time != '' ">
+			and p.created_time &lt;= #{end_time,jdbcType=TIMESTAMP}
+		</if>
+  	</where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_tag
+    where product_tag_id = #{productTagId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductTag" >
+    insert into product_tag (product_tag_id, product_tag_name, tag_type, 
+      parent_id, status, created_user, 
+      created_time, last_updated_user, last_updated_time
+      )
+    values (#{productTagId,jdbcType=INTEGER}, #{productTagName,jdbcType=VARCHAR}, #{tagType,jdbcType=INTEGER}, 
+      #{parentId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{createdUser,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{lastUpdatedUser,jdbcType=VARCHAR}, #{lastUpdatedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductTag" useGeneratedKeys="true" keyProperty="productTagId">
+    insert into product_tag
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productTagId != null" >
+        product_tag_id,
+      </if>
+      <if test="productTagName != null" >
+        product_tag_name,
+      </if>
+      <if test="tagType != null" >
+        tag_type,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdUser != null" >
+        created_user,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="lastUpdatedUser != null" >
+        last_updated_user,
+      </if>
+      <if test="lastUpdatedTime != null" >
+        last_updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productTagId != null" >
+        #{productTagId,jdbcType=INTEGER},
+      </if>
+      <if test="productTagName != null" >
+        #{productTagName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagType != null" >
+        #{tagType,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUser != null" >
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null" >
+        #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null" >
+        #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductTag" >
+    update product_tag
+    <set >
+      <if test="productTagName != null" >
+        product_tag_name = #{productTagName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagType != null" >
+        tag_type = #{tagType,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null" >
+        last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null" >
+        last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where product_tag_id = #{productTagId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductTag" >
+    update product_tag
+    set product_tag_name = #{productTagName,jdbcType=VARCHAR},
+      tag_type = #{tagType,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP}
+    where product_tag_id = #{productTagId,jdbcType=INTEGER}
+  </update>
+</mapper>

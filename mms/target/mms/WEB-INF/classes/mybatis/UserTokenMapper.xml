@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.UserTokenMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.UserToken" >
+    <id column="user_token_id" property="userTokenId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="expired_time" property="expiredTime" jdbcType="TIMESTAMP" />
+    <result column="is_valid" property="isValid" jdbcType="TINYINT" />
+    <result column="token_type" property="tokenType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_token_id, user_id, token, created_time, expired_time, is_valid, token_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_token
+    where user_token_id = #{userTokenId,jdbcType=BIGINT}
+  </select>
+  
+  <update id="updateUserTokenOutValidByType">
+    UPDATE 
+    user_token 
+    SET is_valid = 0
+	WHERE token_type = #{token_type,jdbcType=VARCHAR}
+    and is_valid = 1 and user_id = #{user_id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateOutTimeToken">
+    UPDATE user_token SET is_valid = 0 WHERE is_valid = 1 and expired_time &lt; NOW()
+  </update>
+  
+  <select id="getToken" resultMap="BaseResultMap">
+    SELECT 
+    * 
+    FROM user_token  
+    WHERE
+    user_id = #{user_id,jdbcType=INTEGER} and
+    token = #{user_token,jdbcType=VARCHAR} and 
+    token_type = #{token_type,jdbcType=VARCHAR} order by created_time desc limit 1 
+  </select>
+  
+  <update id="updateOutValidToken" parameterType="java.util.Map">
+    UPDATE user_token SET is_valid = 0 WHERE user_id = #{user_id,jdbcType=INTEGER} and token = #{user_token,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="getUserLastValidTokenTimeByType" resultType="java.util.Date">
+    SELECT 
+    created_time 
+    FROM user_token  
+    WHERE token_type = #{token_type,jdbcType=VARCHAR} and  
+    user_id = #{user_id,jdbcType=INTEGER} and 
+    is_valid = 1 
+    order by expired_time desc limit 1
+  </select>
+  
+  <insert id="addUserToken">
+    insert into
+    user_token
+    (expired_time,token,user_id,token_type,created_time)
+    values
+    (#{expired_time,jdbcType=TIMESTAMP},#{token,jdbcType=VARCHAR},#{user_id,jdbcType=INTEGER},#{token_type,jdbcType=VARCHAR},now())
+  </insert>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_token
+    where user_token_id = #{userTokenId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.UserToken" >
+    insert into user_token (user_token_id, user_id, token, 
+      created_time, expired_time, is_valid, 
+      token_type)
+    values (#{userTokenId,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, #{token,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{expiredTime,jdbcType=TIMESTAMP}, #{isValid,jdbcType=TINYINT}, 
+      #{tokenType,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.UserToken" >
+    insert into user_token
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userTokenId != null" >
+        user_token_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="token != null" >
+        token,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="expiredTime != null" >
+        expired_time,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="tokenType != null" >
+        token_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userTokenId != null" >
+        #{userTokenId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiredTime != null" >
+        #{expiredTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="tokenType != null" >
+        #{tokenType,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.UserToken" >
+    update user_token
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiredTime != null" >
+        expired_time = #{expiredTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="tokenType != null" >
+        token_type = #{tokenType,jdbcType=CHAR},
+      </if>
+    </set>
+    where user_token_id = #{userTokenId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.UserToken" >
+    update user_token
+    set user_id = #{userId,jdbcType=INTEGER},
+      token = #{token,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      expired_time = #{expiredTime,jdbcType=TIMESTAMP},
+      is_valid = #{isValid,jdbcType=TINYINT},
+      token_type = #{tokenType,jdbcType=CHAR}
+    where user_token_id = #{userTokenId,jdbcType=BIGINT}
+  </update>
+</mapper>

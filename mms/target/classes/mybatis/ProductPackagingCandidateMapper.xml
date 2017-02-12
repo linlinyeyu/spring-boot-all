@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductPackagingCandidateMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductPackagingCandidate" >
+    <id column="product_packaging_candidate_id" property="productPackagingCandidateId" jdbcType="INTEGER" />
+    <result column="product_apply_id" property="productApplyId" jdbcType="INTEGER" />
+    <result column="goods_product_id" property="goodsProductId" jdbcType="INTEGER" />
+    <result column="goods_product_name" property="goodsProductName" jdbcType="VARCHAR" />
+    <result column="supplies_product_id" property="suppliesProductId" jdbcType="INTEGER" />
+    <result column="supplies_product_name" property="suppliesProductName" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+    <result column="temperature_package_type" property="temperaturePackageType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    product_packaging_candidate_id, product_apply_id, goods_product_id, supplies_product_id, 
+    created_time, created_user
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_packaging_candidate
+    where product_packaging_candidate_id = #{productPackagingCandidateId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByMapParams" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	SELECT 
+  		ppc.*, 
+  		gp.product_name as goods_product_name, 
+  		sp.product_name as supplies_product_name,
+  		sp.temperature_package_type
+	from product_packaging_candidate ppc
+	LEFT JOIN product gp on ppc.goods_product_id = gp.product_id
+	LEFT JOIN product sp on ppc.supplies_product_id = sp.product_id
+  	<where>
+		<if test="product_packaging_candidate_id != null and product_packaging_candidate_id != '' ">
+			ppc.product_packaging_candidate_id = #{product_packaging_candidate_id, jdbcType=INTEGER}
+		</if>
+		<if test="product_apply_id != null and product_apply_id != '' ">
+			and ppc.product_apply_id = #{product_apply_id, jdbcType=INTEGER}
+		</if>
+		<if test="goods_product_id != null and goods_product_id != '' ">
+			and ppc.goods_product_id = #{goods_product_id, jdbcType=INTEGER}
+		</if>
+		<if test="goods_product_name != null and goods_product_name != '' ">
+			and gp.goods_product_name = #{goods_product_name, jdbcType=INTEGER}
+		</if>
+		<if test="supplies_product_id != null and supplies_product_id != '' ">
+			and ppc.supplies_product_id = #{supplies_product_id,jdbcType=INTEGER}
+		</if>
+		<if test="supplies_product_name != null and supplies_product_name != '' ">
+			and sp.supplies_product_name = #{supplies_product_name,jdbcType=VARCHAR}
+		</if>
+		<if test="start_time != null and start_time != '' ">
+			and ppc.created_time &gt;= #{start_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="end_time != null and end_time != '' ">
+			and ppc.created_time &lt;= #{end_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="created_user != null">
+			and ppc.created_user = #{created_user,jdbcType=VARCHAR}
+		</if>
+  	</where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_packaging_candidate
+    where product_packaging_candidate_id = #{productPackagingCandidateId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByProductApplyId" parameterType="java.lang.Integer" >
+    delete from product_packaging_candidate
+    where product_apply_id = #{productApplyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductPackagingCandidate" >
+    insert into product_packaging_candidate (product_packaging_candidate_id, product_apply_id, 
+      goods_product_id, supplies_product_id, created_time, 
+      created_user)
+    values (#{productPackagingCandidateId,jdbcType=INTEGER}, #{productApplyId,jdbcType=INTEGER}, 
+      #{goodsProductId,jdbcType=INTEGER}, #{suppliesProductId,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{createdUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductPackagingCandidate" >
+    insert into product_packaging_candidate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productPackagingCandidateId != null" >
+        product_packaging_candidate_id,
+      </if>
+      <if test="productApplyId != null" >
+        product_apply_id,
+      </if>
+      <if test="goodsProductId != null" >
+        goods_product_id,
+      </if>
+      <if test="suppliesProductId != null" >
+        supplies_product_id,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createdUser != null" >
+        created_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productPackagingCandidateId != null" >
+        #{productPackagingCandidateId,jdbcType=INTEGER},
+      </if>
+      <if test="productApplyId != null" >
+        #{productApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsProductId != null" >
+        #{goodsProductId,jdbcType=INTEGER},
+      </if>
+      <if test="suppliesProductId != null" >
+        #{suppliesProductId,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductPackagingCandidate" >
+    update product_packaging_candidate
+    <set >
+      <if test="productApplyId != null" >
+        product_apply_id = #{productApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsProductId != null" >
+        goods_product_id = #{goodsProductId,jdbcType=INTEGER},
+      </if>
+      <if test="suppliesProductId != null" >
+        supplies_product_id = #{suppliesProductId,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_packaging_candidate_id = #{productPackagingCandidateId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByApplyIdSelective" parameterType="com.ibenben.domain.ProductPackagingCandidate" >
+    update product_packaging_candidate
+    <set >
+      <if test="productApplyId != null" >
+        product_apply_id = #{productApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsProductId != null" >
+        goods_product_id = #{goodsProductId,jdbcType=INTEGER},
+      </if>
+      <if test="suppliesProductId != null" >
+        supplies_product_id = #{suppliesProductId,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_apply_id = #{productApplyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductPackagingCandidate" >
+    update product_packaging_candidate
+    set product_apply_id = #{productApplyId,jdbcType=INTEGER},
+      goods_product_id = #{goodsProductId,jdbcType=INTEGER},
+      supplies_product_id = #{suppliesProductId,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_user = #{createdUser,jdbcType=VARCHAR}
+    where product_packaging_candidate_id = #{productPackagingCandidateId,jdbcType=INTEGER}
+  </update>
+  <update id="substituteProductCandidate">
+  	update product_packaging_candidate
+  	set supplies_product_id = #{new_supplies_product_id}
+  	where supplies_product_id = #{supplies_product_id}
+  		and goods_product_id = #{goods_product_id}
+  </update>
+</mapper>

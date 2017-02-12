@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductApply" >
+    <id column="product_apply_id" property="productApplyId" jdbcType="INTEGER" />
+    <result column="party_id" property="partyId" jdbcType="INTEGER" />
+    <result column="product_apply_code" property="productApplyCode" jdbcType="VARCHAR" />
+    <result column="product_apply_name" property="productApplyName" jdbcType="VARCHAR" />
+    <result column="suggested_title" property="suggestedTitle" jdbcType="VARCHAR" />
+    <result column="sales_specification" property="salesSpecification" jdbcType="VARCHAR" />
+    <result column="product_category_name" property="productCategoryName" jdbcType="VARCHAR" />
+    <result column="product_tag_name" property="productTagName" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+    <result column="last_updated_time" property="lastUpdatedTime" jdbcType="TIMESTAMP" />
+    <result column="last_updated_user" property="lastUpdatedUser" jdbcType="VARCHAR" />
+    <result column="apply_status" property="applyStatus" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR"/>
+    <result column="check_time" property="checkTime" jdbcType="VARCHAR"/>
+    <result column="check_user" property="checkUser" jdbcType="VARCHAR"/>
+    <result column="merchant_id" property="merchantId" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="ProductApplyResultMap" type="com.ibenben.domain.ProductApply" extends="BaseResultMap">
+  	<result column="party_name" property="partyName" jdbcType="VARCHAR" />
+    <result column="is_qc_mapped" property="isQcMapped" jdbcType="INTEGER" />
+    <result column="merchant_name" property="merchantName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="CountResultMap" type="java.util.Map">
+   	<result column="party_id" property="partyId" jdbcType="INTEGER" />
+  	<result column="party_name" property="partyName" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="BIGINT" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    product_apply_id, party_id, product_apply_code, product_apply_name, 
+    suggested_title, sales_specification, product_category_name, product_tag_name, created_time, 
+    created_user, last_updated_time, last_updated_user, apply_status, status, check_time, check_user,merchant_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_apply
+    where product_apply_id = #{productApplyId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getCheckTime" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    pa.check_time
+    from product_apply pa
+    inner join product p on p.product_apply_id = pa.product_apply_id
+    where p.product_id = #{product_id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByMapParams" parameterType="java.util.Map" resultMap="ProductApplyResultMap">
+	SELECT 
+		pa.*, 
+		pt.party_name, 
+		if(paqm.product_apply_id is null, 0, 1) as is_qc_mapped,
+		m.merchant_name
+	FROM product_apply pa
+	LEFT JOIN party pt on pt.party_id = pa.party_id and pt.status="OK"
+	LEFT JOIN product p on p.product_apply_id = pa.product_apply_id
+	LEFT JOIN product_apply_qc_mapping paqm on paqm.product_apply_id = pa.product_apply_id
+	left join merchant m on m.merchant_id = pa.merchant_id and m.status ='OK'
+	<where>
+		pa.status = 'OK'
+		<if test="product_apply_id != null and product_apply_id != '' ">
+			and pa.product_apply_id = #{product_apply_id,jdbcType=INTEGER}
+		</if>
+		<if test="party_id != null and party_id != '' ">
+			and pa.party_id = #{party_id,jdbcType=INTEGER}
+		</if>
+		<if test="product_apply_name != null and product_apply_name != '' ">
+			and pa.product_apply_name like CONCAT('%', #{product_apply_name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="product_apply_actual_name != null and product_apply_actual_name !='' ">
+			and pa.product_apply_name = #{product_apply_actual_name}
+		</if>
+		<if test="product_apply_code != null and product_apply_code != '' ">
+			and pa.product_apply_code = #{product_apply_code, jdbcType=VARCHAR}
+		</if>
+		<if test="apply_status != null and apply_status != '' ">
+			and pa.apply_status = #{apply_status,jdbcType=CHAR}
+		</if>
+		<if test="start_time != null and start_time != '' ">
+			and pa.created_time &gt;= #{start_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="end_time != null and end_time != '' ">
+			and pa.created_time &lt;= #{end_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="product_status != null and product_status != '' ">
+			and p.status = #{product_status}
+		</if>
+		<if test="start_check_time != null and start_check_time != '' ">
+			and pa.check_time &gt;= #{start_check_time}
+		</if>
+		<if test="end_check_time != null and end_check_time != '' ">
+			and pa.check_time &lt;= #{end_check_time}
+		</if>
+	</where>
+	GROUP BY pa.product_apply_id
+  </select>
+  
+  <select id="countByStatus" resultMap="CountResultMap">
+	select 
+		count(*) as count,
+		p.party_id,
+		p.party_name
+	from product_apply pa
+	inner join party p on p.party_id = pa.party_id and p.`status`='OK'
+	where pa.apply_status = #{status}
+	<if test="party_id != null and party_id != '' ">
+		and pa.party_id = #{party_id} 
+	</if>
+	<if test="start_check_time != null and start_check_time != '' ">
+		and pa.check_time &gt;= #{start_check_time}
+	</if>
+	<if test="end_check_time != null and end_check_time != '' ">
+		and pa.check_time &lt;= #{end_check_time}
+	</if>
+	group by pa.party_id
+  </select>
+  
+  <select id="selectAll" resultType="java.util.Map">
+  	select product_apply_id,product_apply_code, product_apply_name from product_apply
+  	<where>
+  		status= 'OK'
+  		<if test="apply_statuses != null and apply_statuses != '' ">
+  		and apply_status in 
+  			<foreach collection="apply_statuses" index="index" item="item" open="(" close=")" separator=",">
+  				#{item}
+  			</foreach>
+  		</if>
+  	</where>
+  </select>
+  
+  <select id="selectMaxApplyCode" parameterType ="java.util.Date"  resultType="String">
+  	SELECT max(product_apply_code) FROM product_apply where created_time &gt;= #{date,jdbcType=TIMESTAMP};
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_apply
+    where product_apply_id = #{productApplyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductApply" >
+    insert into product_apply (product_apply_id, party_id, 
+      product_apply_code, product_apply_name, suggested_title, 
+      sales_specification, product_category_name, 
+      product_tag_name, created_time, created_user, 
+      last_updated_time, last_updated_user, apply_status, 
+      status,merchant_id)
+    values (#{productApplyId,jdbcType=INTEGER}, #{partyId,jdbcType=INTEGER},
+      #{productApplyCode,jdbcType=VARCHAR}, #{productApplyName,jdbcType=VARCHAR}, #{suggestedTitle,jdbcType=VARCHAR}, 
+      #{salesSpecification,jdbcType=VARCHAR}, #{productCategoryName,jdbcType=VARCHAR}, 
+      #{productTagName,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=VARCHAR}, 
+      #{lastUpdatedTime,jdbcType=TIMESTAMP}, #{lastUpdatedUser,jdbcType=VARCHAR}, #{applyStatus,jdbcType=CHAR}, 
+      #{status,jdbcType=CHAR},#{merchantId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductApply" useGeneratedKeys="true" keyProperty="productApplyId">
+    insert into product_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productApplyId != null" >
+        product_apply_id,
+      </if>
+      <if test="partyId != null" >
+        party_id,
+      </if>
+      <if test="productApplyCode != null" >
+        product_apply_code,
+      </if>
+      <if test="productApplyName != null" >
+        product_apply_name,
+      </if>
+      <if test="suggestedTitle != null" >
+        suggested_title,
+      </if>
+      <if test="salesSpecification != null" >
+        sales_specification,
+      </if>
+      <if test="productCategoryName != null" >
+        product_category_name,
+      </if>
+      <if test="productTagName != null" >
+        product_tag_name,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createdUser != null" >
+        created_user,
+      </if>
+      <if test="lastUpdatedTime != null" >
+        last_updated_time,
+      </if>
+      <if test="lastUpdatedUser != null" >
+        last_updated_user,
+      </if>
+      <if test="checkUser != null">
+      	check_user,
+      </if>
+      <if test="checkTime != null">
+      	check_time,
+      </if>
+      <if test="applyStatus != null" >
+        apply_status,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="note != null">
+      	note,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productApplyId != null" >
+        #{productApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="partyId != null" >
+        #{partyId,jdbcType=INTEGER},
+      </if>
+      <if test="productApplyCode != null" >
+        #{productApplyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productApplyName != null" >
+        #{productApplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestedTitle != null" >
+        #{suggestedTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="salesSpecification != null" >
+        #{salesSpecification,jdbcType=VARCHAR},
+      </if>
+      <if test="productCategoryName != null" >
+        #{productCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="productTagName != null" >
+        #{productTagName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null" >
+        #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null" >
+        #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="checkUser != null">
+      	#{checkUser},
+      </if>
+      <if test="checkTime != null">
+      	#{checkTime},
+      </if>
+      <if test="applyStatus != null" >
+        #{applyStatus,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="note != null" >
+        #{note},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductApply" >
+    update product_apply
+    <set >
+      <if test="partyId != null" >
+        party_id = #{partyId,jdbcType=INTEGER},
+      </if>
+      <if test="productApplyCode != null" >
+        product_apply_code = #{productApplyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productApplyName != null" >
+        product_apply_name = #{productApplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestedTitle != null" >
+        suggested_title = #{suggestedTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="salesSpecification != null" >
+        sales_specification = #{salesSpecification,jdbcType=VARCHAR},
+      </if>
+      <if test="productCategoryName != null" >
+        product_category_name = #{productCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="productTagName != null" >
+        product_tag_name = #{productTagName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null" >
+        last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null" >
+        last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="checkUser != null" >
+        check_user = #{checkUser},
+      </if>
+      <if test="checkTime != null" >
+        check_time = #{checkTime},
+      </if>
+      <if test="applyStatus != null" >
+        apply_status = #{applyStatus,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note},
+      </if>
+      <if test="merchantId != null">
+      	merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where product_apply_id = #{productApplyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductApply" >
+    update product_apply
+    set party_id = #{partyId,jdbcType=INTEGER},
+      product_apply_code = #{productApplyCode,jdbcType=VARCHAR},
+      product_apply_name = #{productApplyName,jdbcType=VARCHAR},
+      suggested_title = #{suggestedTitle,jdbcType=VARCHAR},
+      sales_specification = #{salesSpecification,jdbcType=VARCHAR},
+      product_category_name = #{productCategoryName,jdbcType=VARCHAR},
+      product_tag_name = #{productTagName,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      apply_status = #{applyStatus,jdbcType=CHAR},
+      status = #{status,jdbcType=CHAR},
+      merchant_id = #{merchantId,jdbcType=INTEGER}
+    where product_apply_id = #{productApplyId,jdbcType=INTEGER}
+  </update>
+</mapper>

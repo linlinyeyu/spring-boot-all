@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.MerchantDistrictMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.MerchantDistrict" >
+    <id column="merchant_id" property="merchantId" jdbcType="INTEGER" />
+    <id column="district_id" property="districtId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_list">
+    merchant_id,district_id
+  </sql>
+  <select id="getMerchantDistrict" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_list" />
+    from merchant_district 
+    where 
+    merchant_id = #{merchant_id,jdbcType=INTEGER}
+  </select>
+  <select id="selectDistrictIds" parameterType="java.lang.Integer" resultType="Integer">
+    select
+    	district_id
+    from merchant_district 
+    where 
+    merchant_id = #{merchantId,jdbcType=INTEGER}
+  </select>
+  <update id="setMerchantDistrict" parameterType="com.ibenben.domain.MerchantDistrict">
+    update merchant_district set district_id = #{districtId,jdbcType=INTEGER} where merchant_id = #{merchantId,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="com.ibenben.domain.MerchantDistrict" >
+    delete from merchant_district
+    where merchant_id = #{merchantId,jdbcType=INTEGER}
+      and district_id = #{districtId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.MerchantDistrict" >
+    insert into merchant_district (merchant_id, district_id)
+    values (#{merchantId,jdbcType=INTEGER}, #{districtId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.MerchantDistrict" >
+    insert into merchant_district
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="merchantId != null" >
+        merchant_id,
+      </if>
+      <if test="districtId != null" >
+        district_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="districtId != null" >
+        #{districtId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

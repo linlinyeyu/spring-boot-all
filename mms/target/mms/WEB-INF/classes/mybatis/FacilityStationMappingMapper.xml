@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.FacilityStationMappingMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.FacilityStationMapping" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="facility_id" property="facilityId" jdbcType="INTEGER" />
+    <result column="station_id" property="stationId" jdbcType="INTEGER" />
+    <result column="cost" property="cost" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, facility_id, station_id, cost
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from facility_station_mapping
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getFacilityStationMappingList" resultType="java.util.Map">
+	select 
+		f.facility_id,
+		f.facility_name,
+		f.longitude as facility_lng,
+		f.latitude as facility_lat,
+		s.station_id,
+		s.station_name,
+		s.longitude as station_lng,
+		s.latitude as station_lat,
+		fsm.cost,
+		fsm.id
+	from facility_station_mapping fsm
+	inner join facility f on f.facility_id = fsm.facility_id and f.status='OK'
+	inner join station s  on s.station_id = fsm.station_id and s.status='OK'
+	<where>
+		<if test="station_id != null and station_id != '' ">
+			and s.station_id = #{station_id}
+		</if>
+		<if test="facility_id != null and facility_id != '' ">
+			and f.facility_id = #{facility_id}
+		</if>
+	</where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from facility_station_mapping
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.FacilityStationMapping" >
+    insert into facility_station_mapping (id, facility_id, station_id, 
+      cost)
+    values (#{id,jdbcType=INTEGER}, #{facilityId,jdbcType=INTEGER}, #{stationId,jdbcType=INTEGER}, 
+      #{cost,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.FacilityStationMapping" >
+    insert into facility_station_mapping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="facilityId != null" >
+        facility_id,
+      </if>
+      <if test="stationId != null" >
+        station_id,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="facilityId != null" >
+        #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="stationId != null" >
+        #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.FacilityStationMapping" >
+    update facility_station_mapping
+    <set >
+      <if test="facilityId != null" >
+        facility_id = #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="stationId != null" >
+        station_id = #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.FacilityStationMapping" >
+    update facility_station_mapping
+    set facility_id = #{facilityId,jdbcType=INTEGER},
+      station_id = #{stationId,jdbcType=INTEGER},
+      cost = #{cost,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateCost" >
+    update facility_station_mapping
+    set cost = #{cost}
+    where facility_id = #{facility_id} and station_id=#{station_id}
+  </update>
+</mapper>

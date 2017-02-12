@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.StationShippingCoverageMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.StationShippingCoverage" >
+    <id column="station_shipping_coverage_id" property="stationShippingCoverageId" jdbcType="BIGINT" />
+    <result column="district_id" property="districtId" jdbcType="SMALLINT" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="station_id" property="stationId" jdbcType="INTEGER" />
+    <result column="shipping_id" property="shippingId" jdbcType="SMALLINT" />
+    <result column="facility_id" property="facilityId" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    station_shipping_coverage_id, district_id, status, station_id, shipping_id,facility_id
+  </sql>
+  <resultMap id="CascadingStationShippingCoverageResulMap" type="java.util.Map">
+  	<id column="station_id" property="station_id" jdbcType="INTEGER"/>
+  	<result column="station_name" property="station_name" jdbcType="VARCHAR"/>
+  	<result column="facility_id" property="facility_id" jdbcType="INTEGER"/>
+  	<result column="facility_name" property="facility_name" jdbcType="VARCHAR"/>
+  	<collection javaType="java.util.List" ofType="java.util.Map" property="shippings">
+  		<id column="shipping_id" property="shipping_id" jdbcType="SMALLINT"/>
+  		<result column="shipping_name" property="shipping_name" jdbcType="VARCHAR" />
+  		<collection javaType="java.util.List" ofType="java.util.Map" property="provinces">
+  			<id column="province_id" property="province_id" jdbcType="INTEGER"/>
+  			<result column="province_name" property="province_name" jdbcType="VARCHAR"/>
+  			<collection javaType="java.util.List" ofType="java.util.Map" property="city_list">
+  				<id column="city_id" property="city_id" jdbcType="INTEGER"/>
+  				<result column="city_name" property="city_name" jdbcType="VARCHAR"/>
+  				<collection javaType="java.util.List" ofType="java.util.Map" property="district_list">
+  					<id column="district_id" property="district_id" jdbcType="INTEGER"/>
+  					<result column="district_name" property="district_name" jdbcType="VARCHAR"/>
+  					<result column="is_set" property="is_set" jdbcType="INTEGER"/>
+  				</collection>
+  			</collection>
+  		</collection>
+  	</collection>
+  </resultMap>
+	<resultMap id="CascadingAreaResulMap" type="java.util.Map">
+		<id column="area_id" property="area_id" jdbcType="INTEGER" />
+		<result column="area_name" property="area_name" jdbcType="VARCHAR" />
+		<collection javaType="java.util.List" ofType="java.util.Map" property="province_list">
+			<id column="province_id" property="province_id" jdbcType="INTEGER" />
+			<result column="province_name" property="province_name" jdbcType="VARCHAR" />
+			<collection javaType="java.util.List" ofType="java.util.Map" property="city_list">
+				<id column="city_id" property="city_id" jdbcType="INTEGER" />
+				<result column="city_name" property="city_name" jdbcType="VARCHAR" />
+				<collection javaType="java.util.List" ofType="java.util.Map" property="district_list">
+					<id column="district_id" property="district_id" jdbcType="INTEGER" />
+					<result column="district_name" property="district_name" jdbcType="VARCHAR" />
+					<result column="is_set" property="is_set" jdbcType="INTEGER" />
+				</collection>
+			</collection>
+		</collection>
+	</resultMap>
+  
+  <select id="getCascadingStationShippingCoverageList" resultMap="CascadingStationShippingCoverageResulMap">
+	select 
+		ss.station_id,
+		st.station_name,
+		f.facility_id,
+		f.facility_name,
+		sh.shipping_id,
+		sh.shipping_name,
+		ssc.district_id,
+		d.region_name as district_name,
+		c.region_id as city_id,
+		c.region_name as city_name,
+		p.region_id as province_id,
+		p.region_name as province_name,
+		if(ssc.district_id is null, 0 , 1)as is_set
+	from station_shipping ss
+	inner join station st on ss.station_id = st.station_id
+	inner join shipping sh on ss.shipping_id = sh.shipping_id
+	left join station_facility_mapping sfm on sfm.station_id = sfm.facility_id
+	left join facility f on f.facility_id = sfm.facility_id and f.`status`='OK'
+	left join station_shipping_coverage ssc on ssc.shipping_id = sh.shipping_id
+		and ssc.station_id = st.station_id
+	left join region d on d.region_id = ssc.district_id and d.`status`='OK'
+	left join region c on c.region_id = d.parent_id and c.`status`='OK'
+	left join region p on p.region_id = c.parent_id and p.`status`='OK'
+	<where>
+		<if test="station_id != null and station_id != '' ">
+			and ss.station_id = #{station_id}
+		</if>
+		<if test="shipping_id != null and shipping_id != '' ">
+			and sh.shipping_id = #{shipping_id}
+		</if>
+	</where>	
+  </select>
+  
+  <select id="getAvaliableStationShippingCoverage" resultMap="CascadingAreaResulMap">
+  	SELECT 
+		a.area_id,
+		a.area_name,
+		d.region_id as district_id,
+		d.region_name as district_name,
+		c.region_id as city_id,
+		c.region_name as city_name,
+		p.region_id as province_id,
+		p.region_name as province_name,
+		if(ssc.district_id is null, 0, 1) is_set
+	from area a
+	inner join area_province_mapping apm on a.area_id = apm.area_id
+	inner join region p on p.region_id = apm.province_id and p.`status`='OK'
+	inner join region c on c.parent_id = p.region_id and c.status = 'OK'
+	inner join region d on d.parent_id = c.region_id and d.`status`= 'OK'
+	left join station_shipping_coverage ssc on ssc.district_id = d.region_id
+		and ssc.shipping_id = #{shipping_id}
+		and ssc.station_id = #{station_id}
+	<if test="facility_id != null">
+		and ssc.facility_id = #{facility_id}
+	</if>
+  </select>
+  
+  <select id="getStationShippingCoverageShipping" parameterType="java.util.Map" resultMap="com.ibenben.mapper.ShippingMapper.BaseResultMap">
+    select 
+			s.*
+	from 
+			station_shipping_coverage ssc 
+	inner join shipping s on ssc.shipping_id = s.shipping_id 
+	inner join station_shipping ss on ssc.facility_id = ss.facility_id 
+		and ssc.shipping_id = ss.shipping_id
+	where  
+			ssc.station_id = #{station_id}  and 
+			ssc.district_id = #{district_id} and 
+			ssc.`status` = 'OK' and 
+			s.`status` = 'OK' and
+			ss.`status`= 'OK'
+	<if test="facility_id != '' and facility_id != null">
+	  ssc.facility_id = #{facility_id,jdbcType=TINYINT}
+	</if>
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from station_shipping_coverage
+    where station_shipping_coverage_id = #{stationShippingCoverageId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from station_shipping_coverage
+    where station_shipping_coverage_id = #{stationShippingCoverageId,jdbcType=BIGINT}
+  </delete>
+  
+  <delete id="deleteByStationShippingFacilitySelective">
+  	delete from station_shipping_coverage 
+  	where 
+  		station_id=#{station_id} and
+  		shipping_id=#{shipping_id}
+  	<if test="facility_id != null">
+  		facility_id=#{facility_id}
+  	</if>
+  </delete>
+
+  <delete id="deleteByStationId">
+  	delete from station_shipping_coverage 
+  	where 
+  		station_id=#{station_id}
+  </delete>
+  
+  <insert id="insert" parameterType="com.ibenben.domain.StationShippingCoverage" >
+    insert into station_shipping_coverage (station_shipping_coverage_id, district_id, 
+      status, station_id, shipping_id, facility_id
+      )
+    values (#{stationShippingCoverageId,jdbcType=BIGINT}, #{districtId,jdbcType=SMALLINT}, 
+      #{status,jdbcType=CHAR}, #{stationId,jdbcType=INTEGER}, #{shippingId,jdbcType=SMALLINT},#{facilityId,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.StationShippingCoverage" >
+    insert into station_shipping_coverage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stationShippingCoverageId != null" >
+        station_shipping_coverage_id,
+      </if>
+      <if test="districtId != null" >
+        district_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="stationId != null" >
+        station_id,
+      </if>
+      <if test="shippingId != null" >
+        shipping_id,
+      </if>
+      <if test="facilityId != null" >
+        facility_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stationShippingCoverageId != null" >
+        #{stationShippingCoverageId,jdbcType=BIGINT},
+      </if>
+      <if test="districtId != null" >
+        #{districtId,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="stationId != null" >
+        #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingId != null" >
+        #{shippingId,jdbcType=SMALLINT},
+      </if>
+      <if test="facilityId != null" >
+        #{facilityId,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  
+  <insert id="insertBatch">
+  	insert into station_shipping_coverage
+  		(district_id, status, facility_id, shipping_id, station_id)
+  	values
+  		<foreach collection="list" item="item" index="index" separator="," >
+  			(
+  			#{item.districtId}, 
+  			#{item.status}, 
+  			#{item.facilityId}, 
+  			#{item.shippingId}, 
+  			#{item.stationId}
+  			)
+  		</foreach>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.StationShippingCoverage" >
+    update station_shipping_coverage
+    <set >
+      <if test="districtId != null" >
+        district_id = #{districtId,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="stationId != null" >
+        station_id = #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingId != null" >
+        shipping_id = #{shippingId,jdbcType=SMALLINT},
+      </if>
+      <if test="facilityId != null" >
+        facility_id = #{facilityId,jdbcType=TINYINT},
+      </if>
+    </set>
+    where station_shipping_coverage_id = #{stationShippingCoverageId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.StationShippingCoverage" >
+    update station_shipping_coverage
+    set district_id = #{districtId,jdbcType=SMALLINT},
+      status = #{status,jdbcType=CHAR},
+      station_id = #{stationId,jdbcType=INTEGER},
+      shipping_id = #{shippingId,jdbcType=SMALLINT}
+    where station_shipping_coverage_id = #{stationShippingCoverageId,jdbcType=BIGINT}
+  </update>
+</mapper>

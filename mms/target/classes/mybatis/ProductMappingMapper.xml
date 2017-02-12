@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductMappingMapper" >
+  <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseMappingResultMap" type="java.util.Map" >
+    <result column="product_id" property="product_id" jdbcType="INTEGER" />
+    <result column="product_component_id" property="product_component_id" jdbcType="INTEGER" />
+    <result column="product_component_name" property="product_component_name" jdbcType="VARCHAR" />
+    <result column="quantity" property="quantity" jdbcType="DECIMAL" />
+    <result column="product_unit_code" property="product_unit_code" jdbcType="VARCHAR" />
+    <result column="product_unit_code_name" property="product_unit_code_name" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductMapping" >
+    <id column="mapping_id" property="mappingId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_component_id" property="productComponentId" jdbcType="INTEGER" />
+    <result column="product_component_name" property="productComponentName" jdbcType="VARCHAR" />
+    <result column="product_type" jdbcType="VARCHAR" property="productType" />
+    <result column="product_sub_type" jdbcType="VARCHAR" property="productSubType" />
+    <result column="quantity" property="quantity" jdbcType="DECIMAL" />
+    <result column="mapping_type" property="mappingType" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="unit_code" property="unitCode" jdbcType="VARCHAR" />
+    <result column="unit_code_name" property="unitCodeName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="detailCascadingResultMap" type="java.util.Map">
+  	 <id column="product_id" property="product_id" jdbcType="INTEGER"/>
+  	 <result column="product_name" property="product_name" jdbcType="VARCHAR"/>
+  	 <collection property="product_mapping_list" javaType="java.util.List" ofType="java.util.Map">
+  	 	<id column="product_component_id" property="product_component_id" jdbcType="INTEGER" />
+    	<result column="product_component_name" property="product_component_name" jdbcType="VARCHAR"/>
+    	<result column="product_type" property="product_type" jdbcType="VARCHAR"/>
+    	<result column="product_sub_type" property="product_sub_type" jdbcType="VARCHAR"/>
+    	<result column="unit_code" property="unit_code" jdbcType="VARCHAR" />
+    	<result column="unit_code_name" property="unit_code_name" jdbcType="VARCHAR" />
+    	<result column="quantity" property="quantity" jdbcType="DECIMAL" />
+  	 </collection>
+  </resultMap>
+  
+  <sql id="Base_Mapping_Column_List" >
+    pm.product_id, pm.product_component_id, pm.quantity, p.product_name as product_component_name,p.unit_code as product_unit_code, p.unit_code_name as product_unit_code_name
+  </sql>
+  <sql id="Base_Column_List" >
+    mapping_id, product_id, product_component_id, quantity, mapping_type, status, created_time, 
+    created_user, delete_time, delete_user
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_mapping 
+    where mapping_id = #{mappingId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByIds" resultMap="BaseMappingResultMap" parameterType="java.util.List" >
+    select
+    	<include refid="Base_Mapping_Column_List" />
+    from
+    	product_mapping pm 
+    inner join product p on pm.product_component_id = p.product_id and p.status='OK'
+    where
+    	pm.status = 'OK' and 
+    	pm.product_id in
+    <foreach collection="list" index="index" item="id" open="(" separator="," close=")">
+      #{id,jdbcType=INTEGER}
+    </foreach>
+  </select>
+  <select id="selectDetailByIds" resultMap="detailCascadingResultMap">
+  	select
+		pm.product_id,
+		pm.quantity,
+		p.product_name,
+		pc.product_id as product_component_id,
+		pc.product_name as product_component_name,
+		pc.product_type,
+		pc.product_sub_type,
+		pc.unit_code,
+		pc.unit_code_name
+	from product_mapping pm
+	inner join product p on pm.product_id = p.product_id and p.`status`='OK'
+	inner join product pc on pm.product_component_id = pc.product_id and pc.`status` = 'OK'
+	where pm.status='OK' and 
+		pm.product_id in
+    <foreach collection="list" index="index" item="id" open="(" separator="," close=")">
+      #{id,jdbcType=INTEGER}
+    </foreach>
+  </select>
+  
+  <select id="selectQuantity" resultType ="java.util.Map">
+  	select 
+  		quantity,
+  		product_id
+  	from product_mapping 
+  	where 
+  		status = 'OK' 
+  		and product_id = #{productId} 
+  		and product_component_id = #{productComponentId} 
+  	limit 1;
+  </select>
+  
+  <select id="selectByMapParams" resultMap="BaseResultMap" parameterType="java.util.Map">
+	select
+		pm.*, 
+		p.product_name as product_component_name,
+		p.product_type,
+		p.product_sub_type,
+		p.unit_code,
+		p.unit_code_name
+	from product_mapping pm
+	inner join product p on pm.product_component_id = p.product_id and p.`status` = 'ok'
+  	<where>
+			pm.status = 'OK'
+		<if test="mapping_id != null and mapping_id != ''">
+			and pm.mapping_id = #{mappingId,jdbcType=INTEGER}
+		</if>
+		<if test="product_id != null and product_id != '' ">
+			and pm.product_id = #{product_id,jdbcType=INTEGER}
+		</if>
+		<if test="product_component_id != null and product_component_id != '' ">
+			and pm.product_component_id = #{product_component_id,jdbcType=INTEGER}
+		</if>
+		<if test="quantity != null and quantity != '' ">
+			and pm.quantity = #{quantity,jdbcType=DECIMAL}
+		</if>
+		<if test="mapping_type != null and mapping_type != '' ">
+			and pm.mapping_type = #{mapping_type,jdbcType=VARCHAR}
+		</if>
+		<if test="start_time != null and start_time != '' ">
+			and pm.created_time  &gt;= #{start_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="end_time != null and end_time != '' ">
+			and pm.created_time  &lt;= #{end_time,jdbcType=TIMESTAMP}
+		</if>
+		<if test="created_user != null and created_user != '' ">
+			and pm.created_user = #{created_user,jdbcType=VARCHAR}
+		</if>
+  	</where>
+  </select>
+  
+  <select id="selectBriefByMapParams" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select 
+  		pm.*, 
+  		p.product_name as product_component_name, 
+  		p.unit_code,
+  		p.unit_code_name
+  	from 
+  		product_mapping pm
+  	left join product p on p.product_id = pm.product_component_id and p.status='OK'
+  	<where>
+  		pm.status = 'OK'
+  		<if test="product_id != null and product_id != '' ">
+			and pm.product_id = #{product_id,jdbcType=INTEGER}
+		</if>
+		<if test="product_component_id != null and product_component_id != '' ">
+			and pm.product_component_id = #{product_component_id,jdbcType=INTEGER}
+		</if>
+		<if test="mapping_type != null and mapping_type != '' ">
+			and pm.mapping_type = #{mapping_type,jdbcType=VARCHAR}
+		</if>
+  	</where>
+  </select>
+  
+  <select id="getProductWeight" resultType="java.util.Map">
+  	SELECT
+  		pm.product_component_id,
+		pm.quantity,
+		p.net_weight_min,
+		p.net_weight_max
+	FROM
+		product_mapping pm
+	INNER JOIN product p ON p.product_id = pm.product_component_id
+	AND p.status = 'OK'
+	WHERE
+		pm.product_id = #{product_id}
+	AND pm.mapping_type = #{mapping_type}
+	AND pm. status = 'OK'
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_mapping
+    where mapping_id = #{mappingId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByProductId" parameterType="java.lang.Integer" >
+    delete from product_mapping
+    where product_id = #{productId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductMapping" >
+    insert into product_mapping (mapping_id, product_id, product_component_id, 
+      quantity, mapping_type, status, 
+      created_time, created_user, delete_time, 
+      delete_user)
+    values (#{mappingId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{productComponentId,jdbcType=INTEGER}, 
+      #{quantity,jdbcType=DECIMAL}, #{mappingType,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=VARCHAR}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{deleteUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductMapping" >
+    insert into product_mapping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mappingId != null" >
+        mapping_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productComponentId != null" >
+        product_component_id,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="mappingType != null" >
+        mapping_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createdUser != null" >
+        created_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mappingId != null" >
+        #{mappingId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productComponentId != null" >
+        #{productComponentId,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="mappingType != null" >
+        #{mappingType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductMapping" >
+    update product_mapping
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productComponentId != null" >
+        product_component_id = #{productComponentId,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="mappingType != null" >
+        mapping_type = #{mappingType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mapping_id = #{mappingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductMapping" >
+    update product_mapping
+    set product_id = #{productId,jdbcType=INTEGER},
+      product_component_id = #{productComponentId,jdbcType=INTEGER},
+      quantity = #{quantity,jdbcType=DECIMAL},
+      mapping_type = #{mappingType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR}
+    where mapping_id = #{mappingId,jdbcType=INTEGER}
+  </update>
+</mapper>

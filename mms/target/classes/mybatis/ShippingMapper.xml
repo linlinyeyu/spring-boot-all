@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ShippingMapper" >
+  <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.Shipping" >
+    <id column="shipping_id" property="shippingId" jdbcType="SMALLINT" />
+    <result column="shipping_name" property="shippingName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="support_thermal" property="supportThermal" jdbcType="INTEGER" />
+    <result column="support_transfer" property="supportTransfer" jdbcType="INTEGER" />
+    <result column="open_key" property="openKey" jdbcType="VARCHAR" />
+    <result column="send_order_url" property="sendOrderUrl" jdbcType="VARCHAR" />
+    <result column="get_station_url" property="getStationUrl" jdbcType="VARCHAR" />
+    <result column="shipping_type" property="shippingType" jdbcType="CHAR" />
+    <result column="regex" property="regex" jdbcType="VARCHAR" />
+    <result column="region_coverage" property="regionCoverage" jdbcType="INTEGER" />
+    <result column="bestshipping_manual_score" property="bestshippingManualScore" jdbcType="DECIMAL" />
+    <result column="is_unified_service" property="isUnifiedService" jdbcType="INTEGER" />
+    <result column="shipping_code" property="shippingCode" jdbcType="VARCHAR" />
+    <result column="push_type" property="pushType" jdbcType="TINYINT" />
+    <result column="api_url" property="apiUrl" jdbcType="VARCHAR" />
+    <result column="is_cod" property="isCod" jdbcType="TINYINT" />
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="FacilityShippingMap">
+    <result column="shipping_id" property="shipping_id" jdbcType="SMALLINT" />
+    <result column="shipping_name" property="shipping_name" jdbcType="VARCHAR" />
+    <result column="is_cod" property="is_cod" jdbcType="TINYINT" />
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="MerchantShippingMap">
+    <result column="merchant_shipping_id" property="merchant_shipping_id" jdbcType="INTEGER" />
+    <result column="shipping_name" property="shipping_name" jdbcType="VARCHAR" />
+    <result column="merchant_name" property="merchant_name" jdbcType="VARCHAR" />
+    <result column="shipping_id" property="shipping_id" jdbcType="SMALLINT" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    shipping_id, shipping_name, status, support_thermal, support_transfer, open_key, send_order_url,
+    get_station_url, shipping_type, regex, region_coverage, bestshipping_manual_score,is_unified_service,
+    shipping_code,push_type,api_url,is_cod
+  </sql>
+  
+  <select id="getCodShipping" resultMap="BaseResultMap">
+    select *
+    from shipping
+    where is_cod = 1 and status = 'OK'
+  </select>
+  
+  <select id="getMerchantShipping" parameterType="java.lang.Integer" resultMap="MerchantShippingMap">
+    select
+    m.merchant_name,s.shipping_name,msm.merchant_shipping_id,s.shipping_id
+    from merchant_shipping_mapping msm
+    inner join merchant m on m.merchant_id = msm.merchant_id
+    inner join shipping s on s.shipping_id = msm.shipping_id
+    where
+    msm.merchant_id = #{merchant_id,jdbcType=INTEGER} and msm.status is not null
+  </select>
+  
+  <insert id="addMerchantShipping" parameterType="java.util.Map">
+    insert into
+    merchant_shipping_mapping
+    (merchant_id,shipping_id,created_user,created_time,status) values
+    (#{merchant_id,jdbcType=INTEGER},#{shipping_id,jdbcType=SMALLINT},#{created_user,jdbcType=VARCHAR},
+    #{created_time,jdbcType=TIMESTAMP},'OK')
+  </insert>
+  
+  <update id="delMerchantShipping" parameterType="java.util.Map">
+    update
+    merchant_shipping_mapping
+    set status = null
+    where
+    merchant_shipping_id = #{merchant_shipping_id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getShippingByMerchant" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    s.*
+    from shipping s
+    inner join merchant_shipping_mapping msm on msm.shipping_id = s.shipping_id
+    where msm.merchant_id = #{merchant_id,jdbcType=INTEGER} and msm.status is not null
+  </select>
+  
+  <select id="isExistMerchantShipping" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+    count(merchant_shipping_id)
+    from merchant_shipping_mapping
+    where merchant_id = #{merchant_id,jdbcType=INTEGER} and shipping_id = #{shipping_id,jdbcType=SMALLINT} and
+    status = 'OK'
+  </select>
+  
+  <select id="findShippingList" resultMap="BaseResultMap" parameterType="java.util.Map">
+  select
+  <include refid="Base_Column_List" />
+  from shipping
+  <where>
+  <if test="shipping_name != '' and shipping_name != null">
+    shipping_name like concat('%',#{shipping_name,jdbcType=VARCHAR},'%')
+  </if>
+  <if test="shipping_type !='' and shipping_type != null">
+  	and shipping_type = #{shipping_type,jdbcType=VARCHAR}
+  </if>
+  <if test="status !='' and status != null">
+  	and status = #{status,jdbcType=CHAR}
+  </if>
+  <if test="support_transfer !='' and support_transfer != null">
+  	and support_transfer = #{support_transfer,jdbcType=CHAR}
+  </if>
+  <if test="support_thermal !='' and support_thermal != null">
+    and support_thermal = #{support_thermal,jdbcType=INTEGER}
+  </if>
+  </where>
+  </select>
+	
+  <select id="getShippingByCoverage" parameterType="java.util.Map" resultMap="FacilityShippingMap">
+    select 
+               fs.shipping_id,s.shipping_name,s.is_cod
+            from  facility_shipping fs
+            inner join shipping s on s.shipping_id = fs.shipping_id  
+            inner join facility_shipping_coverage fsc on fs.facility_id = fsc.facility_id and fs.shipping_id = fsc.shipping_id and  fsc.status = 'OK' 
+            inner join region d on d.region_id = fsc.district_id
+            inner join region c on d.parent_id = c.region_id
+            where fs.status = 'OK' and fs.facility_id = #{facility_id,jdbcType=TINYINT} and c.parent_id =  #{province_id,jdbcType=SMALLINT} and s.status = 'OK'
+            group by fs.shipping_id
+  </select>
+  
+  <select id="getShippingByRegion" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    *
+    from shipping 
+    <where>
+    status = 'OK'
+	    <if test="region_coverage != '' and region_coverage != null">
+	      and region_coverage = #{region_coverage,jdbcType=INTEGER}
+	    </if> 
+    </where>
+  </select>
+  
+  <select id="getShippingListByIds" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    *
+    from shipping
+    <where>
+    status = 'OK'
+      <if test="shipping_ids != '' and shipping_ids != null">
+         and shipping_id in 
+        <foreach collection="shipping_ids" index="index" item="id" open="(" separator="," close=")">
+          #{id,jdbcType=SMALLINT}
+        </foreach>
+      </if> 
+    </where>
+  </select>
+  
+  <select id="getShippingByFacilityId" resultMap="FacilityShippingMap" parameterType="java.lang.Integer">
+    select
+    fs.shipping_id,s.shipping_name,s.is_cod
+    from facility_shipping fs
+    inner join shipping s on s.shipping_id = fs.shipping_id
+    where
+    fs.facility_id = #{facility_id,jdbcType=INTEGER}
+    and s.status = 'OK' and fs.status = 'OK'
+  </select>
+  
+  <select id="getShippingNameByIds" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    shipping_name
+    from
+    shipping
+    <where>
+     <if test="status != '' and status != null">
+      status = #{status,jdbcType=VARCHAR}
+     </if>
+      and shipping_id in
+    <foreach collection="shipping_id_list" index="index" item="id" open="(" separator="," close=")">
+      #{id,jdbcType=SMALLINT}
+    </foreach>
+    </where>
+  </select>
+  <select id="getShippingByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from shipping where shipping_code=#{shipping_code} and status='OK' limit 1;
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from shipping
+    where shipping_id = #{shippingId,jdbcType=SMALLINT} and status = 'OK'
+  </select>
+  
+  <select id="selectShipping" resultMap="BaseResultMap" parameterType="java.lang.Short">
+    select
+    *
+    from shipping
+    where shipping_id = #{shippingId,jdbcType=SMALLINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from shipping
+    where shipping_id = #{shippingId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.Shipping" >
+    insert into shipping (shipping_id, shipping_name, status, 
+      support_thermal, support_transfer, open_key, 
+      send_order_url, get_station_url, shipping_type, 
+      regex, region_coverage, bestshipping_manual_score,is_unified_service,
+      shipping_code,push_type,api_url,is_cod
+      )
+    values (#{shippingId,jdbcType=SMALLINT}, #{shippingName,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
+      #{supportThermal,jdbcType=INTEGER}, #{supportTransfer,jdbcType=INTEGER}, #{openKey,jdbcType=VARCHAR}, 
+      #{sendOrderUrl,jdbcType=VARCHAR}, #{getStationUrl,jdbcType=VARCHAR}, #{shippingType,jdbcType=CHAR}, 
+      #{regex,jdbcType=VARCHAR}, #{regionCoverage,jdbcType=INTEGER}, #{bestshippingManualScore,jdbcType=DECIMAL},
+      #{isUnifiedService,jdbcType=INTEGER},#{shippingCode,jdbcType=VARCHAR},#{pushType,jdbcType=TINYINT},#{apiUrl,jdbcType=VARCHAR},
+      #{isCod,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.Shipping" >
+    insert into shipping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shippingId != null" >
+        shipping_id,
+      </if>
+      <if test="shippingName != null" >
+        shipping_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="supportThermal != null" >
+        support_thermal,
+      </if>
+      <if test="supportTransfer != null" >
+        support_transfer,
+      </if>
+      <if test="openKey != null" >
+        open_key,
+      </if>
+      <if test="sendOrderUrl != null" >
+        send_order_url,
+      </if>
+      <if test="getStationUrl != null" >
+        get_station_url,
+      </if>
+      <if test="shippingType != null" >
+        shipping_type,
+      </if>
+      <if test="regex != null" >
+        regex,
+      </if>
+      <if test="regionCoverage != null" >
+        region_coverage,
+      </if>
+      <if test="bestshippingManualScore != null" >
+        bestshipping_manual_score,
+      </if>
+      <if test="isUnifiedService != null">
+        is_unified_service,
+      </if>
+      <if test="shippingCode != null">
+        shipping_code,
+      </if>
+      <if test="pushType != null">
+        push_type,
+      </if>
+      <if test="apiUrl != null">
+        api_url,
+      </if>
+      <if test="isCod != null">
+        is_cod,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shippingId != null" >
+        #{shippingId,jdbcType=SMALLINT},
+      </if>
+      <if test="shippingName != null" >
+        #{shippingName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="supportThermal != null" >
+        #{supportThermal,jdbcType=INTEGER},
+      </if>
+      <if test="supportTransfer != null" >
+        #{supportTransfer,jdbcType=INTEGER},
+      </if>
+      <if test="openKey != null" >
+        #{openKey,jdbcType=VARCHAR},
+      </if>
+      <if test="sendOrderUrl != null" >
+        #{sendOrderUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="getStationUrl != null" >
+        #{getStationUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingType != null" >
+        #{shippingType,jdbcType=CHAR},
+      </if>
+      <if test="regex != null" >
+        #{regex,jdbcType=VARCHAR},
+      </if>
+      <if test="regionCoverage != null" >
+        #{regionCoverage,jdbcType=INTEGER},
+      </if>
+      <if test="bestshippingManualScore != null" >
+        #{bestshippingManualScore,jdbcType=DECIMAL},
+      </if>
+      <if test="isUnifiedService != null">
+        #{isUnifiedService,jdbcType=INTEGER},
+      </if>
+      <if test="shippingCode != null">
+        #{shippingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pushType != null">
+        #{pushType,jdbcType=TINYINT},
+      </if>
+      <if test="apiUrl != null">
+        #{apiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isCod != null">
+        #{isCod,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.Shipping" >
+    update shipping
+    <set >
+      <if test="shippingName != null" >
+        shipping_name = #{shippingName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="supportThermal != null" >
+        support_thermal = #{supportThermal,jdbcType=INTEGER},
+      </if>
+      <if test="supportTransfer != null" >
+        support_transfer = #{supportTransfer,jdbcType=INTEGER},
+      </if>
+      <if test="openKey != null" >
+        open_key = #{openKey,jdbcType=VARCHAR},
+      </if>
+      <if test="sendOrderUrl != null" >
+        send_order_url = #{sendOrderUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="getStationUrl != null" >
+        get_station_url = #{getStationUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingType != null" >
+        shipping_type = #{shippingType,jdbcType=CHAR},
+      </if>
+      <if test="regex != null" >
+        regex = #{regex,jdbcType=VARCHAR},
+      </if>
+      <if test="regionCoverage != null" >
+        region_coverage = #{regionCoverage,jdbcType=INTEGER},
+      </if>
+      <if test="bestshippingManualScore != null" >
+        bestshipping_manual_score = #{bestshippingManualScore,jdbcType=DECIMAL},
+      </if>
+      <if test="isUnifiedService != null">
+        is_unified_service = #{isUnifiedService,jdbcType=INTEGER},
+      </if>
+      <if test="shippingCode != null">
+        shipping_code = #{shippingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pushType != null">
+        push_type = #{pushType,jdbcType=TINYINT},
+      </if>
+      <if test="apiUrl != null">
+        api_url = #{apiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isCod != null">
+        is_cod = #{isCod,jdbcType=TINYINT}
+      </if>
+    </set>
+    where shipping_id = #{shippingId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.Shipping" >
+    update shipping
+    set shipping_name = #{shippingName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      support_thermal = #{supportThermal,jdbcType=INTEGER},
+      support_transfer = #{supportTransfer,jdbcType=INTEGER},
+      open_key = #{openKey,jdbcType=VARCHAR},
+      send_order_url = #{sendOrderUrl,jdbcType=VARCHAR},
+      get_station_url = #{getStationUrl,jdbcType=VARCHAR},
+      shipping_type = #{shippingType,jdbcType=CHAR},
+      regex = #{regex,jdbcType=VARCHAR},
+      region_coverage = #{regionCoverage,jdbcType=INTEGER},
+      bestshipping_manual_score = #{bestshippingManualScore,jdbcType=DECIMAL},
+      is_unified_service = #{isUnifiedService,jdbcType=INTEGER},
+      shipping_code = #{shippingCode,jdbcType=VARCHAR},
+      push_type = #{pushType,jdbcType=TINYINT},
+      api_url = #{apiUrl,jdbcType=VARCHAR},
+      is_cod = #{isCod,jdbcType=TINYINT}
+    where shipping_id = #{shippingId,jdbcType=SMALLINT}
+  </update>
+</mapper>

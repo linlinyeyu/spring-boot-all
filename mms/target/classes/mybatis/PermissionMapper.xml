@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibenben.mapper.PermissionMapper">
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.Permission">
+    <id column="permission_id" jdbcType="INTEGER" property="permissionId" />
+    <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
+    <result column="permission_code" jdbcType="VARCHAR" property="permissionCode" />
+    <result column="group_type" jdbcType="VARCHAR" property="groupType" />
+    <result column="permission_url" jdbcType="VARCHAR" property="permissionUrl" />
+    <result column="is_shield" jdbcType="TINYINT" property="isShield" />
+  </resultMap>
+  
+  <resultMap id="PermissionAndTitleResultMap" type="java.util.Map">
+    <result column="permissions" jdbcType="VARCHAR" property="permissions" />
+    <result column="permission_title_name" jdbcType="VARCHAR" property="permission_title_name" />
+    <result column="permission_title_id" jdbcType="VARCHAR" property="permission_title_id" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    permission_id, permission_name, permission_code, group_type,permission_url,is_shield
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from permission
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getNameByCode" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    *
+    from permission
+    where permission_code = #{permission_code,jdbcType=VARCHAR} and group_type = #{group_type,jdbcType=VARCHAR}
+    limit 1
+  </select>
+  
+  <select id="getPermissionIdsByUserId" resultType="java.lang.Integer">
+    select
+    p.permission_id
+    from user_permission up
+    inner join permission p on up.permission_id = p.permission_id and p.group_type = #{group_type,jdbcType=VARCHAR}
+    where up.user_id = #{user_id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getPermissionIds" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select
+    permission_id
+    from permission
+    where
+    permission_code = #{permission_code,jdbcType=VARCHAR}
+    and group_type= #{group_type,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getAllPermission" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    permission_id, permission_code,permission_name,group_type,is_shield,permission_url
+    from permission
+    <where>
+      <if test="group_type != null and group_type != ''">
+        group_type = #{group_type,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  
+  <select id="getUserPermissionAndTitleList" resultType="java.util.Map">
+  	SET SESSION group_concat_max_len=102400;
+	SELECT
+		GROUP_CONCAT( CONCAT(p.permission_id,',',p.permission_name,',',if(up.user_id is null, 0, 1 ) ) SEPARATOR '|') permissions,
+		pt.permission_title_name,
+		pt.permission_title_id
+	FROM
+		permission p
+	INNER JOIN permission_title_mapping ptm ON p.permission_id = ptm.permission_id
+	INNER JOIN permission_title pt ON ptm.permission_title_id = pt.permission_title_id
+	LEFT JOIN user_permission up on p.permission_id = up.permission_id and up.user_id = #{user_id,jdbcType=INTEGER}
+	WHERE
+		p.group_type = #{type,jdbcType=VARCHAR}
+	AND p.is_shield = 0 
+	group by 
+		pt.permission_title_id;
+  </select>
+  
+  <select id="getPermissionByIds" parameterType="java.util.List" resultType="java.util.Map">
+    select
+    permission_id,
+    permission_code,
+    permission_name,
+    permission_url
+    from
+    permission
+    where
+    permission_id in
+    <foreach collection="list" index="index" item="id" open="(" separator="," close=")">
+      #{id,jdbcType=INTEGER}
+    </foreach>
+  </select>
+  
+  <select id="getShieldPermissionIdByUser"  parameterType="java.lang.Integer" resultType="java.lang.String">
+  select 
+  	p.permission_id 
+  from permission p 
+  inner join user_permission up on p.permission_id = up.permission_id 
+  where up.user_id =  #{userId,jdbcType=INTEGER}
+  and p.is_shield = 0
+  </select>
+  
+  <select id="getApiPermissionIds" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+    p.permission_id
+    from user_session us
+    inner join user u on u.user_id = us.user_id
+    inner join user_permission up on up.user_id = u.user_id
+    inner join permission p on p.permission_id = up.permission_id
+    where us.access_token = #{token,jdbcType=VARCHAR}
+    and p.group_type = #{group_type,jdbcType=VARCHAR}
+    and u.status = 'OK'
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from permission
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.Permission">
+    insert into permission (permission_id, permission_name, permission_code, 
+      group_type,permission_url,is_shield)
+    values (#{permissionId,jdbcType=INTEGER}, #{permissionName,jdbcType=VARCHAR}, #{permissionCode,jdbcType=VARCHAR}, 
+      #{groupType,jdbcType=VARCHAR},#{permissionUrl,jdbcType=VARCHAR},#{isShield,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.Permission">
+    insert into permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        permission_id,
+      </if>
+      <if test="permissionName != null">
+        permission_name,
+      </if>
+      <if test="permissionCode != null">
+        permission_code,
+      </if>
+      <if test="groupType != null">
+        group_type,
+      </if>
+      <if test="permissionUrl != null">
+        permission_url,
+      </if>
+      <if test="isShield != null">
+        is_shield,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        #{permissionId,jdbcType=INTEGER},
+      </if>
+      <if test="permissionName != null">
+        #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionCode != null">
+        #{permissionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="groupType != null">
+        #{groupType,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionUrl != null">
+        #{permissionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isShield != null">
+        #{isShield,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.Permission">
+    update permission
+    <set>
+      <if test="permissionName != null">
+        permission_name = #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionCode != null">
+        permission_code = #{permissionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="groupType != null">
+        group_type = #{groupType,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionUrl != null">
+        permission_url = #{permissionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isShield != null">
+        is_shield = #{isShield,jdbcType=TINYINT},
+      </if>
+    </set>
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.Permission">
+    update permission
+    set permission_name = #{permissionName,jdbcType=VARCHAR},
+      permission_code = #{permissionCode,jdbcType=VARCHAR},
+      group_type = #{groupType,jdbcType=VARCHAR},
+      permission_url = #{permissionUrl,jdbcType=VARCHAR},
+      is_shield = #{isShield,jdbcType=TINYINT}
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </update>
+</mapper>

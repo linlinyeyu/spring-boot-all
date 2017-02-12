@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibenben.mapper.ProductShippingAttrMapper">
+  <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductShippingAttr">
+    <id column="product_shipping_id" jdbcType="INTEGER" property="productShippingId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="merchant_id" jdbcType="INTEGER" property="merchantId" />
+    <result column="use_best_shipping" jdbcType="TINYINT" property="useBestShipping" />
+    <result column="quality" jdbcType="DECIMAL" property="quality" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="unreachable" jdbcType="DECIMAL" property="unreachable" />
+    <result column="aftersale_rate" jdbcType="DECIMAL" property="aftersaleRate" />
+    <result column="timeliness" jdbcType="DECIMAL" property="timeliness" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="created_user" jdbcType="VARCHAR" property="createdUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    product_shipping_id, product_id, merchant_id, use_best_shipping, quality, price, unreachable, 
+    aftersale_rate, timeliness, created_time, created_user
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_shipping_attr
+    where product_shipping_id = #{productShippingId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByMapParams" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_shipping_attr
+    <where>
+    	<if test="product_id != null and product_id != ''">
+    		product_id = #{product_id}
+    	</if>
+    	<if test="use_best_shipping != null and use_best_shipping != ''">
+    		and use_best_shipping = #{use_best_shipping}
+    	</if>
+    	<if test="merchant_id != null and merchant_id != ''">
+    	    and merchant_id = #{merchant_id}
+    	</if>
+    </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_shipping_attr
+    where product_shipping_id = #{productShippingId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductShippingAttr">
+    insert into product_shipping_attr (product_shipping_id, product_id, merchant_id, use_best_shipping, 
+      quality, price, unreachable, 
+      aftersale_rate, timeliness, created_time, 
+      created_user)
+    values (#{productShippingId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{merchantId, jdbcType=INTEGER}, #{useBestShipping,jdbcType=TINYINT}, 
+      #{quality,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, #{unreachable,jdbcType=DECIMAL}, 
+      #{aftersaleRate,jdbcType=DECIMAL}, #{timeliness,jdbcType=DECIMAL}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{createdUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductShippingAttr">
+    insert into product_shipping_attr
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productShippingId != null">
+        product_shipping_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="useBestShipping != null">
+        use_best_shipping,
+      </if>
+      <if test="quality != null">
+        quality,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="unreachable != null">
+        unreachable,
+      </if>
+      <if test="aftersaleRate != null">
+        aftersale_rate,
+      </if>
+      <if test="timeliness != null">
+        timeliness,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="createdUser != null">
+        created_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productShippingId != null">
+        #{productShippingId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="useBestShipping != null">
+        #{useBestShipping,jdbcType=TINYINT},
+      </if>
+      <if test="quality != null">
+        #{quality,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="unreachable != null">
+        #{unreachable,jdbcType=DECIMAL},
+      </if>
+      <if test="aftersaleRate != null">
+        #{aftersaleRate,jdbcType=DECIMAL},
+      </if>
+      <if test="timeliness != null">
+        #{timeliness,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null">
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductShippingAttr">
+    update product_shipping_attr
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="useBestShipping != null">
+        use_best_shipping = #{useBestShipping,jdbcType=TINYINT},
+      </if>
+      <if test="quality != null">
+        quality = #{quality,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="unreachable != null">
+        unreachable = #{unreachable,jdbcType=DECIMAL},
+      </if>
+      <if test="aftersaleRate != null">
+        aftersale_rate = #{aftersaleRate,jdbcType=DECIMAL},
+      </if>
+      <if test="timeliness != null">
+        timeliness = #{timeliness,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null">
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_shipping_id = #{productShippingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductShippingAttr">
+    update product_shipping_attr
+    set product_id = #{productId,jdbcType=INTEGER},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      use_best_shipping = #{useBestShipping,jdbcType=TINYINT},
+      quality = #{quality,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DECIMAL},
+      unreachable = #{unreachable,jdbcType=DECIMAL},
+      aftersale_rate = #{aftersaleRate,jdbcType=DECIMAL},
+      timeliness = #{timeliness,jdbcType=DECIMAL},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_user = #{createdUser,jdbcType=VARCHAR}
+    where product_shipping_id = #{productShippingId,jdbcType=INTEGER}
+  </update>
+</mapper>

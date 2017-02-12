@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductPackagingMapper" >
+  <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductPackaging" >
+    <id column="product_packaging_id" property="productPackagingId" jdbcType="INTEGER" />
+    <result column="facility_id" property="facilityId" jdbcType="INTEGER" />
+    <result column="shipping_id" property="shippingId" jdbcType="INTEGER" />
+    <result column="goods_product_id" property="goodsProductId" jdbcType="INTEGER" />
+    <result column="supplies_product_id" property="suppliesProductId" jdbcType="INTEGER" />
+    <result column="supplies_product_name" property="suppliesProductName" jdbcType="VARCHAR"/>
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="merchant_id" property="merchantId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    product_packaging_id, facility_id, shipping_id, goods_product_id, supplies_product_id, 
+    status, created_time, created_user, delete_time, delete_user,merchant_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_packaging
+    where product_packaging_id = #{productPackagingId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByMapParams" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select
+  		pp.*,
+  		p.product_name as supplies_product_name
+  	from product_packaging pp
+  	inner join product p on pp.supplies_product_id = p.product_id and p.status='OK'
+  	<where>
+  		pp.status = 'OK'
+  		<if test="facility_id != null and facility_id != ''">
+  			and pp.facility_id = #{facility_id}
+  		</if>
+  		<if test="goods_product_id != null and goods_product_id != ''">
+  			and pp.goods_product_id = #{goods_product_id}
+  		</if>
+  		<if test="merchant_id != null and merchant_id != ''">
+  			and pp.merchant_id = #{merchant_id}
+  		</if>
+  		<if test="shipping_id != null and shipping_id != ''">
+  			and pp.shipping_id = #{shipping_id}
+  		</if>
+  		<if test="supplies_product_id != null and supplies_product_id != ''">
+  			and pp.supplies_product_id = #{supplies_product_id}
+  		</if>
+  		<if test="start_time != null and start_time != ''">
+  			and pp.created_time &gt;= #{start_time}
+  		</if>
+  		<if test="end_time != null and end_time != ''">
+  			and pp.created_time &lt;= #{end_time}
+  		</if>
+  		<if test="merchant_id != null and merchant_id != ''">
+  		  	and pp.merchant_id = #{merchant_id}
+  		</if>
+  	</where>
+  </select>
+  
+  <select id="getProductBoundedPackagings" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select
+  		pp.*,
+  		p.product_name as supplies_product_name
+  	from product_packaging pp
+  	inner join product p on pp.supplies_product_id = p.product_id and p.status='OK'
+  	<where>
+  		pp.status = 'OK'
+  		<if test="facility_id != null and facility_id != ''">
+  			and pp.facility_id = #{facility_id}
+  		</if>
+  		<if test="goods_product_id != null and goods_product_id != ''">
+  			and pp.goods_product_id = #{goods_product_id}
+  		</if>
+  		<if test="supplies_product_id != null and supplies_product_id != ''">
+  			and pp.supplies_product_id = #{supplies_product_id}
+  		</if>
+  		<if test="merchant_id != null and merchant_id != ''">
+  		    and pp.merchant_id = #{merchant_id}
+  		</if>
+  	</where>
+  	group by pp.goods_product_id, pp.supplies_product_id;
+  </select>
+
+  <select id="selectByIndexList" resultMap="BaseResultMap" parameterType="java.util.List">
+  	select
+  	<include refid="Base_Column_List"/>
+  	from product_packaging
+  	where 
+  		status = 'OK' and 
+  	<foreach item="item" index = "index" collection="list" separator="or">
+  		(facility_id=#{item.facilityId} and shipping_id=#{item.shippingId} and goods_product_id=#{item.goodsProductId} and merchant_id=#{item.merchantId})
+  	</foreach>
+  </select>
+  <select id="selectByProductMerchant" resultMap="BaseResultMap">
+  	select
+  	 *
+  	from product_packaging
+  	where goods_product_id=#{productId} and merchant_id=#{merchantId}
+  </select>
+  
+  <select id="getProductPackagingFacilityShipping" parameterType="java.lang.Integer" resultMap="com.ibenben.mapper.FacilityShippingMapper.productFacilityShippingResultMap">
+    SELECT 
+		f.facility_id, 
+		f.facility_name, 
+		s.shipping_id, 
+		s.shipping_name,
+		s.shipping_type,
+		pg.supplies_product_id,
+		p.product_name as supplies_product_name,
+		2 as result_type
+	FROM product_facility_shipping_mapping pfsm
+	INNER JOIN facility f on f.facility_id = pfsm.facility_id and f.status = 'OK'
+	INNER JOIN shipping s on s.shipping_id = pfsm.shipping_id and s.status = 'OK'
+	LEFT JOIN product_packaging pg on pfsm.product_id = pg.goods_product_id 
+		and pfsm.facility_id = pg.facility_id 
+		and pfsm.shipping_id = pg.shipping_id
+		and pg.status = 'OK'
+	LEFT JOIN product p on pg.supplies_product_id = p.product_id and p.status = 'OK'
+    <where>
+        <if test="productId != null">
+    		and pfsm.product_id = #{productId, jdbcType=INTEGER}
+    	</if>
+    	<if test="merchantId != null">
+    		and pfsm.merchant_id = #{merchantId, jdbcType=INTEGER}
+    	</if>
+    </where> 
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_packaging
+    where product_packaging_id = #{productPackagingId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByIndexList" parameterType="java.util.List">
+  	delete from product_packaging
+  	where 
+  	<foreach item="item" index = "index" collection="list" separator="or">
+  		(facility_id=#{item.facilityId} and 
+  		shipping_id=#{item.shippingId} and 
+  		goods_product_id=#{item.goodsProductId} and 
+  		merchant_id = #{item.merchantId})
+  	</foreach>
+  </delete>
+  <delete id="deleteUnResonablePackagings" parameterType="java.lang.Integer">
+	delete
+	from
+		product_packaging pg
+	left join facility f on f.facility_id = pg.facility_id
+	left join shipping s on s.shipping_id = pg.shipping_id
+	left join product_facility_shipping_mapping pfsm on pfsm.product_id = pg.goods_product_id
+	and pfsm.facility_id = pg.facility_id
+	and pfsm.shipping_id = pg.shipping_id
+	where
+		(pfsm.product_id is null or f.facility_id is null or s.shipping_id is null)
+	and pg.`status` = 'ok'
+	and pg.goods_product_id = #{product_id}
+	</delete>
+	
+  <insert id="insert" parameterType="com.ibenben.domain.ProductPackaging" >
+    insert into product_packaging (product_packaging_id, facility_id, shipping_id, 
+      goods_product_id, supplies_product_id, status, 
+      created_time, created_user, delete_time, 
+      delete_user,merchant_id)
+    values (#{productPackagingId,jdbcType=INTEGER}, #{facilityId,jdbcType=INTEGER}, #{shippingId,jdbcType=INTEGER}, 
+      #{goodsProductId,jdbcType=INTEGER}, #{suppliesProductId,jdbcType=INTEGER}, #{status,jdbcType=CHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=VARCHAR}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{deleteUser,jdbcType=VARCHAR},#{merchantId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductPackaging" >
+    insert into product_packaging
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productPackagingId != null" >
+        product_packaging_id,
+      </if>
+      <if test="facilityId != null" >
+        facility_id,
+      </if>
+      <if test="shippingId != null" >
+        shipping_id,
+      </if>
+      <if test="goodsProductId != null" >
+        goods_product_id,
+      </if>
+      <if test="suppliesProductId != null" >
+        supplies_product_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createdUser != null" >
+        created_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productPackagingId != null" >
+        #{productPackagingId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityId != null" >
+        #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingId != null" >
+        #{shippingId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsProductId != null" >
+        #{goodsProductId,jdbcType=INTEGER},
+      </if>
+      <if test="suppliesProductId != null" >
+        #{suppliesProductId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <insert id="insertBatch">
+  	insert into 
+  		product_packaging (
+  			facility_id,
+  			shipping_id,
+  			status, 
+  			goods_product_id,
+  			merchant_id,
+  			supplies_product_id,
+  			created_time,
+  			created_user)
+  	values
+  	<foreach item="item" index="index" collection="list" separator=",">
+	  	<trim prefix="(" suffix=")" suffixOverrides=",">
+	  		#{item.facilityId},
+	  		#{item.shippingId},
+	  		#{item.status},
+	  		#{item.goodsProductId},
+	  		#{item.merchantId},
+	  		#{item.suppliesProductId},
+	  		#{item.createdTime},
+	  		#{item.createdUser},
+	  	</trim>
+  	</foreach>
+  	
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductPackaging" >
+    update product_packaging
+    <set >
+      <if test="facilityId != null" >
+        facility_id = #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingId != null" >
+        shipping_id = #{shippingId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsProductId != null" >
+        goods_product_id = #{goodsProductId,jdbcType=INTEGER},
+      </if>
+      <if test="suppliesProductId != null" >
+        supplies_product_id = #{suppliesProductId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where product_packaging_id = #{productPackagingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductPackaging" >
+    update product_packaging
+    set facility_id = #{facilityId,jdbcType=INTEGER},
+      shipping_id = #{shippingId,jdbcType=INTEGER},
+      goods_product_id = #{goodsProductId,jdbcType=INTEGER},
+      supplies_product_id = #{suppliesProductId,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      merchant_id = #{merchantId,jdbcType=INTEGER}
+    where product_packaging_id = #{productPackagingId,jdbcType=INTEGER}
+  </update>
+  <update id="substitutePackaging">
+  	update product_packaging
+  	set supplies_product_id = #{new_supplies_product_id}
+  	where goods_product_id = #{goods_product_id} 
+  		and supplies_product_id = #{supplies_product_id}
+  </update>
+</mapper>

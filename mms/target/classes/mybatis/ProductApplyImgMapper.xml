@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductApplyImgMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductApplyImg" >
+    <id column="product_apply_img_id" property="productApplyImgId" jdbcType="INTEGER" />
+    <result column="product_apply_id" property="productApplyId" jdbcType="INTEGER" />
+    <result column="img_title" property="imgTitle" jdbcType="VARCHAR" />
+    <result column="img_path" property="imgPath" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    product_apply_img_id, product_apply_id, img_title, img_path, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_apply_img
+    where product_apply_img_id = #{productApplyImgId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByProductApplyImg" resultMap="BaseResultMap" parameterType="com.ibenben.domain.ProductApplyImg" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_apply_img
+ 	<where>
+ 	  <if test="productApplyImgId != null" >
+        product_apply_img_id = #{productApplyImgId,jdbcType=INTEGER}
+      </if>
+      <if test="productApplyId != null" >
+        and product_apply_id = #{productApplyId,jdbcType=INTEGER}
+      </if>
+      <if test="imgTitle != null" >
+        and img_title = #{imgTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="imgPath != null" >
+        and img_path = #{imgPath,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null" >
+        and status = #{status,jdbcType=CHAR}
+      </if>
+ 	</where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_apply_img
+    where product_apply_img_id = #{productApplyImgId,jdbcType=INTEGER}
+  </delete>
+  
+  <delete id="deleteByParamsSelective" parameterType="com.ibenben.domain.ProductApplyImg" >
+    delete from product_apply_img
+    <where>
+      <if test="productApplyImgId != null" >
+        product_apply_img_id = #{productApplyImgId,jdbcType=INTEGER}
+      </if>
+      <if test="productApplyId != null" >
+        and product_apply_id = #{productApplyId,jdbcType=INTEGER}
+      </if>
+      <if test="status != null" >
+        and status = #{status,jdbcType=CHAR}
+      </if>
+    </where>
+  </delete>
+  
+  <insert id="insert" parameterType="com.ibenben.domain.ProductApplyImg" >
+    insert into product_apply_img (product_apply_img_id, product_apply_id, 
+      img_title, img_path, status
+      )
+    values (#{productApplyImgId,jdbcType=INTEGER}, #{productApplyId,jdbcType=INTEGER}, 
+      #{imgTitle,jdbcType=VARCHAR}, #{imgPath,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductApplyImg" useGeneratedKeys="true" keyProperty="productApplyImgId">
+    insert into product_apply_img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productApplyImgId != null" >
+        product_apply_img_id,
+      </if>
+      <if test="productApplyId != null" >
+        product_apply_id,
+      </if>
+      <if test="imgTitle != null" >
+        img_title,
+      </if>
+      <if test="imgPath != null" >
+        img_path,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productApplyImgId != null" >
+        #{productApplyImgId,jdbcType=INTEGER},
+      </if>
+      <if test="productApplyId != null" >
+        #{productApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="imgTitle != null" >
+        #{imgTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="imgPath != null" >
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductApplyImg" >
+    update product_apply_img
+    <set >
+      <if test="productApplyId != null" >
+        product_apply_id = #{productApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="imgTitle != null" >
+        img_title = #{imgTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="imgPath != null" >
+        img_path = #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where product_apply_img_id = #{productApplyImgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductApplyImg" >
+    update product_apply_img
+    set product_apply_id = #{productApplyId,jdbcType=INTEGER},
+      img_title = #{imgTitle,jdbcType=VARCHAR},
+      img_path = #{imgPath,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR}
+    where product_apply_img_id = #{productApplyImgId,jdbcType=INTEGER}
+  </update>
+</mapper>

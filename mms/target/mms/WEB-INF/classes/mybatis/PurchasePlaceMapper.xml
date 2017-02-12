@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.PurchasePlaceMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.PurchasePlace" >
+    <id column="purchase_place_id" property="purchasePlaceId" jdbcType="INTEGER" />
+    <result column="purchase_place_name" property="purchasePlaceName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap type="com.ibenben.domain.PurchasePlace" id="FacilityResultMap" extends="BaseResultMap">
+    <collection property="facilityList" javaType="java.util.List" ofType="com.ibenben.domain.Facility">
+      <id column="facility_id" property="facilityId" jdbcType="TINYINT" />
+      <result column="facility_name" property="facilityName" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="PurchasePlaceFacilityMap">
+  	<id column="purchase_place_id" property="purchase_place_id" jdbcType="INTEGER" />
+    <result column="purchase_place_name" property="purchase_place_name" jdbcType="VARCHAR" />
+    <result column="facility_id" property="facility_id" jdbcType="TINYINT" />
+    <result column="facility_name" property="facility_name" jdbcType="VARCHAR" />
+    <result column="facility_type" property="facility_type" jdbcType="INTEGER" />
+    <result column="area_type" property="area_type" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    purchase_place_id, purchase_place_name, status, area_id, created_time, created_user, 
+    delete_time, delete_user, type
+  </sql>
+  
+  <select id="getPurchasePlaceFacilityList" parameterType="java.lang.Integer" resultMap="PurchasePlaceFacilityMap">
+    select
+    pp.purchase_place_name,
+    f.facility_id,
+    f.facility_name,
+    f.facility_type,
+    a.area_type,
+    pp.purchase_place_id
+    from
+    purchase_place pp
+    inner join purchase_place_facility_mapping ppfm on ppfm.purchase_place_id = pp.purchase_place_id
+    inner join facility f on f.facility_id = ppfm.facility_id
+    inner join area a on a.area_id = f.area_id
+    where
+    pp.area_id = #{area_id,jdbcType=INTEGER} and
+    pp.status = 'OK' and
+    ppfm.status = 'OK' and
+    f.status = 'OK'
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_place
+    where purchase_place_id = #{purchasePlaceId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getPurchasePlaceList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    pp.*,a.area_name areaName
+    from purchase_place pp
+    inner join area a on a.area_id = pp.area_id
+    <where>
+    <if test="start_time != '' and end_time != ''">
+      pp.created_time between #{start_time} and #{end_time}
+    </if>
+    <if test="start_time != '' and end_time == ''">
+      pp.created_time >= #{start_time}
+    </if>
+    <if test="start_time == '' and end_time != ''">
+      pp.created_time &lt;= #{end_time}
+    </if>
+    <if test="area_id != ''">
+      and  a.area_id = #{area_id,jdbcType=INTEGER}
+    </if>
+    <if test="purchase_place_name != ''">
+      and pp.purchase_place_name = #{purchase_place_name,jdbcType=VARCHAR}
+    </if>
+    </where>
+  </select>
+  
+  <select id="getFacilityList" resultMap="FacilityResultMap" parameterType="java.util.Map">
+    select
+    pp.purchase_place_id,pp.purchase_place_name,f.facility_id,f.facility_name
+    from
+    purchase_place pp
+    inner join purchase_place_facility_mapping ppfm on ppfm.purchase_place_id = pp.purchase_place_id
+    inner join facility f on f.facility_id = ppfm.facility_id
+    <where>
+    <if test="purchase_place_id != null and purchase_place_id != ''">
+      pp.purchase_place_id = #{purchase_place_id,jdbcType=INTEGER}
+    </if>
+    </where>
+  </select>
+  
+  <insert id="addFacility" parameterType="java.util.Map">
+    insert into
+    purchase_place_facility_mapping
+    (purchase_place_id,facility_id)
+    values
+    <foreach collection="facility_id_list" index="index" item="fId" open="(" separator="),(" close="">
+      #{purchase_place_id,jdbcType=INTEGER},#{fId}
+    </foreach>
+    )
+  </insert>
+  
+  <select id="isExist" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+    count(*)
+    from purchase_place_facility_mapping
+    where
+    purchase_place_id = #{purchase_place_id,jdbcType=INTEGER} and
+    facility_id in 
+    <foreach collection="facility_id_list" index="index" item="fid" open="(" separator="," close=")">
+      #{fid}
+    </foreach>
+  </select>
+  
+  <delete id="delFacility" parameterType="java.util.Map">
+    delete
+    from
+    purchase_place_facility_mapping
+    where
+    purchase_place_id = #{purchase_place_id,jdbcType=INTEGER} and
+    facility_id = #{facility_id,jdbcType=TINYINT}
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from purchase_place
+    where purchase_place_id = #{purchasePlaceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.PurchasePlace" >
+    insert into purchase_place (purchase_place_id, purchase_place_name, 
+      status, area_id, created_time, 
+      created_user, delete_time, delete_user, 
+      type)
+    values (#{purchasePlaceId,jdbcType=INTEGER}, #{purchasePlaceName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{areaId,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{createdUser,jdbcType=VARCHAR}, #{deleteTime,jdbcType=TIMESTAMP}, #{deleteUser,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.PurchasePlace" >
+    insert into purchase_place
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="purchasePlaceId != null" >
+        purchase_place_id,
+      </if>
+      <if test="purchasePlaceName != null" >
+        purchase_place_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createdUser != null" >
+        created_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="purchasePlaceId != null" >
+        #{purchasePlaceId,jdbcType=INTEGER},
+      </if>
+      <if test="purchasePlaceName != null" >
+        #{purchasePlaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.PurchasePlace" >
+    update purchase_place
+    <set >
+      <if test="purchasePlaceName != null" >
+        purchase_place_name = #{purchasePlaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where purchase_place_id = #{purchasePlaceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.PurchasePlace" >
+    update purchase_place
+    set purchase_place_name = #{purchasePlaceName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR}
+    where purchase_place_id = #{purchasePlaceId,jdbcType=INTEGER}
+  </update>
+</mapper>

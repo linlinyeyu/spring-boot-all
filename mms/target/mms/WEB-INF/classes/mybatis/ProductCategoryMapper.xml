@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibenben.mapper.ProductCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductCategory">
+    <id column="product_category_id" jdbcType="INTEGER" property="productCategoryId" />
+    <result column="product_category_name" jdbcType="VARCHAR" property="productCategoryName" />
+    <result column="default_output_tax_id" jdbcType="INTEGER" property="defaultOutputTaxId" />
+    <result column="category_type" jdbcType="INTEGER" property="categoryType" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="created_user" jdbcType="VARCHAR" property="createdUser" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="last_updated_user" jdbcType="VARCHAR" property="lastUpdatedUser" />
+    <result column="last_updated_time" jdbcType="TIMESTAMP" property="lastUpdatedTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="Top2BottomResultMap" type="com.ibenben.domain.ProductCategory">
+	<collection javaType="java.util.List" ofType="com.ibenben.domain.ProductCategory" property="productCategories">
+		<id column="second_product_category_id" jdbcType="INTEGER" property="productCategoryId" />
+	    <result column="second_product_category_name" jdbcType="VARCHAR" property="productCategoryName" />
+	    <result column="second_category_type" jdbcType="INTEGER" property="categoryType" />
+	    <result column="second_parent_id" jdbcType="INTEGER" property="parentId" />
+	    <result column="second_status" jdbcType="CHAR" property="status" />
+	    <collection javaType="java.util.List" ofType="com.ibenben.domain.ProductCategory" property="productCategories">
+	    	<id column="third_product_category_id" jdbcType="INTEGER" property="productCategoryId" />
+	    	<result column="third_product_category_name" jdbcType="VARCHAR" property="productCategoryName" />
+	    	<result column="third_category_type" jdbcType="INTEGER" property="categoryType" />
+	    	<result column="third_parent_id" jdbcType="INTEGER" property="parentId" />
+	    	<result column="third_status" jdbcType="CHAR" property="status" />
+	    	<collection javaType="java.util.List" ofType="com.ibenben.domain.ProductCategory" property="productCategories">
+	    		<id column="four_product_category_id" jdbcType="INTEGER" property="productCategoryId" />
+	    		<result column="four_product_category_name" jdbcType="VARCHAR" property="productCategoryName" />
+	    		<result column="four_category_type" jdbcType="INTEGER" property="categoryType" />
+	    		<result column="four_parent_id" jdbcType="INTEGER" property="parentId" />
+	    		<result column="four_status" jdbcType="CHAR" property="status" />
+	    	</collection>
+	    </collection>
+	</collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    product_category_id, product_category_name, default_output_tax_id, category_type, 
+    parent_id, status, created_user, created_time, last_updated_user, last_updated_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_category
+    where product_category_id = #{productCategoryId,jdbcType=INTEGER}
+  </select>
+  <select id="getTypeList" resultMap="BaseResultMap">
+    select
+    product_category_id,
+    product_category_name
+    from product_category
+    where category_type=1
+  </select>
+  
+   <select id="selectByMapParams" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_category
+    <where>
+      <if test="product_category_id != null and product_category_id != '' ">
+        and product_category_id = #{product_category_id,jdbcType=INTEGER}
+      </if>
+      <if test="product_category_name != null and product_category_name != '' ">
+        and product_category_name = #{product_category_name, jdbcType=VARCHAR}
+      </if>
+      <if test="default_output_tax_id != null and default_output_tax_id != '' ">
+        and default_output_tax_id = #{defaultOutputTaxId,jdbcType=INTEGER}
+      </if>
+      <if test="category_type != null and category_type != '' ">
+        and category_type = #{category_type,jdbcType=INTEGER}
+      </if>
+      <if test="parent_id != null and parent_id != '' ">
+        and parent_id = #{parent_id,jdbcType=INTEGER}
+      </if>
+      <if test="status != null and status != '' ">
+        and status = #{status,jdbcType=CHAR}
+      </if>
+      <if test="created_user != null and created_user != '' ">
+        and created_user = #{created_user,jdbcType=VARCHAR}
+      </if>
+      <if test="start_time != null and start_time != '' ">
+        and created_time &gt;= #{start_time,jdbcType=TIMESTAMP}
+      </if>
+      <if test="end_time != null and end_time != '' ">
+        and created_time &lt;= #{end_time,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+  
+  <select id="selectLevelByMapParams" parameterType="java.util.Map" resultMap="Top2BottomResultMap">
+	select 
+		fir.*,
+		sec.product_category_id as second_product_category_id, 
+		sec.product_category_name as second_product_category_name, 
+		sec.category_type as second_category_type, 
+		sec.parent_id as second_parent_id, 
+		sec.status as second_status,
+		thi.product_category_id as third_product_category_id, 
+		thi.product_category_name as third_product_category_name, 
+		thi.category_type as third_category_type, 
+		thi.parent_id as third_parent_id, 
+		thi.status as third_status,
+		four.product_category_id as four_product_category_id, 
+		four.product_category_name as four_product_category_name, 
+		four.category_type as four_category_type, 
+		four.parent_id as four_parent_id, 
+		four.status as four_status
+	from product_category fir
+	left join product_category sec on sec.parent_id = fir.product_category_id
+	left join product_category thi on thi.parent_id = sec.product_category_id
+	left join product_category four on four.parent_id = thi.product_category_id
+	<where>
+		fir.category_type = 1
+		<if test="product_category_id != null and product_category_id != '' ">
+			and fir.product_category_id = {product_category_id, jdbcType=INTEGER}
+		</if>
+		<if test="status != null and status != '' ">
+			and fir.status = #{category_type, jdbcType=CHAR}
+		</if>
+		<if test="start_time != null and start_time != '' ">
+        	and fir.created_time &gt;= #{start_time,jdbcType=TIMESTAMP}
+      	</if>
+      	<if test="end_time != null and end_time != '' ">
+        	and fir.created_time &lt;= #{end_time,jdbcType=TIMESTAMP}
+      	</if>
+	</where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_category
+    where product_category_id = #{productCategoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductCategory">
+    insert into product_category (product_category_id, product_category_name, 
+      default_output_tax_id, category_type, parent_id, 
+      status, created_user, created_time, 
+      last_updated_user, last_updated_time)
+    values (#{productCategoryId,jdbcType=INTEGER}, #{productCategoryName,jdbcType=VARCHAR}, 
+      #{defaultOutputTaxId,jdbcType=INTEGER}, #{categoryType,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{createdUser,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdatedUser,jdbcType=VARCHAR}, #{lastUpdatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductCategory" useGeneratedKeys="true" keyProperty="productCategoryId">
+    insert into product_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productCategoryId != null">
+        product_category_id,
+      </if>
+      <if test="productCategoryName != null">
+        product_category_name,
+      </if>
+      <if test="defaultOutputTaxId != null">
+        default_output_tax_id,
+      </if>
+      <if test="categoryType != null">
+        category_type,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createdUser != null">
+        created_user,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="lastUpdatedUser != null">
+        last_updated_user,
+      </if>
+      <if test="lastUpdatedTime != null">
+        last_updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productCategoryId != null">
+        #{productCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="productCategoryName != null">
+        #{productCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultOutputTaxId != null">
+        #{defaultOutputTaxId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryType != null">
+        #{categoryType,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdUser != null">
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null">
+        #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null">
+        #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductCategory">
+    update product_category
+    <set>
+      <if test="productCategoryName != null">
+        product_category_name = #{productCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultOutputTaxId != null">
+        default_output_tax_id = #{defaultOutputTaxId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryType != null">
+        category_type = #{categoryType,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdUser != null">
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null">
+        last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null">
+        last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where product_category_id = #{productCategoryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductCategory">
+    update product_category
+    set product_category_name = #{productCategoryName,jdbcType=VARCHAR},
+      default_output_tax_id = #{defaultOutputTaxId,jdbcType=INTEGER},
+      category_type = #{categoryType,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP}
+    where product_category_id = #{productCategoryId,jdbcType=INTEGER}
+  </update>
+</mapper>

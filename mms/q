@@ -1,0 +1,5167 @@
+[33mcommit 065c067bf586943ce31f72a2bd4e250190948a05[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Nov 3 11:14:16 2016 +0800
+
+    update more
+
+[33mcommit bebdcd8626720d9581f3487a83e1216db472d3a0[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Nov 3 10:34:17 2016 +0800
+
+    add product
+
+[33mcommit 634a6c3c19950eb57428a8357a3ed95338e68da3[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Nov 2 16:53:17 2016 +0800
+
+    update user
+
+[33mcommit d4045dd1b36cc73709b02fa5bf21a828f855be93[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Nov 2 16:21:27 2016 +0800
+
+    Revert "update product"
+    
+    This reverts commit 52d425750ace673d51aecd40c1e0b46f5ff86486.
+
+[33mcommit 4231efca1b44bd9815df754b93c54662cf9b6611[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Nov 2 15:50:02 2016 +0800
+
+    update user
+
+[33mcommit 9a1ec5c95bf67048f4f61fbeb8e0c721c385ac33[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Nov 2 15:21:08 2016 +0800
+
+    update fix
+
+[33mcommit 52d425750ace673d51aecd40c1e0b46f5ff86486[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 31 17:27:46 2016 +0800
+
+    update product
+
+[33mcommit 078a344611aadf980c0d3ed465e3c9d566557ed8[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 31 11:43:40 2016 +0800
+
+    update merchant
+
+[33mcommit e8d5de0baeefdebe11c0127d93af2d5f21ec6f32[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 31 10:11:05 2016 +0800
+
+    update pc
+
+[33mcommit 4156ad1100b15d06cc8a3d349912fc18e597b955[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Oct 28 17:28:20 2016 +0800
+
+    add station
+
+[33mcommit 3bc8539a9f0e85a5a84cd7c2a4bd2ad6a1b34b29[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Oct 28 16:19:29 2016 +0800
+
+    fix bug
+
+[33mcommit c7e33c69a8aa8197ffba645945675685f0e764f2[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Oct 28 14:25:12 2016 +0800
+
+    update station;
+
+[33mcommit 66766e6cfc70e39fcf22bc3ada427f6da2610cc9[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Oct 28 10:50:27 2016 +0800
+
+    update excel
+
+[33mcommit a6904b327277c56b66c9fe63e12db3ab002141e3[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Oct 28 09:59:07 2016 +0800
+
+    add merchant_facility_mapping
+
+[33mcommit 0cb6a9e32c0f84719b50635ae9ec6613a5cdc555[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 27 19:01:57 2016 +0800
+
+    add merchant station;
+
+[33mcommit b686420c8855fc739e3952a991d2a00145835293[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 27 16:30:40 2016 +0800
+
+    add api
+
+[33mcommit 612fcd1f2360a24b19bf8ed88ac7b3fb94299ad5[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 27 14:13:19 2016 +0800
+
+    add error
+
+[33mcommit d2d4856956719ae97e5a316a404c180ca40be828[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 27 11:52:53 2016 +0800
+
+    update business
+
+[33mcommit b831582ad3cbac5e90af36757cfd59c455a47179[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 27 10:29:38 2016 +0800
+
+    remove duplicate facility
+
+[33mcommit f901f7cf9dbb633e2831f3da19122e038fb18b1b[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 27 10:21:55 2016 +0800
+
+    add product
+
+[33mcommit f5722c09352ec6856892bd25976965367d145bb9[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 27 09:55:22 2016 +0800
+
+    update business
+
+[33mcommit 5946b5d41d5281b96c86e8d2255cdbce29f7cb2e[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Oct 26 19:34:08 2016 +0800
+
+    add business
+
+[33mcommit 4a8b0d9456dc468fd6d698b542736a3ca32854fe[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Oct 25 18:08:51 2016 +0800
+
+    add merchant
+
+[33mcommit 4af1038e4be3ad980413d757568270ab73fd1d14[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Oct 25 16:07:52 2016 +0800
+
+    add exception
+
+[33mcommit 549b55314d424ac4e599668c564f6d51d2c38182[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 24 15:51:16 2016 +0800
+
+    add station
+
+[33mcommit 84ab134b551599aa3b583b754146eeee11cbce8e[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 24 15:43:04 2016 +0800
+
+    update faciliyt;
+
+[33mcommit 20a62d6b31d1e4910396aa2a5d05974b2129f7df[m
+Merge: f254d8a f48d4d7
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 24 15:41:12 2016 +0800
+
+    update facility
+
+[33mcommit f48d4d7f380e0c34be5098e61c78aadefc43b7cc[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 24 15:38:15 2016 +0800
+
+    add facility
+
+[33mcommit f254d8a01f3191e65d258fed524a4cfb88cdfdac[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 24 15:06:57 2016 +0800
+
+    add merchant
+
+[33mcommit 71e20ee23c538e5aac6ba7077416ad2c6693eceb[m
+Merge: 0f72676 dc04bc7
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 24 11:09:15 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit dc04bc7ad2f17531d1ea1a4dffd6cf6ac8f2f2c2[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 24 11:08:50 2016 +0800
+
+    增加异常系数和商户
+
+[33mcommit 0f72676ec6fb6a6c0565619bc86320c23e011a25[m
+Merge: 5c9e24f 70608a7
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Oct 21 09:34:04 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit 70608a7643730874208e952a5fe680422651c9db[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Oct 21 09:33:29 2016 +0800
+
+    add product
+
+[33mcommit 5c9e24f0a83130d79bc437e9f69989fac512d952[m
+Merge: 9d67e44 c62f182
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 20 19:18:06 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit c62f1828ab6cef24c9942a3200a5f0136e0c37c1[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 20 19:17:47 2016 +0800
+
+    add product
+
+[33mcommit 9d67e4490c189f7e60ea2e598312e0d9603d3747[m
+Merge: 0c4cdb1 5d745fe
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 20 19:01:39 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit 5d745fed978fe5fa6e50c924c92be780fffda2bb[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 20 19:01:23 2016 +0800
+
+    update product
+
+[33mcommit 0c4cdb105b616b9f88370af664b9be2416c8a6c3[m
+Merge: be34237 71d5b86
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 20 18:21:29 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit 71d5b86c261739dee8c3580ae85998b75ef2abca[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 20 18:21:10 2016 +0800
+
+    add merchant
+
+[33mcommit be34237122cf6de9eeb308cdb719730480765782[m
+Merge: 5ed5515 1fc8815
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 20 17:37:24 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit 1fc8815a5ec9c2b67b6e3b7adbcd23449acdda8e[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 20 17:37:06 2016 +0800
+
+    add station
+
+[33mcommit 5ed5515bc31dc824a6c58f4d8dacc25b0882dfd9[m
+Merge: 8fea1bf daf0149
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 20 15:01:57 2016 +0800
+
+    Merge branch 'master' of git.yiran.com:pre/mms
+
+[33mcommit 8fea1bf201ced2d18be016f59fd2720f52432f31[m
+Merge: ffbf439 ebdf3d5
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 20 14:56:45 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit ffbf4395c38d33162b0a713c3d5d7e117e8876ee[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 20 14:56:40 2016 +0800
+
+    add product business
+
+[33mcommit daf01497cf7b89ac3e15a51e51948aa5a0ba3d18[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Oct 19 17:58:58 2016 +0800
+
+    add listen
+
+[33mcommit ebdf3d5f0745f6ab4350aa72597c21a75e2db508[m
+Merge: 2f1f4e6 a34f14d
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Oct 18 20:34:53 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 2f1f4e613bb312e986a919338577f9b72fc99c43[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Oct 18 20:34:44 2016 +0800
+
+    dfang
+
+[33mcommit a34f14d8c6413f932ca4e23d1ac51c3e202b8cff[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Oct 18 19:02:05 2016 +0800
+
+    update supplier
+
+[33mcommit c9017601ba6e2670231c7fb2107062413bc744b8[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Oct 18 18:11:58 2016 +0800
+
+    add station
+
+[33mcommit c7c8fd9d9caee48b6d6c515a3256003c4e393bac[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Oct 18 17:32:42 2016 +0800
+
+    update customer
+
+[33mcommit 6c4c894d9f27f3490de1488f32d3204a014ca525[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Oct 18 14:25:20 2016 +0800
+
+    update product
+
+[33mcommit 9171ddde50c0ddbbc7abc8ab7523b82f22910d32[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Oct 18 13:28:47 2016 +0800
+
+    add customer
+
+[33mcommit 94c2b4dfc07a2cda90ee32ecf803903c272a883e[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Oct 18 10:22:54 2016 +0800
+
+    add service
+
+[33mcommit 777a683bc3ec3b70f4dd09dde1e1514664adf5a5[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Oct 18 09:00:54 2016 +0800
+
+    add facility
+
+[33mcommit c61ad59eca45b980774e853175d6cbde56c2d27c[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 17 16:40:19 2016 +0800
+
+    add merchant_name
+
+[33mcommit a81ef7b9475904dece3daf543689b5f59349ec99[m
+Merge: 66988d5 7045636
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 17 16:14:36 2016 +0800
+
+    modify facility
+
+[33mcommit 70456366921b8237eb0e33d3b33536377bf28325[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 17 16:11:33 2016 +0800
+
+    add facility
+
+[33mcommit 66988d51c1b89e04ec207b96ed7f0f2bd878bad5[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 17 15:26:40 2016 +0800
+
+    add facility
+
+[33mcommit 6dc5e6e3dcab047807ed879573d79d8485a97226[m
+Merge: 0dea2df b67a243
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 17 14:57:39 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 0dea2df42ad4a5cb455b49b351b25fdd6d06e8e9[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 17 14:57:32 2016 +0800
+
+    add facility;
+
+[33mcommit 1e4a38b689276dde079654c2f99c846a9a7a7364[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Sun Oct 16 14:45:35 2016 +0800
+
+    product api
+
+[33mcommit 073700dd586dcca8c8b4fb57478afb16f1659aec[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Sun Oct 16 14:20:16 2016 +0800
+
+    add log
+
+[33mcommit b67a243e744b403471540e0f219b665fab6ddb36[m
+Author: dfang <dfang@ibenben.com>
+Date:   Sat Oct 15 00:03:03 2016 +0800
+
+    add setting time
+
+[33mcommit 12dfd40d08e3cb3b9704ce6eced551ce43c86ca7[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Oct 19 00:00:56 2016 +0800
+
+    application util
+
+[33mcommit baac46f2c1136d90e45758b514c965db57c4d759[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Oct 14 15:58:03 2016 +0800
+
+    add facility
+
+[33mcommit d57cdcee2cfd9c664fd14ffcd83404a177254b73[m
+Merge: 79ba955 3ad50af
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Oct 14 11:34:52 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 79ba955199cadaf5f8890fe189d5406ece6cd0a5[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Oct 14 11:34:48 2016 +0800
+
+    add facility;
+
+[33mcommit 3ad50af099833a5c694a7d312abc98ed33b06f18[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Oct 14 11:26:32 2016 +0800
+
+    export excel
+
+[33mcommit c3e84f69e9a4c3650ce7c2e98465325675077f32[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Oct 14 10:52:30 2016 +0800
+
+    bug fix
+
+[33mcommit de599e520ae580cb54a2add752bc9f5d3e83f628[m
+Merge: 676cc25 9437f43
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Oct 14 10:28:29 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 676cc25656ef19b03cc6cec54bcae3bca1f1e22c[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Oct 14 10:28:24 2016 +0800
+
+    customer
+
+[33mcommit 9437f43e07aa9e7d86d0254ef9990132fb7c2896[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Oct 14 10:22:50 2016 +0800
+
+    add merchant
+
+[33mcommit 6b997dd42fb6806a77751c4be3f7aaa333785746[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Oct 14 10:10:40 2016 +0800
+
+    add editcustomer
+
+[33mcommit e3a1fdfd917143b51649fbac45cbfe2fd43c0b2d[m
+Merge: cde497a 91bd107
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Oct 14 10:04:30 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit cde497a9430e66bb8e346a0439f1d7dedf096ab9[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Oct 14 10:04:26 2016 +0800
+
+    add check
+
+[33mcommit 91bd107c0307b4ce88e5ddb326a2589618cc1cc4[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Oct 13 18:04:21 2016 +0800
+
+    null operation
+
+[33mcommit cbfe45f543884a86ec64834a65bfddd8ce6b28e1[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Oct 13 17:07:39 2016 +0800
+
+    product qc
+
+[33mcommit ff0d2d01c746b14e18a9edea6d8015589cab5c85[m
+Merge: 45895d8 e0bc8b1
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Oct 13 16:58:53 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit e0bc8b1762b3582bdd5ca1d8fdbf3527a9a44a7b[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 13 16:56:23 2016 +0800
+
+    add schedule
+
+[33mcommit 45895d836138bda4cd29e75e103a6a6b4f9c965d[m
+Merge: cd8315c 0c70284
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Oct 13 16:28:44 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 0c70284a4da856cee444a3b52ed81e5151b60a32[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 13 16:26:57 2016 +0800
+
+    add schedule
+
+[33mcommit cd8315cf14f31d5645885c54f751896728579b96[m
+Merge: bb9dfdc b3098c9
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Oct 13 16:25:31 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit bb9dfdcbca10a8b0452a63d9ac4a1297dace9cba[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Oct 13 16:25:23 2016 +0800
+
+    bug fix
+
+[33mcommit b3098c9fed9b6f69926f5a93e2b893d8c388b82c[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 13 16:20:02 2016 +0800
+
+    add status
+
+[33mcommit 288212e5816aeca76ceefdc2c13e111f8d76402e[m
+Merge: d6a0bd9 096a0fb
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 13 16:04:38 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit d6a0bd9301ca46596686b70d7810692029bd6ae0[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 13 16:04:31 2016 +0800
+
+    add http
+
+[33mcommit 096a0fb9fd74f6178f74147fc45b73a17689d9b4[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Oct 13 14:18:09 2016 +0800
+
+    cron
+
+[33mcommit d637cac5615b252f72e4bd635cfb872afe3097d0[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Oct 13 11:51:57 2016 +0800
+
+    cron time
+
+[33mcommit 86fabaa36da6f05a38345c93aa5e56e512efbef9[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Oct 13 11:29:45 2016 +0800
+
+    rest
+
+[33mcommit 6fb1106db83588658d0475d167a588b1ac983d2c[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Oct 13 10:42:21 2016 +0800
+
+    delete void main
+
+[33mcommit a62b3ce72fe554cdd5f621fbc8b13a33ceaed7aa[m
+Merge: fc8c49f 3320b13
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Oct 13 09:55:17 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit fc8c49f3f95e6a8302f54f120216a679355faf2d[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Oct 13 09:55:13 2016 +0800
+
+    add log
+
+[33mcommit 3320b138d7ca0d361e465487cb934b70bc92af1d[m
+Merge: 6b54039 8d305a2
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 13 09:43:32 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 6b54039a5a3cbb893442e32cc32f19cb117e0c94[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Oct 13 09:43:28 2016 +0800
+
+    add merchant
+
+[33mcommit 8d305a2e92e3ac1fa1a31b5f61d041e0afc71ee8[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Oct 13 09:33:02 2016 +0800
+
+    product coeff
+
+[33mcommit fa264245c11fd930c53f189cebca18097ed3a28e[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Oct 12 18:29:29 2016 +0800
+
+    add schedule
+
+[33mcommit 4d69ebe9997287bbe8a5a042ad7e6f8f50c459f1[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Oct 12 18:09:28 2016 +0800
+
+    add schedule
+
+[33mcommit a466c889d6939085756d58b83010fd5647a74d17[m
+Merge: 2e0e345 dbe2c0c
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Oct 12 16:31:25 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 2e0e345fa79fc0b497206eab6d58f838288e64d4[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Oct 12 16:31:18 2016 +0800
+
+    add customer
+
+[33mcommit dbe2c0c3e2bd48ff1aafaf66b56551f37e9ce862[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Oct 12 15:36:58 2016 +0800
+
+    product supplier mapping
+
+[33mcommit 08a6be5202a2349c4399276ad71fa1f103500dca[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Oct 12 14:48:31 2016 +0800
+
+    refine coverage
+
+[33mcommit c751868392c4ea0abe37603773a53029f44a5e9a[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Oct 12 10:27:24 2016 +0800
+
+    sales user
+
+[33mcommit b6cd92b87fda7b78adcfa08ea6d34271bac4eb57[m
+Merge: 3df0cf1 01678f6
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Oct 12 09:57:48 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 3df0cf1620e1f3cd76d59e065c9f2da45feaf397[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Oct 12 09:57:40 2016 +0800
+
+    add facility
+
+[33mcommit 01678f6ee87699a405fdda51417487a8525c20e5[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Oct 11 16:31:58 2016 +0800
+
+    bug fix
+
+[33mcommit 73262aac6b5d8af25083864a2412a122e33eaa27[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Oct 11 10:10:24 2016 +0800
+
+    api fix
+
+[33mcommit 131679fa7ad5dc6663b6397b0ec3b270e025598d[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Oct 10 17:57:09 2016 +0800
+
+    api and excel
+
+[33mcommit a3765e06571232fa3982fdac66f4a33bcb900127[m
+Merge: 69f1be9 fab35da
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Oct 10 15:26:23 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit fab35da627be1a7e51acabcfdcd5f807454a0685[m
+Merge: 37a7297 2c8480d
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 10 15:25:29 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 37a72975cfec4c3504cb5b140cce4b0e364b4aa2[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 10 15:25:23 2016 +0800
+
+    remove party
+
+[33mcommit 69f1be9225796b52fc2f2d768311dd4d58afe332[m
+Merge: 79b13ff 2c8480d
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Oct 10 11:08:45 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit 2c8480dc41fe6a416b2402397ca23eb22dc4a998[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Oct 10 11:08:23 2016 +0800
+
+    customer api controller
+
+[33mcommit 79b13ffc5346d1bab7912ab50a3767e3c754d7aa[m
+Merge: 41b3ee9 24d735e
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Oct 10 11:03:52 2016 +0800
+
+    Merge branch 'master' of git.yiran.com:pre/mms
+
+[33mcommit 41b3ee9c5a9db541d8636ea921a360e34ea3f446[m
+Merge: 88d1c42 0cf8a82
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Oct 10 11:03:14 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 88d1c422ced9c6e546018a63f61fd7d66d2758df[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Oct 10 11:03:08 2016 +0800
+
+    customer and util
+
+[33mcommit 0cf8a82aa11df8095dc2a27f9021c3fa9db67bee[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 10 11:00:36 2016 +0800
+
+    add facility
+
+[33mcommit 7925bfde3fd8a4ebde519d744c6f47e572781fea[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Oct 10 10:29:46 2016 +0800
+
+    add facility
+
+[33mcommit 24d735ee9d15e29413928fbfa33b1e6beeebbbbc[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Sun Oct 9 19:27:03 2016 +0800
+
+    region api create add log
+
+[33mcommit d1af9b3eea86d344ab213e16160821d1040a86c7[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Sat Oct 8 11:23:11 2016 +0800
+
+    add merchant
+
+[33mcommit 7a8946bbe9c04de9c950c4ae8d6928981822d62d[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Sat Oct 8 11:18:26 2016 +0800
+
+    add merchat
+
+[33mcommit 9d324096495a4e3cb43ea6780feb8fbc4ece169b[m
+Merge: 158c901 d655722
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Sat Oct 8 10:02:20 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 158c901d5a27f4e44638b95f882dec3954a7ff1b[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Sat Oct 8 10:02:05 2016 +0800
+
+    add facility
+
+[33mcommit d65572235b540ea2ef6e9a72db5f0437e2d75a6a[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Oct 7 14:09:40 2016 +0800
+
+    product api
+
+[33mcommit 5bb901f992b1db077a83eabeb4ebdf23601d9d72[m
+Merge: 54d3f06 62b6d90
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 29 17:04:26 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 62b6d90951697b2073b15cd611488404a1199d25[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 29 17:03:54 2016 +0800
+
+    add station
+
+[33mcommit 54d3f06d5c5e829ab8439cd4022e375a75c3a91d[m
+Merge: 68d5a32 ae7dfab
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 29 16:14:50 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 68d5a324ac485360f56ada8f9275ef80c2fcb6c9[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 29 16:14:45 2016 +0800
+
+    station
+
+[33mcommit ae7dfab6003c6db005828701af6f5414fe591f2f[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 29 16:12:16 2016 +0800
+
+    add station
+
+[33mcommit 30c91c37f68a5409f043a1be99c9ce7cf2173145[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 29 10:52:39 2016 +0800
+
+    add facility
+
+[33mcommit b63e3572e050e30ebeffed19604849ecf70a2dda[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 29 10:34:03 2016 +0800
+
+    add station
+
+[33mcommit d8f11f34e362d936b7bcc4fa1ea5233366aa5dfc[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 29 10:14:50 2016 +0800
+
+    sychro covreage
+
+[33mcommit 14dbb79b0f124941ea44130b18cc884b1139f633[m
+Merge: 8604826 52efef1
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 29 09:45:42 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 8604826d18dc75c7c77db88d02c3273355472a72[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 29 09:45:36 2016 +0800
+
+    add station
+
+[33mcommit 52efef1e35d962c1a8dedd607402aac2e89d55d4[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 28 20:00:35 2016 +0800
+
+    station shipping coverage
+
+[33mcommit 2844b326343fbe3b92ace141e9d120916cdb0587[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 28 19:01:25 2016 +0800
+
+    add station
+
+[33mcommit 5eaff04874e0e8593a9d10148d1022f96eaff8b2[m
+Merge: 3444bf1 e1ebcc1
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 28 18:45:32 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 3444bf131ef0b81a245b4acabc5cce71450cc5fc[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 28 18:45:26 2016 +0800
+
+    add station
+
+[33mcommit e1ebcc1e9b47af80f4e60c0746c3ff61d32881ae[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 28 17:56:20 2016 +0800
+
+    product_packaging
+
+[33mcommit 6112d78f45e85e645bf1f4fc3d7d23e41132ab3b[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 28 14:58:16 2016 +0800
+
+    add station
+
+[33mcommit 319f1719975cd06e7994816f203e70ccb9217085[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 28 14:08:55 2016 +0800
+
+    add facility
+
+[33mcommit 927515218806d9c1e6f1b6471083e07cb9b7c49f[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 28 11:09:11 2016 +0800
+
+    add merchant;
+
+[33mcommit 00221a0dc3f3c6c450f47c36cf598ffce7a017d7[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 28 10:08:45 2016 +0800
+
+    update shipping
+
+[33mcommit 873c5ee6d5ad73a12bf691899d620486135f79c7[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 28 09:44:02 2016 +0800
+
+    update merchant;
+
+[33mcommit adf908aff08624d4364ef0568390fcc1af1aefcc[m
+Merge: 6c75787 b0723cc
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 28 09:36:15 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 6c757876a836efd9d3fc325057444cc555fde90f[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 28 09:36:00 2016 +0800
+
+    station
+
+[33mcommit b0723ccc9502ede3c58cf528c06001b9e293d027[m
+Merge: 5aa3cdd 870f9e8
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 27 19:54:34 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 5aa3cdd64913a781c130d0a2f8aa297aafe3715a[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 27 19:54:06 2016 +0800
+
+    add station;
+
+[33mcommit 832579f7e18d18a19b3c81d3266ec840efbe92b2[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 27 19:34:32 2016 +0800
+
+    shiro
+
+[33mcommit a391a94cd5db771a423f299147454df453175148[m
+Merge: 338e731 0cfec04
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 27 18:23:51 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit 0cfec0482053978b28c5e1f7a80c56957c123d45[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 27 18:23:35 2016 +0800
+
+    fix
+
+[33mcommit 338e731955471536a549f322155c1c6220b69a3f[m
+Merge: b8f4fbe 870f9e8
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 27 18:20:00 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit 870f9e85abffb7112f75ff9a3fa0bac506346345[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 27 18:19:39 2016 +0800
+
+    login
+
+[33mcommit b8f4fbe31cc20eed190d1676cfd453bde18c9ce7[m
+Merge: 028dc48 1f29441
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 27 17:21:49 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit 1f29441f67acf9a461fcbcc7874c06cf73d703c6[m
+Merge: 51dd132 7d014dc
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 27 17:21:37 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 51dd132847069e387236ce08d7c94c9595919cf3[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 27 17:21:29 2016 +0800
+
+    station update
+
+[33mcommit 7d014dc2a3597259d90176e6a69292853fc5fd41[m
+Merge: dce449f 3471df4
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 27 16:37:33 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit dce449f7572ba22fdad42819487d47e77b31713a[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 27 16:37:11 2016 +0800
+
+    add info
+
+[33mcommit 028dc48ce1a05e28bbbefbe6beb0ef717a6d8216[m
+Merge: 490a401 3471df4
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 27 15:07:47 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit 3471df4b40f3573aa7d37eeeb1bc9f246ef787be[m
+Merge: c73ed60 6801787
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 27 15:07:33 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit c73ed6055816e3d30b6f53137a6a13554d54e3d8[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 27 15:07:24 2016 +0800
+
+    station avaliable
+
+[33mcommit 6801787a9ff1e456aaa6d97c34699f52e9f94d83[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 27 15:01:15 2016 +0800
+
+    add ship
+
+[33mcommit 3761033472e2d51ea044c4ee34035364558ff462[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 27 14:36:08 2016 +0800
+
+    add facility
+
+[33mcommit 490a401d8b69d737abefa2adcd3dfdabe93475fb[m
+Merge: f753b03 abca42c
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 27 14:13:51 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit abca42cc89314b8243a203aadfe2d7f9adc85066[m
+Merge: 8e29955 3d282b2
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 27 14:12:29 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 8e299558e2fc66fb3991cfe7dccab7fa3622284a[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 27 14:12:20 2016 +0800
+
+    update merchant
+
+[33mcommit f753b0349462d8a4a6bce4571f6a92a626e3b1bc[m
+Merge: 036bc47 3d282b2
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 27 13:18:23 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit 3d282b255704ac8141bf82c3b8853325e5a70684[m
+Merge: f7a75b1 4337d42
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 27 13:17:58 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit f7a75b18614c844d6c4e1d534a5c93c4e81935b7[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 27 13:17:50 2016 +0800
+
+    station coverage
+
+[33mcommit 4337d42a0894f776d8187c15be878ab0f83cde70[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 27 11:54:06 2016 +0800
+
+    update facilityshipping
+
+[33mcommit 509ef759f12752ad7c4f690b19349e71fed240ea[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 27 11:39:14 2016 +0800
+
+    add facility
+
+[33mcommit 28bfa540154e8c331a4506d9cbdf97de6ca71688[m
+Merge: 574467e 6b146fd
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 27 09:57:27 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 574467e987ce72f58f58c0db815a99a011c597c1[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 27 09:57:21 2016 +0800
+
+    add merchant
+
+[33mcommit 036bc4706bae31edbc32a66911257d983fc8c70c[m
+Merge: 117e1fc 6b146fd
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 26 20:04:52 2016 +0800
+
+    merge
+
+[33mcommit 6b146fd80e28f790bf293185effdfd7e09423d33[m
+Merge: afcc607 ce274de
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 26 20:03:32 2016 +0800
+
+    merge
+
+[33mcommit ce274ded30eafb7a4927457cc610015ccbbcd398[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Sep 26 19:58:35 2016 +0800
+
+    add merchant
+
+[33mcommit 30de8d99adbce50351db51b66a9a96199f8d0124[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Sep 26 19:40:11 2016 +0800
+
+    add express
+
+[33mcommit afcc607af1899b411ff307e7fc9fb2750d3e3eb1[m
+Merge: a02933f 864dfac
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 26 17:55:48 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 864dfac1871d0e31e06c006059bb7969262a9ed5[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Sep 26 17:54:15 2016 +0800
+
+    add customer
+
+[33mcommit a02933f82ff2bbb9facd5a55aaaddb742530e553[m
+Merge: 4b458ca 76b06ce
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 26 16:33:56 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 4b458ca6df39341b04e32d05cc2c63605e0cc3b4[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 26 16:33:50 2016 +0800
+
+    api + station
+
+[33mcommit 76b06ceeb0bbb725e5cf45c786df5926a574f6cc[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Sep 26 16:29:05 2016 +0800
+
+    add customer
+
+[33mcommit 117e1fcebc3c2090595950f982b02b9e8ff16d49[m
+Merge: e87ada8 0b11244
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 26 09:57:12 2016 +0800
+
+    Merge branch 'master' of git.yiran.com:pre/mms
+
+[33mcommit e87ada848c7809dcbf1804761400f8399d491ea3[m
+Merge: 44dcfb1 afe2092
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 26 09:56:56 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit afe20928001dc7cfb98cb60c71378dd54c82c356[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Sep 26 09:54:58 2016 +0800
+
+    update supplier
+
+[33mcommit 0b11244e7b50efd14f4b6b8b4ad6e5330f4a84fd[m
+Merge: 44dcfb1 ed518ee
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Sep 23 18:54:51 2016 +0800
+
+    Merge remote-tracking branch 'origin/mms1.1.0'
+
+[33mcommit ed518ee8f6bcae4278768e5e8647c45e8bf76d93[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 23 18:45:18 2016 +0800
+
+    update tax
+
+[33mcommit 47c79fb35a7c64dd31469230fb7a7138cec976d9[m
+Merge: 39e8d41 92710dd
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 23 18:36:49 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 39e8d4105d27a2567ede7e50620880cb00b97d27[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 23 18:36:43 2016 +0800
+
+    update status
+
+[33mcommit 44dcfb1505bb8d650aa50f152b06a9221ead9749[m
+Merge: 85e0b4e 92710dd
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 23 16:44:17 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit 92710ddd63a84cca6a586098d9a057d335d52de8[m
+Merge: e1fa60c 233bbbb
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 23 16:44:04 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit e1fa60c868255f8bea7f30a70e82de02817d8105[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 23 16:43:54 2016 +0800
+
+    add api
+
+[33mcommit 233bbbb74dd8dd8c4a05cbd3df4bfd57686268cd[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 23 16:42:25 2016 +0800
+
+    add api
+
+[33mcommit 400db6c14f2251a80f30b0d4fac13acb61c059a5[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 23 15:32:52 2016 +0800
+
+    update customer
+
+[33mcommit bac96ac33d98fe188c789cdec98080c67cba6593[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 23 15:17:25 2016 +0800
+
+    update customer
+
+[33mcommit 2942d99445bc5b86ed246c95a748bc3f12108f12[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 23 15:08:22 2016 +0800
+
+    add customer
+
+[33mcommit 6d9e6b2eb838e28afbcbd655e04cfda67029e0cc[m
+Merge: a4ca7e3 4c60486
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 23 10:51:51 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit a4ca7e3e997c01fdaffc7d9190b807b0a357620a[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 23 10:51:44 2016 +0800
+
+    add customer
+
+[33mcommit 85e0b4e12a86bc2200195779d5352b75f5cc91ea[m
+Merge: 460776f 4c60486
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 23 09:45:54 2016 +0800
+
+    fix conflict
+
+[33mcommit 4c6048681303130f2e6a4a39fc3602029962e0ab[m
+Merge: f517309 988083a
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 23 09:41:57 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit f5173096e1eb5b2bb0080c370deedb5cd0c81754[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 23 09:41:47 2016 +0800
+
+    redis refectory
+
+[33mcommit 988083a30876645fa11f36f73ddab48c575574ad[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 22 17:28:13 2016 +0800
+
+    update aop
+
+[33mcommit 1e95dbd4b73e7dedc1df2439920482c1d4008888[m
+Merge: 59e6de1 32a6afa
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 22 17:00:18 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 59e6de1dbfa93eba96fbe44538ae87873abef0ab[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 22 17:00:11 2016 +0800
+
+    update log
+
+[33mcommit 460776f3c2b1d986a6b38a0dfd23b1d6663b117e[m
+Merge: 6634d2d 32a6afa
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 21 16:58:36 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit 32a6afa70fd64b2a6b7041e12c9cbaddff4b4112[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 21 16:58:16 2016 +0800
+
+    temperature type
+
+[33mcommit 6634d2db2dccc8ef249fa283db8e28124a68440a[m
+Merge: 4a1c331 6bce9a2
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 21 16:29:32 2016 +0800
+
+    Merge branch 'mms1.1.0'
+
+[33mcommit 6bce9a2df1edc02eab189704c857efbbcf9e9edd[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 21 16:29:08 2016 +0800
+
+    fix
+
+[33mcommit 4a1c3318e881761eee4934c12f0425c535a9ea3d[m
+Merge: 5ed355f dded318
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 21 15:37:39 2016 +0800
+
+    fix merge
+
+[33mcommit 5ed355ffdb5e943b8a6f0f999bf0a2c9582a018c[m
+Merge: dac1d4c aaf6267
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 21 15:34:24 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit dac1d4c16038ef7923de55674c5b7ec0edbf62a7[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 21 15:34:12 2016 +0800
+
+    excel
+
+[33mcommit aaf6267de5dfa8d25765806031609470c9e3cc5b[m
+Merge: 594b4ec 13f53d6
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 21 15:32:17 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 594b4ec2a06d65274c0a956bca6da432551fa839[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 21 15:32:11 2016 +0800
+
+    update aop
+
+[33mcommit 13f53d6fb42eb1e4f561f1edea2e45dacdbeae1d[m
+Merge: eef98c8 81ba308
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 21 14:30:24 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit eef98c8b55996971543cb8e35537d74f57c322f0[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 21 14:30:12 2016 +0800
+
+    export excel
+
+[33mcommit ef11541921b2a654e756da914a68f6ba5c46e3bc[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 21 14:23:57 2016 +0800
+
+    export excel
+
+[33mcommit dded31815c4213743f871f6869b9ae49a91ead7f[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Sep 21 11:14:04 2016 +0800
+
+    fix bug
+
+[33mcommit d975e0bbea7b60ce0814c7e273b7c76e440858f6[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Sep 21 11:10:43 2016 +0800
+
+    delete log
+
+[33mcommit 81ba30801cdd7952832c2e4f8ba5a3dae0244a9c[m
+Merge: fdd4552 a587630
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 21 10:40:31 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit fdd4552baaae2935b3419277e3742c00fcb1371e[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 21 10:40:26 2016 +0800
+
+    update aop
+
+[33mcommit 295e7a437b303c2b7a3e72cce73c0940e4d6c3e2[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 21 10:26:22 2016 +0800
+
+    login bug fix
+
+[33mcommit a587630cbcaffc31ff63025711a29d6f052bf307[m
+Merge: a8ca632 8672f61
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 21 10:14:38 2016 +0800
+
+    Merge branch 'master' into mms1.1.0
+
+[33mcommit 8672f616db5107e1807986c515a4be8a02798727[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 21 10:02:07 2016 +0800
+
+    excel
+
+[33mcommit a8ca632288c40c3f6f904f9486116d9d99a2095c[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 21 09:54:53 2016 +0800
+
+    update facility;
+
+[33mcommit 495cf20cdf2dba109a6501428a9e789c6ba6b5b6[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 20 19:22:01 2016 +0800
+
+    add status
+
+[33mcommit 6131d3adc3a49c68f5eaad7fa6e8b8da8fa56138[m
+Merge: ea45882 ae11167
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 20 16:55:25 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit ea45882430da8668f03fdd9cfe2802d38603155c[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 20 16:53:54 2016 +0800
+
+    add web
+
+[33mcommit ae111670f072cadddf33470389bfe2d7369951fb[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 20 16:26:33 2016 +0800
+
+    product apply progress
+
+[33mcommit c87f08be95f24f07467df786620f9a4b26c9a2a0[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 20 15:29:12 2016 +0800
+
+    product apply
+
+[33mcommit 06d419c9ecd41f2d01a5e2b97e6f7fef941281ea[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 20 15:00:39 2016 +0800
+
+    container
+
+[33mcommit 1ad813c8905c1262b3ec500800b04976da969e7f[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 20 11:49:52 2016 +0800
+
+    product apply progress
+
+[33mcommit 0b5c779c9d7d35011bd06439d5aee85079ac25d6[m
+Merge: 89806e6 f6a751b
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 20 11:09:52 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 89806e671fb2652f55854e1db04e8c80bb1abfc5[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 20 11:09:46 2016 +0800
+
+    excel + product_apply note
+
+[33mcommit f6a751ba35d01a9575a43328d3b0ca3d1683002c[m
+Merge: c622274 6ec17f1
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 20 11:07:05 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit c6222741367ad02792f303bbfee43159c586286e[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 20 11:06:59 2016 +0800
+
+    add platform
+
+[33mcommit 6ec17f1e26c2149e9d7151625514090a85a37470[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 19 17:27:28 2016 +0800
+
+    bug fix
+
+[33mcommit ad03d60402b5535c6d9461ab06b0fb88b4373775[m
+Merge: 1a6b364 e161a24
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 19 17:23:52 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 1a6b36449e4f300a764fc6d36f3e929149987ccb[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 19 17:23:40 2016 +0800
+
+    product apply note
+
+[33mcommit e161a245ea540d475bed0f93eaf56da8712a7385[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Sep 19 17:18:47 2016 +0800
+
+    add action
+
+[33mcommit 82f3d24e142e4cf8e8c23f1a5871019837f2629d[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Sep 19 17:16:56 2016 +0800
+
+    update log
+
+[33mcommit 861c17894904c857870b5b0659e89e451da38ad5[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Sep 19 10:22:32 2016 +0800
+
+    add merchant
+
+[33mcommit 3e592c0cfe4aa02f718e0a8e951cac04b8af9901[m
+Merge: 21b3c18 1251b6d
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Sep 19 09:09:26 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit 21b3c183dcf3affed0c06b12551838a450cfd2c8[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Sep 19 09:09:19 2016 +0800
+
+    add merchant
+
+[33mcommit 1251b6d9cb4bf375bd516e060c4a978427c1461e[m
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 18 17:54:46 2016 +0800
+
+    util
+
+[33mcommit eb5d9ad358ebf836a9829b3261972868ec02f512[m
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 18 16:36:46 2016 +0800
+
+    bug fix
+
+[33mcommit 7dcb2e5246be59eb7d33409e12fb0e4016605501[m
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 18 14:23:54 2016 +0800
+
+    status
+
+[33mcommit e8387095dd5aa73f085189a78cd39e462e77758b[m
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 18 14:06:28 2016 +0800
+
+    merchant api
+
+[33mcommit 3f379cc34c8912f43af925396a8b140e65129d3a[m
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 18 10:56:32 2016 +0800
+
+    page
+
+[33mcommit 357a6a9117ccc4d94f0df8c279f216491333be95[m
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 18 09:46:50 2016 +0800
+
+    product supplies list
+
+[33mcommit dbe0812f970075fbeb79472788cd1b3d0d8a55a9[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 14 18:34:14 2016 +0800
+
+    add facility
+
+[33mcommit 0e9754b32454e1f872425438adcf54487ce10cd6[m
+Merge: aaf9d9e e71772f
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 14 18:27:14 2016 +0800
+
+    Merge branch 'mms1.1.0' of git.yiran.com:pre/mms into mms1.1.0
+
+[33mcommit e71772f1f69a089c84a93a2933f8601ef3c6b893[m
+Merge: a4727b9 bc12fea
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 14 18:23:46 2016 +0800
+
+    Merge branch 'master' of git.yiran.com:pre/mms
+
+[33mcommit a4727b97582e44f6f55a62ecd7b956e0afe7155c[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 14 18:23:04 2016 +0800
+
+    add product supplies list
+
+[33mcommit aaf9d9e5443216b07d01ffc0a01697dbfc7eef32[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 14 18:20:08 2016 +0800
+
+    add facility
+
+[33mcommit bc12feaa9b969394a9beda72a5c5d98bde043390[m
+Merge: 07e905e b09a0bb
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Sep 14 16:03:02 2016 +0800
+
+    Merge branch 'master' of git@git.yiran.com:pre/mms.git
+
+[33mcommit a62b60a4979e68233d0bd0d51238eb34e9e43eb9[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 14 15:58:09 2016 +0800
+
+    add merchant
+
+[33mcommit 07e905e31b8ceb1874f57e046dd6614e5c781aba[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Sep 14 15:22:39 2016 +0800
+
+    fix bug
+
+[33mcommit b09a0bbdc077ce1d8a01fd6fed98c95bf2f8a6cc[m
+Merge: 9d33e3c c23a6c3
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 14 14:19:36 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit c23a6c3844bda9d5203777d62ffff6ff1193febf[m
+Merge: 8c43ab7 b7e7293
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 14 14:17:28 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 8c43ab78d137071e2dfbb358a39e22302cf795fe[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 14 14:17:23 2016 +0800
+
+    add region
+
+[33mcommit 9d33e3c59130474815d2a9fb5ba5e1153c7be081[m
+Merge: 1e87adb 8e56915
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 14 14:00:32 2016 +0800
+
+    bug fix
+
+[33mcommit 1e87adb7b1d82e4c6d7b0fd4c4e42a6cbf99556f[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 14 13:57:35 2016 +0800
+
+    bug fix
+
+[33mcommit 8e569150b1621c52b3a9b87fa999a4eaa4ddcf01[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Sep 14 13:53:55 2016 +0800
+
+    fix bug
+
+[33mcommit 70a125e07e5cf751eb3a959c11b3a7293a480e66[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Sep 14 13:51:53 2016 +0800
+
+    fix bug
+
+[33mcommit fbcff4c0d58004db609df8d334d3e7be3b01f770[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Sep 14 13:50:34 2016 +0800
+
+    fix bug
+
+[33mcommit cd1145482b4b827bc5ddcecc7d4bc42316255241[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Sep 14 13:48:51 2016 +0800
+
+    fix bug
+
+[33mcommit 298a97abba83cc1c122f09f42ca58d2270a66d01[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Sep 14 13:46:10 2016 +0800
+
+    fix bug
+
+[33mcommit b7e72937fbeede31c4805303d304d47367582e43[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 14 13:26:40 2016 +0800
+
+    quantity
+
+[33mcommit bdd41eadc2bc2ff6fcae864f4272bf94a3a6ceb3[m
+Merge: 834c2fa f503a3a
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 14 13:18:08 2016 +0800
+
+    Merge branch 'master' into mms1.0.0
+
+[33mcommit f503a3a47784b40e11ffdcd5f5d26b471930bacc[m
+Merge: ac04d29 2c6c748
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 14 13:17:33 2016 +0800
+
+    Merge branch 'master' of git.yiran.com:pre/mms
+
+[33mcommit ac04d2900608130c45040f4f452290623a30a668[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 14 13:17:28 2016 +0800
+
+    bug fix
+
+[33mcommit 834c2fa1d95cfdbba993048688e8e9f5c549354f[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 14 10:44:36 2016 +0800
+
+    add merchant
+
+[33mcommit 2c6c7487ee7b53c650fdd97def6ab66b2be3fbd5[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Sep 13 18:53:55 2016 +0800
+
+    info
+
+[33mcommit 6470e7cc87edd9550c7e5072f1fac3d2e25e42d6[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Sep 13 18:53:23 2016 +0800
+
+    delete log
+
+[33mcommit d58285e11af7208db96367281d384c050b068ce5[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 13 18:31:59 2016 +0800
+
+    add status
+
+[33mcommit 9b771a870fc4e3e7667db0b69fa37f95a4916ab4[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 13 17:06:04 2016 +0800
+
+    update shipping
+
+[33mcommit 51f33844840ba3020e31e348998f8b6732bca62c[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 13 16:27:23 2016 +0800
+
+    add merchant
+
+[33mcommit e5db41f35f68ef52541f33a09a4b8ec48bd27ba3[m
+Merge: bba4572 d30dffc
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 13 15:15:05 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit bba4572f572b2c7d50fc82713c1f7a4fba8e89d8[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 13 15:14:59 2016 +0800
+
+    add merchant
+
+[33mcommit d30dffcffeb8f30baff334db41df704f3b8e0b82[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 13 14:11:23 2016 +0800
+
+    product mapping status
+
+[33mcommit cf9fd22da24505ee1999ee8398edd0a53043eac6[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 13 13:45:33 2016 +0800
+
+    update product
+
+[33mcommit 25b0c4913225f3b39c80b668073f8782afff29d9[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 13 13:05:12 2016 +0800
+
+    bug fix
+
+[33mcommit 47b7cb5695701e8d85e854b056215c00df0c3973[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 13 11:54:17 2016 +0800
+
+    apiopration
+
+[33mcommit 0bc3ff256e056c895e094a106f02efd99166fc21[m
+Merge: 4b6c4d3 c0bd02f
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 13 11:47:26 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 4b6c4d33242f8ed5f5af4cb3a65c522f19121b5a[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 13 11:47:21 2016 +0800
+
+    update attr
+
+[33mcommit c0bd02f24ee9d5ca9e0d48bce8826006634c9103[m
+Merge: 515ff37 ba07ec6
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 13 11:04:40 2016 +0800
+
+    Merge branch 'master' into mms1.0.0
+
+[33mcommit ba07ec6ccc8912c92b7c931fd16c490d0cf63968[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 13 11:03:28 2016 +0800
+
+    bug fix
+
+[33mcommit 515ff373dbf2103456a9df8bd1a00609c83cabed[m
+Merge: 24b58e1 641d824
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 13 10:46:25 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 24b58e142499eb89d149fdc55ac1590be16937df[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 13 10:46:21 2016 +0800
+
+    redis clear
+
+[33mcommit 641d8243f381532d918ab382ea97755c0f969e72[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 13 10:42:12 2016 +0800
+
+    update supplier
+
+[33mcommit 9ec44981ac2e2b4259443b81afe6b9954db1e7f1[m
+Merge: 2bc2d31 58a9e9a
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 13 08:30:18 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 58a9e9a847c7aca2697fcd741de1f8db8effcd55[m
+Merge: e73c69c a818d62
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 13 08:29:11 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit e73c69ca228adc1a90c5a15d29b67358bf38a287[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 13 08:29:06 2016 +0800
+
+    update facility;
+
+[33mcommit 2bc2d31f782612e6fbdf34a7228c65651431cbcb[m
+Merge: eb2748b a818d62
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 13 08:19:37 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit a818d62c253c07b4256866ab14f3f24277fda3e9[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 13 08:19:22 2016 +0800
+
+    bug fix
+
+[33mcommit eb2748b1f28f66796a363a3a63b709e3a0004742[m
+Merge: 897ab22 15e9946
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 13 08:03:29 2016 +0800
+
+    Merge branch 'master' of git.yiran.com:pre/mms
+
+[33mcommit 897ab2289cb65409348639191a87d03822ea1bd8[m
+Merge: 72412d1 d59f90f
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 13 08:00:12 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit d59f90f556855bdcec717333a2574affbb1ff869[m
+Merge: 54ba3d2 f6c1a49
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 13 07:55:26 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 54ba3d273abdf0dc40ecdb1e2966c373f1a7d1a3[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 13 07:55:20 2016 +0800
+
+    update shipping
+
+[33mcommit 15e9946bfbaac2463311257e73408676efb0a4bc[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Sep 12 20:35:29 2016 +0800
+
+    log
+
+[33mcommit 9efdc49887b732a65ee652c1cf31deec197e395f[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Sep 12 20:34:39 2016 +0800
+
+    log
+
+[33mcommit 72412d1d2fc87154f1f3d080a303b2c0ea6b422d[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 20:12:44 2016 +0800
+
+    log test
+
+[33mcommit f6c1a49aadd7ab7ac371b70dc6f1a6c635776ede[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 19:59:20 2016 +0800
+
+    add permission check
+
+[33mcommit 6627f2ab7d1ab3c24a3520e6a640498306f1aa6a[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 16:57:47 2016 +0800
+
+    goods
+
+[33mcommit 83edd2638f4c8d38049809ba0f791dd676b0f2d7[m
+Merge: 227552a 628c757
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 16:20:04 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 628c7575131350ab855fb9614314fc3249609bb4[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 16:19:32 2016 +0800
+
+    add list simple
+
+[33mcommit 227552a7bb96c96ba65cb5833b21ca025e08d082[m
+Merge: 904a94e dfe47d7
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 15:00:25 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit dfe47d79dc25389a1ed5e24d3af23f9c776277aa[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 14:59:51 2016 +0800
+
+    add api
+
+[33mcommit 904a94e9220b99c38e313d6db6585ece69790cd8[m
+Merge: 28ec152 e8514bf
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 14:08:23 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit e8514bfb08b010246e958856c3390473ef3662f5[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 14:07:40 2016 +0800
+
+    reids config
+
+[33mcommit 28ec1521bd3e237facb06e757012ecea5ef230e9[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 11:01:31 2016 +0800
+
+    check action
+
+[33mcommit 2b8cf945cdd7ed5e573a654757ebce827f764005[m
+Merge: cf52c5c 5be501e
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 10:57:25 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 5be501ef68fa14c90b421462e516792b1266fdb4[m
+Merge: 1ee35e0 81895dd
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Sep 12 10:55:03 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 1ee35e022a55d3c6678b7a6b033a2a599c232ece[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Sep 12 10:54:12 2016 +0800
+
+    update region;
+
+[33mcommit cf52c5cde983662e7d52e5b42995d3e8ebc9b694[m
+Merge: 8eb0637 81895dd
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 10:35:32 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 81895dd120ac78afe31f89c58e544853eb97d087[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 10:35:09 2016 +0800
+
+    redis config
+
+[33mcommit 8eb0637dcd59cd0a7fc96def46c6db97bccbd975[m
+Merge: 6bc0a28 54f8cc4
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 09:49:27 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 54f8cc4fb65c447b9d407ac302971e8a5919fef7[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 09:47:38 2016 +0800
+
+    platform id
+
+[33mcommit 6bc0a28e6eb7378c53d09571eb955ec02d129594[m
+Merge: f3383fd a080043
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 09:39:12 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit a080043a262c419a30d2e21a90ab805f9c9f207a[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 12 09:38:58 2016 +0800
+
+    logger delete
+
+[33mcommit f3383fd95e07afcac6c96ab821e302712fa6cdbd[m
+Merge: 9d57a25 6c97918
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 11 18:35:09 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 6c979187ee71924f6023fe61325a8a3ac885d84d[m
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 11 18:34:56 2016 +0800
+
+    cache
+
+[33mcommit 9d57a253f6dc56db183c1f74606f3bd02eca2702[m
+Merge: 9327dc0 508c01e
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 11 18:19:18 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 508c01e87521956fefe0136a86ea6fe76c592b8a[m
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 11 18:18:41 2016 +0800
+
+    after sale
+
+[33mcommit edcd301c57719b63216acb11f6fdb3aabe6aa32a[m
+Merge: 8f0024d 8f519df
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Sun Sep 11 17:23:01 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 8f0024d1142ea6454c9bb3379bf735c95790391b[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Sun Sep 11 17:22:56 2016 +0800
+
+    update productsupplier
+
+[33mcommit 9327dc0058fce7645d47c1a8a98b09e8f565e37b[m
+Merge: 8dfbad0 8f519df
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 11 16:39:03 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 8f519dfc75e64672031bdbdf95d0bba536d486d2[m
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 11 16:38:03 2016 +0800
+
+    open api modify
+
+[33mcommit 2679c309c11815a648cdd0970556a8c5817bb8f9[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Sun Sep 11 15:32:45 2016 +0800
+
+    update shipping;
+
+[33mcommit 9f5d34aa6b1990d51a50cae04b8908d9aa890186[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Sun Sep 11 15:28:35 2016 +0800
+
+    update productsupplier
+
+[33mcommit 8dfbad02c28746b5803931aff4601932054abbdf[m
+Merge: 088eec0 7a50e5d
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 11 15:16:33 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 7a50e5ddb316d5b43ea0ddbde759232dccbb0653[m
+Merge: f50875e 93aa2bd
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Sun Sep 11 15:05:09 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit f50875e19472915d07ce4230650f3a582f5cf2e1[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Sun Sep 11 15:05:05 2016 +0800
+
+    update purchase
+
+[33mcommit 088eec04b84adc40ac523f49a7eb1b595dae26ed[m
+Merge: a451196 93aa2bd
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 11 13:42:20 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 93aa2bdedf76dedd25f81145364e8471bb9bba13[m
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 11 13:41:49 2016 +0800
+
+    serialize bug
+
+[33mcommit a451196cc3bfd2daa7fc276429b9e4650b8b25c6[m
+Merge: b51b4d1 d2729a9
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 11 12:16:14 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit d2729a90c359c6c47280bec60fc008b668c95f4f[m
+Merge: 53a231a 163561c
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Sun Sep 11 12:02:05 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 53a231ab890631f73e1fca1ff9edb066717bd86e[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Sun Sep 11 12:01:59 2016 +0800
+
+    update facility;
+
+[33mcommit b51b4d13c33ef28772842880ca77c26bc6541139[m
+Merge: 2889557 163561c
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 11 10:54:54 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 163561ce7c3880e96166258c868567a0d9140492[m
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 11 10:54:29 2016 +0800
+
+    add api
+
+[33mcommit 2889557dd220df5e4c76d2fea40e43817c2f8224[m
+Merge: 58f3c44 2d3fc81
+Author: dfang <dfang@ibenben.com>
+Date:   Sun Sep 11 09:53:58 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 2d3fc81fad3a4d73465543c1e9510f27c69fe964[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Sun Sep 11 09:15:17 2016 +0800
+
+    add shipping;‘
+
+[33mcommit 58f3c44ffc4448e2762a7ffe92d563f877c006a7[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Sep 9 20:22:51 2016 +0800
+
+    fix bug
+
+[33mcommit 0a1263e6c4e68b1ebbb1b530a4987bc9d189583b[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 9 18:43:13 2016 +0800
+
+    update supplier
+
+[33mcommit aab7445209dcd55dc74607ab56345076daac6c67[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 9 18:38:08 2016 +0800
+
+    update supplier
+
+[33mcommit c60a233b8476151e7dee547a844f0ef292b8bcdc[m
+Merge: f676516 543ce6b
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 9 18:12:55 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit f676516e064cc6f4c63f7751199492d8d342ccb6[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 9 18:12:49 2016 +0800
+
+    update suppliermapping
+
+[33mcommit 543ce6baf67d01ffd771d31e979070b71d608490[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 9 17:05:20 2016 +0800
+
+    bug fix
+
+[33mcommit 4a437c42d2c49c8b27606ac072c2cc0a9facbdcf[m
+Merge: 1ece8de 252dd93
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 9 15:41:34 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 1ece8ded748af7fef910e2f87fe92f1d3989554a[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 9 15:41:11 2016 +0800
+
+    add cache
+
+[33mcommit 252dd9357afe989de4e52467365c669f95bed747[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 9 15:07:52 2016 +0800
+
+    add productsupplier
+
+[33mcommit 89952f28cb50112f772b4715f6c1df1941c0bc3c[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 9 11:17:31 2016 +0800
+
+    update purchase
+
+[33mcommit e32d9e0fba6b4897d8e12616f53bfb4ac50d88c8[m
+Merge: 27cc8ca f237c19
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 9 10:47:07 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 27cc8cad25a3b4ed39225e3d9927be0ac89f8e9b[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 9 10:47:00 2016 +0800
+
+    update productsupplier
+
+[33mcommit f237c1936e4e8df810277ed2c2263f6f84fa4269[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 9 10:33:00 2016 +0800
+
+    permission
+
+[33mcommit 80f7c2c52bc7f7b84e91464348f1ff1315674356[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 8 20:52:24 2016 +0800
+
+    bug fix
+
+[33mcommit dcf6a125e4dbb44390947b8756c41c4dbd822034[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 8 20:16:47 2016 +0800
+
+    shiro
+
+[33mcommit 78c4a3f21c5966c8d36a807718b65bee013f9546[m
+Merge: ca0f64e 3093156
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 8 19:57:08 2016 +0800
+
+    Merge branch 'master' into mms1.0.0
+
+[33mcommit 309315612a6f6d7920c8c4b3c420102e862f070c[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 8 19:56:17 2016 +0800
+
+    api
+
+[33mcommit ca0f64e869cf6264391137ecc18986ec874558f2[m
+Merge: dfdf828 1f122de
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 8 19:47:44 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit dfdf828a75f17a39775e6690fa58fe313f568adc[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 8 19:47:39 2016 +0800
+
+    add region
+
+[33mcommit 1f122defc48b7bd3869542004fa87f40ebf506b1[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 8 19:21:29 2016 +0800
+
+    dfang
+
+[33mcommit a5b2ba9cc04bf2bbb7c367908ab1ddee16eab64a[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 8 18:00:46 2016 +0800
+
+    platform merchant
+
+[33mcommit 1b58f91a74310df5d9258430ba76a11c9f9b0b46[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 8 16:08:09 2016 +0800
+
+    add openapi
+
+[33mcommit 0fac59c3abb9da3b86588c9630f824e02c5777ba[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 8 15:42:34 2016 +0800
+
+    add shipping
+
+[33mcommit 6a61c9ca576b438d06437d92b5574ab345c43a31[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 8 15:26:26 2016 +0800
+
+    update shipping;
+
+[33mcommit ce086c13f03b8bf9da5065bffb4d4bacc56a104c[m
+Merge: ac617cc dec08db
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 8 14:58:14 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit ac617cc15d178db53fe1f04088c965eb3004622f[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 8 14:58:00 2016 +0800
+
+    add shipping
+
+[33mcommit dec08dbdd8eacfb8529e94cce8747e62817010ca[m
+Merge: 5779875 a745539
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 8 13:13:05 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 57798759d80c72bd2c81c67afe0c3cdf2a95424d[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 8 13:12:53 2016 +0800
+
+    bug fix
+
+[33mcommit a7455397db98ae16b09220086ddac7bccaff521d[m
+Merge: b3f2d73 3935949
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 8 10:16:57 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit b3f2d73d0470d26e8b000c9d883fc54a54084094[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 8 10:16:52 2016 +0800
+
+    update goods
+
+[33mcommit 3935949b3bb77bd7fac0a13d588433adb97de3a1[m
+Merge: ae61bd9 e12854a
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 7 18:30:59 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit ae61bd990ebd742f1a9bbea49e9fb13fec05db41[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 7 18:30:46 2016 +0800
+
+    change areamapper
+
+[33mcommit e12854ad69dae50b6f2e08d7d286b2db755e2422[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 7 18:11:29 2016 +0800
+
+    update api
+
+[33mcommit d9240ae02c12cda14bc34f08aa90400b28799897[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 7 17:27:38 2016 +0800
+
+    update merchant
+
+[33mcommit 1eee6ab5b067fbb2345abef9181f9ff27701f4b7[m
+Merge: 2583d7b eea3f64
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 7 17:14:22 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit eea3f64580839d55baa2ae00018b19c43206a88d[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 7 17:15:24 2016 +0800
+
+    remove
+
+[33mcommit 2583d7b22b6d49b22cee88432031bfcde0c16e29[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Sep 7 17:00:18 2016 +0800
+
+    update api shop
+
+[33mcommit 46150bd520e848b5c41efdbcda04fc0ff1121a98[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 7 11:41:17 2016 +0800
+
+    remove status
+
+[33mcommit b9580bb15eb1d91573433965ca762c23f6a8c77a[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 7 11:22:10 2016 +0800
+
+    add cache
+
+[33mcommit 4f95e6511a09e8d46863dc079b08b19877986e63[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Sep 7 11:14:43 2016 +0800
+
+    redis poll
+
+[33mcommit 014c00bbcd5d8ac9f38c131de6cf264f781455a6[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 6 21:05:23 2016 +0800
+
+    bug fix
+
+[33mcommit da1e73b280940474b9d43f0a1c394a949e77e5b7[m
+Merge: e6ddf1e 6a38939
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 6 20:03:26 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 6a389394fcd687d31338336ca83f02ba325d9834[m
+Merge: 9952661 5f99140
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 6 20:03:12 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 99526616d9e51922eba316d91ed0bd45bbc68985[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 6 20:03:03 2016 +0800
+
+    dfang
+
+[33mcommit e6ddf1e40c992ae3b198a58dc3784d1da64b53d6[m
+Merge: 3e940eb 1ae513a
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 6 17:41:16 2016 +0800
+
+    Merge branch 'master' of git.yiran.com:pre/mms
+
+[33mcommit 1ae513abe5cf7362522136c3cc2d205454dd2601[m
+Merge: f483e46 92ac6e1
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Sep 6 17:33:19 2016 +0800
+
+    Merge branch 'master' of git@git.yiran.com:pre/mms.git
+
+[33mcommit f483e46272843f6b16cdd4cb48c6a8d7a025ebd0[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Sep 6 17:33:13 2016 +0800
+
+    platform
+
+[33mcommit 3e940ebe480379915c94a61cee933dcd74e6391e[m
+Merge: 92ac6e1 1cc1646
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 6 17:31:27 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 1cc1646b59e980c01b41538aef554fa2d341fd89[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 6 17:31:15 2016 +0800
+
+    bug fix
+
+[33mcommit 5f99140ccbe22dd8fa7b9704b368bedeb74b94b8[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 6 17:18:13 2016 +0800
+
+    update merchant
+
+[33mcommit 92ac6e1e5ff2a15f94246faf0db8b8de9d1c0863[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 6 17:08:10 2016 +0800
+
+    remove redis
+
+[33mcommit e1d9b8daf4687341a3e6b2d4e031761a5f69a010[m
+Merge: c0892cc 9227100
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 6 16:51:29 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit c0892ccfae0de76f6f5e919ca6611ba30b87f7e7[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 6 16:50:48 2016 +0800
+
+    update api
+
+[33mcommit 9227100d5bbbcd19c9c269fae88434b13bc12fd7[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 6 16:40:37 2016 +0800
+
+    bug fix
+
+[33mcommit a0213029d6958ffa84667d85d2bced4f6b74eb23[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 6 16:03:25 2016 +0800
+
+    merge
+
+[33mcommit 7c677d8ed88bb5c1b2d14cf8e0ac57201a020835[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 6 15:22:24 2016 +0800
+
+    bug fix
+
+[33mcommit cdd53114a0ab09bd1b7b88f81b59d47453783427[m
+Merge: fc564ff 854139b
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 6 14:54:20 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit fc564ff26afcd2d79853ed6210a4b2b11b518ced[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 6 14:54:10 2016 +0800
+
+    open api
+
+[33mcommit 854139bf9c20ab974a79c09b88a038131d2e447d[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 6 11:23:49 2016 +0800
+
+    update route;
+
+[33mcommit cbdb47a97ec9dfb80cb6d3b0a1fe7c7fa89f4707[m
+Merge: b98fd35 b2c9a63
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 6 10:53:31 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit b98fd357c27cdb07d6e3f8376f3503c0722c056e[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Sep 6 10:53:01 2016 +0800
+
+    update purchase
+
+[33mcommit b2c9a63858cbbdaa5a6c07ce0c32d785fd1d315a[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Sep 6 09:36:22 2016 +0800
+
+    redis
+
+[33mcommit 683fe6e834aa7a5450a35e22b611eb5586668eda[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 5 21:31:25 2016 +0800
+
+    redis
+
+[33mcommit 752f7d089b9eecf77bd7231dd6a9d2d6bc6f780d[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 5 18:42:49 2016 +0800
+
+    product bug fix
+
+[33mcommit 883db666f47c42d201ff8bf6c0e5024a800c0e08[m
+Merge: bdb27fe b5d3ce1
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 5 17:13:55 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit bdb27fee70d46ae38e4f2edb19a47d285acf0722[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 5 17:13:49 2016 +0800
+
+    open api
+
+[33mcommit b5d3ce13c87eae9ea7a9b6d7bcfab1ebb81a8571[m
+Merge: 904a4e3 04e6a13
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Sep 5 17:01:11 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 904a4e30ee75b4735c79d11640919378cd6f8783[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Sep 5 17:01:03 2016 +0800
+
+    add api
+
+[33mcommit 04e6a13d697faddf57f690cee81189547bbdecfc[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 5 14:18:35 2016 +0800
+
+    mybatis setting
+
+[33mcommit a2ac39baca728a0b2c3b8598707e3c31cf34cf13[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Sep 5 10:50:02 2016 +0800
+
+    product facility shipping mapping api
+
+[33mcommit d40cd7f15f4374fde82a62d31979f53f76d04049[m
+Merge: 7f14fba 15ff87b
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 2 19:06:20 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 7f14fba053771f08e9651ab53a529191952ac713[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 2 19:06:13 2016 +0800
+
+    admin
+
+[33mcommit 15ff87b0c5b4a67195527487c0fef863086c7143[m
+Merge: 082371f 01c12e9
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 2 18:35:15 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 082371fe903302c4e5af5a0799c5994c83470412[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 2 18:35:10 2016 +0800
+
+    update merchant
+
+[33mcommit 01c12e93e84a90a3cfd6c9d98018566e72942e99[m
+Merge: 8698822 54482be
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 2 17:17:29 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 86988229b715064c8d500eb1faba992feb0fe94c[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 2 17:16:32 2016 +0800
+
+    open api
+
+[33mcommit 54482be1c701a4213ad264d3f25dd63e67b84709[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 2 17:09:05 2016 +0800
+
+    add productSupplier info
+
+[33mcommit b839d74adf590567dae1d8f8f269602c33743802[m
+Merge: 6be261b 97c12fa
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 2 15:58:52 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 6be261b19bd59b19109945990f0c8085a7d6ea55[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 2 15:58:47 2016 +0800
+
+    update facility
+
+[33mcommit 97c12facf72066c75211d402017526693f432b6a[m
+Merge: 45836a6 de7f6ed
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 2 10:39:25 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 45836a6c98625b1004a9b9e21b327cd818cc5fb9[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Sep 2 10:39:13 2016 +0800
+
+    product mapping
+
+[33mcommit de7f6edaedaa88c866f9a0f19a70befc1fb002a2[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Sep 2 10:33:18 2016 +0800
+
+    add facility
+
+[33mcommit 94c099ceebab6f393b9bd80380e3d652654bb8e2[m
+Merge: b4a005d d9a5039
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 1 17:19:26 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit d9a50395e0cd76b0f099c1e8e92108232e7aca9b[m
+Merge: 81d4dee 817573b
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 1 17:14:18 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 81d4deef8604f22dd129118e453b3e3c751cf27a[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Sep 1 17:14:08 2016 +0800
+
+    add api
+
+[33mcommit b4a005ddf86c6aa224f842b2bfa796ad9714f9b2[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 1 16:47:42 2016 +0800
+
+    delete user map
+
+[33mcommit 817573b492961f92f14c0bbb83250399748d1c21[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 1 16:43:40 2016 +0800
+
+    bug fix
+
+[33mcommit d0852fdf0e56514a31f4254d760b1aee71a04be7[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 1 12:47:09 2016 +0800
+
+    product packaging
+
+[33mcommit 42667ebd8298485b03be7774ba3da071fe16fc5a[m
+Merge: 1af29d2 15df731
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 1 09:39:22 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 1af29d2f462b2bed132f2e8fb3e8c2e0d440ba45[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Sep 1 09:39:11 2016 +0800
+
+    product district
+
+[33mcommit 15df731cc9674e64af79e66053fe15f45b77e316[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 31 17:49:32 2016 +0800
+
+    add merchant
+
+[33mcommit 2ccbccd688d1bac11461594de7a8168d95b90ba3[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 31 17:16:31 2016 +0800
+
+    add api
+
+[33mcommit f8634f47f67fb6a65ae403ade9b4c3fd6477f86e[m
+Merge: f44f668 0a93544
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 31 10:43:28 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit f44f668307d0e4f0b6024347627f55b6b008ff9d[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 31 10:43:22 2016 +0800
+
+    add facility
+
+[33mcommit 0a935441bc150e24a09deea40004e4b93b715f44[m
+Merge: 66c6efe 69879d4
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 30 17:01:24 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 66c6efebce01aea87916918a6b95afbbf91a4c3d[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 30 17:01:03 2016 +0800
+
+    status check
+
+[33mcommit 69879d45d042622d94105631031dd82252a77502[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 30 15:25:13 2016 +0800
+
+    add supplier
+
+[33mcommit 4507922440dc7dc2eae8be8ecd0aec0b11aabef1[m
+Merge: e33689c 7976a81
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 30 14:34:22 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit e33689c2b98c58ff6cb9384e63e353fcaf504574[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 30 14:34:15 2016 +0800
+
+    add facilityshipping api
+
+[33mcommit 7976a81a7c2706916294b837d5ba6ec5ae074751[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 30 13:56:20 2016 +0800
+
+    add api
+
+[33mcommit 0b98160c4d3cfb42a04dec9178209316d7506d7a[m
+Merge: d455faf 8d20e53
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 30 10:58:23 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit d455fafbd5f6c02431800bbc1c5c7bb3121f9f29[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 30 10:58:10 2016 +0800
+
+    product scale
+
+[33mcommit 8d20e5345558fe2728163eb830945820aa9cf029[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 30 10:53:52 2016 +0800
+
+    update supplier
+
+[33mcommit d7aa965f7836e9c96f85b48f11bb5ea64d4db3ea[m
+Merge: 6bbc49e de0e147
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 30 10:17:04 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 6bbc49e7df6024709735dd512f50b9aaf9b0b1da[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 30 10:16:56 2016 +0800
+
+    update merchant
+
+[33mcommit de0e147d6abbe76112b15a3d45dd8ef8eb700def[m
+Merge: c10651c 642ea26
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 30 09:40:46 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit c10651cf7cb3735c6109c4325c2aa63cf7f0adc3[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 30 09:40:37 2016 +0800
+
+    api connection
+
+[33mcommit 642ea26fbf4ef16cb666ce5ea1fb78139ea6f0df[m
+Merge: 89cd446 c8ef086
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 29 20:27:06 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 89cd4465a4afb25633c830525c44708c53c7a1a4[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 29 20:26:59 2016 +0800
+
+    add productfinanceType
+
+[33mcommit c8ef0860a1bbf8b2bc8f80e71034e88c4c65483b[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 29 16:08:36 2016 +0800
+
+    菜单支持all权限
+
+[33mcommit e7e3d363ac2a758d65c6b1cc03eadf1ec42a91bc[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 29 16:02:57 2016 +0800
+
+    获取菜单列表
+
+[33mcommit 0ae12b38de19acea6c21852e700977beac817664[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 29 12:16:28 2016 +0800
+
+    add product type to mapping api
+
+[33mcommit 9c6df081ece29bdf4ba6de8c949f1542040476cb[m
+Merge: 8a58d09 5bcc2a7
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 29 09:56:16 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 8a58d09c36582663f89a6827a71ead5bcf9705d6[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 29 09:56:08 2016 +0800
+
+    update merchant
+
+[33mcommit 5bcc2a751c8ea168fbadc5fe4040f74aecfff6e7[m
+Merge: 8710af4 c79315f
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 26 17:14:02 2016 +0800
+
+    Merge branch 'master' into mms1.0.0
+
+[33mcommit c79315ffe2b222b977cd1a1ca2e5f39c85210b2d[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 26 17:13:29 2016 +0800
+
+    add fourth category
+
+[33mcommit 8710af4a082c13a663ba69d865266e74b340a388[m
+Merge: 8b17a44 7afa418
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 26 16:48:59 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 8b17a44ab9f8d7d4dd5e3716454eaf730fd58943[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 26 16:48:55 2016 +0800
+
+    update carriage
+
+[33mcommit 7afa418f0d22928ea07966c73f2eded6c4f71ddd[m
+Merge: 7836aad fa43ceb
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 26 16:02:17 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 7836aad921ac39a332356a21d8c56018d166dce3[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 26 16:02:12 2016 +0800
+
+    add apply status
+
+[33mcommit fa43ceb2a7356f9868f228e27294a494a15c533f[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 26 15:57:56 2016 +0800
+
+    update facility
+
+[33mcommit e955ba90e827b23471a9e7914aa9798bf7a789da[m
+Merge: 8232e8d 2f2850d
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 26 14:55:53 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 8232e8dfc03eaff772873ac2cad4a87a16c15c32[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 26 14:55:44 2016 +0800
+
+    update carriage
+
+[33mcommit 2f2850dfd006e534434eaa79a7503c54aedb2e95[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 26 14:17:54 2016 +0800
+
+    bug fix
+
+[33mcommit 3737b577d143b66ff464eea2b038d7a9402a28a9[m
+Merge: 5f338fd 84a1c4e
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 26 12:35:56 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 5f338fdee1ddcaf46e3be649445deaaa0f5968be[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 26 12:35:50 2016 +0800
+
+    bug fix
+
+[33mcommit 84a1c4e035b7f314bd348ee65964f012b56e7b11[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 26 11:02:26 2016 +0800
+
+    update merchant district
+
+[33mcommit 158e19d6ff24f4a9db7b0e96867be9acde263ebf[m
+Merge: e49e206 c6cfe8f
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 26 09:41:45 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit e49e206eab6bbbf873598da52ea326e0a07dfdc0[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 26 09:41:40 2016 +0800
+
+    update productsupplier
+
+[33mcommit c6cfe8ffa36491dc41e8c70ea4e5e56f8e6da185[m
+Merge: 3da9ccc 200ceb9
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 26 09:29:19 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 3da9ccc7a190558bc56ec53e43eb56bf9cc5fb31[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 26 09:29:09 2016 +0800
+
+    product district facility
+
+[33mcommit 200ceb92426aaf0c5e308bb5de3198be25fa207e[m
+Merge: 7e37bb7 54c4136
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 25 19:09:45 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 7e37bb7d7d8d922486b5fede19b0c6c8cd659930[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 25 19:09:37 2016 +0800
+
+    update name
+
+[33mcommit 54c4136cf6c4fe6b435a56525521bbd31a81c972[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Aug 25 17:24:39 2016 +0800
+
+    add column
+
+[33mcommit 5c73e6272119da028a0a2d5cb17ddfc914172702[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Aug 25 15:39:07 2016 +0800
+
+    product check
+
+[33mcommit cab6c0b44edd517d26ac0797cd9d8cd6d18cd4a9[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 25 14:15:15 2016 +0800
+
+    update api
+
+[33mcommit 793d540ccaeae32ed565b94b2481255e08d9d80f[m
+Merge: 0f89730 840b74e
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 25 14:10:53 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 0f89730939d0674bf28ff292d219180d084334e9[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 25 14:10:46 2016 +0800
+
+    add merchant
+
+[33mcommit 840b74ec8979006269045d48a1601499eb503bc5[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Aug 25 13:32:58 2016 +0800
+
+    merchant
+
+[33mcommit d4fde9f2e3e66492be0d0ec45d7671a3edec5ac5[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Aug 25 12:43:07 2016 +0800
+
+    add api
+
+[33mcommit 7bd45559bd1523166e1b102f94ce7bfc2c7a53bb[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 25 11:21:09 2016 +0800
+
+    add error
+
+[33mcommit bb167d3e9191cb2454a502af137ad76748607495[m
+Merge: cf1aa2e ce5ec86
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 25 11:07:42 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit cf1aa2efd504bc1fe412bfa21d3420da2c008145[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 25 11:07:36 2016 +0800
+
+    update facility district
+
+[33mcommit ce5ec8610d63c5b8288c8d8dab64442c149ef67d[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Aug 25 10:55:12 2016 +0800
+
+    product goods list
+
+[33mcommit 4d28a43b0b2882be5f45bb433d05fe2fbecc763a[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Aug 24 20:11:32 2016 +0800
+
+    product facility district bug fix
+
+[33mcommit 32373bfa56b14f7ef97d87ec96f2cf9eb1af52e8[m
+Merge: a255dab 1792b2b
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Aug 24 17:46:22 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit a255dab85c63d2a90e1424a4d38f4d381e51ce18[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Aug 24 17:46:12 2016 +0800
+
+    set shipping rule bug fix
+
+[33mcommit 1792b2b23b72ff5e9683eaecea3d03b0946eed13[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 24 17:42:40 2016 +0800
+
+    add api
+
+[33mcommit 77aca4ed20a146a4171848445c2d943011ac3fad[m
+Merge: 31c0291 3138149
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 24 14:29:30 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 31c029123528a1b60dabbabb663d44c4858167f3[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 24 14:29:24 2016 +0800
+
+    add merchant
+
+[33mcommit 3138149a517f180068a5c339ea928b1a1cc3edb7[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Aug 24 12:10:26 2016 +0800
+
+    增加过滤器
+
+[33mcommit 83c22314dfbc26fff4ddd689e45d5de60aa7f337[m
+Merge: 42a7178 edd4ffc
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 24 10:49:44 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 42a71787ca1887924a90510020628230344f9466[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 24 10:49:39 2016 +0800
+
+    add shipping
+
+[33mcommit edd4ffccc0ac0bb9c2821d4d0d142a9fda8e0b3d[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Aug 24 09:39:28 2016 +0800
+
+    product controller]
+
+[33mcommit 3e440118e2b270ee6ed43940dd41da7deb6cc5c2[m
+Merge: 4165467 98ea926
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 23 19:24:12 2016 +0800
+
+    Merge branch 'master' into mms1.0.0
+
+[33mcommit 98ea92659a8fb3c6adce6b779b9078863279b2ba[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 23 19:04:30 2016 +0800
+
+    product temperature package
+
+[33mcommit 4165467d16f42f9264a09a1d2b79d2730dd748f4[m
+Merge: c3a1c8a 9d0defd
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 23 18:18:44 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit c3a1c8a9595ee13b7162f10d077918f3abf479f0[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 23 18:18:34 2016 +0800
+
+    add api
+
+[33mcommit 70df6d0feabdf75b0d4e5649c859c10202f31669[m
+Merge: 9d0defd 5dd3d06
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 23 18:05:45 2016 +0800
+
+    Merge branch 'master' of git.yiran.com:pre/mms
+
+[33mcommit 9d0defdcad3f42198f9ac6af2c675959b551aa29[m
+Merge: 5c0bf05 71ae11f
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 23 18:01:58 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 5c0bf057ed24446abc805bcace49465c4c86d8e3[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 23 18:01:53 2016 +0800
+
+    error handle
+
+[33mcommit 71ae11f3d34b26aed91d8054ab056d20c5ad9d6d[m
+Merge: 55c78d5 8149615
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 23 17:31:22 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 55c78d5a268af31e8a0a8a2d9ad8c7a5002cef1c[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 23 17:31:16 2016 +0800
+
+    update facility
+
+[33mcommit 5dd3d067261196229fdaade45468b2344ef937e7[m
+Merge: 9b66d87 8149615
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 23 17:20:54 2016 +0800
+
+    Merge remote-tracking branch 'origin/mms1.0.0'
+
+[33mcommit 814961570fc67d3d4f294ca311308a0cde4771f7[m
+Merge: 9e1a4ea c301e74
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 23 17:19:06 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 9e1a4ea2ed27ebfe18c3fc1b6927d63fbdd8c98b[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 23 17:19:02 2016 +0800
+
+    api bug fix
+
+[33mcommit c301e749b04d4eaee7a2b20bed485b0b30d8ee2f[m
+Merge: 65a96da 71e6ade
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 23 17:10:21 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 65a96da41b2849acfd960a23752bf109247ccecb[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 23 17:10:11 2016 +0800
+
+    update facility
+
+[33mcommit 71e6ade1bebce91be08b12776e9f50596c49552c[m
+Merge: 79d0cc2 07e266e
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 23 16:15:21 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 79d0cc28fbae886b6f078135e45d477afb8c3d6e[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 23 16:15:15 2016 +0800
+
+    product progress
+
+[33mcommit 9b66d874b281d964f423b4fa657bf2e274f07982[m
+Merge: 2a24337 07e266e
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 23 15:26:40 2016 +0800
+
+    Merge remote-tracking branch 'origin/mms1.0.0'
+
+[33mcommit 2a2433798ea7d4b86dd067b00445a5c21a145c90[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 23 15:23:15 2016 +0800
+
+    excetpion
+
+[33mcommit ae4594b10bbe7fb973f1895b9f93dad4166004e0[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 23 15:22:09 2016 +0800
+
+    当前数据库
+
+[33mcommit 07e266ec79c9c675170e1f809069835b24bf788c[m
+Merge: a423f9e a3b6352
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 23 15:21:29 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit a423f9ea648c9f6ef5ae14e292db42a442280591[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 23 15:21:20 2016 +0800
+
+    add facilityArea
+
+[33mcommit a3b63527549c96bde9895b3d1f75c4f048ed5f32[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 23 11:12:00 2016 +0800
+
+    product mapping
+
+[33mcommit f144480eb30c95549fcd21e1db09397b1773feaf[m
+Merge: 96815e2 14c54fa
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 23 10:14:37 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 96815e21bc0aa03667228c3cba9c3c290d823239[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 23 10:14:28 2016 +0800
+
+    inteface refine
+
+[33mcommit 14c54faa2999e34df6011f02dbc416820a1044df[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 23 10:11:05 2016 +0800
+
+    add shipping
+
+[33mcommit 05d01bbfefef22c42ee659524e19b7cc7bbe3257[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 23 10:13:11 2016 +0800
+
+    area api
+
+[33mcommit 6484cd97ba95d02cde9ba0f5d10e7486937194ee[m
+Merge: ee4a71d 7cf26f1
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 22 18:33:59 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit ee4a71da8588e8c0f04e3c29768b27083a87ed3c[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 22 18:33:53 2016 +0800
+
+    add carriage
+
+[33mcommit 7cf26f197a1257eaa7735457a2d119333036a49b[m
+Merge: bd4a0c2 1ab2a87
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 22 17:07:44 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit bd4a0c2df041b5991ce73ccb8efeef5f158859ec[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 22 17:07:38 2016 +0800
+
+    add coverage
+
+[33mcommit 1ab2a87c8a9c95de7cf3ca54421ad619d3bdc003[m
+Merge: dc5bc68 3336cb2
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 22 15:09:40 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit dc5bc68093fc3cafbe9845cec751e4f08d5d19d8[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 22 15:09:34 2016 +0800
+
+    add atrr value
+
+[33mcommit 3336cb21dbc3fb6ec13d2b3a9d03c133c6698438[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 22 13:59:43 2016 +0800
+
+    user controller
+
+[33mcommit 04e4793b9105e92484bfbe4fe11756e25fa26f5d[m
+Merge: e71c158 c0850d6
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 22 11:15:29 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit e71c158ec3cce90abecf2bfcc44769b1e76c4838[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 22 11:15:24 2016 +0800
+
+    update product
+
+[33mcommit c0850d6f5911501d70bf2d40eefe5cc57897f655[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 22 10:57:10 2016 +0800
+
+    login 接口
+
+[33mcommit dc2f76d573ad946d05dfb07395d9c0d7976b8d32[m
+Merge: 4530d03 0cad8e2
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 22 10:56:48 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 4530d03fc20342bb35f48eac9d334a62f24b6ee5[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 22 10:56:40 2016 +0800
+
+    product container by ids
+
+[33mcommit 0cad8e2bf184c645f26c87cba3e224560edcb5a0[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 22 10:50:32 2016 +0800
+
+    add list
+
+[33mcommit 7f9ba5fe0a87f3f18237ceadfb0ac6d5f4e6037c[m
+Merge: 9d72abd 39d46cd
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 22 09:58:28 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 9d72abdd9e931c93a916ba11f2010edccf674227[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 22 09:58:21 2016 +0800
+
+    update product simple
+
+[33mcommit 39d46cd7e4ef1bfddc954614feca064e5d5f9278[m
+Merge: 4135660 80e627e
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 22 09:30:21 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 41356605741e2c3f661c61996bfe25456f9ebcfa[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 22 09:30:16 2016 +0800
+
+    facility shipping coverage
+
+[33mcommit 80e627ef0052711ca56c21c2fd42095426eb834a[m
+Merge: 5cbf40d f2cbb57
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 19 18:22:32 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 5cbf40dbec57537485259c5811c7e04ff81782c8[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 19 18:22:25 2016 +0800
+
+    add carriage
+
+[33mcommit f2cbb57c0c871072c91d333643e4ac5a09f7bf53[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 19 15:23:01 2016 +0800
+
+    product packaging api
+
+[33mcommit 836dbddc3dbad3fde5c05468cafaaea02a04be52[m
+Merge: 1c8d988 0d05538
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 19 11:22:21 2016 +0800
+
+    fix confilt of faciltiyfulfilltime
+
+[33mcommit 1c8d988a868e197124e7f187ef391460812172ea[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 19 11:12:26 2016 +0800
+
+    set facility fulfill time
+
+[33mcommit 0d055384099f15d6347649ad6ef57788257b2501[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 18 20:00:24 2016 +0800
+
+    add merchant
+
+[33mcommit 46b52bc03805eb60d02abcc774cdbf78e13aaad1[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 18 19:19:19 2016 +0800
+
+    update facility
+
+[33mcommit dc4d8cbc3cc9312e4b81e7fd18444c398ef88b11[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 18 19:03:24 2016 +0800
+
+    move api
+
+[33mcommit 6646fdcaa06b34ab9215b8f718bd99d2b03ffe0c[m
+Merge: f16fc0c c3744a9
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 18 18:55:33 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit f16fc0ce597f432669d5899ed1d47b88e02baef1[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 18 18:55:27 2016 +0800
+
+    add api
+
+[33mcommit c3744a94949d1a87b17e0816e4d1c2c01e0d7e55[m
+Merge: 3276638 691c57a
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Aug 18 18:01:22 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 327663841c88b0530dfa01884620cb61d04cb64d[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Aug 18 18:01:12 2016 +0800
+
+    product qc
+
+[33mcommit 691c57aeca89ec00c4344bc18be1c689e39975c5[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 18 16:10:12 2016 +0800
+
+    add product
+
+[33mcommit cc187c54db14b4cc4090b53ca7edd587d6bff02e[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 18 15:51:02 2016 +0800
+
+    update facility
+
+[33mcommit 0ca8f6e0596e28c138e8935b0d20f389a6a5117b[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 18 14:16:43 2016 +0800
+
+    update product
+
+[33mcommit 4f0b25ab9d7f7fe12bb6d2334bc39ec26f4aacf3[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 18 14:01:51 2016 +0800
+
+    add default
+
+[33mcommit b1185eab1e38bd200bb98311eb1c805d501e1d7f[m
+Merge: 770fca1 8d3b203
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 18 10:36:53 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 770fca1b4d804e7b7f4a1159a695efe66a5a66af[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 18 10:36:38 2016 +0800
+
+    add api
+
+[33mcommit 8d3b20320455e95d7cdc876edf9c5c14c6ee7855[m
+Merge: de1025d 5592ceb
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Aug 18 10:06:36 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit de1025d7fffad33154e99b56a1e5bb33c67403ed[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Aug 18 10:06:24 2016 +0800
+
+    dfang
+
+[33mcommit 5592cebe0b184c9256285b579c3ec15e54561659[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 17 18:46:51 2016 +0800
+
+    add platform
+
+[33mcommit 16035d70ce4642d1e0c02bc143ca01d743381f68[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 17 18:06:14 2016 +0800
+
+    update supplier
+
+[33mcommit 622df87d1123da1bab4f3c4499c2ab294ddb73b6[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 17 17:54:49 2016 +0800
+
+    update purchaseuser
+
+[33mcommit 08f833f8fa851d6d1cde67a91c7265b4e8908b14[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 17 17:39:53 2016 +0800
+
+    update supplier
+
+[33mcommit 91ea17c11dcb354454c7eec17849c24ff822fe6f[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 17 17:33:31 2016 +0800
+
+    update supplier
+
+[33mcommit 844b4595c763f4b1083cc6610676c17d9004f5a6[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 17 17:25:49 2016 +0800
+
+    add supplier
+
+[33mcommit 1d1d7c174cd2fc57bd2863bc213c8639cfb375f2[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 17 16:35:28 2016 +0800
+
+    add api
+
+[33mcommit f664ac07b71e3b749e5c5c3e8792f0b25cbadf76[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Aug 17 16:13:58 2016 +0800
+
+    supplier product mapping
+
+[33mcommit 4b4ff91c32f0e0b05a80a49fae8ee464f641a922[m
+Merge: 7589cc7 dda849a
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 16 20:20:57 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 7589cc78f53374ada92f220180c604548ad8a0b3[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 16 20:20:53 2016 +0800
+
+    product container
+
+[33mcommit dda849ae6e94a7ef2d4e3f3de13622fa9ec824a1[m
+Merge: df83325 02e52e0
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 16 14:29:17 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit df83325a54672c598ab53c8468f67cfe3e3754b5[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 16 14:29:04 2016 +0800
+
+    add areaapi
+
+[33mcommit 02e52e076dbbac7ed15e23b7611fccf9e4c91afd[m
+Merge: d1257a9 62780c6
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 16 11:16:54 2016 +0800
+
+    Merge branch 'master' into mms1.0.0
+
+[33mcommit d1257a977b43d5034022c1df203a68311fc233be[m
+Merge: f666bda 1de6190
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 16 10:50:40 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit f666bda3a3e072f296f046c14d03d5d2f13b21fb[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 16 10:50:31 2016 +0800
+
+    product unit
+
+[33mcommit 62780c6a428a7fd5ff87018de2e764829e9daae5[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 16 10:42:25 2016 +0800
+
+    product mapping
+
+[33mcommit 1de6190d8f736a9f2f52f160a88c64c4059949b8[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 16 09:47:39 2016 +0800
+
+    update facility
+
+[33mcommit 906bb935c9886b80b79dd498eb72d07f30b74763[m
+Merge: 7b44e23 24cb3b5
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 16 09:37:13 2016 +0800
+
+    Merge remote-tracking branch 'origin/mms1.0.0'
+
+[33mcommit 24cb3b5188cc648c041bb8a50819a249bb10a4e5[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 16 09:35:58 2016 +0800
+
+    product packaging dumplicate
+
+[33mcommit 7b44e23b61d60ced055af3109781debe99294a3a[m
+Merge: a580131 c0b5eeb
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 15 19:14:46 2016 +0800
+
+    Merge remote-tracking branch 'origin/mms1.0.0'
+
+[33mcommit a580131a2ed83c438ce292e5c2ae8977cbbc5500[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 15 19:14:40 2016 +0800
+
+    product mapping
+
+[33mcommit c0b5eebfe723840492ab1479eda1c6ee0d5b433e[m
+Merge: 2faef62 1f437da
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 15 19:12:12 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 2faef62698968cadabb65849db22db8dc29feb5a[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 15 19:12:03 2016 +0800
+
+    product mapping quantity
+
+[33mcommit 1f437da8ec9b37e3bed14c3ef78d7f9203109572[m
+Merge: 50f7ebe 2679a0a
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 15 18:23:35 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 50f7ebe4c5f708d165d0720723b4089ae888d90b[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 15 18:23:30 2016 +0800
+
+    updata facility
+
+[33mcommit 49be0b2cf67cde4f7bc0a5920c78b2e52d2b490a[m
+Merge: 584b5cf 2679a0a
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 15 17:48:27 2016 +0800
+
+    Merge remote-tracking branch 'origin/mms1.0.0'
+
+[33mcommit 2679a0aaf4b34b111ac191eb94b0462c4d22d76b[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 15 17:47:30 2016 +0800
+
+    product simple
+
+[33mcommit 584b5cfe479dd2ef00c1ba0b215cd947f1344397[m
+Merge: 1461308 dd9087d
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 15 14:55:44 2016 +0800
+
+    Merge remote-tracking branch 'origin/mms1.0.0'
+
+[33mcommit dd9087dbb9fe85216f640e10dac0e7b559a1d09e[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 15 14:54:59 2016 +0800
+
+    product mapping
+
+[33mcommit 14613085b4d15ac59eef35292d27b68f699cf7e6[m
+Merge: 53a331c d2eba83
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 15 14:35:21 2016 +0800
+
+    Merge remote-tracking branch 'origin/mms1.0.0'
+
+[33mcommit d2eba838b1e6e7fe5a574535139ac95f370bb57b[m
+Merge: c44d211 1f0e93c
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 15 14:07:35 2016 +0800
+
+    product mapping
+
+[33mcommit c44d211513729a28c11c4e2b535e86486ebc69f3[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 15 13:57:20 2016 +0800
+
+    product mapping api
+
+[33mcommit 1f0e93cc0b6438d49c7351999be9b04c4364dc3d[m
+Merge: b812d2c ea438f4
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 15 11:50:17 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit b812d2c60fbcfef20575c0d8dcfbbdb077581e28[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 15 11:50:05 2016 +0800
+
+    update unit
+
+[33mcommit 53a331c96b6d3aa5c12069ae0e5392e00dc0b17a[m
+Merge: 08288f9 ea438f4
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 15 11:37:29 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit ea438f4c36e21fe20daacbfef237ac73caaca72d[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 15 11:35:40 2016 +0800
+
+    product mapping
+
+[33mcommit 6ff6881944c8d58f5ca98f9a740693a17cbf7d04[m
+Merge: 0ca07a9 8133350
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 15 11:27:06 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 0ca07a91f1da866e4a846d114d0620ecd9f8045c[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 15 11:26:56 2016 +0800
+
+    update format
+
+[33mcommit 81333505b6f4cb55c87975f6493cf57caa8b6d6c[m
+Merge: dd18b6c 93d29a5
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 15 11:15:54 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit dd18b6c75c69f2012596618a83b76334531be5b5[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 15 11:15:44 2016 +0800
+
+    product facility shipping setting
+
+[33mcommit 08288f966074e937f3b46efa45338564851034fd[m
+Merge: a0020c5 93d29a5
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 15 10:39:33 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 93d29a5eb95f2dbde7cbd34dc1d597d5a0f41aed[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 15 10:35:44 2016 +0800
+
+    根据ids获取productmapping
+
+[33mcommit a33a8f255d951712ccd105192fb963a14ede6c3f[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 15 10:29:29 2016 +0800
+
+    update api
+
+[33mcommit 41656e4934a68113c988f0c5344efaa7d27981bc[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 12 18:47:02 2016 +0800
+
+    add
+
+[33mcommit 37023d790b6f5c91ad843afdcc0858873acd7396[m
+Merge: 3819134 ad0a0ca
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Aug 12 15:59:46 2016 +0800
+
+    Merge branch 'mms1.0.0' of git@git.yiran.com:pre/mms.git into mms1.0.0
+
+[33mcommit 38191344c024e8cbc1f64c90cba6ab5b4b97c284[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Aug 12 15:59:27 2016 +0800
+
+    product api
+
+[33mcommit ad0a0ca1e350e3ad29990c040ba53c99a4ca4752[m
+Merge: d8aa834 d2c8467
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 12 15:54:45 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit d8aa83413d4344e5928afdc65f0462e2e6e6fbe0[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 12 15:54:36 2016 +0800
+
+    product facility distrct
+
+[33mcommit d2c846732206d469337e49f4e0cd09f24d8a3ecb[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 12 09:39:46 2016 +0800
+
+    update shipping
+
+[33mcommit 68fa077da6d00717510a295a5417ad031a932fc6[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 12 09:38:42 2016 +0800
+
+    update api
+
+[33mcommit a0020c5f37eac9bc2dd00fc2adeca248c863b388[m
+Merge: 0902fe7 ea04f96
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Thu Aug 11 19:51:35 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit ea04f96a947a7147b4f0fff334c350fed78bd414[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Thu Aug 11 19:25:48 2016 +0800
+
+    product api
+
+[33mcommit ff8734a5c42b974faa33128b5fb3de9ffd2e3795[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 11 18:30:08 2016 +0800
+
+    update controller
+
+[33mcommit 2700a5fe7c6a8b3cd013ece11299dc36e880b0c7[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 11 17:47:21 2016 +0800
+
+    update class
+
+[33mcommit 0902fe74fb87eb4e1a640f226d6a91a012327623[m
+Merge: b82db94 77921d5
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Thu Aug 11 17:30:27 2016 +0800
+
+    Merge remote-tracking branch 'origin/mms1.0.0'
+
+[33mcommit b82db9492288f589ab4b8e5be3e4b3616c4e4ac8[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Thu Aug 11 17:24:57 2016 +0800
+
+    判断异常是否为空
+
+[33mcommit 77921d59a01420aa0162b67da9a01cf8a3f0d397[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 11 17:11:39 2016 +0800
+
+    update null
+
+[33mcommit 1aaf3c182ed6272c6c118a3235cd39fc39785fa2[m
+Merge: cf41ea9 6c7386b
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Thu Aug 11 17:06:57 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 6c7386b21927efcf83e96862d359e72c6aa59047[m
+Merge: b8f044f 992e978
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 11 16:44:23 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 992e97887cffc627b6cb51a3320f0d61f63ca924[m
+Merge: 5c6affb 565559c
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Thu Aug 11 16:44:41 2016 +0800
+
+    Merge branch 'mms1.0.0' of git@git.yiran.com:pre/mms.git into mms1.0.0
+
+[33mcommit 5c6affb098850ba400ace6d4895d3db80399ac69[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Thu Aug 11 16:44:32 2016 +0800
+
+    product type
+
+[33mcommit b8f044f9b100d9f518cd262425abbeda8ac54fd0[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 11 16:44:14 2016 +0800
+
+    add facilityName
+
+[33mcommit 565559cc55fc381622d7041169b61d1531c0a2aa[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 11 16:19:12 2016 +0800
+
+    update purchaseplace
+
+[33mcommit 40652b847d04f17665bfc95217337cb90c792374[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 11 16:13:01 2016 +0800
+
+    add faciliy
+
+[33mcommit 1569841990f74f3600db7bbf3afc013975370f50[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Thu Aug 11 16:06:50 2016 +0800
+
+    product type
+
+[33mcommit 9a301fc559d891360d446669bcbbfd7a5a67d685[m
+Merge: 0239d82 00c8416
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Aug 11 11:26:46 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 0239d82f32b007d388e18b63a9121ee4764ea19c[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Aug 11 11:26:35 2016 +0800
+
+    product_facility_region_shipping
+
+[33mcommit 00c84167f2d35c1ceabaaeb5860e01120f1f8aef[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 10 19:33:54 2016 +0800
+
+    update supplierProduct
+
+[33mcommit 9113382ca63a651d7b89db1a9ece826c39ed213e[m
+Merge: f7cd0b7 9c2986d
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 10 18:34:20 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit f7cd0b77d2f745e8dbcf589abe0c149e5e443586[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 10 18:34:11 2016 +0800
+
+    add list
+
+[33mcommit cf41ea93a8e45097957fabaf1732954cb4f8179b[m
+Merge: 36a1710 9c2986d
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Aug 10 17:04:18 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 9c2986d21781372caf74f6fa9494dc0ea55b2736[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Aug 10 16:42:42 2016 +0800
+
+    日志配置
+
+[33mcommit b579256d057c176a0af822ce0251c4363c8ba34e[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 10 15:51:24 2016 +0800
+
+    update merchant
+
+[33mcommit 45a8d3140df8b444af972ce7934c07d5ea820ca7[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Aug 10 15:24:49 2016 +0800
+
+    swagger 类型
+
+[33mcommit 73d3c93af703adc54080e7645063796598141dd6[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Aug 10 11:23:03 2016 +0800
+
+    扩展异常处理机制
+
+[33mcommit c508ce7a95cdfd25daa4695e4c06b10159cb76c5[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 10 10:54:50 2016 +0800
+
+    add merchantShop
+
+[33mcommit acb17f598eefaaf9b422829679479c5541ed9f6a[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 9 20:51:42 2016 +0800
+
+    product facility shipping
+
+[33mcommit 64e5d1c0486759581e7924a0647b5c3789dacd87[m
+Merge: bd82e20 880aea4
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 9 17:51:25 2016 +0800
+
+    productMapper.xml conflict fix
+
+[33mcommit bd82e20820b74e078cb9391a11831cc402e7f438[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 9 17:48:26 2016 +0800
+
+    add product tag mapping
+
+[33mcommit 880aea4a43ba6a1f421c240f9a687486b5693033[m
+Merge: 1d8181b 78c7064
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 9 17:01:09 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 1d8181bea67a08aac8e2e5fe1b74b943ea47cbcb[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 9 17:00:58 2016 +0800
+
+    update route
+
+[33mcommit 78c70649947913c5c5c1976c476cde6ac82ecc07[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 9 16:56:56 2016 +0800
+
+    product mapper
+
+[33mcommit a8d0eccc9907351c0d5130f323a4386e1797a765[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 9 16:54:47 2016 +0800
+
+    product api
+
+[33mcommit 77569c5f740c0e20cc13e9cfcfacc9b25ed0a027[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 9 15:31:13 2016 +0800
+
+    product api
+
+[33mcommit 1ad1ae9e02decf1182d271a002da65cea8cbb240[m
+Merge: eb72061 5fa9306
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 9 14:47:00 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit eb720619f5b70fac7c982bf442a45097e611a6cc[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 9 14:46:50 2016 +0800
+
+    add api
+
+[33mcommit 5fa9306cff5457be9c0b08aea5c66168cdf1f7cf[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 9 14:19:01 2016 +0800
+
+    product edit
+
+[33mcommit dc85a1718601005fb1e4e3c8a507e2e9fcb9dc18[m
+Merge: 1802c18 8017e48
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 9 11:21:28 2016 +0800
+
+    product eidt
+
+[33mcommit 1802c183f27bc14574adf5951341b8577350b991[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 9 11:18:55 2016 +0800
+
+    product edit
+
+[33mcommit 8017e48423cd829551ff8a4cf6cae5cf35615819[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 8 19:39:32 2016 +0800
+
+    统一exception
+
+[33mcommit c4019f91bf1e232cf76b12f2db3972fdb02ee2d1[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 8 19:37:50 2016 +0800
+
+    增加自定义exception
+
+[33mcommit 5f0b3179c981a6a9814c10ed2f43b609a773f3a7[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 8 19:05:16 2016 +0800
+
+    product container
+
+[33mcommit 806df280e0293d4210b3c04afd06a4e68f7d998b[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 8 18:21:42 2016 +0800
+
+    add facilityApi
+
+[33mcommit edabfa60f6736a711eef6c41092febca564b6115[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 8 17:53:18 2016 +0800
+
+    update facilityShipping
+
+[33mcommit f63a02b4c124d01f0e970f5f5c83e082ecf92764[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 8 14:52:40 2016 +0800
+
+    update error
+
+[33mcommit 2b0832392bb0aa432e6b6f078d3dea6f93c4f883[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 8 14:36:29 2016 +0800
+
+    update isExist
+
+[33mcommit dce00595982b2a6398e922deaed33aaaf9459c19[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 8 11:34:46 2016 +0800
+
+    update log
+
+[33mcommit ad8be501550b2d9ee9830ff49ab7d3b23f9711fe[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 8 11:13:37 2016 +0800
+
+    update isExist
+
+[33mcommit 81cc30716b7ec9a84f99d1d22066f36e2ba6bfe6[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 8 11:08:14 2016 +0800
+
+    update isExist
+
+[33mcommit 22c90c3c572478f0567b896ee63e59d0b2cb7bcf[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 8 09:43:54 2016 +0800
+
+    update facilitshipping
+
+[33mcommit 01d98d22f34971f713d633baf57c671fd37844dd[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 8 09:29:57 2016 +0800
+
+    add isExist
+
+[33mcommit a54d11211a737b43949817b850c0592d36f1614c[m
+Merge: 0c282da aca3a7f
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 8 09:12:06 2016 +0800
+
+    Merge branch 'mms1.0.0' of git@git.yiran.com:pre/mms.git into mms1.0.0
+
+[33mcommit aca3a7fef846b73924838b19eee497362657ce85[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 8 08:53:43 2016 +0800
+
+    add transactional
+
+[33mcommit 0c282da1a05291212c2363d5544d6bcb55e0732d[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Aug 5 21:17:25 2016 +0800
+
+    aspect
+
+[33mcommit ef2159d5bb1468372018abf8b1b6ad3cf32eab4a[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Aug 5 20:52:36 2016 +0800
+
+    增加修改数据源log
+
+[33mcommit 7ffdfe292c79de2b7c655c8af9af5f71e0f8de02[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Aug 5 20:10:31 2016 +0800
+
+    检查用户权限
+
+[33mcommit d51604ad1b46c71b2cee391a39f06e97950e5626[m
+Merge: d139dcf 9587fcb
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 5 19:57:10 2016 +0800
+
+    product facility shipping
+
+[33mcommit d139dcfc3a925aeea76ee7166e7510a662f2112d[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 5 19:50:34 2016 +0800
+
+    product facility
+
+[33mcommit 9587fcbab20e6009465684df1de47a642fcb9b34[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 5 17:11:31 2016 +0800
+
+    add facilityShipping
+
+[33mcommit b7483f63f77cd543d63ff285da0e069c4436129a[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 5 16:23:32 2016 +0800
+
+    update facility
+
+[33mcommit 0a3475d0ec677d4cab41be873a3b7a5098b488b9[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 5 16:07:00 2016 +0800
+
+    add facility
+
+[33mcommit 3cefdd929f880953f67cbe65b9f18fba996d68b5[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 5 10:48:03 2016 +0800
+
+    fast josn
+
+[33mcommit be0c245cc2f197b4dc0dc4d2c693dbb535534e5c[m
+Merge: 50c562a dac671d
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 5 10:42:32 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit dac671df7438da3f95801e88898c93341708678b[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Aug 5 10:38:56 2016 +0800
+
+    update region
+
+[33mcommit 50c562ad02a9e8ebc924a5f96ee36481c0fa91b9[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Aug 5 09:41:01 2016 +0800
+
+    product edit mappers
+
+[33mcommit c9eefb030642a770222efc5ccd3cbfd97558e3af[m
+Merge: 6ae2b17 0c11e5d
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Aug 4 15:57:08 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 6ae2b174623266493f26918e913efc281d7ab7cd[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Aug 4 15:56:59 2016 +0800
+
+    product unit
+
+[33mcommit 0c11e5df06d85a5e7f523ab7f28010420d83ac5a[m
+Merge: 7fdb011 c1c5419
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Thu Aug 4 15:23:09 2016 +0800
+
+    Merge branch 'mms1.0.0' of git@git.yiran.com:pre/mms.git into mms1.0.0
+
+[33mcommit 7fdb0114854f85c389752a3f1c835f3cba2327e4[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Thu Aug 4 15:23:05 2016 +0800
+
+    region
+
+[33mcommit c1c54190005514a2af4dd779a770a83f8d70ba66[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Aug 4 14:51:13 2016 +0800
+
+    update region
+
+[33mcommit 600400428644b71e1a504ad299b7c9969906649f[m
+Merge: 87a78b3 54c7c11
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Aug 4 14:35:03 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 87a78b32a260d315bb1c5cef8aa15542b00ea40f[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Aug 4 14:34:51 2016 +0800
+
+    product service
+
+[33mcommit 54c7c11a18b0e7391512fe9fc3832a672e2e24a2[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 3 19:28:29 2016 +0800
+
+    update facility
+
+[33mcommit f82bd49818861ce311f3c56ec553a7234e8d1aa3[m
+Merge: d016632 5795333
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Aug 3 17:18:15 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit d016632d91cc682dc9240941382a44297fb937ce[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Aug 3 17:18:08 2016 +0800
+
+    product apply
+
+[33mcommit 579533370ff966355eb7dd5357aacc75a5d5fca0[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Aug 3 15:11:48 2016 +0800
+
+    修改sql log 配置
+
+[33mcommit a314fca255f362a7228d01368962b47bda3f68ff[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Aug 3 14:56:58 2016 +0800
+
+    common controller
+
+[33mcommit 10e34a9a86a208dbd6ed9c8274a7dfe990be6abf[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Aug 3 14:19:11 2016 +0800
+
+    swagger config
+
+[33mcommit 36a1710fe6ac18d383be9e07e2d7764253e73b21[m
+Merge: 18e5eb9 24048f5
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Aug 3 14:05:27 2016 +0800
+
+    Merge remote-tracking branch 'origin/mms1.0.0'
+
+[33mcommit 24048f59be4ca808805117f8be420aefc6ae774c[m
+Merge: 42a6a8e d5ae5bf
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Aug 3 13:04:15 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 42a6a8eaeb407fa06f85b3922b738ea264a8d3b8[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Aug 3 13:04:07 2016 +0800
+
+    file service path
+
+[33mcommit 18e5eb979395eb1f2bdb887d1817e02e8348baea[m
+Merge: d0c2aa4 d5ae5bf
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Aug 3 12:16:24 2016 +0800
+
+    Merge remote-tracking branch 'origin/mms1.0.0'
+
+[33mcommit d5ae5bf3ab3dfb4a94dbcefb748699ad9a28fe80[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Aug 3 12:16:04 2016 +0800
+
+    登录
+
+[33mcommit 1866bed7cdbf901f4598395e6e387eed790cf490[m
+Merge: ee74965 8e6fc1f
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Aug 3 12:15:33 2016 +0800
+
+    Merge branch 'mms1.0.0' of git@git.yiran.com:pre/mms.git into mms1.0.0
+
+[33mcommit ee749654358ee4629745927925c97d594caba849[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Aug 3 12:15:27 2016 +0800
+
+    登录接口
+
+[33mcommit 8e6fc1f34412c9085f0b0bf81cb81af3977ee802[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 3 11:36:22 2016 +0800
+
+    update swagger
+
+[33mcommit 0927ba55af3265c678a6a38d809c4a1584449f7e[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Aug 3 11:33:39 2016 +0800
+
+    update purchase place
+
+[33mcommit c1d1bafef59b4b668221f4a636c17270d89dafbd[m
+Merge: 8c3aa29 51d2229
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Aug 3 11:21:57 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 8c3aa29d168cec3bd05cf3a968351ecda8a60845[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Aug 3 11:21:47 2016 +0800
+
+    product list
+
+[33mcommit 51d2229b5661cbb292fcc4bc796147c892c87589[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Aug 3 11:16:04 2016 +0800
+
+    获取当前用户
+
+[33mcommit 89e4f3a284e1c44837f5a9a708bd435874e7b4ff[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Aug 3 09:40:10 2016 +0800
+
+    tax rate
+
+[33mcommit d0c2aa4310d92533ac7a2ebaef4b31a5e5f84852[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 2 21:25:21 2016 +0800
+
+    pom.xml
+
+[33mcommit b817275ae37da238a9ec9ea8daff217913e23767[m
+Merge: d2e995c 1a088db
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 2 21:14:16 2016 +0800
+
+    Merge branch 'mms1.0.0'
+
+[33mcommit 5e2a93a7f80306564b97aa7de2bb1d6eb8a3783e[m
+Merge: 0214e7b 2039198
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 2 20:34:33 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 0214e7b3e898e7f3e1fbba23c536a95298620187[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 2 20:33:56 2016 +0800
+
+    product tag
+
+[33mcommit 203919810483c5f8b830b306465cee561a9d7f3f[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 2 20:29:08 2016 +0800
+
+    add
+
+[33mcommit 1a088dbaa5e1b279310f08d2715e4a15eaae7efc[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 2 20:20:30 2016 +0800
+
+    menu
+
+[33mcommit 1272ae7246486a8af3f122633ef2bb38f60cab4c[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 2 19:44:27 2016 +0800
+
+    menu
+
+[33mcommit b76b76d73981b9593122fdca78f6f17397d5b7da[m
+Merge: 2bdeb4d 38c7398
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 2 19:43:57 2016 +0800
+
+    Merge branch 'mms1.0.0' of git@git.yiran.com:pre/mms.git into mms1.0.0
+    
+    Conflicts:
+    	src/main/java/com/ibenben/controller/CommonController.java
+    	src/main/resources/mybatis/generatorConfig.xml
+
+[33mcommit 2bdeb4de253d2ae33be603807f54e829f3228ed4[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 2 19:26:12 2016 +0800
+
+    menu
+
+[33mcommit b05d534af63ff4863fa479f6a5692b15d8c9d2c4[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 2 18:13:09 2016 +0800
+
+    menu list
+
+[33mcommit 38c739872727674ddac7998ff8f7b2d3deeea071[m
+Merge: 49c4c08 2803dda
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 2 17:22:13 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 49c4c087c21491edec4e7a3d2ce6d4eecf648ccd[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 2 17:22:09 2016 +0800
+
+    file upload
+
+[33mcommit 2803dda72fef7dcdf0f288aef1fcb90310144038[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 2 15:49:39 2016 +0800
+
+    add config
+
+[33mcommit 82a756844d37b42c687f01fb3a6686c4307ce2de[m
+Merge: a24cd99 69ef90b
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 2 15:49:16 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit a24cd996eab3db620dbf0a4c102447a539fbfe84[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Aug 2 15:49:07 2016 +0800
+
+    tag and category
+
+[33mcommit 69ef90be2243766bb712879ec5f73ab4bfbab3c6[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Tue Aug 2 15:41:28 2016 +0800
+
+    add merchant
+
+[33mcommit b16825e17f18d1c9dd0362590bccd55491449f5d[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Aug 2 11:05:12 2016 +0800
+
+    user controller
+
+[33mcommit 559971eab488297ef029929dec09ea44ade62b02[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 1 21:00:56 2016 +0800
+
+    REGION
+
+[33mcommit f92496f456e9167958c967149fd2c39e4de63e00[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 1 20:17:07 2016 +0800
+
+    region
+
+[33mcommit 783f2ece61430b59b32f844e5e78828fadf3f19b[m
+Merge: e83b42b b1313fc
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 1 20:16:23 2016 +0800
+
+    Merge branch 'mms1.0.0' of git@git.yiran.com:pre/mms.git into mms1.0.0
+
+[33mcommit b1313fca3b46817563243f6d6d260470dd2b6c81[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 1 20:15:46 2016 +0800
+
+    product tag
+
+[33mcommit e83b42b7c2b05076c3fb532446fb8552eaa1db3e[m
+Merge: 4dcf31d 8d40b73
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 1 20:15:01 2016 +0800
+
+    Merge branch 'mms1.0.0' of git@git.yiran.com:pre/mms.git into mms1.0.0
+
+[33mcommit 8d40b73c103f9c62d6823c215c834154c5e3089b[m
+Merge: 6cb0e44 42ff18b
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 1 15:34:32 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 6cb0e440ac3c4a3f7a999e9e3ace284f47ce384f[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Aug 1 15:34:24 2016 +0800
+
+    product tag
+
+[33mcommit 42ff18bfc052981736053e0cbc9c7ee24adca469[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Aug 1 14:02:51 2016 +0800
+
+    update
+
+[33mcommit 4dcf31d4edccfade73078a12f0cbec498c7356a0[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Aug 1 10:59:17 2016 +0800
+
+    删除不必要的配置
+
+[33mcommit 4b48c27093393355c5c60fe06d3fa694bf060408[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Jul 29 21:13:06 2016 +0800
+
+    product add
+
+[33mcommit f8e7955e854b3fb7c5f6a1b26a23194cdbc4a297[m
+Merge: 2277546 d5b0add
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Jul 29 19:11:46 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 2277546195367779dac831273e3dd6b6bedec4dc[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Jul 29 19:11:33 2016 +0800
+
+    file download
+
+[33mcommit d5b0adda9f6415bd979bb345a4b66bb14ef70960[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 29 18:49:23 2016 +0800
+
+    pom
+
+[33mcommit d2e995c676a78fcd6b4f3c74b45bb12ae61147f8[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 29 18:20:42 2016 +0800
+
+    file name
+
+[33mcommit b6e9ef6b6594bc8052f2cf1cfe4750970a8c414b[m
+Merge: 8d826b1 6354d53
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 29 16:55:33 2016 +0800
+
+    Merge branch 'master' of git@git.yiran.com:pre/mms.git
+
+[33mcommit 8d826b175d157cc32d8ff60fdd8bd2d4721ee5d8[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 29 16:55:24 2016 +0800
+
+    去掉
+
+[33mcommit ba82434f57940931f0dd5aa187dbfe6caa84cb54[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 29 11:12:38 2016 +0800
+
+    mms
+
+[33mcommit 6354d536f7036e15181caa441238d522532c3470[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 29 16:55:24 2016 +0800
+
+    去掉
+
+[33mcommit 86826e31f77df85170d56d31328b6c1bd12e1afe[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 29 16:51:46 2016 +0800
+
+    shanchu datasource
+
+[33mcommit 132cdd2b8c4e20452708199cc4d3d1e7baf2773b[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 29 16:50:46 2016 +0800
+
+    配置文件
+
+[33mcommit 73d59e2fe65103daf39db3d0f5ab0ec1bb767673[m
+Merge: f7df25e aabf309
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 29 16:21:36 2016 +0800
+
+    Merge branch 'mms1.0.0' of git@git.yiran.com:pre/mms.git into mms1.0.0
+
+[33mcommit f7df25e71e1e0773f7feae06f0cca355d02998f0[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 29 16:20:50 2016 +0800
+
+    swagger配置文件
+
+[33mcommit aabf3097fa2709c7bdcf556e0f83ba5cb6718f41[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Jul 29 16:09:11 2016 +0800
+
+    update
+
+[33mcommit 1b1296cb8870ab995cb08bf9ed3f1b92eb678278[m
+Merge: 817a946 953cec8
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Jul 29 15:18:04 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 817a946c1c61296f5ad4f381f536e3dbb52f5119[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Jul 29 15:17:58 2016 +0800
+
+    add product
+
+[33mcommit 953cec8488adcfde666774e6f538a05aade3c1a2[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 29 15:08:01 2016 +0800
+
+    修改配置
+
+[33mcommit 266313f20351b61b1ab740504b46484093137dd4[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 29 11:12:38 2016 +0800
+
+    mms
+
+[33mcommit b18520791910ef84aae1e53197a9c930c0d15189[m
+Merge: bac6126 8a7c71e
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Jul 29 11:03:17 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit bac6126d6d9ab2dddc13cc1936ce1b329b65a8ce[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Jul 29 11:03:09 2016 +0800
+
+    product add
+
+[33mcommit 8a7c71eb0003898419a25124eb75a793834aa0b5[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Jul 29 10:42:12 2016 +0800
+
+    update merchant
+
+[33mcommit 7a64470d4a4825e552750e607fb4b6dbca0b512a[m
+Merge: 0600597 c1fe003
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Jul 28 19:17:45 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 0600597a75c759e78361d25497569fc7a05dcc23[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Jul 28 19:17:40 2016 +0800
+
+    pageutil
+
+[33mcommit c1fe003eef669734f638ccc11fd7b9bb98c3632d[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Jul 28 19:06:52 2016 +0800
+
+    update productSupplier
+
+[33mcommit 17cd7106ce2926ccb2c478ef3588eb4b44fe6268[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Jul 28 17:29:15 2016 +0800
+
+    generate barcode
+
+[33mcommit 9bdcc0ceb7aa00d5097ce397f20742a9c8608548[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Jul 28 16:54:33 2016 +0800
+
+    user
+
+[33mcommit 32575bbf22f5430670955cd0aefd3f33c82ad689[m
+Merge: c7c5510 669dcd8
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Jul 28 16:52:01 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit c7c5510c6d8f88c6a8274eeb2c4e675a3e15ab38[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Jul 28 16:51:56 2016 +0800
+
+    add poduct list
+
+[33mcommit 669dcd859daf43c3af8a655200be9291d04e0983[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Jul 28 16:22:31 2016 +0800
+
+    update product supplier
+
+[33mcommit 1189b888462f99348b8639296f0acc678dae7384[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Jul 28 10:40:34 2016 +0800
+
+    modify
+
+[33mcommit 1305083e800e66a3f6321fd9d6009bb27a30bf7e[m
+Merge: 320d1c6 2f4244a
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Jul 28 10:31:05 2016 +0800
+
+    product apply
+
+[33mcommit 320d1c6ac91c0f1ce8d161d631dd05ae21a4b15f[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Jul 28 10:28:05 2016 +0800
+
+    product apply
+
+[33mcommit 2f4244ac8a933e9ec4f8ad554ab91f6c46748dca[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Jul 28 10:18:25 2016 +0800
+
+    update
+
+[33mcommit 83ecdc5831e122cf4e96742a1741485fe6487356[m
+Merge: 5fe2e88 80c76cc
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Jul 27 19:07:16 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 5fe2e8837e778d788fa3a4f6232092c2c00e7a49[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Jul 27 19:07:05 2016 +0800
+
+    product apply
+
+[33mcommit 80c76cc9d979493f39b07abad617890b1618bd8f[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Jul 27 17:34:42 2016 +0800
+
+    分页
+
+[33mcommit 57a12034c14ee095c27abb9f60c687f87497b078[m
+Merge: 732efe9 a8e6e96
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Jul 27 17:29:16 2016 +0800
+
+    Merge branch 'mms1.0.0' of git@git.yiran.com:pre/mms.git into mms1.0.0
+
+[33mcommit a8e6e96b074ccef35e5f03e9778f18d49374e8fe[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Jul 27 16:25:02 2016 +0800
+
+    update shipping
+
+[33mcommit 732efe9fb48e0c46fbd86107f0cb35bd36f1d005[m
+Merge: 8cae7e0 9634264
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Jul 27 15:25:45 2016 +0800
+
+    Merge branch 'mms1.0.0' of git@git.yiran.com:pre/mms.git into mms1.0.0
+    
+    Conflicts:
+    	src/main/java/com/ibenben/controller/ShippingController.java
+
+[33mcommit 8cae7e0af6a5af78e0a9498f7ad15cdcb854416c[m
+Merge: f953083 0d33dde
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Wed Jul 27 15:24:56 2016 +0800
+
+    Merge branch 'mms1.0.0' of git@git.yiran.com:pre/mms.git into mms1.0.0
+    
+    Conflicts:
+    	src/main/java/com/ibenben/controller/ShippingController.java
+
+[33mcommit 9634264ce81d845af3907a04d95f6db7a460a195[m
+Merge: 49d913b 45a260a
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Jul 27 15:17:49 2016 +0800
+
+    fix conflict
+
+[33mcommit 49d913be5ca973c5590543fb6cc0b6d288e56567[m
+Merge: 721f963 0d33dde
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Jul 27 15:14:39 2016 +0800
+
+    add platform fix conflict
+
+[33mcommit 45a260a048a9d7a7e41b7312a688ddb4bc3017cb[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Jul 27 15:11:31 2016 +0800
+
+    update shipping
+
+[33mcommit 721f96329cfa77483b3d72ffce6eb45d197779a6[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Jul 27 15:11:17 2016 +0800
+
+    add platform name
+
+[33mcommit 0d33dde1fd3ec73dbe7eb2717365e0296e271427[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Jul 27 14:30:25 2016 +0800
+
+    update shipping
+
+[33mcommit f953083cd72ca6dae2fd52a8f9ca44e233a49e0d[m
+Merge: 3d21173 367eef1
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Jul 27 14:07:16 2016 +0800
+
+    conflict
+
+[33mcommit 3d2117315a3ef8b6e5edf2fe85b2def23285dd4e[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Jul 27 14:03:50 2016 +0800
+
+    product apply
+
+[33mcommit 367eef1ce066b4c6fbfcf68bb061d9726cf4b09a[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Jul 27 13:58:33 2016 +0800
+
+    update shipping
+
+[33mcommit 8136d5f72e0e74095fcc45f70434b1be90db0863[m
+Merge: 8a5ca8a 0f420d6
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Jul 27 09:52:50 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit 8a5ca8ab6308b462b4889244a22522f3d3137c40[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Jul 27 09:51:02 2016 +0800
+
+    merchantDistrict
+
+[33mcommit 0f420d63b8043c3a6e660b54885b1ac8241f6596[m
+Merge: f506e27 f3d1790
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Jul 27 09:47:01 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit f506e2781f394a4eef0879de43170266cea15e56[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Jul 27 09:46:53 2016 +0800
+
+    file upload
+
+[33mcommit f3d179094f50656686605d0dec0726d88974e6ee[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Wed Jul 27 09:19:46 2016 +0800
+
+    supplierProductMapping
+
+[33mcommit 246f6c641a2811104486cd0baf732fd407796e79[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Jul 26 21:12:28 2016 +0800
+
+    delete webapplication
+
+[33mcommit 0136fd0014149c52e700ee3f3e6a51369d904d00[m
+Merge: 9c1c7b9 d028008
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Jul 26 21:10:29 2016 +0800
+
+    merge
+
+[33mcommit 9c1c7b9dd850511f7b341d9336539dba0d744574[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Jul 26 20:41:38 2016 +0800
+
+    file upload
+
+[33mcommit d0280088bffc54157a85d73c70b8c76df43c34db[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Jul 26 20:38:21 2016 +0800
+
+    大量配置（shiro， 多数据源， swagger等）
+
+[33mcommit 4208fd8a3a52f9f99a0e2c51deda4078fcda539b[m
+Merge: 82925de a3aecb2
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Jul 26 18:19:45 2016 +0800
+
+    Merge branch 'mms1.0.0' of git@git.yiran.com:pre/mms.git into mms1.0.0
+
+[33mcommit 82925deb1a7dfeb5b137c0e8aad3eaa978c0241f[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Jul 26 18:19:41 2016 +0800
+
+    error code
+
+[33mcommit a3aecb2903eec8c66338d08a77bdf7933a741964[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Jul 26 18:01:53 2016 +0800
+
+    controller classify
+
+[33mcommit 7fd885d30a03372466cd819193c88e84a518c745[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Jul 26 13:47:22 2016 +0800
+
+    pom add file upload
+
+[33mcommit a5f86dcf935ffb8c40a747e1e290a1c99136194e[m
+Author: dfang <dfang@ibenben.com>
+Date:   Tue Jul 26 12:28:59 2016 +0800
+
+    merchant and platform
+
+[33mcommit 3a45c802e742f3df868214aec78577b47bd364e0[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Jul 25 21:09:46 2016 +0800
+
+    upload file
+
+[33mcommit 3106f2759c0bde094c3ff89590901889ffc67b62[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Jul 25 20:21:50 2016 +0800
+
+    delete duplicate webApplication
+
+[33mcommit c2c1301d8ad4c591e45614bf96965120c36e9750[m
+Merge: f559658 3c68cd9
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Jul 25 20:11:41 2016 +0800
+
+    Merge branch 'mms1.0.0' of git.yiran.com:pre/mms into mms1.0.0
+
+[33mcommit f55965880a44e8f86a6efe18dc76e96be8d006a1[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Jul 25 20:11:36 2016 +0800
+
+    add webApplication
+
+[33mcommit 3c68cd982989e18a2a95ac0dac61a5d01c3dc9a4[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Mon Jul 25 17:11:21 2016 +0800
+
+    修改接口
+
+[33mcommit 0f5be35e0519cbd01fd684bc0f761b1fe1a23b1a[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Jul 25 16:21:27 2016 +0800
+
+    goods controller
+
+[33mcommit f1b390f2245e622b880c6bf953a79437c74226ef[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Jul 25 15:04:24 2016 +0800
+
+    goods mapper
+
+[33mcommit d444dc45b0b5b7b41123c14ef0164acd5a52c1f1[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Jul 25 14:01:23 2016 +0800
+
+    bug fix
+
+[33mcommit b42802f1bf46fa835de1fe2dcf1607df454cb8f6[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Jul 25 12:56:31 2016 +0800
+
+    cross region
+
+[33mcommit 3c5eea0e1ed5ba68326f7ba56e2e55268a56ffec[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Jul 25 12:54:31 2016 +0800
+
+    cross region config
+
+[33mcommit 776babc26d462ed184c2e098fdb708eae657ae50[m
+Author: dfang <dfang@ibenben.com>
+Date:   Mon Jul 25 09:29:22 2016 +0800
+
+    pom
+
+[33mcommit 2cdaabbab9d6e82a6eee63c2adc4be5073cc6cfd[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Jul 22 18:39:58 2016 +0800
+
+    product qc
+
+[33mcommit 1d4d71f40fe2ba21a20dd045fe4706f3e5cd4c5b[m
+Merge: 84bf8ff 345e96b
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Jul 22 18:35:00 2016 +0800
+
+    product qc
+
+[33mcommit 84bf8ffe17403720abe786d3fad79ea7b5d07567[m
+Author: dfang <dfang@ibenben.com>
+Date:   Fri Jul 22 18:17:26 2016 +0800
+
+    product qc
+
+[33mcommit 345e96b21c1a45aaba440398dc5f4ea01e0da866[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 22 18:01:05 2016 +0800
+
+    配置多数据源
+
+[33mcommit df4dd44dadf7e8cae376c2f0d31e6e8941851f80[m
+Merge: 410a756 50aad13
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 22 18:00:21 2016 +0800
+
+    Merge branch 'mms1.0.0' of git@git.yiran.com:pre/mms.git into mms1.0.0
+
+[33mcommit 50aad13ea8e58f86e139cd5dc98c66b055850104[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Jul 22 17:13:43 2016 +0800
+
+    供应商接口
+
+[33mcommit 410a756b802b643969a114cf263b751f6e198a20[m
+Merge: 7ff9b5c 95a6c57
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 22 14:28:29 2016 +0800
+
+    Merge branch 'mms1.0.0' of git@git.yiran.com:pre/mms.git into mms1.0.0
+
+[33mcommit 95a6c57ec35242de26447f494ae2ce5caca08e41[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Fri Jul 22 11:31:00 2016 +0800
+
+    shipping接口
+
+[33mcommit 7ff9b5c5f237c820e4fcd297ac9e868b2b970f53[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 22 10:01:40 2016 +0800
+
+    weishop
+
+[33mcommit 8dc751d34ecde4ea1a540a77dc5c3ca0827ff6a0[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Fri Jul 22 09:40:44 2016 +0800
+
+    weimapper
+
+[33mcommit 22dde30c2fc860c00aa71cbe5c99e19bcd5280b6[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Thu Jul 21 22:05:36 2016 +0800
+
+    配置日志sql
+
+[33mcommit 69f7581d774ee828c24f4fd82205ebfeea84c7a3[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Jul 21 20:57:40 2016 +0800
+
+    product qc
+
+[33mcommit e4fa0e72ba70cee50ea169d3765d73e0724b9aca[m
+Merge: cd36fb9 f2905f3
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Jul 21 19:49:38 2016 +0800
+
+    Merge branch 'master' of git.yiran.com:pre/mms
+
+[33mcommit cd36fb9449d7e8d70b95f69561e8d64bd7f7a7a3[m
+Author: dfang <dfang@ibenben.com>
+Date:   Thu Jul 21 19:49:20 2016 +0800
+
+    product qc
+
+[33mcommit f2905f3f2b3923dff9838c475ae6d7b2fefaa839[m
+Author: ybliu <ybliu1@ibenben.com>
+Date:   Thu Jul 21 18:37:39 2016 +0800
+
+    增加shipping
+
+[33mcommit 2a276cf8a2704cc44b86e283dee19b7d5636420b[m
+Author: dfang <dfang@ibenben.com>
+Date:   Wed Jul 20 15:08:43 2016 +0800
+
+    mybatis
+
+[33mcommit 1e4f0cbaea7a12a0ffb0fe549549f83de2153ace[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Mon Jul 18 19:52:41 2016 +0800
+
+    配置shiro
+
+[33mcommit 74f82d01e14ca63f748bd817597097178078e53e[m
+Author: zhengshusheng <sszheng@leqee.com>
+Date:   Tue Jul 12 17:06:13 2016 +0800
+
+    INIT

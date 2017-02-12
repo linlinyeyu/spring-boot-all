@@ -1,0 +1,303 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductDistrictFacilityMappingMapper" >
+  <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductDistrictFacilityMapping" >
+    <id column="product_district_facility_mapping_id" property="productDistrictFacilityMappingId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="district_id" property="districtId" jdbcType="INTEGER" />
+    <result column="facility_id" property="facilityId" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="merchant_id" property="merchantId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ProductFacilityResultMap" type="com.ibenben.domain.ProductFacility">
+  	<id column="facility_id" property="facilityId" jdbcType="INTEGER" />
+  	<result column="facility_name" property="facilityName" jdbcType="VARCHAR"/>
+  	<collection property="provinces" ofType="com.ibenben.domain.Province">
+  		<id column="province_id" property="provinceId" jdbcType="INTEGER" />
+	  	<result column="province_parent_id" property="parentId" jdbcType="INTEGER" />
+	  	<result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+	  	<collection property="cityList" javaType="java.util.List" ofType="com.ibenben.domain.City">
+		    <id column="city_id" property="cityId" jdbcType="INTEGER" />
+		    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+		    <result column="city_parent_id" property="parentId" jdbcType="INTEGER" />
+		    <collection property="districtList" javaType="java.util.List" ofType="com.ibenben.domain.District">
+			    <id column="district_id" property="districtId" jdbcType="INTEGER" />
+			    <result column="district_name" property="districtName" jdbcType="VARCHAR" />
+			    <result column="district_parent_id" property="parentId" jdbcType="INTEGER" />
+			    <result column="is_set" property="isSet" jdbcType="INTEGER"/>
+		    </collection>
+    	</collection>
+  	</collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    product_district_facility_mapping_id, product_id, district_id, facility_id, STATUS,merchant_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_district_facility_mapping
+    where product_district_facility_mapping_id = #{productDistrictFacilityMappingId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectByMapParams" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from product_district_facility_mapping
+  	<where>
+  		STATUS = 'OK'
+  		<if test="product_id != null and product_id != '' ">
+  			and product_id = #{product_id}
+  		</if>
+  		<if test="district_id != null and district_id != '' ">
+  			and district_id = #{district_id}
+  		</if>
+  		<if test="facility_id != null and facility_id != '' ">
+  			and facility_id = #{facility_id}
+  		</if>
+  		<if test="merchant_id != null and merchant_id != ''">
+  		    and merchant_id = #{merchant_id}
+  		</if>
+  	</where>
+  </select>
+  
+   <select id="selectProductFacilityDistrict" resultMap="ProductFacilityResultMap">
+	select
+		p.product_id,
+		p.product_name,
+		f.facility_id,
+		f.facility_name,
+		d.region_id as district_id,
+		d.region_name as district_name,
+		d.parent_id as district_parent_id,
+		c.region_id as city_id,
+		c.region_name as city_name,
+		c.parent_id as city_parent_id,
+		pv.region_id as province_id,
+		pv.region_name as province_name,
+		pv.parent_id as province_parent_id
+	from
+		product_facility_shipping_mapping pfsm
+	inner join facility f on pfsm.facility_id = f.facility_id
+	and f.`status` = 'OK'
+	inner join product p on p.product_id = pfsm.product_id
+	and p.status in ('INIT', 'OK')
+	left join product_district_facility_mapping pdfm on pfsm.facility_id = pdfm.facility_id
+	and pfsm.product_id = pdfm.product_id
+	and pfsm.merchant_id = pdfm.merchant_id
+	and pdfm.`STATUS` = 'OK'
+	left join region d on d.region_id = pdfm.district_id and d.`status`='OK'
+	left join region c on c.region_id = d.parent_id and c.`status`='OK'
+	left join region pv on pv.region_id = c.parent_id and pv.`status`='OK'
+	<where>
+		<if test="productId != null">
+			pfsm.product_id = #{productId, jdbcType=INTEGER}
+		</if>
+		<if test="merchantId != null">
+			and pfsm.merchant_id = #{merchantId, jdbcType=INTEGER}
+		</if>
+	</where>
+  </select>
+  
+   <select id="selectAvaliableProductFacilityDistrict" resultMap="ProductFacilityResultMap">
+	select
+		pfdsm.product_id,
+		pfdsm.facility_id,
+		d.region_id as district_id,
+		d.region_name as district_name,
+		d.parent_id as district_parent_id,
+		c.region_id as city_id,
+		c.region_name as city_name,
+		c.parent_id as city_parent_id,
+		pv.region_id as province_id,
+		pv.region_name as province_name,
+		pv.parent_id as province_parent_id,
+		if (pdfm.district_id is null, 0, 1) as is_set
+	from
+		product_facility_district_shipping_mapping pfdsm
+	inner join region d on pfdsm.district_id = d.region_id and d.`status`='OK'
+	inner join region c on d.parent_id = c.region_id and c.`status`='OK'
+	inner join region pv on c.parent_id = pv.region_id and pv.`status`='OK' 
+	left join product_district_facility_mapping pdfm on pdfm.facility_id = pfdsm.facility_id
+		and pdfm.product_id = pfdsm.product_id
+		and pdfm.merchant_id = pfdsm.merchant_id 
+		and pdfm.district_id = pfdsm.district_id
+		and pdfm.`STATUS`='OK'
+	where pfdsm.`STATUS`='OK' 
+		and pfdsm.product_id = #{productId, jdbcType=INTEGER} 
+		and pfdsm.merchant_id = #{merchantId, jdbcType=INTEGER}
+		and pfdsm.facility_id = #{facilityId, jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteAsShippingDivisionRuleModified">
+  	DELETE from product_district_facility_mapping where product_district_facility_mapping_id in (
+	SELECT t.product_district_facility_mapping_id from(
+		SELECT pdfm.product_district_facility_mapping_id from product_district_facility_mapping pdfm 
+		left join product_facility_district_shipping_mapping pfdsm  on pfdsm.product_id = pdfm.product_id
+			and pfdsm.merchant_id = pdfm.merchant_id
+			and pfdsm.facility_id = pdfm.facility_id
+			and pfdsm.district_id = pdfm.district_id
+			and pfdsm.`STATUS` = 'OK'
+		where 
+			pdfm.status='OK' and
+			pdfm.product_id in
+			<foreach item="item" index="index" collection="list" open="(" close=")" separator=",">
+				#{item}
+			</foreach>
+			<if test="merchantId != null">
+				and pdfm.merchant_id = #{merchantId}
+			</if>
+			and pfdsm.district_id is null)  as t
+	)
+  </delete>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from product_district_facility_mapping
+    where product_district_facility_mapping_id = #{productDistrictFacilityMappingId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByProductFacility">
+    delete from product_district_facility_mapping
+    where 
+    	product_id = #{productId} and 
+    	merchant_id = #{merchantId} and
+    	facility_id = #{facilityId}
+  </delete>
+  <delete id="deleteByProductMerchant">
+    delete from product_district_facility_mapping
+    where 
+    	product_id = #{productId} and 
+    	merchant_id = #{merchantId}
+  </delete>
+  
+  <delete id="deleteByProductIdAndDistrictIds">
+    delete from product_district_facility_mapping
+    where 
+    	product_id = #{productId} 
+    	and merchant_id = #{merchantId}
+    	and district_id in
+    <foreach item="item" index="index" open="(" close=")" collection="districtIds" separator="," >
+    	#{item}
+    </foreach>
+  </delete>
+  
+  <insert id="insert" parameterType="com.ibenben.domain.ProductDistrictFacilityMapping" >
+    insert into product_district_facility_mapping (product_district_facility_mapping_id, product_id, merchant_id,
+      district_id, facility_id, STATUS
+      )
+    values (#{productDistrictFacilityMappingId,jdbcType=BIGINT}, #{productId,jdbcType=INTEGER}, #{merchantId,jdbcType=INTEGER},
+      #{districtId,jdbcType=INTEGER}, #{facilityId,jdbcType=INTEGER}, #{status,jdbcType=CHAR},
+      )
+  </insert>
+  <insert id="insertBatch">
+    insert into product_district_facility_mapping (
+    	product_id, 
+    	merchant_id,
+      	district_id, 
+      	facility_id, 
+      	STATUS)
+    values
+    <foreach item="item" index="index" collection="list" separator=",">
+    	<trim prefix="(" suffix=")" suffixOverrides=",">
+    		#{item.productId,jdbcType=INTEGER},
+    		#{item.merchantId,jdbcType=INTEGER},
+    		#{item.districtId,jdbcType=INTEGER},
+    		#{item.facilityId,jdbcType=INTEGER},
+    		#{item.status,jdbcType=CHAR}
+    	</trim>
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductDistrictFacilityMapping" >
+    insert into product_district_facility_mapping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productDistrictFacilityMappingId != null" >
+        product_district_facility_mapping_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="districtId != null" >
+        district_id,
+      </if>
+      <if test="facilityId != null" >
+        facility_id,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productDistrictFacilityMappingId != null" >
+        #{productDistrictFacilityMappingId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="districtId != null" >
+        #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityId != null" >
+        #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  
+ <insert id="copySetting">
+  	insert into product_district_facility_mapping (
+		product_id,
+		merchant_id,
+		facility_id,
+		district_id,
+		status
+	) select
+		product_id,
+		#{toMerchantId} as merchant_id,
+		facility_id,
+		district_id,
+		status
+	from
+		product_district_facility_mapping
+	where
+		product_id = #{productId}
+		and merchant_id = #{fromMerchantId}
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductDistrictFacilityMapping" >
+    update product_district_facility_mapping
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="districtId != null" >
+        district_id = #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityId != null" >
+        facility_id = #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where product_district_facility_mapping_id = #{productDistrictFacilityMappingId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductDistrictFacilityMapping" >
+    update product_district_facility_mapping
+    set product_id = #{productId,jdbcType=INTEGER},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      district_id = #{districtId,jdbcType=INTEGER},
+      facility_id = #{facilityId,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=CHAR}
+    where product_district_facility_mapping_id = #{productDistrictFacilityMappingId,jdbcType=BIGINT}
+  </update>
+</mapper>

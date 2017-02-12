@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductApplyDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductApplyDetail" >
+    <id column="product_apply_detail_id" property="productApplyDetailId" jdbcType="INTEGER" />
+    <result column="product_apply_id" property="productApplyId" jdbcType="INTEGER" />
+    <result column="merchant" property="merchant" jdbcType="VARCHAR" />
+    <result column="product_apply_name" property="productApplyName" jdbcType="VARCHAR" />
+    <result column="producing_region" property="producingRegion" jdbcType="VARCHAR" />
+    <result column="brand" property="brand" jdbcType="VARCHAR" />
+    <result column="unit_weight" property="unitWeight" jdbcType="DOUBLE" />
+    <result column="sales_specification" property="salesSpecification" jdbcType="VARCHAR" />
+    <result column="suggest_price" property="suggestPrice" jdbcType="DECIMAL" />
+    <result column="market_price" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="group_num" property="groupNum" jdbcType="INTEGER" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="appearance" property="appearance" jdbcType="VARCHAR" />
+    <result column="taste" property="taste" jdbcType="VARCHAR" />
+    <result column="storage_environment" property="storageEnvironment" jdbcType="VARCHAR" />
+    <result column="ripening_describe" property="ripeningDescribe" jdbcType="VARCHAR" />
+    <result column="edible_method" property="edibleMethod" jdbcType="VARCHAR" />
+    <result column="taboo" property="taboo" jdbcType="VARCHAR" />
+    <result column="story" property="story" jdbcType="VARCHAR" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    product_apply_detail_id, product_apply_id, merchant, product_apply_name, producing_region, 
+    brand, unit_weight, sales_specification, suggest_price, market_price, group_num, 
+    `describe`, appearance, taste, storage_environment, ripening_describe, edible_method, 
+    taboo, story, link
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_apply_detail
+    where product_apply_detail_id = #{productApplyDetailId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByMapParams" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_apply_detail
+    <where>
+      <if test="product_apply_detail_id != null and product_apply_detail_id != '' " >
+        product_apply_detail_id = #{product_apply_detail_id, jdbcType=INTEGER}
+      </if>
+      <if test="product_apply_id != null and product_apply_id != '' " >
+        product_apply_id = #{product_apply_id, jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_apply_detail
+    where product_apply_detail_id = #{productApplyDetailId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductApplyDetail" >
+    insert into product_apply_detail (product_apply_detail_id, product_apply_id, 
+      merchant, product_apply_name, producing_region, 
+      brand, unit_weight, sales_specification, 
+      suggest_price, market_price, group_num, 
+      `describe`, appearance, taste, 
+      storage_environment, ripening_describe, edible_method, 
+      taboo, story, link)
+    values (#{productApplyDetailId,jdbcType=INTEGER}, #{productApplyId,jdbcType=INTEGER}, 
+      #{merchant,jdbcType=VARCHAR}, #{productApplyName,jdbcType=VARCHAR}, #{producingRegion,jdbcType=VARCHAR}, 
+      #{brand,jdbcType=VARCHAR}, #{unitWeight,jdbcType=DOUBLE}, #{salesSpecification,jdbcType=VARCHAR}, 
+      #{suggestPrice,jdbcType=DECIMAL}, #{marketPrice,jdbcType=DECIMAL}, #{groupNum,jdbcType=INTEGER}, 
+      #{describe,jdbcType=VARCHAR}, #{appearance,jdbcType=VARCHAR}, #{taste,jdbcType=VARCHAR}, 
+      #{storageEnvironment,jdbcType=VARCHAR}, #{ripeningDescribe,jdbcType=VARCHAR}, #{edibleMethod,jdbcType=VARCHAR}, 
+      #{taboo,jdbcType=VARCHAR}, #{story,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductApplyDetail" useGeneratedKeys="true" keyProperty="productApplyDetailId">
+    insert into product_apply_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productApplyDetailId != null" >
+        product_apply_detail_id,
+      </if>
+      <if test="productApplyId != null" >
+        product_apply_id,
+      </if>
+      <if test="merchant != null" >
+        merchant,
+      </if>
+      <if test="productApplyName != null" >
+        product_apply_name,
+      </if>
+      <if test="producingRegion != null" >
+        producing_region,
+      </if>
+      <if test="brand != null" >
+        brand,
+      </if>
+      <if test="unitWeight != null" >
+        unit_weight,
+      </if>
+      <if test="salesSpecification != null" >
+        sales_specification,
+      </if>
+      <if test="suggestPrice != null" >
+        suggest_price,
+      </if>
+      <if test="marketPrice != null" >
+        market_price,
+      </if>
+      <if test="groupNum != null" >
+        group_num,
+      </if>
+      <if test="describe != null" >
+        `describe`,
+      </if>
+      <if test="appearance != null" >
+        appearance,
+      </if>
+      <if test="taste != null" >
+        taste,
+      </if>
+      <if test="storageEnvironment != null" >
+        storage_environment,
+      </if>
+      <if test="ripeningDescribe != null" >
+        ripening_describe,
+      </if>
+      <if test="edibleMethod != null" >
+        edible_method,
+      </if>
+      <if test="taboo != null" >
+        taboo,
+      </if>
+      <if test="story != null" >
+        story,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productApplyDetailId != null" >
+        #{productApplyDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="productApplyId != null" >
+        #{productApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="merchant != null" >
+        #{merchant,jdbcType=VARCHAR},
+      </if>
+      <if test="productApplyName != null" >
+        #{productApplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="producingRegion != null" >
+        #{producingRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null" >
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="unitWeight != null" >
+        #{unitWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="salesSpecification != null" >
+        #{salesSpecification,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestPrice != null" >
+        #{suggestPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="groupNum != null" >
+        #{groupNum,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null" >
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="appearance != null" >
+        #{appearance,jdbcType=VARCHAR},
+      </if>
+      <if test="taste != null" >
+        #{taste,jdbcType=VARCHAR},
+      </if>
+      <if test="storageEnvironment != null" >
+        #{storageEnvironment,jdbcType=VARCHAR},
+      </if>
+      <if test="ripeningDescribe != null" >
+        #{ripeningDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="edibleMethod != null" >
+        #{edibleMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="taboo != null" >
+        #{taboo,jdbcType=VARCHAR},
+      </if>
+      <if test="story != null" >
+        #{story,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductApplyDetail" >
+    update product_apply_detail
+    <set >
+      <if test="productApplyId != null" >
+        product_apply_id = #{productApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="merchant != null" >
+        merchant = #{merchant,jdbcType=VARCHAR},
+      </if>
+      <if test="productApplyName != null" >
+        product_apply_name = #{productApplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="producingRegion != null" >
+        producing_region = #{producingRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null" >
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="unitWeight != null" >
+        unit_weight = #{unitWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="salesSpecification != null" >
+        sales_specification = #{salesSpecification,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestPrice != null" >
+        suggest_price = #{suggestPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="groupNum != null" >
+        group_num = #{groupNum,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null" >
+        `describe` = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="appearance != null" >
+        appearance = #{appearance,jdbcType=VARCHAR},
+      </if>
+      <if test="taste != null" >
+        taste = #{taste,jdbcType=VARCHAR},
+      </if>
+      <if test="storageEnvironment != null" >
+        storage_environment = #{storageEnvironment,jdbcType=VARCHAR},
+      </if>
+      <if test="ripeningDescribe != null" >
+        ripening_describe = #{ripeningDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="edibleMethod != null" >
+        edible_method = #{edibleMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="taboo != null" >
+        taboo = #{taboo,jdbcType=VARCHAR},
+      </if>
+      <if test="story != null" >
+        story = #{story,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_apply_detail_id = #{productApplyDetailId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByApplyIdSelective" parameterType="com.ibenben.domain.ProductApplyDetail" >
+    update product_apply_detail
+    <set >
+      <if test="productApplyId != null" >
+        product_apply_id = #{productApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="merchant != null" >
+        merchant = #{merchant,jdbcType=VARCHAR},
+      </if>
+      <if test="productApplyName != null" >
+        product_apply_name = #{productApplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="producingRegion != null" >
+        producing_region = #{producingRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null" >
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="unitWeight != null" >
+        unit_weight = #{unitWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="salesSpecification != null" >
+        sales_specification = #{salesSpecification,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestPrice != null" >
+        suggest_price = #{suggestPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="groupNum != null" >
+        group_num = #{groupNum,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null" >
+        `describe` = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="appearance != null" >
+        appearance = #{appearance,jdbcType=VARCHAR},
+      </if>
+      <if test="taste != null" >
+        taste = #{taste,jdbcType=VARCHAR},
+      </if>
+      <if test="storageEnvironment != null" >
+        storage_environment = #{storageEnvironment,jdbcType=VARCHAR},
+      </if>
+      <if test="ripeningDescribe != null" >
+        ripening_describe = #{ripeningDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="edibleMethod != null" >
+        edible_method = #{edibleMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="taboo != null" >
+        taboo = #{taboo,jdbcType=VARCHAR},
+      </if>
+      <if test="story != null" >
+        story = #{story,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_apply_id = #{productApplyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductApplyDetail" >
+    update product_apply_detail
+    set product_apply_id = #{productApplyId,jdbcType=INTEGER},
+      merchant = #{merchant,jdbcType=VARCHAR},
+      product_apply_name = #{productApplyName,jdbcType=VARCHAR},
+      producing_region = #{producingRegion,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      unit_weight = #{unitWeight,jdbcType=DOUBLE},
+      sales_specification = #{salesSpecification,jdbcType=VARCHAR},
+      suggest_price = #{suggestPrice,jdbcType=DECIMAL},
+      market_price = #{marketPrice,jdbcType=DECIMAL},
+      group_num = #{groupNum,jdbcType=INTEGER},
+      `describe` = #{describe,jdbcType=VARCHAR},
+      appearance = #{appearance,jdbcType=VARCHAR},
+      taste = #{taste,jdbcType=VARCHAR},
+      storage_environment = #{storageEnvironment,jdbcType=VARCHAR},
+      ripening_describe = #{ripeningDescribe,jdbcType=VARCHAR},
+      edible_method = #{edibleMethod,jdbcType=VARCHAR},
+      taboo = #{taboo,jdbcType=VARCHAR},
+      story = #{story,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR}
+    where product_apply_detail_id = #{productApplyDetailId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.UserMapper" >
+  <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="last_updated_password_time" property="lastUpdatedPasswordTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="ip_type" property="ipType" jdbcType="CHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="email_status" property="emailStatus" jdbcType="CHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="is_admin" property="isAdmin" jdbcType="TINYINT"/>
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="last_open_time" property="lastOpenTime" jdbcType="TIMESTAMP" />
+    <result column="last_close_time" property="lastCloseTime" jdbcType="TIMESTAMP" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+  </resultMap>
+  	
+  <resultMap type="java.util.Map" id="UserMap">
+    <id column="user_id" property="user_id" jdbcType="INTEGER" />
+    <result column="user_name" property="user_name" jdbcType="VARCHAR" />
+    <result column="real_name" property="real_name" jdbcType="VARCHAR" />
+    <result column="created_time" property="created_time" jdbcType="TIMESTAMP" />
+    <result column="facility_name" property="facility_name" jdbcType="VARCHAR" />
+    <result column="merchant_name" property="merchant_name" jdbcType="VARCHAR" />
+    <result column="role_name" property="role_name" jdbcType="VARCHAR" />
+    <result column="created_time" property="created_time" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="ip_type" property="ip_type" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap type="com.ibenben.domain.User" id="UserPermissionMap" extends="BaseResultMap">
+    <collection property="permissionList" javaType="java.util.List" ofType="java.lang.Integer">
+      <id column="permission_id" property="permission_id" jdbcType="INTEGER" />
+    </collection>
+  </resultMap>
+  
+  <resultMap id="FacilityResultMap" type="com.ibenben.domain.Facility" >
+    <id column="facility_id" property="facilityId" jdbcType="TINYINT" />
+    <result column="facility_name" property="facilityName" jdbcType="VARCHAR" />
+    <result column="facility_type" property="facilityType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="facility_title" property="facilityTitle" jdbcType="VARCHAR" />
+    <result column="facility_mobile" property="facilityMobile" jdbcType="VARCHAR" />
+    <result column="facility_consignee" property="facilityConsignee" jdbcType="VARCHAR" />
+    <result column="facility_address" property="facilityAddress" jdbcType="VARCHAR" />
+    <result column="template_style" property="templateStyle" jdbcType="TINYINT" />
+    <result column="province_id" property="provinceId" jdbcType="SMALLINT" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="SMALLINT" />
+    <result column="district_name" property="districtName" jdbcType="VARCHAR" />
+    <result column="district_id" property="districtId" jdbcType="SMALLINT" />
+    <result column="postcode" property="postcode" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="is_weekend_shipping" property="isWeekendShipping" jdbcType="INTEGER" />
+    <result column="can_departure" property="canDeparture" jdbcType="INTEGER" />
+    <result column="is_self_template" property="isSelfTemplate" jdbcType="TINYINT" />
+    <result column="real_address" property="realAddress" jdbcType="VARCHAR" />
+    <result column="facility_code" property="facilityCode" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="is_need_express_get_goods" property="isNeedExpressGetGoods" jdbcType="TINYINT" />
+    <result column="schema_code" property="schemaCode" jdbcType="TINYINT" />
+    <result column="cost_price" property="costPrice" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <resultMap id="MerchantResultMap" type="com.ibenben.domain.Merchant">
+    <id column="merchant_id" jdbcType="INTEGER" property="merchantId" />
+    <result column="merchant_name" jdbcType="VARCHAR" property="merchantName" />
+    <result column="platform_id" jdbcType="INTEGER" property="platformId" />
+    <result column="platform_name" jdbcType="VARCHAR" property="platformName"/>
+    <result column="merchant_type" jdbcType="CHAR" property="merchantType" />
+    <result column="merchant_tel" jdbcType="VARCHAR" property="merchantTel" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="created_user" jdbcType="VARCHAR" property="createdUser" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="last_updated_user" jdbcType="VARCHAR" property="lastUpdatedUser" />
+    <result column="last_updated_time" jdbcType="TIMESTAMP" property="lastUpdatedTime" />
+    <result column="shipped_order_url" jdbcType="VARCHAR" property="shippedOrderUrl" />
+    <result column="app_key" jdbcType="VARCHAR" property="appKey" />
+    <result column="secret" jdbcType="VARCHAR" property="secret" />
+    <result column="session_key" jdbcType="VARCHAR" property="sessionKey" />
+    <result column="use_time" jdbcType="TIMESTAMP" property="useTime" />
+    <result column="area_id" jdbcType="INTEGER" property="areaId" />
+    <result column="platform_code" jdbcType="VARCHAR" property="platformCode" />
+    <result column="is_raw_sale" jdbcType="VARCHAR" property="isRawSale" />
+    <result column="is_finished_sale" jdbcType="VARCHAR" property="isFinishedSale" />
+    <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode" />
+    <result column="auto_send" jdbcType="TINYINT" property="autoSend" />
+    <result column="send_user_info" jdbcType="VARCHAR" property="sendUserInfo" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+  </resultMap>
+  
+  <select id="getMerchantByUser" resultMap="MerchantResultMap" parameterType="java.lang.Integer">
+  select 
+  	m.* 
+  from user_merchant um 
+  inner join merchant m on um.merchant_id = m.merchant_id 
+  where 
+  	m.status = 'OK' and 
+  um.user_id = #{userId,jdbcType=INTEGER};
+  </select>
+  
+  <select id="selectByName" parameterType="com.ibenben.domain.User" resultMap="BaseResultMap">
+    select
+    *
+    from user
+    where status = 'OK' and user_name = #{userName,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getFacilityByUserMerchant" resultMap="FacilityResultMap" parameterType="java.lang.Integer">
+	  select 
+	  	f.* 
+	  from user_merchant um 
+		inner join merchant m on um.merchant_id = m.merchant_id and  m.status = 'OK'
+	  inner join merchant_facility_mapping mfm on m.merchant_id = mfm.merchant_id and mfm.status = 'OK'
+	  inner join facility f on mfm.facility_id = f.facility_id and f.status = 'OK'
+	  where 
+	  	um.user_id = #{userId,jdbcType=INTEGER}
+	  group by 
+	  	f.facility_id;;
+  </select>
+  
+  <sql id="Base_Column_List" >
+    user_id, user_name, real_name, password, last_updated_password_time, 
+    status, ip_type, email, email_status,created_time,is_admin,parent_id
+  </sql>
+  
+  <select id="getUserByMerchant" parameterType="java.util.List" resultType="java.lang.String">
+    select
+    u.user_name
+    from user u
+    inner join user_merchant um on um.user_id = u.user_id
+    where
+    um.merchant_id in
+    <foreach collection="list" index="index" item="id" open="(" separator="," close=")">
+      #{id,jdbcType=INTEGER}
+    </foreach>
+    group by u.user_name
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  
+    <select id="getFacilityIdsByUser" parameterType="java.lang.Integer" resultType="java.lang.String">
+  select 
+  	f.facility_id 
+  from user_facility uf 
+  inner join facility f on uf.facility_id = f.facility_id
+  where uf.user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  
+    <select id="getMerchantIdsByUser" parameterType="java.lang.Integer" resultType="java.lang.String">
+  select 
+  	m.merchant_id 
+  from user_merchant um 
+  inner join merchant m on um.merchant_id = m.merchant_id
+  where um.user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  
+  <update id="verifyUserEmail" parameterType="java.util.Map">
+    UPDATE user SET email_status = 'ACTIVE' WHERE user_id = #{user_id,jdbcType=INTEGER} and email_status IN ('FROZEN','CHECKING')
+  </update>
+  
+  <select id="getUserByEmail" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT * FROM user  WHERE email = #{email,jdbcType=VARCHAR} and user_name = #{user_name,jdbcType=VARCHAR} limit 1
+  </select>
+  
+  <select id="selectByUser" parameterType="com.ibenben.domain.User" resultMap="UserPermissionMap">
+    select
+    u.*,
+    p.permission_id
+    from user u 
+    left join user_permission up on up.user_id = u.user_id
+    left join permission p on up.permission_id = p.permission_id and p.group_type= #{groupType,jdbcType=VARCHAR}
+    <where>
+      u.status = 'OK' 
+      <if test="userName != null">
+        and u.user_name = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null">
+        and u.password = #{password,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  
+  <select id="getGroupByUser" parameterType="com.ibenben.domain.User" resultType="java.lang.String">
+    select
+    group_type
+    from user_group
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByApiUser" parameterType="com.ibenben.domain.User" resultMap="BaseResultMap">
+    select
+    *
+    from
+    user
+    where status = 'OK' and
+    user_name = #{userName,jdbcType=VARCHAR} and
+    password = #{password,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getUserGroupType" parameterType="com.ibenben.domain.User" resultType="java.lang.String">
+    select
+    ug.group_type
+    from user_group ug
+    inner join user u on u.user_id = ug.user_id
+    <where>
+      <if test="userName != null and userName != ''">
+        u.user_name = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="userId != null and userId != ''">
+        and u.user_id = #{userId,jdbcType=INTEGER}
+      </if>
+    </where> 
+  </select>
+  
+  <select id="getUserIdByToken" parameterType="java.lang.String" resultType="java.util.Map">
+    select
+    u.created_time,
+    u.email,
+    u.email_status,
+    u.ip_type,
+    u.last_updated_password_time,
+    u.real_name,
+    u.status,
+    u.user_name,
+    u.user_id,
+    u.is_admin
+    from user_session us
+    inner join user u on us.user_id = u.user_id
+    where 
+    us.access_token = #{token,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getUserByToken" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    u.*
+    from user_session us
+    inner join user u on us.user_id = u.user_id
+    where us.access_token = #{token,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateGroupConcatMaxLen">
+  	SET SESSION group_concat_max_len= 102400;
+  </update>
+  
+  
+  <select id="getUserList" parameterType="java.util.Map" resultMap="UserMap">
+    select
+    u.user_id,
+    u.user_name,
+    u.real_name,
+    u.status,
+    u.ip_type,
+    (select group_concat(facility_name SEPARATOR ',') from user_facility uf inner join facility f on f.facility_id = uf.facility_id where uf.user_id = u.user_id) as facility_name,
+    (select group_concat(merchant_name SEPARATOR ',') from user_merchant um inner join merchant m on m.merchant_id = um.merchant_id where um.user_id = u.user_id) as merchant_name,
+    (select group_concat(concat(role_name, group_type) SEPARATOR ',') from user_role ur inner join role r on r.role_id = ur.role_id where ur.user_id = u.user_id) as role_name,
+    u.created_time
+    from user u
+    <where>
+	    <if test="userName != '' and userName != null">
+	      and u.user_name like concat('%',#{user_name,jdbcType=VARCHAR},'%')
+	    </if>
+	    <if test="user_name != '' and user_name != null">
+	      and u.user_name like concat('%',#{user_name,jdbcType=VARCHAR},'%')
+	    </if>
+	    <if test="status != '' and status != null">
+	      and u.status = #{status,jdbcType=VARCHAR}
+	    </if>
+	    <if test="user_names != null and user_names != ''">
+	      and u.user_name in
+	      <foreach collection="user_names" index="index" item="name" open="(" separator="," close=")">
+	        #{name,jdbcType=VARCHAR}
+	      </foreach>
+	    </if>
+    </where>
+  </select>
+  
+  <select id="getFacilityIds" parameterType="java.lang.Integer" resultType="java.util.Map">
+    select
+    f.facility_id,
+    f.facility_name,
+    f.facility_code
+    from user_facility uf
+    inner join facility f on f.facility_id = uf.facility_id and f.status = 'OK'
+    where 
+    uf.user_id = #{user_id,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="getMerchantIds" parameterType="java.lang.Integer" resultType="java.util.Map"> 
+    select
+    m.merchant_id,
+    m.merchant_name,
+    m.merchant_code,
+    m.platform_id
+    from
+    user_merchant um
+    inner join merchant m on m.merchant_id = um.merchant_id and m.status = 'OK'
+    where 
+    um.user_id = #{user_id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getPermissionIds" resultType="java.util.Map"> 
+    select
+    p.permission_id,
+    p.permission_code,
+    p.permission_name,
+    p.permission_url
+    from
+    user_permission up
+    inner join permission p on p.permission_id = up.permission_id
+    where
+	up.user_id = #{user_id,jdbcType=INTEGER}
+	<if test="group_type != null and group_type != ''">
+	   and p.group_type=#{group_type,jdbcType=VARCHAR}
+	</if>
+  </select>
+  
+  <select id="getRoleList" resultType="java.util.Map">
+    select
+    r.role_id,
+    r.role_code,
+    r.role_name,
+    r.group_type
+    from
+    user_role ur
+    inner join role r on r.role_id = ur.role_id
+    where
+    ur.user_id = #{user_id,jdbcType=INTEGER}
+    <if test="group_type != null and group_type != ''">
+      and r.group_type = #{group_type,jdbcType=VARCHAR}
+    </if> 
+  </select>
+  
+  <update id="editUser" parameterType="java.util.Map">
+    update
+    user
+    set real_name = #{real_name,jdbcType=VARCHAR}
+  </update>
+  
+  <delete id="delUserFacility" parameterType="java.util.Map">
+    delete
+    from user_facility
+    where user_id = #{user_id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="editUserFacility" parameterType="java.util.Map">
+    insert into 
+    user_facility
+    (user_id,facility_id)
+    values
+    <foreach collection="facility_ids" index="index" item="id" open="(" separator="),(" close=")">
+      #{user_id,jdbcType=INTEGER},#{id,jdbcType=TINYINT}
+    </foreach>
+  </insert>
+  
+  <delete id="delUserMerchant" parameterType="java.util.Map">
+    delete
+    from user_merchant
+    where user_id = #{user_id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="editUserMerchant" parameterType="java.util.Map">
+    insert into
+    user_merchant
+    (user_id,merchant_id)
+    values
+    <foreach collection="merchant_ids" index="index" item="id" open="(" separator="),(" close=")">
+      #{user_id,jdbcType=INTEGER},#{id,jdbcType=INTEGER}
+    </foreach>
+  </insert>
+  
+  <delete id="delUserRole" parameterType="java.util.Map">
+    delete
+    from user_role
+    where
+    user_id = #{user_id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="editUserRole" parameterType="java.util.Map">
+    insert into
+    user_role
+    (user_id,role_id)
+    values
+    <foreach collection="role_ids" index="index" item="id" open="(" separator="),(" close=")">
+      #{user_id,jdbcType=INTEGER},#{id,jdbcType=INTEGER}
+    </foreach>
+  </insert>
+  
+  
+   <delete id="delUserGroup" parameterType="java.util.Map">
+    delete
+    from user_group
+    where
+    user_id = #{user_id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="editUserGroup" parameterType="java.util.Map">
+    insert into
+    user_group
+    (user_id,group_type)
+    values
+    <foreach collection="group_types" index="index" item="type" open="(" separator="),(" close=")">
+      #{user_id,jdbcType=INTEGER},#{type,jdbcType=VARCHAR}
+    </foreach>
+  </insert>
+  
+  <delete id="delUserPermission" parameterType="java.util.Map">
+    delete
+    from user_permission
+    where
+    user_id = #{user_id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="editUserPermission" parameterType="java.util.Map">
+    insert into
+    user_permission
+    (user_id,permission_id)
+    values
+    <foreach collection="permission_ids" index="index" item="id" open="(" separator="),(" close=")">
+      #{user_id,jdbcType=INTEGER},#{id,jdbcType=INTEGER}
+    </foreach>
+  </insert>
+  
+  <update id="resetUserPassword" parameterType="java.util.Map">
+    update user set password = #{password,jdbcType=VARCHAR}
+    where user_id = #{user_id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="delUser" parameterType="java.util.Map">
+    update 
+    user 
+    set status = #{status,jdbcType=VARCHAR},
+    last_close_time = #{last_close_time,jdbcType=TIMESTAMP} 
+    where user_id = #{user_id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="recoverUser" parameterType="java.util.Map">
+    update
+    user
+    set status = #{status,jdbcType=VARCHAR},
+    last_open_time = #{last_open_time,jdbcType=TIMESTAMP}
+    where user_id = #{user_id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="clearUserEmail" parameterType="java.util.Map">
+    update user set email = '',email_status = 'FROZEN' where user_id = #{user_id,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="addUser" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="userId">
+  insert into user
+  (user_name,real_name,password,status,ip_type,email_status,created_time)
+  values
+  (#{userName,jdbcType=VARCHAR},#{real_name,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{status, jdbcType=VARCHAR},#{ip_type, jdbcType=VARCHAR},'FROZEN',now())
+  </insert>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.User" useGeneratedKeys="true" keyProperty="userId">
+    insert into user (user_id, user_name, real_name, 
+      password,last_updated_password_time, status, ip_type, 
+      email, email_status,created_time,is_admin,last_login_time,last_open_time,
+      last_close_time,parent_id
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR},#{lastUpdatedPasswordTime,jdbcType=TIMESTAMP}, #{status,jdbcType=CHAR}, #{ipType,jdbcType=CHAR}, 
+      #{email,jdbcType=VARCHAR}, #{emailStatus,jdbcType=CHAR},#{createdTime,jdbcType=TIMESTAMP},#{isAdmin,jdbcType=TINYINT},
+      #{lastLoginTime,jdbcType=TIMESTAMP},#{lastOpenTime,jdbcType=TIMESTAMP},#{lastCloseTime,jdbcType=TIMESTAMP},#{parentId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="lastUpdatedPasswordTime != null" >
+        last_updated_password_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="ipType != null" >
+        ip_type,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="emailStatus != null" >
+        email_status,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="isAdmin != null">
+        is_admin,
+      </if>
+      <if test="last_login_time != null">
+        last_login_time,
+      </if>
+      <if test="last_open_time != null">
+        last_open_time,
+      </if>
+      <if test="last_close_time != null">
+        last_close_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedPasswordTime != null" >
+        #{lastUpdatedPasswordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="ipType != null" >
+        #{ipType,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailStatus != null" >
+        #{emailStatus,jdbcType=CHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAdmin != null">
+        #{isAdmin,jdbcType=TINYINT},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOpenTime != null">
+        #{lastOpenTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastCloseTime != null">
+        #{lastCloseTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.User" >
+    update user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedPasswordTime != null" >
+        last_updated_password_time = #{lastUpdatedPasswordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="ipType != null" >
+        ip_type = #{ipType,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailStatus != null and emailStatus != ''" >
+        email_status = #{emailStatus,jdbcType=CHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAdmin != null">
+        is_admin = #{isAdmin,jdbcType=TINYINT},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOpenTime != null">
+        last_open_time = #{lastOpenTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastCloseTime != null">
+        last_close_time = #{lastCloseTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.User" >
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      last_updated_password_time = #{lastUpdatedPasswordTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR},
+      ip_type = #{ipType,jdbcType=CHAR},
+      email = #{email,jdbcType=VARCHAR},
+      email_status = #{emailStatus,jdbcType=CHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      is_admin = #{isAdmin,jdbcType=TINYINT},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      last_open_time = #{lastOpenTime,jdbcType=TIMESTAMP},
+      last_close_time = #{lastCloseTime,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

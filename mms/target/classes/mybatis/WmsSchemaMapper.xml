@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.WmsSchemaMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.WmsSchema" >
+    <id column="schema_id" property="schemaId" jdbcType="BIGINT" />
+    <result column="schema_code" property="schemaCode" jdbcType="VARCHAR" />
+    <result column="schema_name" property="schemaName" jdbcType="VARCHAR" />
+    <result column="create_produce_package_task" property="createProducePackageTask" jdbcType="VARCHAR" />
+    <result column="stock_2_production" property="stock2Production" jdbcType="VARCHAR" />
+    <result column="raw_material_2_finish" property="rawMaterial2Finish" jdbcType="VARCHAR" />
+    <result column="create_print_task" property="createPrintTask" jdbcType="VARCHAR" />
+    <result column="print" property="print" jdbcType="VARCHAR" />
+    <result column="shipping_out" property="shippingOut" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap type="com.ibenben.domain.WmsSchema" id="WmsSchemaFacilityMap" extends="BaseResultMap">
+    <result column="facility_id" property="facilityId" jdbcType="TINYINT" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    schema_id, schema_code, schema_name, create_produce_package_task, stock_2_production, 
+    raw_material_2_finish, create_print_task, print, shipping_out
+  </sql>
+  
+  <select id="getFacilitySchema" parameterType="java.lang.Integer" resultMap="WmsSchemaFacilityMap">
+    select
+    ws.*,
+    f.facility_id
+    from facility f
+    inner join wms_schema ws on ws.schema_code = f.schema_code
+    where f.facility_id = #{facility_id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from wms_schema
+    where schema_id = #{schemaId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from wms_schema
+    where schema_id = #{schemaId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.WmsSchema" >
+    insert into wms_schema (schema_id, schema_code, schema_name, 
+      create_produce_package_task, stock_2_production, 
+      raw_material_2_finish, create_print_task, print, 
+      shipping_out)
+    values (#{schemaId,jdbcType=BIGINT}, #{schemaCode,jdbcType=VARCHAR}, #{schemaName,jdbcType=VARCHAR}, 
+      #{createProducePackageTask,jdbcType=VARCHAR}, #{stock2Production,jdbcType=VARCHAR}, 
+      #{rawMaterial2Finish,jdbcType=VARCHAR}, #{createPrintTask,jdbcType=VARCHAR}, #{print,jdbcType=VARCHAR}, 
+      #{shippingOut,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.WmsSchema" >
+    insert into wms_schema
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="schemaId != null" >
+        schema_id,
+      </if>
+      <if test="schemaCode != null" >
+        schema_code,
+      </if>
+      <if test="schemaName != null" >
+        schema_name,
+      </if>
+      <if test="createProducePackageTask != null" >
+        create_produce_package_task,
+      </if>
+      <if test="stock2Production != null" >
+        stock_2_production,
+      </if>
+      <if test="rawMaterial2Finish != null" >
+        raw_material_2_finish,
+      </if>
+      <if test="createPrintTask != null" >
+        create_print_task,
+      </if>
+      <if test="print != null" >
+        print,
+      </if>
+      <if test="shippingOut != null" >
+        shipping_out,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="schemaId != null" >
+        #{schemaId,jdbcType=BIGINT},
+      </if>
+      <if test="schemaCode != null" >
+        #{schemaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="schemaName != null" >
+        #{schemaName,jdbcType=VARCHAR},
+      </if>
+      <if test="createProducePackageTask != null" >
+        #{createProducePackageTask,jdbcType=VARCHAR},
+      </if>
+      <if test="stock2Production != null" >
+        #{stock2Production,jdbcType=VARCHAR},
+      </if>
+      <if test="rawMaterial2Finish != null" >
+        #{rawMaterial2Finish,jdbcType=VARCHAR},
+      </if>
+      <if test="createPrintTask != null" >
+        #{createPrintTask,jdbcType=VARCHAR},
+      </if>
+      <if test="print != null" >
+        #{print,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingOut != null" >
+        #{shippingOut,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.WmsSchema" >
+    update wms_schema
+    <set >
+      <if test="schemaCode != null" >
+        schema_code = #{schemaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="schemaName != null" >
+        schema_name = #{schemaName,jdbcType=VARCHAR},
+      </if>
+      <if test="createProducePackageTask != null" >
+        create_produce_package_task = #{createProducePackageTask,jdbcType=VARCHAR},
+      </if>
+      <if test="stock2Production != null" >
+        stock_2_production = #{stock2Production,jdbcType=VARCHAR},
+      </if>
+      <if test="rawMaterial2Finish != null" >
+        raw_material_2_finish = #{rawMaterial2Finish,jdbcType=VARCHAR},
+      </if>
+      <if test="createPrintTask != null" >
+        create_print_task = #{createPrintTask,jdbcType=VARCHAR},
+      </if>
+      <if test="print != null" >
+        print = #{print,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingOut != null" >
+        shipping_out = #{shippingOut,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where schema_id = #{schemaId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.WmsSchema" >
+    update wms_schema
+    set schema_code = #{schemaCode,jdbcType=VARCHAR},
+      schema_name = #{schemaName,jdbcType=VARCHAR},
+      create_produce_package_task = #{createProducePackageTask,jdbcType=VARCHAR},
+      stock_2_production = #{stock2Production,jdbcType=VARCHAR},
+      raw_material_2_finish = #{rawMaterial2Finish,jdbcType=VARCHAR},
+      create_print_task = #{createPrintTask,jdbcType=VARCHAR},
+      print = #{print,jdbcType=VARCHAR},
+      shipping_out = #{shippingOut,jdbcType=VARCHAR}
+    where schema_id = #{schemaId,jdbcType=BIGINT}
+  </update>
+</mapper>

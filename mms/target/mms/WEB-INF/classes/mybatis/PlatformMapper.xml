@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibenben.mapper.PlatformMapper">
+  <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.Platform">
+    <id column="platform_id" jdbcType="INTEGER" property="platformId" />
+    <result column="platform_name" jdbcType="VARCHAR" property="platformName" />
+    <result column="platform_key" jdbcType="VARCHAR" property="platformKey" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="created_user" jdbcType="VARCHAR" property="createdUser" />
+    <result column="last_updated_user" jdbcType="VARCHAR" property="lastUpdatedUser" />
+    <result column="last_updated_time" jdbcType="TIMESTAMP" property="lastUpdatedTime" />
+    <result column="platform_code" jdbcType="VARCHAR" property="platformCode" />
+    <result column="shipped_order_account" jdbcType="VARCHAR" property="shippedOrderAccount" />
+    <result column="shipped_order_key" jdbcType="VARCHAR" property="shippedOrderKey" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    platform_id, platform_name, platform_key, status, created_time, created_user, last_updated_user, 
+    last_updated_time,platform_code,shipped_order_account,shipped_order_key
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from platform
+    where platform_id = #{platformId,jdbcType=INTEGER}
+  </select>
+  
+    <select id="selectByPlatform" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from platform
+    <where>
+    	<if test="platform_id != '' and platform_id != null">
+    		platform_id = #{platform_id,jdbcType=INTEGER}
+    	</if>
+    	<if test="platform_name != '' and platform_name != null">
+    		and platform_name like concat('%',#{platform_name,jdbcType=VARCHAR},'%')
+    	</if>
+    	<if test="status != '' and status != null">
+    		and status = #{status,jdbcType=TINYINT}
+    	</if>
+    	<if test="platform_code != '' and platform_code != null">
+    	    and platform_code = #{platform_code,jdbcType=VARCHAR}
+    	</if>
+    </where>
+  </select>
+  
+  <select id="getPlatformByName" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    platform_id,platform_name
+    from platform
+    <where>
+    <if test="platform_name != '' and platform_name != null">
+      platform_name = #{platform_name,jdbcType=VARCHAR}
+    </if>
+    <if test="platform_id != '' and platform_id != null">
+      and platform_id = #{platform_id,jdbcType=INTEGER}
+    </if>
+    </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from platform
+    where platform_id = #{platformId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.Platform">
+    insert into platform (platform_id, platform_name, platform_key, 
+      status, created_time, created_user, 
+      last_updated_user, last_updated_time,platform_code,shipped_order_account,shipped_order_key)
+    values (#{platformId,jdbcType=INTEGER}, #{platformName,jdbcType=VARCHAR}, #{platformKey,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{createdTime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=VARCHAR}, 
+      #{lastUpdatedUser,jdbcType=VARCHAR}, #{lastUpdatedTime,jdbcType=TIMESTAMP},#{platformCode,jdbcType=VARCHAR},
+      #{shippedOrderAccount,jdbcType=VARCHAR},#{shippedOrderKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.Platform">
+    insert into platform
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="platformId != null">
+        platform_id,
+      </if>
+      <if test="platformName != null">
+        platform_name,
+      </if>
+      <if test="platformKey != null">
+        platform_key,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="createdUser != null">
+        created_user,
+      </if>
+      <if test="lastUpdatedUser != null">
+        last_updated_user,
+      </if>
+      <if test="lastUpdatedTime != null">
+        last_updated_time,
+      </if>
+      <if test="platformCode != null">
+        platform_code,
+      </if>
+      <if test="shipped_order_account != null">
+        shipped_order_account,
+      </if>
+      <if test="shipped_order_key != null">
+        shipped_order_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="platformId != null">
+        #{platformId,jdbcType=INTEGER},
+      </if>
+      <if test="platformName != null">
+        #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="platformKey != null">
+        #{platformKey,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null">
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedUser != null">
+        #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null">
+        #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformCode != null">
+        #{platformCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shippedOrderAccount != null">
+        #{shippedOrderAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="shippedOrderKey">
+        #{shippedOrderKey,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.Platform">
+    update platform
+    <set>
+      <if test="platformName != null">
+        platform_name = #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="platformKey != null">
+        platform_key = #{platformKey,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdUser != null">
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedUser != null">
+        last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null">
+        last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformCode != null">
+        platform_code = #{platformCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shippedOrderAccount != null">
+        shipped_order_account = #{shippedOrderAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="shippedOrderKey != null">
+        shipped_order_key = #{shippedOrderKey,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where platform_id = #{platformId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.Platform">
+    update platform
+    set platform_name = #{platformName,jdbcType=VARCHAR},
+      platform_key = #{platformKey,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      platform_code = #{platformCode,jdbcType=VARCHAR},
+      shipped_order_account = #{shippedOrderAccount,jdbcType=VARCHAR},
+      shipped_order_key = #{shippedOrderKey,jdbcType=VARCHAR}
+    where platform_id = #{platformId,jdbcType=INTEGER}
+  </update>
+</mapper>

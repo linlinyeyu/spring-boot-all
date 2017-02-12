@@ -1,0 +1,758 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.FacilityMapper" >
+  <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.Facility" >
+    <id column="facility_id" property="facilityId" jdbcType="TINYINT" />
+    <result column="facility_name" property="facilityName" jdbcType="VARCHAR" />
+    <result column="facility_type" property="facilityType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="facility_title" property="facilityTitle" jdbcType="VARCHAR" />
+    <result column="facility_mobile" property="facilityMobile" jdbcType="VARCHAR" />
+    <result column="facility_consignee" property="facilityConsignee" jdbcType="VARCHAR" />
+    <result column="facility_address" property="facilityAddress" jdbcType="VARCHAR" />
+    <result column="template_style" property="templateStyle" jdbcType="TINYINT" />
+    <result column="province_id" property="provinceId" jdbcType="SMALLINT" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="SMALLINT" />
+    <result column="district_name" property="districtName" jdbcType="VARCHAR" />
+    <result column="district_id" property="districtId" jdbcType="SMALLINT" />
+    <result column="postcode" property="postcode" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="is_weekend_shipping" property="isWeekendShipping" jdbcType="INTEGER" />
+    <result column="can_departure" property="canDeparture" jdbcType="INTEGER" />
+    <result column="is_self_template" property="isSelfTemplate" jdbcType="TINYINT" />
+    <result column="real_address" property="realAddress" jdbcType="VARCHAR" />
+    <result column="facility_code" property="facilityCode" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="is_need_express_get_goods" property="isNeedExpressGetGoods" jdbcType="TINYINT" />
+    <result column="schema_code" property="schemaCode" jdbcType="TINYINT" />
+    <result column="cost_price" property="costPrice" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="BaseMap">
+    <id column="facility_id" property="facility_id" jdbcType="TINYINT" />
+    <result column="facility_name" property="facility_name" jdbcType="VARCHAR" />
+    <result column="facility_type" property="facility_type" jdbcType="INTEGER" />
+    <result column="area_id" property="area_id" jdbcType="INTEGER" />
+    <result column="is_weekend_shipping" property="is_weekend_shipping" jdbcType="INTEGER" />
+    <result column="area_name" property="area_name" jdbcType="VARCHAR"/>
+    <result column="facility_code" property="facility_code" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="MerchantFacilityMap">
+    <result column="facility_name" property="facility_name" jdbcType="VARCHAR"/>
+    <result column="merchant_facility_id" property="merchant_facility_id" jdbcType="INTEGER" />
+    <result column="merchant_name" property="merchant_name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    facility_id, facility_name, facility_type, status, facility_title, facility_mobile, 
+    facility_consignee, facility_address, template_style, province_id,province_name, city_name, city_id, 
+    district_name, district_id, postcode, area_id, is_weekend_shipping, can_departure,is_self_template,
+    real_address,facility_code,is_need_express_get_goods,schema_code,cost_price
+  </sql>
+  
+  <select id="getFacilityIds" resultType="java.lang.String">
+    select
+   	 	facility_id
+    from facility f
+    	where f.status = 'OK'
+  </select>
+  
+  <select id="isExist" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+    count(*)
+    from
+    facility
+    where facility_name = #{facility_name,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="isEditExist" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+    count(*)
+    from
+    facility
+    where facility_name = #{facility_name,jdbcType=VARCHAR} and
+    facility_id != #{facility_id,jdbcType=TINYINT}
+  </select>
+  
+  <select id="getFacilityByUser" parameterType="com.ibenben.domain.User" resultType="java.lang.Integer">
+    select
+    f.facility_id
+    from user_facility uf
+    inner join facility f on uf.facility_id = f.facility_id and f.status = 'OK'
+    where uf.user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getFacilityByArea" parameterType="java.lang.Integer" resultType="java.util.Map">
+    select
+   	facility_id,
+   	facility_name
+   	from facility
+   	where area_id = #{area_id,jdbcType=INTEGER}
+   	and status = 'OK'
+  </select>
+  
+  <select id="getAreaIdByFacilityId" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+    area_id
+    from facility
+    where facility_id in 
+    <foreach collection="facility_ids" index="index" item="id" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+    group by area_id
+  </select>
+  
+  <select id="getSimpleFacilityList" resultType="java.util.Map">
+    select
+    facility_id,facility_name
+    from
+    facility where status = 'OK'
+  </select>
+  
+  <select id="getMerchantFacility" resultMap="MerchantFacilityMap">
+    select
+    m.merchant_name,f.facility_name,mfm.merchant_facility_id
+    from merchant_facility_mapping mfm
+    inner join merchant m on mfm.merchant_id = m.merchant_id
+    inner join facility f on f.facility_id = mfm.facility_id
+    where mfm.status is not null and mfm.merchant_id = #{merchant_id,jdbcType=INTEGER}
+  </select>
+  
+  <insert id="addMerchantFacility" parameterType="java.util.Map">
+    insert into
+    merchant_facility_mapping
+    (merchant_id,facility_id,status,created_user,created_time)
+    values
+    (#{merchant_id,jdbcType=INTEGER},#{facility_id,jdbcType=TINYINT},'OK',#{created_user,jdbcType=VARCHAR},
+    #{created_time,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <update id="delMerchantFacility" parameterType="java.lang.Integer">
+    update
+    merchant_facility_mapping
+    set
+    status = null
+    where merchant_facility_id = #{merchant_facility_id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getFacilityByMerchant" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select f.*
+    from merchant_facility_mapping mfm
+    inner join facility f on f.facility_id = mfm.facility_id
+    where mfm.merchant_id = #{merchant_id,jdbcType=INTEGER} and mfm.status is not null
+  </select>
+  
+  <select id="isExistMerchantFacility" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+    count(merchant_facility_id)
+    from merchant_facility_mapping
+    where merchant_id = #{merchant_id,jdbcType=INTEGER} and facility_id = #{facility_id,jdbcType=TINYINT}
+    and status = 'OK'
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from facility
+    where facility_id = #{facilityId,jdbcType=TINYINT}
+  </select>
+  
+  <select id="getFacilityListByShippingRule" parameterType="java.util.Map" resultMap="BaseMap">
+    select 
+               f.facility_id,f.facility_name,f.is_weekend_shipping,f.facility_type,apm.area_id
+            from  product_facility_shipping_mapping  fp  
+            inner join facility f on fp.facility_id = f.facility_id
+            inner join facility_shipping fs on fs.facility_id = f.facility_id and fs.status = 'OK'
+            inner join product_facility_district_shipping_mapping pfm on pfm.facility_id = fs.facility_id and  pfm.shipping_id = fs.shipping_id and pfm.STATUS = 'OK' 
+            inner join region d on d.region_id = pfm.district_id
+            inner join area_province_mapping apm on apm.province_id = #{province_id,jdbcType=SMALLINT}
+            where f.status = 'OK' and fs.status = 'OK' and fp.product_id = #{product_id,jdbcType=INTEGER} and 
+            d.region_id in
+            <foreach collection="district_ids" index="index" item="id" open="(" separator="," close=")">
+              #{id,jdbcType=SMALLINT}
+            </foreach>
+            group by f.facility_id
+  </select>
+  
+  <select id="getFacilityByIds" parameterType="java.util.Map" resultMap="BaseMap">
+    select
+    f.facility_id,
+    f.facility_name,
+    f.facility_type,
+    f.area_id,
+    f.is_weekend_shipping,
+    f.is_need_express_get_goods,
+    a.area_name,
+    f.facility_code
+    from facility f
+    inner join area a on f.area_id = a.area_id
+    <where>
+    	<if test="status != null and status != ''">
+    	  f.status = 'OK'
+    	</if>
+    	<if test="facility_ids != '' and facility_ids != null">
+    	and f.facility_id in
+    	  <foreach collection="facility_ids" index="index" item="id" open="(" separator="," close=")">
+     	   #{id,jdbcType=TINYINT}
+    	  </foreach>
+    	</if>
+    	<if test="area_id != '' and area_id != null">
+      		and f.area_id = #{area_id,jdbcType=INTEGER}
+    	</if>
+    </where> 
+  </select>
+  
+  <select id="getFacilityIdsByType" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+    facility_id
+    from facility
+    <where>
+      <if test="status != '' and status != null">
+        status = #{status,jdbcType=VARCHAR}
+      </if>
+        and facility_type in
+        <foreach collection="facility_type_list" index="index" item="type" open="(" separator="," close=")">
+          #{type,jdbcType=INTEGER}
+        </foreach>
+    </where>
+  </select>
+  
+  <select id="getFacilityById" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+	    f.*,
+	    a.area_name
+    from
+    facility f
+    left join area a on a.area_id = f.area_id
+    <where>
+    facility_id = #{facility_id,jdbcType=TINYINT} 
+    <if test="status != '' and status != null">
+     and f.status = #{status,jdbcType=VARCHAR}
+    </if>
+    </where>
+    
+  </select>
+  
+  <select id="getFacilityList" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from
+    facility
+    <where>
+      <if test="facility_id != '' and facility_id != null">
+        facility_id = #{facility_id,jdbcType=TINYINT}
+      </if>
+      <if test="facility_type != '' and facility_type != null">
+        and facility_type = #{facility_type,jdbcType=INTEGER}
+      </if>
+      <if test="status != '' and status != null">
+        and status = #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="is_need_express_get_goods !='' and is_need_express_get_goods != null">
+        and is_need_express_get_goods = #{is_need_express_get_goods,jdbcType=TINYINT}
+      </if>
+    </where>
+  </select>
+  
+  <select id="getApiFacilityNameById" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    facility_id facilityId,facility_name facilityName
+    from facility
+    where
+    facility_id = #{facility_id,jdbcType=TINYINT} and status = 'OK'
+  </select>
+  
+  <select id="getApiFacilityList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    f.*,a.area_name
+    from facility f
+    inner join area a on a.area_id = f.area_id
+    <where>
+    <if test="area_id != '' and area_id != null">
+      f.area_id = #{area_id,jdbcType=INTEGER}
+    </if>
+    <if test="status != '' and status != null">
+      and f.status = #{status,jdbcType=VARCHAR}
+    </if>
+    <if test="facility_type_list != '' and facility_type_list != null">
+      and f.facility_type in
+      <foreach collection="facility_type_list" index="index" item="facility_type" open="(" separator="," close=")">
+        #{facility_type,jdbcType=INTEGER}
+      </foreach>
+    </if>
+    </where>
+  </select>
+  
+  <select id="getFacilityInfo" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    *
+    from
+    facility
+    where
+    facility_id = #{facility_id,jdbcType=TINYINT}
+  </select>
+  
+  <select id="getFacilityByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from facility where status='OK' and facility_code=#{facility_code} limit 1
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from facility
+    where facility_id = #{facilityId,jdbcType=TINYINT}
+  </delete>
+  
+  <insert id="addFacility" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="facility_id">
+    insert into facility (facility_name,facility_type,status,is_self_template,template_style,
+    facility_address,province_id,province_name,city_name,city_id,district_name,district_id,postcode,area_id,real_address,
+    facility_code,is_need_express_get_goods,schema_code,facility_mobile
+    <if test="cost_price != '' and cost_price != null">
+      ,cost_price
+    </if>
+    <if test="longitude != '' and longitude != null">
+      ,longitude
+    </if>
+    <if test="latitude != '' and latitude != null">
+      ,latitude
+    </if>
+    )
+    values
+    (#{facility_name,jdbcType=VARCHAR},#{facility_type,jdbcType=INTEGER},#{status,jdbcType=VARCHAR},#{is_self_template,jdbcType=INTEGER},
+    #{template_style,jdbcType=TINYINT},#{facility_address,jdbcType=VARCHAR},#{province_id,jdbcType=SMALLINT},#{province_name,jdbcType=VARCHAR},
+    #{city_name,jdbcType=VARCHAR},#{city_id,jdbcType=SMALLINT},#{district_name,jdbcType=VARCHAR},#{district_id,jdbcType=SMALLINT},
+    #{postcode,jdbcType=VARCHAR},#{area_id,jdbcType=INTEGER},#{real_address,jdbcType=VARCHAR},#{facility_code,jdbcType=VARCHAR},#{is_need_express_get_goods,jdbcType=TINYINT},
+    #{schema_code,jdbcType=TINYINT},#{facility_mobile,jdbcType=VARCHAR}
+    <if test="cost_price != '' and cost_price != null">
+      ,#{cost_price,jdbcType=DECIMAL}
+    </if>
+    <if test="longitude != '' and longitude != null">
+      ,#{longitude,jdbcType=DECIMAL}
+    </if>
+    <if test="latitude != '' and latitude != null">
+      ,#{latitude,jdbcType=DECIMAL}
+    </if>
+    )
+  </insert>
+  
+  <select id="getLastFacilityId" resultMap="BaseResultMap">
+    select
+    facility_id
+    from facility
+    order by facility_id
+    desc limit 1
+  </select>
+  
+  <insert id="addFacilityAttribute" parameterType="java.util.Map">
+    insert into facility_attribute (facility_id,attr_name,attr_value)
+    values
+    <trim suffix="" suffixOverrides=",">
+    	<if test="purchase_plan1_time != '' and purchase_plan1_time != null">
+      		(#{facility_id,jdbcType=TINYINT},'purchase_plan1_time',#{purchase_plan1_time}),
+    	</if>
+    	<if test="purchase_plan2_time != '' and purchase_plan2_time != null">
+      		(#{facility_id,jdbcType=TINYINT},'purchase_plan2_time',#{purchase_plan2_time}),
+    	</if>
+    	<if test="production_plan1_time != '' and production_plan1_time != null">
+    	    (#{facility_id,jdbcType=TINYINT},'production_plan1_time',#{production_plan1_time}),
+    	</if>
+    	<if test="production_plan2_time != '' and production_plan2_time != null">
+    	    (#{facility_id,jdbcType=TINYINT},'production_plan2_time',#{production_plan2_time}),
+    	</if>
+    	<if test="start_time != '' and start_time != null">
+    	    (#{facility_id,jdbcType=TINYINT},'start_time',#{start_time}),
+    	</if>
+    	<if test="end_time != '' and end_time != null">
+    	    (#{facility_id,jdbcType=TINYINT},'end_time',#{end_time}),
+    	</if>
+    	<if test="stocktake_deadline != '' and stocktake_deadline != null">
+    	    (#{facility_id,jdbcType=TINYINT},'stocktake_deadline',#{stocktake_deadline}),
+    	</if>
+    	<if test="fulfill_end_time1 != '' and fulfill_end_time1 != null">
+    	    (#{facility_id,jdbcType=TINYINT},'fulfill_end_time1',#{fulfill_end_time1}),
+    	</if>
+    	<if test="fulfill_end_time2 != '' and fulfill_end_time2 != null">
+    	    (#{facility_id,jdbcType=TINYINT},'fulfill_end_time2',#{fulfill_end_time2}),
+    	</if>
+    	<if test="fulfill_end_time3 != '' and fulfill_end_time3 != null">
+    	    (#{facility_id,jdbcType=TINYINT},'fulfill_end_time3',#{fulfill_end_time3}),
+    	</if>
+    	<if test="fulfill_end_time4 != '' and fulfill_end_time4 != null">
+    	    (#{facility_id,jdbcType=TINYINT},'fulfill_end_time4',#{fulfill_end_time4}),
+    	</if>
+    	<if test="express_departure_time1 != '' and express_departure_time1 != null">
+    	    (#{facility_id,jdbcType=TINYINT},'express_departure_time1',#{express_departure_time1}),
+    	</if>
+    	<if test="express_departure_time2 != '' and express_departure_time2 != null">
+    	    (#{facility_id,jdbcType=TINYINT},'express_departure_time2',#{express_departure_time2}),
+    	</if>
+    	<if test="express_departure_time3 != '' and express_departure_time3 != null">
+    	    (#{facility_id,jdbcType=TINYINT},'express_departure_time3',#{express_departure_time3}),
+    	</if>
+    	<if test="express_departure_time4 != '' and express_departure_time4 != null">
+    	    (#{facility_id,jdbcType=TINYINT},'express_departure_time4',#{express_departure_time4}),
+    	</if>
+    </trim>
+  </insert>
+  
+  <update id="editFacility" parameterType="java.util.Map">
+    update facility
+    <set >
+      <if test="facility_name != '' and facility_name != null" >
+        facility_name = #{facility_name,jdbcType=VARCHAR},
+      </if>
+      <if test="facility_type != '' and facility_type != null" >
+        facility_type = #{facility_type,jdbcType=INTEGER},
+      </if>
+      <if test="status != '' and status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="facility_address != '' and facility_address != null" >
+        facility_address = #{facility_address,jdbcType=VARCHAR},
+      </if>
+      <if test="template_style != '' and template_style != null" >
+        template_style = #{template_style,jdbcType=TINYINT},
+      </if>
+      <if test="province_id != '' and province_id != null">
+        province_id = #{province_id,jdbcType=SMALLINT},
+      </if>
+      <if test="province_name != '' and province_name != null" >
+        province_name = #{province_name,jdbcType=VARCHAR},
+      </if>
+      <if test="city_name != '' and city_name != null" >
+        city_name = #{city_name,jdbcType=VARCHAR},
+      </if>
+      <if test="city_id != '' and city_id != null" >
+        city_id = #{city_id,jdbcType=SMALLINT},
+      </if>
+      <if test="district_name != '' and district_name != null" >
+        district_name = #{district_name,jdbcType=VARCHAR},
+      </if>
+      <if test="district_id != '' and district_id != null" >
+        district_id = #{district_id,jdbcType=SMALLINT},
+      </if>
+      <if test="postcode != '' and postcode != null" >
+        postcode = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="area_id != '' and area_id != null" >
+        area_id = #{area_id,jdbcType=INTEGER},
+      </if>
+      <if test="is_self_template != '' and is_self_template != null">
+        is_self_template = #{is_self_template,jdbcType=TINYINT},
+      </if>
+      <if test="real_address != '' and real_address != null">
+        real_address = #{real_address,jdbcType=VARCHAR},
+      </if>
+      <if test="facility_code != '' and facility_code != null">
+        facility_code = #{facility_code,jdbcType=VARCHAR},
+      </if>
+      <if test="is_need_express_get_goods != '' and is_need_express_get_goods != null">
+        is_need_express_get_goods = #{is_need_express_get_goods,jdbcType=TINYINT},
+      </if>
+      <if test="schema_code != '' and schema_code != null">
+        schema_code = #{schema_code,jdbcType=TINYINT},
+      </if>
+      <if test="facility_mobile != '' and facility_mobile != null">
+        facility_mobile = #{facility_mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="cost_price != '' and cost_price != null">
+        cost_price = #{cost_price,jdbcType=DECIMAL},
+      </if>
+      <if test="longitude != '' and longitude != null">
+        longitude = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != '' and latitude != null">
+        latitude = #{latitude,jdbcType=DECIMAL}
+      </if>
+    </set>
+    where facility_id = #{facility_id,jdbcType=TINYINT}
+  </update>
+  
+  <delete id="delFacilityAttribute" parameterType="java.util.Map">
+    delete from facility_attribute 
+    where facility_id = #{facility_id,jdbcType=TINYINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.ibenben.domain.Facility" >
+    insert into facility (facility_id, facility_name, facility_type, 
+      status, facility_title, facility_mobile, 
+      facility_consignee, facility_address, template_style,province_id, 
+      province_name, city_name, city_id, 
+      district_name, district_id, postcode, 
+      area_id, is_weekend_shipping, can_departure,is_self_template,real_address,
+      facility_code,is_need_express_get_goods,schema_code,cost_price
+      )
+    values (#{facilityId,jdbcType=TINYINT}, #{facilityName,jdbcType=VARCHAR}, #{facilityType,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{facilityTitle,jdbcType=VARCHAR}, #{facilityMobile,jdbcType=VARCHAR}, 
+      #{facilityConsignee,jdbcType=VARCHAR}, #{facilityAddress,jdbcType=VARCHAR}, #{templateStyle,jdbcType=TINYINT}, 
+      #{provinceId,jdbcType=SMALLINT},#{provinceName,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, #{cityId,jdbcType=SMALLINT}, 
+      #{districtName,jdbcType=VARCHAR}, #{districtId,jdbcType=SMALLINT}, #{postcode,jdbcType=VARCHAR}, 
+      #{areaId,jdbcType=INTEGER}, #{isWeekendShipping,jdbcType=INTEGER}, #{canDeparture,jdbcType=INTEGER},
+      #{isSelfTemplate,jdbcType=TINYINT},#{realAddress,jdbcType=VARCHAR},#{facilityCode,jdbcType=VARCHAR},#{isNeedExpressGetGoods,jdbcType=TINYINT},
+      #{schemaCode,jdbcType=TINYINT},#{costPrice,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.Facility" >
+    insert into facility
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="facilityId != null" >
+        facility_id,
+      </if>
+      <if test="facilityName != null" >
+        facility_name,
+      </if>
+      <if test="facilityType != null" >
+        facility_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="facilityTitle != null" >
+        facility_title,
+      </if>
+      <if test="facilityMobile != null" >
+        facility_mobile,
+      </if>
+      <if test="facilityConsignee != null" >
+        facility_consignee,
+      </if>
+      <if test="facilityAddress != null" >
+        facility_address,
+      </if>
+      <if test="templateStyle != null" >
+        template_style,
+      </if>
+      <if test="provinceId != null">
+        province_id,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="districtName != null" >
+        district_name,
+      </if>
+      <if test="districtId != null" >
+        district_id,
+      </if>
+      <if test="postcode != null" >
+        postcode,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="isWeekendShipping != null" >
+        is_weekend_shipping,
+      </if>
+      <if test="canDeparture != null" >
+        can_departure,
+      </if>
+      <if test="isSelfTemplate != null">
+        is_self_template,
+      </if>
+      <if test="realAddress != null">
+        real_address,
+      </if>
+      <if test="facilityCode != null">
+        facility_code,
+      </if>
+      <if test="isNeedExpressGetGoods != null">
+        is_need_express_get_goods,
+      </if>
+      <if test="schemaCode != null">
+        schema_code,
+      </if>
+      <if test="costPrice != null">
+        cost_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="facilityId != null" >
+        #{facilityId,jdbcType=TINYINT},
+      </if>
+      <if test="facilityName != null" >
+        #{facilityName,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityType != null" >
+        #{facilityType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityTitle != null" >
+        #{facilityTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityMobile != null" >
+        #{facilityMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityConsignee != null" >
+        #{facilityConsignee,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityAddress != null" >
+        #{facilityAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="templateStyle != null" >
+        #{templateStyle,jdbcType=TINYINT},
+      </if>
+      <if test="provinceId != null">
+        #{provinceId,jdbcType=SMALLINT},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=SMALLINT},
+      </if>
+      <if test="districtName != null" >
+        #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtId != null" >
+        #{districtId,jdbcType=SMALLINT},
+      </if>
+      <if test="postcode != null" >
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="isWeekendShipping != null" >
+        #{isWeekendShipping,jdbcType=INTEGER},
+      </if>
+      <if test="canDeparture != null" >
+        #{canDeparture,jdbcType=INTEGER},
+      </if>
+      <if test="isSelfTemplate != null">
+        #{isSelfTemplate,jdbcType=TINYINT},
+      </if>
+      <if test="realAddress != null">
+        #{realAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityCode != null">
+        #{facilityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isNeedExpressGetGoods != null">
+        #{isNeedExpressGetGoods,jdbcType=TINYINT},
+      </if>
+      <if test="schemaCode != null">
+        #{schemaCode,jdbcType=TINYINT},
+      </if>
+      <if test="costPrice != null">
+        #{costPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.Facility" >
+    update facility
+    <set >
+      <if test="facilityName != null" >
+        facility_name = #{facilityName,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityType != null" >
+        facility_type = #{facilityType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityTitle != null" >
+        facility_title = #{facilityTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityMobile != null" >
+        facility_mobile = #{facilityMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityConsignee != null" >
+        facility_consignee = #{facilityConsignee,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityAddress != null" >
+        facility_address = #{facilityAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="templateStyle != null" >
+        template_style = #{templateStyle,jdbcType=TINYINT},
+      </if>
+      <if test="provinceId != null">
+        province_id = #{provinceId,jdbcType=SMALLINT},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=SMALLINT},
+      </if>
+      <if test="districtName != null" >
+        district_name = #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtId != null" >
+        district_id = #{districtId,jdbcType=SMALLINT},
+      </if>
+      <if test="postcode != null" >
+        postcode = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="isWeekendShipping != null" >
+        is_weekend_shipping = #{isWeekendShipping,jdbcType=INTEGER},
+      </if>
+      <if test="canDeparture != null" >
+        can_departure = #{canDeparture,jdbcType=INTEGER},
+      </if>
+      <if test="isSelfTemplate != null">
+        is_self_template = #{isSelfTemplate,jdbcType=TINYINT},
+      </if>
+      <if test="realAddress != null">
+        real_address = #{realAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityCode != null">
+        facility_code = #{facilityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isNeedExpressGetGoods != null">
+        is_need_express_get_goods = #{isNeedExpressGetGoods,jdbcType=TINYINT},
+      </if>
+      <if test="schemaCode != null">
+        schema_code = #{schemaCode,jdbcType=TINYINT},
+      </if>
+      <if test="costPrice != null">
+        cost_price = #{costPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where facility_id = #{facilityId,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.Facility" >
+    update facility
+    set facility_name = #{facilityName,jdbcType=VARCHAR},
+      facility_type = #{facilityType,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      facility_title = #{facilityTitle,jdbcType=VARCHAR},
+      facility_mobile = #{facilityMobile,jdbcType=VARCHAR},
+      facility_consignee = #{facilityConsignee,jdbcType=VARCHAR},
+      facility_address = #{facilityAddress,jdbcType=VARCHAR},
+      template_style = #{templateStyle,jdbcType=TINYINT},
+      province_id = #{provinceId,jdbcType=SMALLINT},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=SMALLINT},
+      district_name = #{districtName,jdbcType=VARCHAR},
+      district_id = #{districtId,jdbcType=SMALLINT},
+      postcode = #{postcode,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=INTEGER},
+      is_weekend_shipping = #{isWeekendShipping,jdbcType=INTEGER},
+      can_departure = #{canDeparture,jdbcType=INTEGER},
+      is_self_template = #{isSelfTemplate,jdbcType=TINYINT},
+      real_address = #{realAddress,jdbcType=VARCHAR},
+      facility_code = #{facility,jdbcType=VARCHAR},
+      is_need_express_get_goods = #{isNeedExpressGetGoods,jdbcType=TINYINT},
+      schema_code = #{schemaCode,jdbcType=TINYINT},
+      cost_price = #{costPrice,jdbcType=DECIMAL}
+    where facility_id = #{facilityId,jdbcType=TINYINT}
+  </update>
+</mapper>

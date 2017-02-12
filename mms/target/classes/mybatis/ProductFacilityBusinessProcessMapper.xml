@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductFacilityBusinessProcessMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductFacilityBusinessProcess" >
+    <id column="product_facility_business_process_id" property="productFacilityBusinessProcessId" jdbcType="BIGINT" />
+    <result column="facility_id" property="facilityId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="business_type" property="businessType" jdbcType="TINYINT" />
+    <result column="cost_price" property="costPrice" jdbcType="DECIMAL" />
+    <result column="effect_time" property="effectTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="lose_time" property="loseTime" jdbcType="TIMESTAMP" />
+    <result column="supplies_price" property="suppliesPrice" jdbcType="DECIMAL" />
+    <result column="service_price" property="servicePrice" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <resultMap type="com.ibenben.domain.ProductFacilityBusinessProcess" id="ExtendsMap" extends="BaseResultMap">
+    <result column="facility_name" property="facilityName" jdbcType="VARCHAR" />
+    <result column="business_type_name" property="businessTypeName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    product_facility_business_process_id, facility_id, product_id, business_type, cost_price,effect_time,status,lose_time,supplies_price,
+    service_price
+  </sql>
+  
+  <select id="getProductWithHavingCost" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+    product_id
+    from
+    product_facility_business_process
+    where business_type = 3 and status = 'OK'
+    and cost_price != 0
+    and product_id in
+    <foreach collection="product_ids" index="index" item="id" open="(" separator="," close=")">
+      #{id,jdbcType=INTEGER}
+    </foreach>
+  </select>
+  
+  <select id="getProductPrice" parameterType="com.ibenben.domain.ProductFacilityBusinessProcess" resultMap="BaseResultMap">
+    select
+    cost_price,
+    product_id
+    from product_facility_business_process
+    where effect_time &lt;= #{effectTime,jdbcType=TIMESTAMP} and
+    product_id = #{productId,jdbcType=INTEGER}
+    and status = 'OK'
+    order by effect_time limit 1
+  </select>
+  
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into
+    product_facility_business_process
+    (facility_id,product_id,cost_price,business_type,status,effect_time)
+    values
+    <foreach collection="list" index="index" item="item" open="(" separator="),(" close=")">
+      #{item.facilityId,jdbcType=TINYINT},
+      #{item.productId,jdbcType=INTEGER},
+      #{item.costPrice,jdbcType=DECIMAL},
+      #{item.businessType,jdbcType=TINYINT},
+      #{item.status,jdbcType=VARCHAR},
+      #{item.effectTime,jdbcType=TIMESTAMP}
+    </foreach>
+  </insert>
+  
+  <update id="setLoseProductBusiness" parameterType="java.util.Map">
+    update
+    product_facility_business_process
+    set status = null,lose_time = #{effect_time,jdbcType=TIMESTAMP}
+    where facility_id = #{facility_id,jdbcType=TINYINT} and product_id = #{product_id,jdbcType=INTEGER}
+    and status = 'OK'
+  </update>
+  
+  <update id="checkProductBusiness" parameterType="java.util.Map">
+    update
+    product_facility_business_process
+    set status = 'OK',effect_time = #{effect_time,jdbcType=TIMESTAMP}
+    where product_facility_business_process_id = #{product_facility_business_process_id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="getFacilityIdListByProductId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+    facility_id
+    from 
+    product_facility_business_process
+    where product_id = #{product_id,jdbcType=INTEGER}
+    group by facility_id
+  </select>
+  
+  <delete id="delBusinessByFacilityAndProduct">
+    delete
+    from
+    product_facility_business_process
+    where facility_id = #{facility_id}
+    and product_id = #{product_id}
+  </delete>
+  
+  <select id="getSimpleBusiness" parameterType="java.lang.Integer" resultType="java.util.Map">
+    select
+    p1.product_id,
+    p1.product_name,
+    pp.supplies_product_id,
+    p2.product_name supplies_product_name
+    from product_facility_business_process pfbp
+    inner join product p1 on p1.product_id = pfbp.product_id
+    inner join product_packaging pp on pp.goods_product_id = pfbp.product_id
+    inner join product p2 on p2.product_id = pp.supplies_product_id
+    where
+   	pfbp.facility_id = #{facility_id,jdbcType=TINYINT} and
+   	pfbp.business_type = 2
+   	and p1.status = 'OK' and p2.status = 'OK'
+   	group by p1.product_id,pp.supplies_product_id
+  </select>
+  
+  <select id="getProductBusinessInfo" parameterType="java.util.Map" resultMap="ExtendsMap">
+    select
+    pfbp.*,
+    f.facility_name,
+    bt.business_type business_type_name
+    from 
+    product_facility_business_process pfbp
+    inner join facility f on f.facility_id = pfbp.facility_id
+    inner join business_type bt on bt.id = pfbp.business_type
+    where
+    pfbp.product_id = #{product_id,jdbcType=INTEGER} and
+    pfbp.facility_id = #{facility_id,jdbcType=TINYINT} and
+    pfbp.status = 'OK' and
+    f.status = 'OK'
+  </select>
+  
+  <select id="getFinishedProductBusiness" parameterType="java.lang.Integer" resultMap="ExtendsMap">
+    SELECT
+	pfbp.product_facility_business_process_id,
+	pfbp.business_type,
+	bt.business_type business_type_name,
+	pfbp.cost_price,
+	f.facility_name,
+	pfbp.facility_id,
+	pfbp.product_id,
+	pfbp.status,
+	pfbp.effect_time,
+	pfbp.supplies_price,
+	pfbp.service_price
+	FROM
+		product_facility_business_process pfbp 
+	INNER JOIN facility f ON f.facility_id = pfbp.facility_id
+	left join business_type bt on bt.id = pfbp.business_type
+	WHERE
+		pfbp.product_id = #{product_id}
+	AND f. STATUS = 'OK'
+	and pfbp.status is not null
+	<if test="facility_ids !='' and facility_ids != null">
+	  and pfbp.facility_id not in 
+	  <foreach collection="facility_ids" index="index" item="id" open="(" separator="," close=")">
+	    #{id,jdbcType=TINYINT}
+	  </foreach>
+	</if>
+  </select>
+  
+  <select id="getInitProductBusiness" parameterType="java.lang.Integer" resultMap="ExtendsMap">
+    SELECT
+	pfbp.product_facility_business_process_id,
+	pfbp.business_type,
+	bt.business_type business_type_name,
+	pfbp.cost_price,
+	pfbp.supplies_price,
+	pfbp.service_price,
+	f.facility_name,
+	pfbp.facility_id,
+	pfbp.product_id,
+	pfbp.status,
+	pfbp.effect_time
+	FROM
+		product_facility_business_process pfbp 
+	INNER JOIN facility f ON f.facility_id = pfbp.facility_id
+	left join business_type bt on bt.id = pfbp.business_type
+	WHERE
+		pfbp.product_id = #{product_id}
+	AND f. STATUS = 'OK'
+	and pfbp.status ='INIT'
+  </select>
+  
+  <select id="getFacilityByProductId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+    facility_id
+    from
+    product_facility_business_process
+    where
+    product_id = #{product_id,jdbcType=INTEGER}
+    group by facility_id
+  </select>
+  
+  <select id="getInitFacilityIdByProductId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+    facility_id
+    from
+    product_facility_business_process
+    where
+    product_id = #{product_id,jdbcType=INTEGER}
+    and status = 'INIT'
+    group by facility_id
+  </select>
+  
+  <update id="editFinishedProductBusiness" parameterType="java.util.Map">
+  	<foreach collection="list" index="index" item="item" open="" separator=";" close="">
+  		  insert into 
+  		  product_facility_business_process 
+  		  (business_type,
+  		  <if test="item.costPrice != '' and item.costPrice != null or item.costPrice == 0">
+  		    cost_price,
+  		  </if>
+  		  facility_id,product_id,status,effect_time
+  		  <if test="item.suppliesPrice != '' and item.suppliesPrice != null or item.suppliesPrice == 0">
+  		    ,supplies_price
+  		  </if>
+  		  <if test="item.servicePrice != '' and item.servicePrice != null or item.servicePrice == 0">
+  		    ,service_price
+  		  </if>
+  		  ) 
+  		  values
+  		  (#{item.businessType,jdbcType=TINYINT},
+  		  <if test="item.costPrice != '' and item.costPrice != null or item.costPrice == 0">
+  		  	#{item.costPrice,jdbcType=DECIMAL},
+  		  </if>
+  		  #{item.facilityId,jdbcType=TINYINT},#{item.productId,jdbcType=INTEGER},
+  		  'INIT',#{item.effectTime,jdbcType=TIMESTAMP}
+  		  <if test="item.suppliesPrice != '' and item.suppliesPrice != null or item.suppliesPrice == 0">
+  		    ,#{item.suppliesPrice,jdbcType=DECIMAL}
+  		  </if>
+  		  <if test="item.servicePrice != '' and item.servicePrice != null or item.servicePrice == 0">
+  		    ,#{item.servicePrice,jdbcType=DECIMAL}
+  		  </if>)
+    </foreach>
+  </update>
+  
+  <delete id="delInitProductBusiness" parameterType="java.util.Map">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+      <if test="item.status == 'INIT'">
+        delete from product_facility_business_process where product_facility_business_process_id = #{item.productFacilityBusinessProcessId}
+      </if>
+    </foreach>
+  </delete>
+  
+  <select id="getFinishedProductBusinessList" parameterType="java.util.Map" resultType="java.util.Map">
+    select
+    pfbp.business_type,bt.business_type business_type_name,f.facility_name,pfbp.product_facility_business_process_id,p.product_name,pfbp.cost_price,
+    pfbp.effect_time,pfbp.lose_time,pfbp.status,pfbp.facility_id,pfbp.product_id,pfbp.supplies_price,pfbp.service_price
+    from product_facility_business_process pfbp
+    inner join facility f on f.facility_id = pfbp.facility_id
+    inner join product p on p.product_id = pfbp.product_id
+    inner join business_type bt on bt.id = pfbp.business_type
+    where
+    pfbp.business_type = 3 and
+    f.status = 'OK' and 
+    p.status = 'OK' and
+    p.product_type = 'goods' and
+    p.product_sub_type = 'finished'
+    <if test="status == '' or status == null">
+      and pfbp.status = 'INIT'
+    </if>
+    <if test="status == 'DELETE'">
+      and pfbp.status is null
+    </if>
+    <if test="status != 'DELETE' and status != '' and status != null">
+      and pfbp.status = #{status,jdbcType=VARCHAR}
+    </if>
+    <if test="product_id != '' and product_id != null">
+      and pfbp.product_id = #{product_id,jdbcType=INTEGER}
+    </if>
+    <if test="facility_id != '' and facility_id != null">
+      and pfbp.facility_id = #{facility_id,jdbcType=TINYINT}
+    </if>
+  </select>
+  
+  <select id="getBusinessTypeList" resultType="java.util.Map">
+    select
+    *
+    from 
+    business_type
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_facility_business_process
+    where product_facility_business_process_id = #{productFacilityBusinessProcessId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from product_facility_business_process
+    where product_facility_business_process_id = #{productFacilityBusinessProcessId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductFacilityBusinessProcess" >
+    insert into product_facility_business_process (product_facility_business_process_id, facility_id, 
+      product_id, business_type, cost_price,effect_time,status,lose_time,supplies_price,service_price
+      )
+    values (#{productFacilityBusinessProcessId,jdbcType=BIGINT}, #{facilityId,jdbcType=INTEGER}, 
+      #{productId,jdbcType=INTEGER}, #{businessType,jdbcType=TINYINT}, #{costPrice,jdbcType=DECIMAL},
+      #{effectTime,jdbcType=TIMESTAMP},#{status,jdbcType=VARCHAR},#{loseTime,jdbcType=TIMESTAMP},#{suppliesPrice,jdbcType=DECIMAL},
+      #{servicePrice,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductFacilityBusinessProcess" >
+    insert into product_facility_business_process
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productFacilityBusinessProcessId != null" >
+        product_facility_business_process_id,
+      </if>
+      <if test="facilityId != null" >
+        facility_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="businessType != null" >
+        business_type,
+      </if>
+      <if test="costPrice != null" >
+        cost_price,
+      </if>
+      <if test="effectTime != null">
+        effect_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="loseTime != null">
+        lose_time,
+      </if>
+      <if test="suppliesPrice != null">
+        supplies_price,
+      </if>
+      <if test="servicePrice != null">
+        service_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productFacilityBusinessProcessId != null" >
+        #{productFacilityBusinessProcessId,jdbcType=BIGINT},
+      </if>
+      <if test="facilityId != null" >
+        #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="businessType != null" >
+        #{businessType,jdbcType=TINYINT},
+      </if>
+      <if test="costPrice != null" >
+        #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="effectTime != null">
+        #{effectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="loseTime != null">
+        #{loseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="suppliesPrice != null">
+        #{suppliesPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="servicePrice != null">
+        #{servicePrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductFacilityBusinessProcess" >
+    update product_facility_business_process
+    <set >
+      <if test="facilityId != null" >
+        facility_id = #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="businessType != null" >
+        business_type = #{businessType,jdbcType=TINYINT},
+      </if>
+      <if test="costPrice != null" >
+        cost_price = #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="effectTime != null">
+        effect_time = #{effectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="loseTime != null">
+        lose_time = #{loseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="suppliesPrice != null">
+        supplies_price = #{suppliesPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="servicePrice != null">
+        service_price = #{servicePrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where product_facility_business_process_id = #{productFacilityBusinessProcessId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductFacilityBusinessProcess" >
+    update product_facility_business_process
+    set facility_id = #{facilityId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      business_type = #{businessType,jdbcType=TINYINT},
+      cost_price = #{costPrice,jdbcType=DECIMAL},
+      effect_time = #{effectTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      lose_time = #{loseTime,jdbcType=TIMESTAMP},
+      supplies_price = #{suppliesPrice,jdbcType=DECIMAL},
+      service_price = #{servicePrice,jdbcType=DECIMAL}
+    where product_facility_business_process_id = #{productFacilityBusinessProcessId,jdbcType=BIGINT}
+  </update>
+</mapper>

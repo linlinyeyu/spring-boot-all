@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductTypeScaleMappingMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductTypeScaleMapping" >
+    <id column="product_type_scale_mapping_id" property="productTypeScaleMappingId" jdbcType="INTEGER" />
+    <result column="product_type" property="productType" jdbcType="VARCHAR" />
+    <result column="facility_id" property="facilityId" jdbcType="INTEGER" />
+    <result column="scale" property="scale" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    product_type_scale_mapping_id, product_type, facility_id, scale
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_type_scale_mapping
+    where product_type_scale_mapping_id = #{productTypeScaleMappingId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByFacilityId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select 
+    <include refid="Base_Column_List" />
+    from product_type_scale_mapping
+    where facility_id=#{facility_id}
+  </select>
+  
+  <select id="selectByFacilityIdAndProductType" resultType="java.lang.Float">
+  	select 
+    	scale
+    from product_type_scale_mapping
+    where facility_id=#{facility_id}
+    	and product_type=#{product_type}
+    limit 1
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_type_scale_mapping
+    where product_type_scale_mapping_id = #{productTypeScaleMappingId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductTypeScaleMapping" >
+    insert into product_type_scale_mapping (product_type_scale_mapping_id, product_type, 
+      facility_id, scale)
+    values (#{productTypeScaleMappingId,jdbcType=INTEGER}, #{productType,jdbcType=VARCHAR}, 
+      #{facilityId,jdbcType=INTEGER}, #{scale,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductTypeScaleMapping" >
+    insert into product_type_scale_mapping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productTypeScaleMappingId != null" >
+        product_type_scale_mapping_id,
+      </if>
+      <if test="productType != null" >
+        product_type,
+      </if>
+      <if test="facilityId != null" >
+        facility_id,
+      </if>
+      <if test="scale != null" >
+        scale,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productTypeScaleMappingId != null" >
+        #{productTypeScaleMappingId,jdbcType=INTEGER},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityId != null" >
+        #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="scale != null" >
+        #{scale,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductTypeScaleMapping" >
+    update product_type_scale_mapping
+    <set >
+      <if test="productType != null" >
+        product_type = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityId != null" >
+        facility_id = #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="scale != null" >
+        scale = #{scale,jdbcType=REAL},
+      </if>
+    </set>
+    where product_type_scale_mapping_id = #{productTypeScaleMappingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductTypeScaleMapping" >
+    update product_type_scale_mapping
+    set product_type = #{productType,jdbcType=VARCHAR},
+      facility_id = #{facilityId,jdbcType=INTEGER},
+      scale = #{scale,jdbcType=REAL}
+    where product_type_scale_mapping_id = #{productTypeScaleMappingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByFacilityIdAndProductType" parameterType="com.ibenben.domain.ProductTypeScaleMapping">
+  	update product_type_scale_mapping
+    set product_type = #{productType,jdbcType=VARCHAR},
+      facility_id = #{facilityId,jdbcType=INTEGER},
+      scale = #{scale,jdbcType=REAL}
+    where facility_id = #{facilityId} 
+    	and product_type=#{productType}
+  </update>
+</mapper>

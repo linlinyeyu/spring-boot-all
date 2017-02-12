@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.AreaMapper" >
+  <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.Area" >
+    <id column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="area_desc" property="areaDesc" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="area_type" property="areaType" jdbcType="CHAR" />
+  </resultMap>
+  
+  <resultMap type="com.ibenben.domain.Area" id="AreaProvinceMap" extends="BaseResultMap">
+    <collection property="provinceList" javaType="java.util.List" ofType="com.ibenben.domain.Province">
+      <id column="province_id" property="provinceId" jdbcType="SMALLINT" />
+      <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+      <result column="region_type" property="regionType" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  
+  <resultMap type="com.ibenben.domain.Area" id="AreaWithInDistrictMap" extends="BaseResultMap">
+  	 <collection property="provinceList" javaType="java.util.List" ofType="com.ibenben.domain.Province">
+	      <id column="province_id" property="provinceId" jdbcType="SMALLINT" />
+		  <result column="province_parent_id" property="parentId" jdbcType="SMALLINT" />
+		  <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+		  <collection property="cityList" javaType="java.util.List" ofType="com.ibenben.domain.City">
+		    <id column="city_id" property="cityId" jdbcType="SMALLINT" />
+		    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+		    <result column="city_parent_id" property="parentId" jdbcType="SMALLINT" />
+		    <collection property="districtList" javaType="java.util.List" ofType="com.ibenben.domain.District">
+			    <id column="district_id" property="districtId" jdbcType="SMALLINT" />
+			    <result column="district_name" property="districtName" jdbcType="VARCHAR" />
+			    <result column="district_parent_id" property="parentId" jdbcType="SMALLINT" />
+			    <result column="is_set" property="isSet" jdbcType="INTEGER"/>
+			    <result column="fulfill_end_time_name" property="fulfillEndTimeName" jdbcType="VARCHAR"/>
+			    <result column="fulfill_end_time_value" property="fulfillEndTimeValue" jdbcType="VARCHAR"/>
+			    <result column="express_departure_time_name" property="expressDepartureTimeName" jdbcType="VARCHAR"/>
+			    <result column="express_departure_time_value" property="expressDepartureTimeValue" jdbcType="VARCHAR"/>
+		    </collection>
+	    </collection>
+    </collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    area_id, area_name, area_desc, status, area_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from area
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getAreaProvinceList" resultMap="AreaProvinceMap">
+    select
+    a.area_id,a.area_name,apm.province_id,r.region_name province_name,r.region_type
+    from area a
+    inner join area_province_mapping apm on apm.area_id = a.area_id
+    inner join region r on r.region_id = apm.province_id
+  </select>
+  
+  <select id="getAreaList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from area
+    <where>
+      <if test="area_ids != '' and area_ids != null">
+        area_id in 
+        <foreach collection="area_ids" index="index" item="id" open="(" separator="," close=")">
+          #{id,jdbcType=INTEGER}
+        </foreach>
+      </if>
+    </where>
+  </select>
+  
+  <select id="getFacilityArea" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    distinct a.*
+    from area a
+    inner join facility f on f.area_id = a.area_id
+    where
+    f.facility_id in 
+    <foreach collection="facility_ids" index="index" item="id" open="(" separator="," close=")">
+      #{id,jdbcType=TINYINT}
+    </foreach>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from area
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.Area" >
+    insert into area (area_id, area_name, area_desc, 
+      status, area_type)
+    values (#{areaId,jdbcType=INTEGER}, #{areaName,jdbcType=VARCHAR}, #{areaDesc,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{areaType,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.Area" >
+    insert into area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="areaDesc != null" >
+        area_desc,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="areaType != null" >
+        area_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaDesc != null" >
+        #{areaDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="areaType != null" >
+        #{areaType,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.Area" >
+    update area
+    <set >
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaDesc != null" >
+        area_desc = #{areaDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="areaType != null" >
+        area_type = #{areaType,jdbcType=CHAR},
+      </if>
+    </set>
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.Area" >
+    update area
+    set area_name = #{areaName,jdbcType=VARCHAR},
+      area_desc = #{areaDesc,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      area_type = #{areaType,jdbcType=CHAR}
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+</mapper>

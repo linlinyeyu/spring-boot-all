@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductContainerMapper" >
+  <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductContainer" >
+    <id column="container_id" property="containerId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="quantity" property="quantity" jdbcType="DECIMAL" />
+    <result column="container_code" property="containerCode" jdbcType="VARCHAR" />
+    <result column="container_unit_code" property="containerUnitCode" jdbcType="VARCHAR" />
+    <result column="container_unit_code_name" property="containerUnitCodeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    container_id, product_id, quantity, container_code, container_unit_code, container_unit_code_name
+  </sql>
+  <select id="selectByProductContainer" parameterType="com.ibenben.domain.ProductContainer" resultMap="BaseResultMap">
+	select 
+		pc.*
+	from 
+		product_container pc
+	<where>
+	  <if test="containerId != null">
+        pc.container_id = #{containerId,jdbcType=INTEGER}
+      </if>
+      <if test="productId != null">
+        and pc.product_id = #{productId,jdbcType=INTEGER}
+      </if>
+      <if test="quantity != null">
+        and pc.quantity = #{quantity,jdbcType=DECIMAL}
+      </if>
+      <if test="containerUnitCode != null and containerUnitCode !='' ">
+        and pc.container_unit_code = #{containerUnitCode,jdbcType=VARCHAR}
+      </if>
+      <if test="containerUnitCodeName != null">
+        and pc.container_unit_code_name = #{containerUnitCodeName,jdbcType=VARCHAR}
+      </if>
+	</where>
+  </select>
+  
+  <select id="selectByMapParams" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	select pc.* from product p 
+	inner join product_container pc on pc.product_id = p.product_id
+	<where>
+		p.status = 'OK'
+		<if test="product_ids != null and product_ids != ''">
+			and p.product_id in
+			<foreach open="(" close=")" separator=',' collection="product_ids" item="item" index="index">
+				#{item}
+			</foreach>
+		</if>
+		<if test="container_ids != null and container_ids != ''">
+			and pc.container_id in
+			<foreach open="(" close=")" separator=',' collection="container_ids" item="item" index="index">
+				#{item}
+			</foreach>
+		</if>
+		<if test="product_id != null and product_id != '' ">
+			and pc.product_id = #{product_id}
+		</if>
+		<if test="container_id != null and container_id != '' ">
+			and pc.container_id = #{container_id}
+		</if>
+		<if test="container_code != null and container_code != '' ">
+			and pc.container_code = #{container_code}
+		</if>
+	</where>
+	
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_container
+    where container_id = #{containerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_container
+    where container_id = #{containerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductContainer" useGeneratedKeys="true" keyProperty="containerId">
+    insert into product_container (container_id, product_id, quantity, 
+      container_code, container_unit_code, container_unit_code_name
+      )
+    values (#{containerId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{quantity,jdbcType=DECIMAL}, 
+      #{containerCode,jdbcType=VARCHAR}, #{containerUnitCode,jdbcType=VARCHAR}, #{containerUnitCodeName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductContainer" useGeneratedKeys="true" keyProperty="containerId">
+    insert into product_container
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="containerId != null" >
+        container_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="containerCode != null" >
+        container_code,
+      </if>
+      <if test="containerUnitCode != null" >
+        container_unit_code,
+      </if>
+      <if test="containerUnitCodeName != null" >
+        container_unit_code_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="containerId != null" >
+        #{containerId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="containerCode != null" >
+        #{containerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="containerUnitCode != null" >
+        #{containerUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="containerUnitCodeName != null" >
+        #{containerUnitCodeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductContainer" >
+    update product_container
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="containerCode != null" >
+        container_code = #{containerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="containerUnitCode != null" >
+        container_unit_code = #{containerUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="containerUnitCodeName != null" >
+        container_unit_code_name = #{containerUnitCodeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where container_id = #{containerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByProductIdSelective" parameterType="com.ibenben.domain.ProductContainer" >
+    update product_container
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="containerCode != null" >
+        container_code = #{containerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="containerUnitCode != null" >
+        container_unit_code = #{containerUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="containerUnitCodeName != null" >
+        container_unit_code_name = #{containerUnitCodeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_id = #{productId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductContainer" >
+    update product_container
+    set product_id = #{productId,jdbcType=INTEGER},
+      quantity = #{quantity,jdbcType=DECIMAL},
+      container_code = #{containerCode,jdbcType=VARCHAR},
+      container_unit_code = #{containerUnitCode,jdbcType=VARCHAR},
+      container_unit_code_name = #{containerUnitCodeName,jdbcType=VARCHAR}
+    where container_id = #{containerId,jdbcType=INTEGER}
+  </update>
+</mapper>

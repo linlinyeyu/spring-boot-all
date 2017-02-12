@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.PurchaseUserMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.PurchaseUser" >
+    <id column="purchase_user_id" property="purchaseUserId" jdbcType="INTEGER" />
+    <result column="purchase_user_name" property="purchaseUserName" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="product_type" property="productType" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="created_user" property="createdUser" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="last_updated_user" property="lastUpdatedUser" jdbcType="VARCHAR" />
+    <result column="last_updated_time" property="lastUpdatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="BaseMap">
+    <id column="purchase_user_id" property="purchase_user_id" jdbcType="INTEGER" />
+    <result column="purchase_user_name" property="purchase_user_name" jdbcType="VARCHAR" />
+    <result column="real_name" property="real_name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    purchase_user_id, purchase_user_name, real_name, product_type, status, created_user, 
+    created_time, last_updated_user, last_updated_time
+  </sql>
+  <select id="getPurchaseUserList" parameterType="java.util.Map" resultMap="BaseMap">
+    select
+    purchase_user_id,
+    purchase_user_name,
+    real_name
+    from
+    purchase_user
+   	<where>
+   	  <if test="purchase_user_id !='' and purchase_user_id != null">
+   	    purchase_user_id = #{purchase_user_id,jdbcType=INTEGER}
+   	  </if>
+   	  <if test="purchase_user_name != '' and purchase_user_name != null">
+   	    and purchase_user_name = #{purchase_user_name,jdbcType=VARCHAR}
+   	  </if>
+   	  <if test="real_name != '' and real_name != null">
+   	    and real_name = #{real_name,jdbcType=VARCHAR}
+   	  </if>
+   	  <if test="product_type != '' and product_type != null">
+   	    and product_type = #{product_type,jdbcType=VARCHAR}
+   	  </if>
+   	  <if test="status != '' and status != null">
+   	    and status = #{status,jdbcType=VARCHAR}
+   	  </if>
+   	</where>
+  </select>
+  
+  <select id="getPurchaseUserListByIds" parameterType="java.util.Map" resultMap="BaseMap">
+    select
+    purchase_user_id,
+    purchase_user_name,
+    real_name
+    from
+    purchase_user
+    <where>
+      <if test="status != '' and status != null">
+        status = #{status,jdbcType=VARCHAR}
+      </if>
+        and purchase_user_id in
+        <foreach collection="purchase_user_ids" index="index" item="id" open="(" separator="," close=")">
+          #{id,jdbcType=INTEGER}
+        </foreach>
+    </where>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_user
+    where purchase_user_id = #{purchaseUserId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from purchase_user
+    where purchase_user_id = #{purchaseUserId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.PurchaseUser" >
+    insert into purchase_user (purchase_user_id, purchase_user_name, 
+      real_name, product_type, status, 
+      created_user, created_time, last_updated_user, 
+      last_updated_time)
+    values (#{purchaseUserId,jdbcType=INTEGER}, #{purchaseUserName,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createdUser,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{lastUpdatedUser,jdbcType=VARCHAR}, 
+      #{lastUpdatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.PurchaseUser" >
+    insert into purchase_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="purchaseUserId != null" >
+        purchase_user_id,
+      </if>
+      <if test="purchaseUserName != null" >
+        purchase_user_name,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="productType != null" >
+        product_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdUser != null" >
+        created_user,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="lastUpdatedUser != null" >
+        last_updated_user,
+      </if>
+      <if test="lastUpdatedTime != null" >
+        last_updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="purchaseUserId != null" >
+        #{purchaseUserId,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseUserName != null" >
+        #{purchaseUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUser != null" >
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null" >
+        #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null" >
+        #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.PurchaseUser" >
+    update purchase_user
+    <set >
+      <if test="purchaseUserName != null" >
+        purchase_user_name = #{purchaseUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        product_type = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUser != null" >
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null" >
+        last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null" >
+        last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where purchase_user_id = #{purchaseUserId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.PurchaseUser" >
+    update purchase_user
+    set purchase_user_name = #{purchaseUserName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      product_type = #{productType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP}
+    where purchase_user_id = #{purchaseUserId,jdbcType=INTEGER}
+  </update>
+</mapper>

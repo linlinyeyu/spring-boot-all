@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.RegionMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.Region" >
+    <id column="region_id" property="regionId" jdbcType="SMALLINT" />
+    <result column="parent_id" property="parentId" jdbcType="SMALLINT" />
+    <result column="region_name" property="regionName" jdbcType="VARCHAR" />
+    <result column="region_type" property="regionType" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+  </resultMap>
+  
+  <resultMap type="com.ibenben.domain.Province" id="ProvinceResultMap">
+	  <id column="province_id" property="provinceId" jdbcType="SMALLINT" />
+	  <result column="province_parent_id" property="parentId" jdbcType="SMALLINT" />
+	  <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+	  <collection property="cityList" javaType="java.util.List" ofType="com.ibenben.domain.City">
+	    <id column="city_id" property="cityId" jdbcType="SMALLINT" />
+	    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+	    <result column="city_parent_id" property="parentId" jdbcType="SMALLINT" />
+	    <collection property="districtList" javaType="java.util.List" ofType="com.ibenben.domain.District">
+		    <id column="district_id" property="districtId" jdbcType="SMALLINT" />
+		    <result column="district_name" property="districtName" jdbcType="VARCHAR" />
+		    <result column="district_parent_id" property="parentId" jdbcType="SMALLINT" />
+		    <result column="is_set" property="isSet" jdbcType="INTEGER"/>
+	    </collection>
+    </collection>
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="RegionMap">
+    <result column="province_id" property="province_id" jdbcType="SMALLINT" />
+    <result column="province_name" property="province_name" jdbcType="VARCHAR" />
+    <result column="city_id" property="city_id" jdbcType="SMALLINT" />
+    <result column="city_name" property="city_name" jdbcType="VARCHAR" />
+    <result column="district_id" property="district_id" jdbcType="SMALLINT" />
+    <result column="district_name" property="district_name" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="RegionSimpleMap">
+    <result column="region_id" property="region_id" jdbcType="SMALLINT" />
+    <result column="region_name" property="region_name" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    region_id, parent_id, region_name, region_type, status
+  </sql>
+  
+  <select id="getRegionListByIds" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    *
+    from region 
+    where
+    region_id in 
+    <foreach collection="region_ids" index="index" item="id" open="(" separator="," close=")">
+      #{id,jdbcType=SMALLINT}
+    </foreach>
+  </select>
+  <select id="getRegionByDistrict" parameterType="java.util.Map" resultMap="RegionMap">
+    select
+    r1.region_id province_id,r1.region_name province_name,
+    r2.region_id city_id,r2.region_name city_name,
+    r3.region_id district_id,r3.region_name district_name
+    from region r1
+    inner join region r2 on r1.region_id = r2.parent_id
+    inner join region r3 on r2.region_id = r3.parent_id
+    where
+    r1.region_type = 'PROVINCE' and
+    r3.region_id in 
+    <foreach collection="district_ids" index="index" item="id" open="(" separator="," close=")">
+      #{id,jdbcType=SMALLINT}
+    </foreach>
+  </select>
+  
+  <select id="getRegionByFacility" parameterType="java.lang.Integer" resultMap="RegionSimpleMap">
+    SELECT
+   r.region_id,
+   r.region_name
+	FROM
+	   facility f
+	INNER JOIN area a ON f.area_id = a.area_id
+	INNER JOIN area_province_mapping apm ON apm.area_id = a.area_id
+	inner join region r on r.region_id = apm.province_id
+	WHERE
+   f.facility_id = #{facility_id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getAllDistrictIds" parameterType="com.ibenben.domain.Carriage" resultType="java.lang.Integer">
+    select
+    region_id
+    from region
+  	order by region_id
+  </select>
+  
+  <select id="getProvinceDistrictIds" parameterType="com.ibenben.domain.Carriage" resultType="java.lang.Integer">
+    select
+    distinct r3.region_id
+    from region r1
+    inner join region r2 on r1.region_id = r2.parent_id
+    inner join region r3 on r2.region_id = r3.parent_id
+    where r1.region_id = #{region_id,jdbcType=SMALLINT}
+    union
+    select
+    distinct r2.region_id
+    from region r1
+    inner join region r2 on r1.region_id = r2.parent_id
+    where r1.region_id = #{region_id,jdbcType=SMALLINT}
+    union
+    select
+    distinct region_id
+    from region
+    where region_id = #{region_id,jdbcType=SMALLINT}
+    order by region_id
+  </select>
+  
+  <select id="getCityDistrictIds" parameterType="com.ibenben.domain.Carriage" resultType="java.lang.Integer">
+    select
+    distinct r2.region_id
+    from region r1
+    inner join region r2 on r1.region_id = r2.parent_id
+    where r1.region_id = #{region_id,jdbcType=SMALLINT}
+    union
+    select
+    distinct region_id
+    from region
+    where region_id = #{region_id,jdbcType=SMALLINT}
+    order by region_id
+  </select>
+  
+  <insert id="addRegion" parameterType="com.ibenben.domain.Region">
+    insert into
+    region 
+    (region_name,region_type,parent_id)
+    values
+    (#{regionName,jdbcType=VARCHAR},#{regionType,jdbcType=VARCHAR},#{parentId,jdbcType=SMALLINT})
+  </insert>
+  <select id="isExist" parameterType="com.ibenben.domain.Region" resultMap="BaseResultMap">
+    select
+    *
+    from
+    region
+    where
+    region_name = #{regionName,jdbcType=VARCHAR} and 
+    region_type = #{regionType,jdbcType=VARCHAR} and
+    parent_id = #{parentId,jdbcType=SMALLINT}
+  </select>
+  <select id="selectByMapParams" parameterType="java.util.Map" resultMap="BaseResultMap">
+	select 
+		r.*
+	from region r
+	<where>
+	  <if test="region_id != null">
+        r.region_id = #{region_id,jdbcType=INTEGER}
+      </if>
+      <if test="parent_id != null">
+        and r.parent_id = #{parent_id,jdbcType=INTEGER}
+      </if>
+      <if test="region_name != null">
+        and r.region_name = #{region_name,jdbcType=VARCHAR}
+      </if>
+      <if test="region_type != null">
+        and r.region_type = #{region_type,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null">
+        and r.status = #{status,jdbcType=CHAR}
+      </if>
+	</where>
+  </select>
+  
+  <select id="selectByNameLike" resultMap="BaseResultMap" >
+  	select 
+		r.*
+	from region r
+	where
+		region_name like concat(#{regionName,jdbcType=VARCHAR}, '%')and 
+	    region_type = #{regionType,jdbcType=VARCHAR} and
+	    parent_id = #{parentId,jdbcType=SMALLINT}
+  </select>
+  
+  <select id="selectByRegion" parameterType="com.ibenben.domain.Region" resultMap="BaseResultMap">
+	select 
+		r.*
+	from region r
+	<where>
+	  <if test="regionId != null">
+        r.region_id = #{regionId,jdbcType=INTEGER}
+      </if>
+      <if test="parentId != null">
+        and r.parent_id = #{parentId,jdbcType=INTEGER}
+      </if>
+      <if test="regionName != null">
+        and r.region_name = #{regionName,jdbcType=VARCHAR}
+      </if>
+      <if test="regionType != null">
+        and r.region_type = #{regionType,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null">
+        and r.status = #{status,jdbcType=CHAR}
+      </if>
+	</where>
+  </select>
+  
+  <select id="getAllRegionList" resultMap="ProvinceResultMap">
+    select
+    r.region_id province_id,r.region_name province_name,r1.region_id city_id,r1.region_name city_name,r2.region_id district_id,
+    r2.region_name district_name
+    from
+    region r
+    left join region r1 on r.region_id = r1.parent_id
+    left join region r2 on r1.region_id = r2.parent_id
+    where r.region_type=2 and
+    r1.region_type=3 and 
+    r2.region_type=4
+  </select>
+  
+  <select id="getDistrictIds" parameterType="java.lang.Integer" resultType="java.lang.Integer" >
+    select
+    district_id
+    from
+    merchant_district where merchant_id=#{merchant_id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getDistrictIdsWithInRegion" resultType="java.lang.Integer">
+  	SELECT 
+	 d.region_id as district_id
+	from area a
+	inner join area_province_mapping apm on apm.area_id = a.area_id
+	inner join region p on p.region_id = apm.province_id and p.`status`= 'OK'
+	inner join region c on c.parent_id = p.region_id and c.`status`= 'OK'
+	inner join region d on d.parent_id = c.region_id and d.`status`= 'OK'
+	<where>
+		<if test="area_id != null">
+			and a.area_id = #{area_id}
+		</if>
+		<if test="province_id != null">
+			and p.region_id = #{province_id}
+		</if>
+		<if test="city_id != null">
+			and c.region_id = #{city_id}
+		</if>
+		<if test="area_ids != null">
+			and a.area_id in 
+			<foreach item="item" index="index" collection="area_ids" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="province_ids != null">
+			and p.region_id in 
+			<foreach item="item" index="index" collection="province_ids" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="city_ids != null">
+			and c.region_id in
+			<foreach item="item" index="index" collection="city_ids" separator="," open="(" close=")">
+				#{item}
+			</foreach>
+		</if>
+	</where>
+  </select>
+  
+  
+  <select id="getSelectedRegionList" parameterType="java.util.List" resultMap="ProvinceResultMap">
+    select
+    r.region_id province_id,r.region_name province_name,r1.region_id city_id,r1.region_name city_name,
+    r2.region_id district_id,r2.region_name district_name
+    from
+    region r
+    left join region r1 on r.region_id = r1.parent_id
+    left join region r2 on r1.region_id = r2.parent_id
+    where
+    r.region_type=2 and r1.region_type=3 and r2.region_type=4 and
+    r.region_id in(
+    select 
+    distinct parent_id from region where region_id in(
+    select parent_id from region where region_id in
+    <foreach collection="list" index="index" item="dId" open="(" separator="," close=")">
+      #{dId}
+    </foreach>
+    )) and 
+    r1.region_id in (select distinct parent_id from region where region_id in
+    <foreach collection="list" index="index" item="dId" open="(" separator="," close=")">
+      #{dId}
+    </foreach>
+	) and 
+    r2.region_id in
+    <foreach collection="list" index="index" item="dId" open="(" separator="," close=")">
+      #{dId}
+    </foreach>
+  </select>
+  
+  <insert id="setRegion" parameterType="java.util.Map">
+    insert into merchant_district
+    values
+    <foreach collection="district_id_list" index="index" item="dId" open="(" separator="),(" close="">
+      #{merchant_id},#{dId,jdbcType=SMALLINT}
+    </foreach>
+    )
+  </insert>
+  
+  <delete id="removeDistrict" parameterType="java.lang.String">
+    delete
+    from merchant_district where merchant_id=#{merchant_id}
+  </delete>
+  
+  <select id="getProvince" resultType="com.ibenben.domain.Province">
+    select
+    region_id provinceId,region_name provinceName,region_type regionType
+    from
+    region
+    where
+ 	region_type=2
+  </select>
+  
+  <select id="getCity" parameterType="java.util.Map" resultType="com.ibenben.domain.City">
+    select
+    region_id cityId,region_name cityName,region_type regionType
+    from
+    region
+    where
+    region_type=3 and
+    parent_id = #{province_id,jdbcType=SMALLINT}
+  </select>
+  
+  <select id="getDistrict" parameterType="java.util.Map" resultType="com.ibenben.domain.District">
+    select
+    region_id districtId,region_name districtName,region_type regionType
+    from
+    region
+    where
+    region_type=4 and
+    parent_id = #{city_id,jdbcType=SMALLINT}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from region
+    where region_id = #{regionId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from region
+    where region_id = #{regionId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.Region" >
+    insert into region (region_id, parent_id, region_name, 
+      region_type, status)
+    values (#{regionId,jdbcType=SMALLINT}, #{parentId,jdbcType=SMALLINT}, #{regionName,jdbcType=VARCHAR}, 
+      #{regionType,jdbcType=BIT}, #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.Region" useGeneratedKeys="true" keyProperty="regionId">
+    insert into region
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="regionId != null" >
+        region_id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="regionName != null" >
+        region_name,
+      </if>
+      <if test="regionType != null" >
+        region_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="regionId != null" >
+        #{regionId,jdbcType=SMALLINT},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=SMALLINT},
+      </if>
+      <if test="regionName != null" >
+        #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="regionType != null" >
+        #{regionType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.Region" >
+    update region
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=SMALLINT},
+      </if>
+      <if test="regionName != null" >
+        region_name = #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="regionType != null" >
+        region_type = #{regionType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where region_id = #{regionId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.Region" >
+    update region
+    set parent_id = #{parentId,jdbcType=SMALLINT},
+      region_name = #{regionName,jdbcType=VARCHAR},
+      region_type = #{regionType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR}
+    where region_id = #{regionId,jdbcType=SMALLINT}
+  </update>
+</mapper>

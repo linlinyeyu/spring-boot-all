@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.GroupTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.GroupType" >
+    <id column="group_id" property="groupId" jdbcType="INTEGER" />
+    <result column="group_type" property="groupType" jdbcType="VARCHAR" />
+    <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <resultMap id="UserResultMap" type="java.util.Map">
+   	<id column="group_id" property="group_id" jdbcType="INTEGER" />
+    <result column="group_type" property="group_type" jdbcType="VARCHAR" />
+    <result column="group_name" property="group_name" jdbcType="VARCHAR" />
+  	<result column="checked" property="checked" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="selectByMapParams" resultMap="BaseResultMap" parameterType="java.util.Map">
+	select 
+		group_id, group_type, group_name
+	from `group_type`
+  	<where>
+  		<if test="group_type != '' and group_type != null">
+        	group_type = #{group_type,jdbcType=VARCHAR}
+      </if>
+  	</where>
+  </select>
+  <select id="selectByUser" resultMap="UserResultMap" parameterType="java.lang.Integer">
+	select 
+		group_id, 
+		g.group_type, 
+		group_name, 
+		IF(ug.user_id is null, 0, 1) checked
+	from `group_type` g
+ 	LEFT JOIN user_group ug on g.group_type = ug.group_type and ug.user_id = #{userId,jdbcType=INTEGER};
+  </select>
+  <sql id="Base_Column_List" >
+    group_id, group_type, group_name
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from group_type
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from group_type
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.GroupType" >
+    insert into group_type (group_id, group_type, group_name
+      )
+    values (#{groupId,jdbcType=INTEGER}, #{groupType,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.GroupType" >
+    insert into group_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupId != null" >
+        group_id,
+      </if>
+      <if test="groupType != null" >
+        group_type,
+      </if>
+      <if test="groupName != null" >
+        group_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupId != null" >
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="groupType != null" >
+        #{groupType,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.GroupType" >
+    update group_type
+    <set >
+      <if test="groupType != null" >
+        group_type = #{groupType,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null" >
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.GroupType" >
+    update group_type
+    set group_type = #{groupType,jdbcType=VARCHAR},
+      group_name = #{groupName,jdbcType=VARCHAR}
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </update>
+</mapper>

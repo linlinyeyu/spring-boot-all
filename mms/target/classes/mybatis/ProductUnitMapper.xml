@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductUnitMapper" >
+   <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductUnit" >
+    <id column="product_unit_id" property="productUnitId" jdbcType="INTEGER" />
+    <result column="unit_code_type" property="unitCodeType" jdbcType="CHAR" />
+    <result column="product_type" property="productType" jdbcType="VARCHAR" />
+    <result column="unit_code" property="unitCode" jdbcType="VARCHAR" />
+    <result column="unit_code_name" property="unitCodeName" jdbcType="VARCHAR" />
+    <result column="decimal_places" property="decimalPlaces" jdbcType="TINYINT" />
+    <result column="unit_code_regex" property="unitCodeRegex" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    product_unit_id, unit_code_type, product_type, unit_code, unit_code_name, decimal_places, 
+    unit_code_regex
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_unit
+    where product_unit_id = #{productUnitId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByMapParams" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_unit
+    <where>
+		<if test="product_unit_id != null and product_unit_id != '' ">
+			product_unit_id = #{productUnitId,jdbcType=INTEGER}
+		</if>
+		<if test="unit_code_type != null and unit_code_type != '' ">
+			and unit_code_type = #{unit_code_type,jdbcType=CHAR}
+		</if>
+		<if test="product_type != null and product_type != '' ">
+			and product_type = #{product_type,jdbcType=VARCHAR}
+		</if>
+		<if test="unit_code != null and unit_code != '' ">
+			and unit_code = #{unit_code, jdbcType=VARCHAR}
+		</if>
+		<if test="unit_code_name != null and unit_code_name != '' ">
+			and unit_code_name = #{unit_code_name,jdbcType=VARCHAR}
+		</if>
+		<if test="decimal_places != null and decimal_places != '' ">
+			and decimal_places = #{decimal_places,jdbcType=TINYINT}
+		</if>
+		<if test="unit_code_regex != null and unit_code_regex != '' ">
+			and unit_code_regex = #{unit_code_regex,jdbcType=VARCHAR}
+		</if>
+    </where>
+  </select>
+  
+  <select id = "selectByProductId" resultMap="BaseResultMap">
+  	SELECT * from product p
+	inner join product_unit pu on p.unit_code = pu.unit_code 
+		and p.product_type = pu.product_type
+	where p.product_id = #{productId}
+	<if test="unitCodeType != null and unitCodeType != '' ">
+		and pu.unit_code_type= #{unitCodeType}
+	</if>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_unit
+    where product_unit_id = #{productUnitId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.ProductUnit" >
+    insert into product_unit (product_unit_id, unit_code_type, product_type, 
+      unit_code, unit_code_name, decimal_places, 
+      unit_code_regex)
+    values (#{productUnitId,jdbcType=INTEGER}, #{unitCodeType,jdbcType=CHAR}, #{productType,jdbcType=VARCHAR}, 
+      #{unitCode,jdbcType=VARCHAR}, #{unitCodeName,jdbcType=VARCHAR}, #{decimalPlaces,jdbcType=TINYINT}, 
+      #{unitCodeRegex,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.ProductUnit" >
+    insert into product_unit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productUnitId != null" >
+        product_unit_id,
+      </if>
+      <if test="unitCodeType != null" >
+        unit_code_type,
+      </if>
+      <if test="productType != null" >
+        product_type,
+      </if>
+      <if test="unitCode != null" >
+        unit_code,
+      </if>
+      <if test="unitCodeName != null" >
+        unit_code_name,
+      </if>
+      <if test="decimalPlaces != null" >
+        decimal_places,
+      </if>
+      <if test="unitCodeRegex != null" >
+        unit_code_regex,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productUnitId != null" >
+        #{productUnitId,jdbcType=INTEGER},
+      </if>
+      <if test="unitCodeType != null" >
+        #{unitCodeType,jdbcType=CHAR},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCode != null" >
+        #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCodeName != null" >
+        #{unitCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="decimalPlaces != null" >
+        #{decimalPlaces,jdbcType=TINYINT},
+      </if>
+      <if test="unitCodeRegex != null" >
+        #{unitCodeRegex,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.ProductUnit" >
+    update product_unit
+    <set >
+      <if test="unitCodeType != null" >
+        unit_code_type = #{unitCodeType,jdbcType=CHAR},
+      </if>
+      <if test="productType != null" >
+        product_type = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCode != null" >
+        unit_code = #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCodeName != null" >
+        unit_code_name = #{unitCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="decimalPlaces != null" >
+        decimal_places = #{decimalPlaces,jdbcType=TINYINT},
+      </if>
+      <if test="unitCodeRegex != null" >
+        unit_code_regex = #{unitCodeRegex,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_unit_id = #{productUnitId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.ProductUnit" >
+    update product_unit
+    set unit_code_type = #{unitCodeType,jdbcType=CHAR},
+      product_type = #{productType,jdbcType=VARCHAR},
+      unit_code = #{unitCode,jdbcType=VARCHAR},
+      unit_code_name = #{unitCodeName,jdbcType=VARCHAR},
+      decimal_places = #{decimalPlaces,jdbcType=TINYINT},
+      unit_code_regex = #{unitCodeRegex,jdbcType=VARCHAR}
+    where product_unit_id = #{productUnitId,jdbcType=INTEGER}
+  </update>
+</mapper>

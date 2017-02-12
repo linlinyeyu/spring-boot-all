@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.ProductQcMappingMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.ProductQcMapping" >
+    <id column="product_qc_mapping_id" property="productQcMappingId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_qc_id" property="productQcId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    product_qc_mapping_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_qc_mapping
+    where product_qc_mapping_id = #{productQcMappingId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_qc_mapping
+    where product_qc_mapping_id = #{productQcMappingId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByProductId" parameterType="java.lang.Integer" >
+    delete from product_qc_mapping
+    where product_id = #{productId,jdbcType=INTEGER}
+  </delete>
+  
+  
+  <insert id="insert" parameterType="java.util.Map" >
+    insert into product_qc_mapping (product_qc_mapping_id, product_id, product_qc_id
+      )
+    values (#{productQcMappingId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{productQcId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="java.util.Map" >
+    insert into product_qc_mapping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productQcMappingId != null" >
+        product_qc_mapping_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productQcId != null" >
+        product_qc_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productQcMappingId != null" >
+        #{productQcMappingId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productQcId != null" >
+        #{productQcId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="java.util.Map" >
+    update product_qc_mapping
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productQcId != null" >
+        product_qc_id = #{productQcId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where product_qc_mapping_id = #{productQcMappingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="java.util.Map" >
+    update product_qc_mapping
+    set product_id = #{productId,jdbcType=INTEGER},
+      product_qc_id = #{productQcId,jdbcType=INTEGER}
+    where product_qc_mapping_id = #{productQcMappingId,jdbcType=INTEGER}
+  </update>
+</mapper>

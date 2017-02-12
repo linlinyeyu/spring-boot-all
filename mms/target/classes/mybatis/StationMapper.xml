@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.StationMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.Station" >
+    <id column="station_id" property="stationId" jdbcType="INTEGER" />
+    <result column="station_name" property="stationName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="station_address" property="stationAddress" jdbcType="VARCHAR" />
+    <result column="station_code" property="stationCode" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="SMALLINT" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="SMALLINT" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="district_id" property="districtId" jdbcType="SMALLINT" />
+    <result column="district_name" property="districtName" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="DECIMAL" />
+    <result column="latitude" property="latitude" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="StationFacilityMap">
+    <result column="station_name" property="station_name" jdbcType="VARCHAR" />
+    <result column="facility_name" property="facility_name" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="facility_id" property="facility_id" jdbcType="TINYINT" />
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="FacilityStationMap">
+    <id column="facility_id" property="facility_id" jdbcType="TINYINT" />
+    <result column="station_id" property="station_id" jdbcType="TINYINT" />
+    <result column="station_code" property="station_code" jdbcType="VARCHAR" />
+    <result column="station_name" property="station_name" jdbcType="VARCHAR" />
+    <result column="facility_code" property="facility_code" jdbcType="VARCHAR" />
+    <result column="facility_name" property="facility_name" jdbcType="VARCHAR" />
+    <result column="cost" property="cost" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="MerchantStationMap">
+    <id column="merchant_station_id" property="merchant_station_id" jdbcType="INTEGER" />
+    <result column="merchant_name" property="merchant_name" jdbcType="VARCHAR" />
+   	<result column="station_id" property="station_id" jdbcType="SMALLINT" />
+   	<result column="station_name" property="station_name" jdbcType="VARCHAR" />
+    <collection property="shipping_list" javaType="java.util.List" ofType="java.util.Map">
+        <id column="shipping_name" property="shipping_name" jdbcType="VARCHAR" />
+      	<result column="shipping_id" property="shipping_id" jdbcType="INTEGER" />
+    </collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    station_id, station_name, status, station_address, station_code,province_id,province_name,city_id,city_name,district_id,district_name,longitude,latitude
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from station
+    where station_id = #{stationId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getStationByMerchant" parameterType="java.util.Map" resultType="java.util.Map">
+    select
+    s.station_id,
+    s.station_name,
+    s.station_code
+    from merchant_station_mapping msm
+    inner join station s on s.station_id = msm.station_id and s.status = 'OK'
+    where 
+    msm.merchant_id in
+  	<foreach collection="merchant_ids" index="index" item="item" open="(" separator="," close=")">
+  	  #{item}
+  	</foreach>
+  	group by s.station_id
+  </select>
+  
+  <select id="getMerchantStationList" parameterType="java.lang.Integer" resultMap="MerchantStationMap">
+    select
+    s.station_id,
+    s.station_name,
+    msm.merchant_station_id,
+    m.merchant_name,
+    s2.shipping_id,
+    s2.shipping_name
+    from merchant_station_mapping msm
+    inner join station s on s.station_id = msm.station_id
+    inner join merchant m on m.merchant_id = msm.merchant_id
+    left join merchant_station_shipping_mapping mssm on mssm.merchant_id = msm.merchant_id and mssm.station_id = msm.station_id
+    left join shipping s2 on mssm.shipping_id = s2.shipping_id and s2.status = 'OK'
+    where msm.merchant_id = #{item.merchant_id,jdbcType=INTEGER} and msm.status is not null
+  </select>
+  
+  <delete id="delMerchantStationShipping" parameterType="java.util.Map">
+    delete
+    from 
+    merchant_station_shipping_mapping
+    where
+    merchant_id = #{merchant_id,jdbcType=INTEGER} and
+    station_id = #{station_id,jdbcType=TINYINT}
+  </delete>
+  
+  <insert id="editMerchantStation" parameterType="java.util.Map">
+    insert
+    into merchant_station_shipping_mapping
+    (merchant_id,station_id,shipping_id)
+    values
+    <foreach collection="shipping_ids" index="index" item="item" open="(" separator="),(" close=")">
+      #{merchant_id,jdbcType=INTEGER},
+      #{station_id,jdbcType=TINYINT},
+      #{item}
+    </foreach>
+  </insert>
+  
+  <insert id="addMerchantStation" parameterType="java.util.Map">
+    insert into
+    merchant_station_mapping
+    (merchant_id,station_id,status,created_user,created_time)
+    values
+    (#{merchant_id,jdbcType=INTEGER},#{station_id,jdbcType=TINYINT},'OK',#{created_user,jdbcType=VARCHAR},#{created_time,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <select id="isExistMerchantStation" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+    count(merchant_station_id)
+    from merchant_station_mapping
+    where merchant_id = #{merchant_id,jdbcType=INTEGER} and
+    station_id = #{station_id,jdbcType=TINYINT} and
+    status is not null
+  </select>
+  
+  <update id="delMerchantStation" parameterType="java.util.Map">
+    update
+    merchant_station_mapping 
+    set status = null
+    where merchant_station_id = #{merchant_station_id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getApiStationInfo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    *
+    from station where
+    station_id = #{station_id,jdbcType=INTEGER} and
+    status = 'OK'
+  </select>
+  
+  <select id="getStationByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    *
+    from
+    station
+    where station_code = #{station_code,jdbcType=VARCHAR} and
+    status = 'OK'
+  </select>
+  
+  <select id="getStationByFacility" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    s.*
+    from station_facility_mapping sfm
+    inner join station s on s.station_id = sfm.station_id
+    inner join facility f on sfm.facility_id = f.facility_id
+    <where>
+       s.status = 'OK'
+       and f.status = 'OK'
+      <if test="facility_id != '' and facility_id != null">
+        and sfm.facility_id = #{facility_id,jdbcType=TINYINT}
+      </if>
+      <if test="facility_code != '' and facility_code != null">
+        and f.facility_code = #{facility_code,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  
+  <select id="getStationId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+    station_id
+    from station_facility_mapping
+    where facility_id = #{facility_id,jdbcType=TINYINT}
+  </select>
+  
+  <select id="getStationFacility" parameterType="java.lang.Integer" resultMap="StationFacilityMap">
+    select
+    s.station_name,f.facility_name,sfm.id,f.facility_id
+    from station_facility_mapping sfm
+    inner join station s on s.station_id = sfm.station_id
+    inner join facility f on f.facility_id = sfm.facility_id
+    where sfm.station_id = #{station_id,jdbcType=TINYINT}
+  </select>
+  
+  <insert id="addStationFacility" parameterType="java.util.Map">
+    insert into
+    station_facility_mapping
+    (station_id,facility_id)
+    values
+    (#{station_id,jdbcType=TINYINT},#{facility_id,jdbcType=TINYINT})
+  </insert>
+  
+  <delete id="delStationFacility" parameterType="java.util.Map">
+    delete from 
+    station_facility_mapping
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <select id="isExist" parameterType="com.ibenben.domain.Station" resultType="java.lang.Integer">
+    select
+    count(station_id)
+    from station
+    where station_name = #{stationName,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getFacilityId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+    facility_id
+    from station_facility_mapping
+    where station_id = #{station_id,jdbcType=TINYINT}
+  </select>
+  
+  <select id="isExistFacility" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+    count(id)
+    from station_facility_mapping
+    where station_id = #{station_id,jdbcType=TINYINT}
+  </select>
+  
+  <select id="getStationList" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select *
+    from station
+  </select>
+  
+  <select id="getApiStationList" resultMap="BaseResultMap">
+    select
+    * from station
+    where status = 'OK'
+  </select>
+  
+  <select id="getFacilityStationList" parameterType="java.lang.String" resultMap="FacilityStationMap">
+  	select
+  		f.facility_id,
+    	f.facility_code,
+    	f.facility_name,
+    	s.station_id,
+    	s.station_code,
+    	s.station_name,
+    	fsm.cost
+    from 
+    	facility f 
+    inner join facility_station_mapping fsm on f.facility_id = fsm.facility_id
+    inner join station s on fsm.station_id = s.station_id and s.status = 'OK'
+    where f.status = 'OK' and f.facility_code = #{facility_code,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from station
+    where station_id = #{stationId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.Station" >
+    insert into station (station_id, station_name, status, 
+      station_address, station_code,province_id,province_name,city_id,city_name,district_id,district_name)
+    values (#{stationId,jdbcType=INTEGER}, #{stationName,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
+      #{stationAddress,jdbcType=VARCHAR}, #{stationCode,jdbcType=VARCHAR},#{provinceId,jdbcType=SMALLINT},
+      #{provinceName,jdbcType=VARCHAR},#{cityId,jdbcType=SMALLINT},#{cityName,jdbcType=VARCHAR},#{districtId,jdbcType=SMALLINT},#{districtName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.Station" >
+    insert into station
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stationId != null" >
+        station_id,
+      </if>
+      <if test="stationName != null" >
+        station_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="stationAddress != null" >
+        station_address,
+      </if>
+      <if test="stationCode != null" >
+        station_code,
+      </if>
+      <if test="provinceId != null">
+        province_id,
+      </if>
+      <if test="provinceName != null">
+        province_name,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="cityName != null">
+        city_name,
+      </if>
+      <if test="districtId != null">
+        district_id,
+      </if>
+      <if test="districtName != null">
+        district_name,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stationId != null" >
+        #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="stationName != null" >
+        #{stationName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="stationAddress != null" >
+        #{stationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stationCode != null" >
+        #{stationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null">
+        #{provinceId,jdbcType=SMALLINT},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=SMALLINT},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtId != null">
+        #{districtId,jdbcType=SMALLINT},
+      </if>
+      <if test="districtName != null">
+        #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.Station" >
+    update station
+    <set >
+      <if test="stationName != null" >
+        station_name = #{stationName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="stationAddress != null" >
+        station_address = #{stationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stationCode != null" >
+        station_code = #{stationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null">
+        province_id = #{provinceId,jdbcType=SMALLINT},
+      </if>
+      <if test="provinceName != null">
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=SMALLINT},
+      </if>
+      <if test="cityName != null">
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtId != null">
+        district_id = #{districtId,jdbcType=SMALLINT},
+      </if>
+      <if test="districtName != null">
+        district_name = #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where station_id = #{stationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.Station" >
+    update station
+    set station_name = #{stationName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      station_address = #{stationAddress,jdbcType=VARCHAR},
+      station_code = #{stationCode,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=SMALLINT},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=SMALLINT},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      district_id = #{districtId,jdbcType=SMALLINT},
+      district_name = #{districtName,jdbcType=VARCHAR}
+    where station_id = #{stationId,jdbcType=INTEGER}
+  </update>
+</mapper>

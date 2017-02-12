@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibenben.mapper.MerchantMapper">
+  <cache type="com.ibenben.redis.MybatisRedisCache"/>
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.Merchant">
+    <id column="merchant_id" jdbcType="INTEGER" property="merchantId" />
+    <result column="merchant_name" jdbcType="VARCHAR" property="merchantName" />
+    <result column="platform_id" jdbcType="INTEGER" property="platformId" />
+    <result column="party_id" jdbcType="INTEGER" property="partyId" />
+    <result column="party_name" jdbcType="INTEGER" property="partyName"/>
+    <result column="platform_name" jdbcType="VARCHAR" property="platformName"/>
+    <result column="merchant_type" jdbcType="CHAR" property="merchantType" />
+    <result column="merchant_tel" jdbcType="VARCHAR" property="merchantTel" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="created_user" jdbcType="VARCHAR" property="createdUser" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="last_updated_user" jdbcType="VARCHAR" property="lastUpdatedUser" />
+    <result column="last_updated_time" jdbcType="TIMESTAMP" property="lastUpdatedTime" />
+    <result column="shipped_order_url" jdbcType="VARCHAR" property="shippedOrderUrl" />
+    <result column="app_key" jdbcType="VARCHAR" property="appKey" />
+    <result column="secret" jdbcType="VARCHAR" property="secret" />
+    <result column="session_key" jdbcType="VARCHAR" property="sessionKey" />
+    <result column="use_time" jdbcType="TIMESTAMP" property="useTime" />
+    <result column="area_id" jdbcType="INTEGER" property="areaId" />
+    <result column="platform_code" jdbcType="VARCHAR" property="platformCode" />
+    <result column="is_raw_sale" jdbcType="VARCHAR" property="isRawSale" />
+    <result column="is_finished_sale" jdbcType="VARCHAR" property="isFinishedSale" />
+    <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode" />
+    <result column="auto_send" jdbcType="TINYINT" property="autoSend" />
+    <result column="send_user_info" jdbcType="VARCHAR" property="sendUserInfo" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="BaseMap">
+    <result column="platform_id" jdbcType="INTEGER" property="platform_id" />
+    <result column="platform_name" jdbcType="VARCHAR" property="platform_name"/>
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="PlatformMerchantMap">
+    <id column="merchant_id" property="merchant_id" jdbcType="INTEGER" />
+    <result column="merchant_name" property="merchant_name" jdbcType="VARCHAR" />
+    <result column="merchant_type" jdbcType="CHAR" property="merchant_type" />
+    <result column="platform_id" jdbcType="INTEGER" property="platform_id" />
+    <result column="last_updated_time" jdbcType="TIMESTAMP" property="last_updated_time" />
+    <result column="area_id" jdbcType="INTEGER" property="area_id" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="area_name" jdbcType="VARCHAR" property="area_name"/>
+    <result column="platform_name" jdbcType="VARCHAR" property="platform_name" />
+    <result column="merchant_code" jdbcType="VARCHAR" property="merchant_code" />
+    <result column="auto_send" jdbcType="TINYINT" property="auto_send" />
+    <result column="secret" jdbcType="VARCHAR" property="secret" />
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="PlatformCodeMap">
+    <id column="merchant_id" property="merchant_id" jdbcType="INTEGER" />
+    <result column="merchant_name" property="merchant_name" jdbcType="VARCHAR" />
+    <result column="app_key" property="app_key" jdbcType="VARCHAR" />
+    <result column="secret" property="secret" jdbcType="VARCHAR" />
+    <result column="session_key" property="session_key" jdbcType="VARCHAR" />
+    <result column="shipped_order_url" property="shipped_order_url" jdbcType="VARCHAR" />
+    <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode" />
+    <result column="auto_send" jdbcType="TINYINT" property="autoSend" />
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="MerchantFacilityMap">
+    <id column="merchant_id" property="merchant_id" jdbcType="INTEGER" />
+    <result column="merchant_name" property="merchant_name" jdbcType="VARCHAR" />
+    <collection property="facility_list" javaType="java.util.List" ofType="com.ibenben.domain.Facility">
+      	<id column="facility_id" property="facilityId" jdbcType="TINYINT" />
+	    <result column="facility_name" property="facilityName" jdbcType="VARCHAR" />
+	    <result column="facility_type" property="facilityType" jdbcType="INTEGER" />
+	    <result column="status" property="status" jdbcType="VARCHAR" />
+	    <result column="facility_title" property="facilityTitle" jdbcType="VARCHAR" />
+	    <result column="facility_mobile" property="facilityMobile" jdbcType="VARCHAR" />
+	    <result column="facility_consignee" property="facilityConsignee" jdbcType="VARCHAR" />
+	    <result column="facility_address" property="facilityAddress" jdbcType="VARCHAR" />
+	    <result column="template_style" property="templateStyle" jdbcType="TINYINT" />
+	    <result column="province_id" property="provinceId" jdbcType="SMALLINT" />
+	    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+	    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+	    <result column="city_id" property="cityId" jdbcType="SMALLINT" />
+	    <result column="district_name" property="districtName" jdbcType="VARCHAR" />
+	    <result column="district_id" property="districtId" jdbcType="SMALLINT" />
+	    <result column="postcode" property="postcode" jdbcType="VARCHAR" />
+	    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+	    <result column="is_weekend_shipping" property="isWeekendShipping" jdbcType="INTEGER" />
+	    <result column="can_departure" property="canDeparture" jdbcType="INTEGER" />
+	    <result column="is_self_template" property="isSelfTemplate" jdbcType="TINYINT" />
+	    <result column="real_address" property="realAddress" jdbcType="VARCHAR" />
+	    <result column="facility_code" property="facilityCode" jdbcType="VARCHAR" />
+	    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+	    <result column="is_need_express_get_goods" property="isNeedExpressGetGoods" jdbcType="TINYINT" />
+    </collection>
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="MerchantShippingMap">
+    <id column="merchant_id" property="merchant_id" jdbcType="INTEGER" />
+    <result column="merchant_name" property="merchant_name" jdbcType="VARCHAR" />
+    <collection property="shipping_list" javaType="java.util.List" ofType="com.ibenben.domain.Shipping">
+      <id column="shipping_id" property="shippingId" jdbcType="SMALLINT" />
+	    <result column="shipping_name" property="shippingName" jdbcType="VARCHAR" />
+	    <result column="status" property="status" jdbcType="CHAR" />
+	    <result column="support_thermal" property="supportThermal" jdbcType="INTEGER" />
+	    <result column="support_transfer" property="supportTransfer" jdbcType="INTEGER" />
+	    <result column="open_key" property="openKey" jdbcType="VARCHAR" />
+	    <result column="send_order_url" property="sendOrderUrl" jdbcType="VARCHAR" />
+	    <result column="get_station_url" property="getStationUrl" jdbcType="VARCHAR" />
+	    <result column="shipping_type" property="shippingType" jdbcType="CHAR" />
+	    <result column="regex" property="regex" jdbcType="VARCHAR" />
+	    <result column="region_coverage" property="regionCoverage" jdbcType="INTEGER" />
+	    <result column="bestshipping_manual_score" property="bestshippingManualScore" jdbcType="DECIMAL" />
+	    <result column="is_unified_service" property="isUnifiedService" jdbcType="INTEGER" />
+	    <result column="shipping_code" property="shippingCode" jdbcType="VARCHAR" />
+	    <result column="push_type" property="pushType" jdbcType="TINYINT" />
+	    <result column="api_url" property="apiUrl" jdbcType="VARCHAR" />
+	    <result column="is_cod" property="isCod" jdbcType="TINYINT" />
+    </collection>
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="CustomerMap">
+    <id column="merchant_id" property="merchant_id" jdbcType="INTEGER" />
+    <collection property="customer_list" javaType="java.util.List" ofType="java.util.Map">
+    	<id column="customer_id" property="customer_id" jdbcType="INTEGER" />
+    	<result column="customer_name" property="customer_name" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    merchant_id, merchant_name, platform_id, party_id, merchant_type, merchant_tel, status, created_user, 
+    created_time, last_updated_user, last_updated_time, shipped_order_url,app_key,secret,session_key,
+    use_time,area_id,platform_code,is_raw_sale,is_finished_sale,merchant_code,auto_send,send_user_info,telephone
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from merchant
+    where merchant_id = #{merchantId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getMerchantByUser" parameterType="com.ibenben.domain.User" resultType="java.lang.Integer">
+    select
+    m.merchant_id
+    from user_merchant um
+    inner join merchant m on m.merchant_id = um.merchant_id and m.status = 'OK'
+    where um.user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="isExist" parameterType="com.ibenben.domain.Merchant" resultType="java.lang.Integer">
+    select
+    count(*)
+    from merchant
+    where merchant_name = #{merchantName,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getMerchantSimList" resultType="java.util.Map">
+    select
+    merchant_id,
+    merchant_name
+    from merchant
+    where status = 'OK'
+  </select>
+  
+  <select id="isEditExist" parameterType="com.ibenben.domain.Merchant" resultType="java.lang.Integer">
+    select
+    count(*)
+    from merchant
+    where merchant_name = #{merchantName,jdbcType=VARCHAR} and
+    merchant_id != #{merchantId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getMerchantFacilityByIds" parameterType="java.util.Map" resultType="java.util.Map">
+    select
+    f.facility_id,
+    f.facility_name,
+    f.facility_code
+    from merchant_facility_mapping mfm
+    inner join facility f on mfm.facility_id = f.facility_id
+    where
+    f.status = 'OK' and
+    mfm.merchant_id in
+    <foreach collection="merchant_ids" index="index" item="id" open="(" separator="," close=")">
+      #{id,jdbcType=INTEGER}
+    </foreach>
+    group by f.facility_id
+  </select>
+  
+  <select id="getMerchantCustomer" parameterType="java.lang.Integer" resultMap="CustomerMap">
+    select
+    c.customer_id,
+    c.customer_name,
+    m.merchant_id
+    from customer_merchant_mapping cmm
+    inner join merchant m on m.merchant_id = cmm.merchant_id
+    inner join customer c on c.customer_id = cmm.customer_id
+    where cmm.merchant_id = #{merchant_id,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="getMerchantShippingByIds" parameterType="java.util.Map" resultType="java.util.Map">
+    select
+    s.shipping_id,
+    s.shipping_name,
+    s.shipping_code
+    from merchant_shipping_mapping msm
+    inner join shipping s on s.shipping_id = msm.shipping_id
+    where
+    s.status = 'OK' and
+    msm.merchant_id in
+    <foreach collection="merchant_ids" index="index" item="id" open="(" separator="," close=")">
+      #{id,jdbcType=INTEGER}
+    </foreach>
+    group by s.shipping_id
+  </select>
+  
+  <select id="getMerchantFacility" parameterType="java.util.Map" resultMap="MerchantFacilityMap">
+    select
+    f.*,
+    m.merchant_id,
+    m.merchant_name
+    from merchant_facility_mapping mfm
+    inner join facility f on f.facility_id = mfm.facility_id
+    inner join merchant m on m.merchant_id = mfm.merchant_id
+    where mfm.merchant_id = #{merchant_id,jdbcType=INTEGER} and mfm.status is not null and f.status = 'OK'
+    and m.status = 'OK'
+    <if test="facility_code != '' and facility_code != null">
+      and f.facility_code = #{facility_code,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <select id="getMerchantShipping" parameterType="java.util.Map" resultMap="MerchantShippingMap">
+    select
+    s.*,
+    m.merchant_id,
+    m.merchant_name
+    from merchant_shipping_mapping msm
+    inner join shipping s on s.shipping_id = msm.shipping_id
+    inner join merchant m on m.merchant_id = msm.merchant_id
+    where msm.merchant_id = #{merchant_id,jdbcType=INTEGER} and msm.status is not null and s.status = 'OK'
+    and m.status = 'OK'
+    <if test="shipping_code != '' and shipping_code != null">
+      and s.shipping_code = #{shipping_code,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <select id="getMerchantById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    *
+    from merchant
+    where merchant_id = #{merchant_id,jdbcType=INTEGER} and status = 'OK'
+  </select>
+  
+  <select id="getMerchantByPlatformCode" parameterType="java.util.Map" resultMap="PlatformCodeMap">
+    SELECT
+		m.merchant_name,
+		m.merchant_id,
+		m.app_key,
+		m.secret,
+		m.session_key,
+		m.shipped_order_url,
+		m.merchant_code,
+		m.auto_send
+	FROM
+		merchant m
+	INNER JOIN platform p ON m.platform_id = p.platform_id
+	<where>
+		m.status = 'OK'
+		<if test="platform_code != null and platform_code != ''">
+		  and p.platform_code = #{platform_code,jdbcType=VARCHAR}
+		</if>
+	<if test="use_time != null and use_time == 1" >
+		and m.use_time &lt; now()
+	</if>
+	</where>
+  </select>
+  
+  <select id="getMerchantIdByMerchantName" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    merchant_id,merchant_name
+    from merchant
+    where merchant_name = #{merchant_name,jdbcType=VARCHAR} and
+    platform_id = #{platform_id,jdbcType=INTEGER}
+    and status='OK'
+  </select>
+  
+  <select id="getMerchantId" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+    msm.merchant_id
+    from
+    shop s
+    inner join merchant_shop_mapping msm on msm.shop_id = s.shop_id
+    <where>
+    <if test="shop_id != '' and shop_id != null">
+      s.shop_id = #{shop_id,jdbcType=INTEGER}
+    </if>
+    <if test="platform_id != '' and platform_id != null">
+      and s.platform_id = #{platform_id,jdbcType=INTEGER}
+    </if>
+    </where>
+    limit 1
+  </select>
+  
+  <select id="getPlatformByMerchantIds" parameterType="java.util.Map" resultMap="BaseMap">
+    select
+    distinct
+    m.platform_id,
+    p.platform_name
+    from merchant m
+    left join platform p on m.platform_id = p.platform_id
+    where m.merchant_id in
+    <foreach collection="merchant_ids" index="index" item="id" open="(" separator="," close=")">
+      #{id,jdbcType=INTEGER}
+    </foreach>
+  </select>
+  
+  <select id="getMerchantIds" resultType="java.lang.String">
+    select
+   	 	merchant_id
+    from merchant m
+    	where m.status = 'OK'
+  </select>
+  
+  <select id="selectByMerchant" parameterType="com.ibenben.domain.Merchant" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from merchant
+    <where>
+    	<if test="merchantId != null">
+    		merchant_id = #{merchantId,jdbcType=INTEGER}
+    	</if>
+    	<if test="merchantName != null">
+    		and merchant_name like concat('%',#{merchantName,jdbcType=VARCHAR},'%')
+    	</if>
+    	<if test="status != null">
+    		and status = #{status,jdbcType=CHAR}
+    	</if>
+    	<if test="isRawSale != null">
+    		and is_raw_sale = #{isRawSale}
+    	</if>
+    	<if test="isFinishedSale != null">
+    		and is_finished_sale = #{isFinishedSale}
+    	</if>
+    </where>
+  </select>
+  <select id="selectByMapParams" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from merchant
+    <where>
+    	<if test="merchant_id != null and merchant_id != '' ">
+    		merchant_id = #{merchant_id,jdbcType=INTEGER}
+    	</if>
+    	<if test="merchant_name != null and merchant_name != '' ">
+    		and merchant_name like concat('%',#{merchant_name,jdbcType=VARCHAR},'%')
+    	</if>
+    	<if test="platform_id != null and platform_id != '' ">
+    		and platform_id = #{platform_id}
+    	</if>
+    	<if test="party_id != null and party_id != '' ">
+    		and party_id = #{party_id}
+    	</if>
+    	<if test="status != null and status != '' ">
+    		and status = #{status,jdbcType=CHAR}
+    	</if>
+    	<if test="is_raw_sale != null and is_raw_sale != '' ">
+    		and is_raw_sale = #{is_raw_sale}
+    	</if>
+    	<if test="is_finished_sale != null and is_finished_sale != '' ">
+    		and is_finished_sale = #{is_finished_sale}
+    	</if>
+    	<if test="party_id != null and party_id != null">
+    		and party_id = #{party_id,jdbcType=INTEGER}
+    	</if>
+    </where>
+  </select>
+  
+  <select id="getMerchantListByPlatformId" parameterType="java.util.Map" resultMap="PlatformMerchantMap">
+    select
+    m.merchant_id,
+    m.merchant_name,
+    m.merchant_type,
+    m.platform_id,
+    m.last_updated_time,
+    m.area_id,
+    m.status,
+    m.merchant_code,
+    m.auto_send,
+    m.secret,
+    a.area_name,
+    p.platform_name
+    from
+    merchant m
+    inner join area a on a.area_id = m.area_id
+    inner join platform p on p.platform_id = m.platform_id
+    <where>
+    	m.status = 'OK'
+      <if test="merchant_id != '' and merchant_id != null">
+        and m.merchant_id = #{merchant_id,jdbcType=INTEGER}
+      </if>
+      <if test="platform_id != '' and platform_id != null">
+        and m.platform_id = #{platform_id,jdbcType=INTEGER}
+      </if>
+      <if test="is_raw_sale != '' and is_raw_sale != null">
+        and m.is_raw_sale = #{is_raw_sale,jdbcType=VARCHAR}
+      </if>
+      <if test="is_finished_sale != '' and is_finished_sale != null">
+        and m.is_finished_sale = #{is_finished_sale,jdbcType=VARCHAR}
+      </if>
+      <if test="merchant_id_list != '' and merchant_id_list != null">
+        and m.merchant_id in
+        <foreach collection="merchant_id_list" index="index" item="id" open="(" separator="," close=")">
+          #{id,jdbcType=INTEGER}
+        </foreach>
+      </if>
+    </where>
+  </select>
+  
+  <select id="getAllMerchantList" parameterType="java.util.Map" resultMap="BaseResultMap">
+   select
+   m.*,
+   pt.party_name,
+   p.platform_name platformName,
+   a.area_name areaName
+   from merchant m
+   left join platform p on p.platform_id = m.platform_id
+   left join party pt on pt.party_id = m.party_id and pt.status='OK'
+   left join area a on a.area_id = m.area_id
+   <where>
+     <if test="platform_code != '' and platform_code != null">
+       p.platform_code = #{platform_code,jdbcType=VARCHAR}
+     </if>
+     <if test="platform_id != '' and platform_id != null">
+       and p.platform_id = #{platform_id,jdbcType=INTEGER}
+     </if>
+     <if test="party_id != null and party_id != '' ">
+       and pt.party_id = #{party_id}
+     </if>
+     <if test="status != '' and status != null">
+       and m.status = #{status,jdbcType=VARCHAR}
+     </if>
+   </where>
+  </select>
+  
+  <update id="activeButton" parameterType="java.util.Map">
+    update
+    merchant
+    set status=#{status,jdbcType=CHAR}
+    where
+    merchant_id = #{merchant_id,jdbcType=INTEGER}
+  </update>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from merchant
+    where merchant_id = #{merchantId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.Merchant">
+    insert into merchant (merchant_id, merchant_name, platform_id, party_id,
+      merchant_type, merchant_tel, status, 
+      created_user, created_time, last_updated_user, 
+      last_updated_time, shipped_order_url,app_key,secret,session_key,
+      use_time,area_id,platform_code,merchant_code,auto_send,send_user_info,telephone)
+    values (#{merchantId,jdbcType=INTEGER}, #{merchantName,jdbcType=VARCHAR}, #{platformId,jdbcType=INTEGER}, #{partyId,jdbcType=INTEGER},
+      #{merchantType,jdbcType=CHAR}, #{merchantTel,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
+      #{createdUser,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{lastUpdatedUser,jdbcType=VARCHAR}, 
+      #{lastUpdatedTime,jdbcType=TIMESTAMP}, #{shippedOrderUrl,jdbcType=VARCHAR},#{appKey,jdbcType=VARCHAR},
+      #{secret,jdbcType=VARCHAR},#{sessionKey,jdbcType=VARCHAR},#{useTime,jdbcType=TIMESTAMP},#{areaId,jdbcType=INTEGER},
+      #{platformCode,jdbcType=VARCHAR},#{merchantCode,jdbcType=VARCHAR},#{autoSend,jdbcType=TINYINT},#{send_user_info,jdbcType=VARCHAR},#{telephone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.Merchant" useGeneratedKeys="true" keyProperty="merchantId">
+    insert into merchant
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="merchantName != null">
+        merchant_name,
+      </if>
+      <if test="platformId != null">
+        platform_id,
+      </if>
+      <if test="partyId != null">
+        party_id,
+      </if>
+      <if test="merchantType != null">
+        merchant_type,
+      </if>
+      <if test="merchantTel != null">
+        merchant_tel,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createdUser != null">
+        created_user,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="lastUpdatedUser != null">
+        last_updated_user,
+      </if>
+      <if test="lastUpdatedTime != null">
+        last_updated_time,
+      </if>
+      <if test="shippedOrderUrl != null">
+        shipped_order_url,
+      </if>
+      <if test="appKey != null">
+        app_key,
+      </if>
+      <if test="secret != null">
+        secret,
+      </if>
+      <if test="sessionKey != null">
+        session_key,
+      </if>
+      <if test="useTime != null">
+        use_time,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="platformCode != null">
+        platform_code,
+      </if>
+      <if test="isRawSale != null">
+      	is_raw_sale,
+      </if>
+      <if test="isFinishedSale != null">
+      	is_finished_sale,
+      </if>
+      <if test="merchantCode != null">
+        merchant_code,
+      </if>
+      <if test="autoSend != null">
+        auto_send,
+      </if>
+      <if test="sendUserInfo != null">
+        send_user_info,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantName != null">
+        #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="platformId != null">
+        #{platformId,jdbcType=INTEGER},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantType != null">
+        #{merchantType,jdbcType=CHAR},
+      </if>
+      <if test="merchantTel != null">
+        #{merchantTel,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdUser != null">
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null">
+        #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null">
+        #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shippedOrderUrl != null">
+        #{shippedOrderUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appKey != null">
+        #{appKey,jdbcType=VARCHAR},
+      </if>
+      <if test="secret != null">
+        #{secret,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionKey != null">
+        #{sessionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="useTime != null">
+        #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="platformCode != null">
+        #{platformCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isRawSale != null">
+      	#{isRawSale},
+      </if>
+      <if test="isFinishedSale != null">
+      	#{isFinishedSale},
+      </if>
+      <if test="merchantCode != null">
+        #{merchantCode},
+      </if>
+      <if test="autoSend != null">
+        #{autoSend},
+      </if>
+      <if test="sendUserInfo != null">
+        #{sendUserInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.Merchant">
+    update merchant
+    <set>
+      <if test="merchantName != null">
+        merchant_name = #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="platformId != null">
+        platform_id = #{platformId,jdbcType=INTEGER},
+      </if>
+      <if test="partyId != null">
+        party_id = #{partyId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantType != null">
+        merchant_type = #{merchantType,jdbcType=CHAR},
+      </if>
+      <if test="merchantTel != null">
+        merchant_tel = #{merchantTel,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdUser != null">
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null">
+        last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedTime != null">
+        last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shippedOrderUrl != null">
+        shipped_order_url = #{shippedOrderUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appKey != null">
+        app_key = #{appKey,jdbcType=VARCHAR},
+      </if>
+      <if test="secret != null">
+        secret = #{secret,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionKey != null">
+        session_key = #{sessionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="useTime != null">
+        use_time = #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="platformCode != null">
+        platform_code = #{platformCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isRawSale != null">
+      	is_raw_sale = #{isRawSale},
+      </if>
+      <if test="isFinishedSale != null">
+      	is_finished_sale = #{isFinishedSale},
+      </if>
+      <if test="merchantCode != null">
+        merchant_code = #{merchantCode},
+      </if>
+      <if test="autoSend != null">
+        auto_send = #{autoSend},
+      </if>
+      <if test="sendUserInfo != null">
+        send_user_info = #{sendUserInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where merchant_id = #{merchantId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.Merchant">
+    update merchant
+    set merchant_name = #{merchantName,jdbcType=VARCHAR},
+      platform_id = #{platformId,jdbcType=INTEGER},
+      party_id = #{party_id,jdbcType=INTEGER},
+      merchant_type = #{merchantType,jdbcType=CHAR},
+      merchant_tel = #{merchantTel,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
+      shipped_order_url = #{shippedOrderUrl,jdbcType=VARCHAR},
+      app_key = #{appKey,jdbcType=VARCHAR},
+      secret = #{secret,jdbcType=VARCHAR},
+      session_key = #{sessionKey,jdbcType=VARCHAR},
+      use_time = #{useTime,jdbcType=TIMESTAMP},
+      area_id = #{areaId,jdbcType=INTEGER},
+      platform_code = #{platformCode,jdbcType=VARCHAR},
+      merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      auto_send = #{autoSend,jdbcType=TINYINT},
+      send_user_info = #{sendUserInfo,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR}
+    where merchant_id = #{merchantId,jdbcType=INTEGER}
+  </update>
+</mapper>

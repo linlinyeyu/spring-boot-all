@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibenben.mapper.UserSessionMapper">
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.UserSession">
+    <id column="session_id" jdbcType="INTEGER" property="sessionId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="access_token" jdbcType="VARCHAR" property="accessToken" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="group_type" jdbcType="VARCHAR" property="groupType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    session_id, user_id, access_token, ip, created_time, expire_time, last_login_time,group_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_session
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getUserSession" parameterType="com.ibenben.domain.User" resultType="java.lang.Integer">
+    select
+    session_id
+    from user_session
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getUserSessionByToken" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    *
+    from user_session
+    where access_token = #{token,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_session
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.UserSession">
+    insert into user_session (session_id, user_id, access_token, 
+      ip, created_time, expire_time, 
+      last_login_time,group_type)
+    values (#{sessionId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{accessToken,jdbcType=VARCHAR}, 
+      #{ip,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{expireTime,jdbcType=TIMESTAMP}, 
+      #{lastLoginTime,jdbcType=TIMESTAMP},#{groupType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.UserSession">
+    insert into user_session
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sessionId != null">
+        session_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="accessToken != null">
+        access_token,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="expireTime != null">
+        expire_time,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="groupType != null">
+        group_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sessionId != null">
+        #{sessionId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="accessToken != null">
+        #{accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupType != null">
+        #{groupType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.UserSession">
+    update user_session
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="accessToken != null">
+        access_token = #{accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireTime != null">
+        expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupType != null">
+        group_type = #{groupType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.UserSession">
+    update user_session
+    set user_id = #{userId,jdbcType=INTEGER},
+      access_token = #{accessToken,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      group_type = #{groupType,jdbcType=VARCHAR}
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </update>
+</mapper>

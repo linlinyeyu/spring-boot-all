@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.EfficiencyCoefficientMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.EfficiencyCoefficient" >
+    <id column="efficiency_coefficient_id" property="efficiencyCoefficientId" jdbcType="INTEGER" />
+    <result column="merchant_id" property="merchantId" jdbcType="INTEGER" />
+    <result column="merchant_name" property="merchantName" jdbcType="VARCHAR" />
+    <result column="facility_id" property="facilityId" jdbcType="INTEGER" />
+    <result column="facility_name" property="facilityName" jdbcType="VARCHAR" />
+    <result column="efficiency_coefficient_apply_id" property="efficiencyCoefficientApplyId" jdbcType="INTEGER" />
+    <result column="inventory_management_coff" property="inventoryManagementCoff" jdbcType="DECIMAL" />
+    <result column="document_management_coff" property="documentManagementCoff" jdbcType="DECIMAL" />
+    <result column="distribution_shipping_coff" property="distributionShippingCoff" jdbcType="DECIMAL" />
+    <result column="start_date" property="startDate" jdbcType="DATE" />
+    <result column="end_date" property="endDate" jdbcType="DATE" />
+    <result column="start_user" property="startUser" jdbcType="VARCHAR" />
+    <result column="end_user" property="endUser" jdbcType="VARCHAR" />
+    <result column="is_now" property="isNow" jdbcType="TINYINT" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    efficiency_coefficient_id, merchant_id, facility_id, efficiency_coefficient_apply_id, 
+    inventory_management_coff, document_management_coff, distribution_shipping_coff, 
+    start_date, end_date, start_user, end_user, is_now, note
+  </sql>
+  
+  <select id="selectByMapParams" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select 
+    	ec.*,
+    	m.merchant_name,
+    	f.facility_name
+    from efficiency_coefficient ec
+    left join merchant m on ec.merchant_id = m.merchant_id
+    left join facility f on ec.facility_id = f.facility_id
+    <where>
+    	<if test="efficiency_coefficient_id != null and efficiency_coefficient_id != '' " >
+    		ec.efficiency_coefficient_id = #{efficiency_coefficient_id}
+    	</if>
+    	<if test="merchant_id != null and merchant_id != '' ">
+    		and ec.merchant_id = #{merchant_id}
+    	</if>
+    	<if test="facility_id != null and facility_id != '' ">
+    		and ec.facility_id = #{facility_id}
+    	</if>
+    	<if test="efficiency_coefficient_apply_id != null and efficiency_coefficient_apply_id != '' ">
+    		and ec.efficiency_coefficient_apply_id = #{efficiency_coefficient_apply_id}
+    	</if>
+    	<if test="is_now != null and is_now != '' ">
+    		and ec.is_now = #{is_now}
+    	</if>
+    </where>
+  </select>
+  
+  <select id="getMerchantCofficient" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select
+		m.merchant_id,
+		m.merchant_name,
+		m.status as m_status,
+		f.facility_id,
+		f.facility_name,
+		f.status as f_status,
+		ec.distribution_shipping_coff,
+		ec.document_management_coff,
+		ec.inventory_management_coff
+	from
+		merchant m
+	inner join merchant_facility_mapping mfm on m.merchant_id = mfm.merchant_id and mfm.status = 'OK'
+	inner join facility f on f.facility_id = mfm.facility_id and f.`status`='OK'
+	left join efficiency_coefficient ec on ec.facility_id = f.facility_id
+		and ec.merchant_id = m.merchant_id
+		and ec.is_now = 1
+	<where>
+		m.status = 'OK' 
+    	<if test="merchant_id != null and merchant_id != '' ">
+    		and m.merchant_id = #{merchant_id}
+    	</if>
+    	<if test="facility_id != null and facility_id != '' ">
+    		and f.facility_id = #{facility_id}
+    	</if>
+    	<if test="efficiency_coefficient_apply_id != null and efficiency_coefficient_apply_id != '' ">
+    		and ec.efficiency_coefficient_apply_id = #{efficiency_coefficient_apply_id}
+    	</if>
+    	<if test="is_now != null and is_now != '' ">
+    		and ec.is_now = #{is_now}
+    	</if>
+    </where> 
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from efficiency_coefficient
+    where efficiency_coefficient_id = #{efficiencyCoefficientId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from efficiency_coefficient
+    where efficiency_coefficient_id = #{efficiencyCoefficientId,jdbcType=INTEGER}
+  </delete>
+  
+  <update id="deleteByMerchantAndFacility">
+  	update efficiency_coefficient
+  	set is_now = null, end_date=now()
+    where merchant_id=#{merchant_id} and facility_id=#{facility_id}
+  </update>
+  
+  <insert id="insert" parameterType="com.ibenben.domain.EfficiencyCoefficient" >
+    insert into efficiency_coefficient (efficiency_coefficient_id, merchant_id, 
+      facility_id, efficiency_coefficient_apply_id, 
+      inventory_management_coff, document_management_coff, 
+      distribution_shipping_coff, start_date, end_date, 
+      start_user, end_user, is_now, 
+      note)
+    values (#{efficiencyCoefficientId,jdbcType=INTEGER}, #{merchantId,jdbcType=INTEGER}, 
+      #{facilityId,jdbcType=INTEGER}, #{efficiencyCoefficientApplyId,jdbcType=INTEGER}, 
+      #{inventoryManagementCoff,jdbcType=DECIMAL}, #{documentManagementCoff,jdbcType=DECIMAL}, 
+      #{distributionShippingCoff,jdbcType=DECIMAL}, #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, 
+      #{startUser,jdbcType=VARCHAR}, #{endUser,jdbcType=VARCHAR}, #{isNow,jdbcType=TINYINT}, 
+      #{note,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.EfficiencyCoefficient" >
+    insert into efficiency_coefficient
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="efficiencyCoefficientId != null" >
+        efficiency_coefficient_id,
+      </if>
+      <if test="merchantId != null" >
+        merchant_id,
+      </if>
+      <if test="facilityId != null" >
+        facility_id,
+      </if>
+      <if test="efficiencyCoefficientApplyId != null" >
+        efficiency_coefficient_apply_id,
+      </if>
+      <if test="inventoryManagementCoff != null" >
+        inventory_management_coff,
+      </if>
+      <if test="documentManagementCoff != null" >
+        document_management_coff,
+      </if>
+      <if test="distributionShippingCoff != null" >
+        distribution_shipping_coff,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="startUser != null" >
+        start_user,
+      </if>
+      <if test="endUser != null" >
+        end_user,
+      </if>
+      <if test="isNow != null" >
+        is_now,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="efficiencyCoefficientId != null" >
+        #{efficiencyCoefficientId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityId != null" >
+        #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="efficiencyCoefficientApplyId != null" >
+        #{efficiencyCoefficientApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryManagementCoff != null" >
+        #{inventoryManagementCoff,jdbcType=DECIMAL},
+      </if>
+      <if test="documentManagementCoff != null" >
+        #{documentManagementCoff,jdbcType=DECIMAL},
+      </if>
+      <if test="distributionShippingCoff != null" >
+        #{distributionShippingCoff,jdbcType=DECIMAL},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="startUser != null" >
+        #{startUser,jdbcType=VARCHAR},
+      </if>
+      <if test="endUser != null" >
+        #{endUser,jdbcType=VARCHAR},
+      </if>
+      <if test="isNow != null" >
+        #{isNow,jdbcType=TINYINT},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.EfficiencyCoefficient" >
+    update efficiency_coefficient
+    <set >
+      <if test="merchantId != null" >
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityId != null" >
+        facility_id = #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="efficiencyCoefficientApplyId != null" >
+        efficiency_coefficient_apply_id = #{efficiencyCoefficientApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryManagementCoff != null" >
+        inventory_management_coff = #{inventoryManagementCoff,jdbcType=DECIMAL},
+      </if>
+      <if test="documentManagementCoff != null" >
+        document_management_coff = #{documentManagementCoff,jdbcType=DECIMAL},
+      </if>
+      <if test="distributionShippingCoff != null" >
+        distribution_shipping_coff = #{distributionShippingCoff,jdbcType=DECIMAL},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="startUser != null" >
+        start_user = #{startUser,jdbcType=VARCHAR},
+      </if>
+      <if test="endUser != null" >
+        end_user = #{endUser,jdbcType=VARCHAR},
+      </if>
+      <if test="isNow != null" >
+        is_now = #{isNow,jdbcType=TINYINT},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where efficiency_coefficient_id = #{efficiencyCoefficientId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.EfficiencyCoefficient" >
+    update efficiency_coefficient
+    set merchant_id = #{merchantId,jdbcType=INTEGER},
+      facility_id = #{facilityId,jdbcType=INTEGER},
+      efficiency_coefficient_apply_id = #{efficiencyCoefficientApplyId,jdbcType=INTEGER},
+      inventory_management_coff = #{inventoryManagementCoff,jdbcType=DECIMAL},
+      document_management_coff = #{documentManagementCoff,jdbcType=DECIMAL},
+      distribution_shipping_coff = #{distributionShippingCoff,jdbcType=DECIMAL},
+      start_date = #{startDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      start_user = #{startUser,jdbcType=VARCHAR},
+      end_user = #{endUser,jdbcType=VARCHAR},
+      is_now = #{isNow,jdbcType=TINYINT},
+      note = #{note,jdbcType=VARCHAR}
+    where efficiency_coefficient_id = #{efficiencyCoefficientId,jdbcType=INTEGER}
+  </update>
+</mapper>

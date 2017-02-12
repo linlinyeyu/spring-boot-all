@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.StationCarriageMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.StationCarriage" >
+    <id column="station_carriage_id" property="stationCarriageId" jdbcType="BIGINT" />
+    <result column="region_id" property="regionId" jdbcType="SMALLINT" />
+    <result column="shipping_id" property="shippingId" jdbcType="SMALLINT" />
+    <result column="station_id" property="stationId" jdbcType="TINYINT" />
+    <result column="in_city" property="inCity" jdbcType="BIT" />
+    <result column="first_weight" property="firstWeight" jdbcType="VARCHAR" />
+    <result column="first_fee" property="firstFee" jdbcType="VARCHAR" />
+    <result column="continued_fee" property="continuedFee" jdbcType="VARCHAR" />
+    <result column="from_region_id" property="fromRegionId" jdbcType="SMALLINT" />
+    <result column="rule_id" property="ruleId" jdbcType="TINYINT" />
+    <result column="timeliness" property="timeliness" jdbcType="TIMESTAMP" />
+    <result column="aftersale_rate" property="aftersaleRate" jdbcType="DECIMAL" />
+    <result column="unreachable" property="unreachable" jdbcType="DECIMAL" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="interval_weight" property="intervalWeight" jdbcType="VARCHAR" />
+    <result column="interval_type" property="intervalType" jdbcType="VARCHAR" />
+    <result column="facility_id" property="facilityId" jdbcType="TINYINT" />
+  </resultMap>
+  
+  <resultMap type="java.util.Map" id="StationCarriageMap">
+    <result column="station_name" property="station_name" jdbcType="VARCHAR" />
+    <result column="shipping_id" property="shipping_id" jdbcType="SMALLINT"/>
+    <result column="shipping_name" property="shipping_name" jdbcType="VARCHAR"/>
+    <result column="first_weight" property="first_weight" jdbcType="VARCHAR"/>
+    <result column="first_fee" property="first_fee" jdbcType="VARCHAR" />
+    <result column="continued_fee" property="continued_fee" jdbcType="VARCHAR" />
+    <result column="rule_name" property="rule_name" jdbcType="VARCHAR" />
+    <result column="region_name" property="region_name" jdbcType="VARCHAR"/>
+    <result column="region_id" property="region_id" jdbcType="SMALLINT"/>
+    <result column="interval_weight" property="interval_weight" jdbcType="VARCHAR" />
+    <result column="interval_type" property="interval_type" jdbcType="VARCHAR" />
+    <result column="province_name" property="province_name" jdbcType="VARCHAR" />
+    <result column="city_name" property="city_name" jdbcType="VARCHAR" />
+    <result column="district_name" property="district_name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    station_carriage_id, region_id, shipping_id, station_id, in_city, first_weight, first_fee, 
+    continued_fee, from_region_id, rule_id, timeliness, aftersale_rate, unreachable, 
+    created_time, create_user, interval_weight, interval_type,facility_id
+  </sql>
+  
+  <select id="getCarriageList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+  	<include refid="Base_Column_List" />
+  	from station_carriage
+  	<where>
+  		<if test="station_carriage_id != null and station_carriage_id != '' ">
+  			station_carriage_id = #{station_carriage_id}
+  		</if>
+  		<if test="region_id != null and region_id != ''">
+  			and region_id = #{region_id}
+  		</if>
+  		<if test="shipping_id != null and shipping_id != ''">
+  			and shipping_id = #{shipping_id}
+  		</if>
+  		<if test="station_id != null and station_id != ''">
+  			and station_id = #{station_id}
+  		</if>
+  		<if test="facility_id != null and facility_id != ''">
+  			and facility_id = #{facility_id}
+  		</if>
+  	</where>
+  </select>
+  
+  <delete id="delStationCarriageHistoryByStationId" parameterType="com.ibenben.domain.StationCarriage">
+    delete from
+    station_carriage_history
+    where station_id = #{stationId,jdbcType=TINYINT} and facility_id = #{facilityId,jdbcType=TINYINT}
+  </delete>
+  
+  <delete id="delStationCarriageByStationId" parameterType="com.ibenben.domain.StationCarriage">
+    delete from
+    station_carriage
+    where station_id = #{stationId,jdbcType=TINYINT} and facility_id = #{facilityId,jdbcType=TINYINT}
+  </delete>
+  
+  <select id="getStationCarriageInfo" parameterType="java.util.Map" resultMap="StationCarriageMap">
+    select 
+	st.station_name,sc.shipping_id, s.shipping_name,sc.first_weight,sc.first_fee,sc.continued_fee,cr.rule_name,r.region_name,r.region_id,
+	sc.interval_weight,sc.interval_type
+	from station_carriage sc 
+	inner join station st on st.station_id = sc.station_id
+	left join shipping s on s.shipping_id = sc.shipping_id 
+	inner join carriage_rule cr on cr.rule_id = sc.rule_id 
+	inner join region r on r.region_id = sc.region_id
+	where sc.station_id = #{station_id,jdbcType=TINYINT} 
+	and sc.shipping_id = #{shipping_id,jdbcType=SMALLINT}
+	and sc.region_id = #{region_id,jdbcType=SMALLINT}
+	<if test="facility_id != null and facility_id != ''">
+	  and sc.facility_id = #{facility_id,jdbcType=TINYINT}
+	</if>
+	union 
+	select 
+	st.station_name, sc.shipping_id, s.shipping_name,sc.first_weight,sc.first_fee,sc.continued_fee,cr.rule_name,r.region_name,r.region_id, 
+	sc.interval_weight,sc.interval_type
+	from station_carriage sc 
+	inner join station st on st.station_id = sc.station_id
+	left join shipping s on s.shipping_id = sc.shipping_id 
+	inner join carriage_rule cr on cr.rule_id = sc.rule_id 
+	inner join region r on r.region_id = sc.region_id
+	where sc.station_id = #{station_id,jdbcType=TINYINT} 
+	and sc.shipping_id = #{shipping_id,jdbcType=SMALLINT}
+	<if test="facility_id != null and facility_id != ''">
+	  and sc.facility_id = #{facility_id,jdbcType=TINYINT}
+	</if> 
+	and sc.region_id in (
+	select 
+	region_id 
+	from 
+	region
+	where 
+	parent_id = #{region_id,jdbcType=SMALLINT}
+	) 
+  </select>
+  
+  <select id="isExist" parameterType="com.ibenben.domain.StationCarriage" resultType="java.lang.Integer">
+    select
+    count(station_carriage_id)
+    from station_carriage
+    where station_id = #{stationId,jdbcType=TINYINT} and shipping_id = #{shippingId,jdbcType=SMALLINT}
+    and region_id = #{regionId,jdbcType=TINYINT}
+    <if test="facilityId != null and facilityId != ''">
+      and facility_id = #{facilityId,jdbcType=TINYINT}
+    </if>
+    limit 1
+  </select>
+  
+  <update id="updateStationCarriage" parameterType="com.ibenben.domain.StationCarriage">
+    update 
+    station_carriage
+    set
+    first_weight = #{firstWeight,jdbcType=VARCHAR},
+    first_fee = #{firstFee,jdbcType=VARCHAR},
+    continued_fee = #{continuedFee,jdbcType=VARCHAR},
+    interval_weight = #{intervalWeight,jdbcType=VARCHAR},
+    interval_type = #{intervalType,jdbcType=VARCHAR},
+    rule_id = #{ruleId,jdbcType=TINYINT}
+    where 
+    station_id = #{stationId,jdbcType=TINYINT} and
+    shipping_id = #{shippingId,jdbcType=SMALLINT} and
+    region_id = #{regionId,jdbcType=SMALLINT}
+    <if test="facilityId != null and facilityId != ''">
+      and facility_id = #{facilityId,jdbcType=TINYINT}
+    </if>
+  </update>
+  
+  <update id="updateStationCarriageHistory" parameterType="com.ibenben.domain.StationCarriage">
+    update
+    station_carriage_history
+    set
+    is_now = 0,
+    end_time = now()
+    where
+    station_id = #{stationId,jdbcType=TINYINT} and
+    shipping_id = #{shippingId,jdbcType=SMALLINT} and
+    region_id = #{regionId,jdbcType=SMALLINT}
+    <if test="facilityId != null and facilityId != ''">
+      and facility_id = #{facilityId,jdbcType=TINYINT}
+    </if>
+  </update>
+  
+  <insert id="addStationCarriageHistory" parameterType="com.ibenben.domain.StationCarriage">
+    insert into 
+    station_carriage_history
+    (station_carriage_id,station_id,shipping_id,region_id,facility_id,first_weight,first_fee,continued_fee,rule_id,created_time,create_user,is_now,start_time,end_time,interval_weight,interval_type)
+    select
+    station_carriage_id,station_id,shipping_id,region_id,facility_id,first_weight,first_fee,continued_fee,rule_id,now(),#{createUser,jdbcType=VARCHAR},1,now(),'2099-12-31 12:00:00',interval_weight,interval_type
+    from
+    station_carriage
+    where
+    station_id = #{stationId,jdbcType=TINYINT} and
+    shipping_id = #{shippingId,jdbcType=SMALLINT} and
+    region_id = #{regionId,jdbcType=SMALLINT}
+    <if test="facilityId != null and facilityId != ''">
+      and facility_id = #{facilityId,jdbcType=TINYINT}
+    </if>
+  </insert>
+  
+  <select id="exportStationCarriage" parameterType="java.util.Map" resultMap="StationCarriageMap">
+    select
+    st.station_name,s.shipping_name,r1.region_name district_name,r2.region_name city_name,
+    r3.region_name province_name,sc.interval_weight,sc.first_weight,sc.first_fee,sc.continued_fee,
+    cr.rule_name,sc.interval_type
+    from station_carriage sc
+    inner join station st on st.station_id = sc.station_id
+    inner join shipping s on s.shipping_id = sc.shipping_id
+    inner join region r1 on r1.region_id = sc.region_id and r1.region_type = 'DISTRICT'
+    inner join region r2 on r1.parent_id = r2.region_id
+    inner join region r3 on r3.region_id = r2.parent_id
+    inner join carriage_rule cr on cr.rule_id = sc.rule_id
+    <where>
+    	<if test="station_id != '' and station_id != null">
+    	  sc.station_id = #{station_id,jdbcType=TINYINT}
+    	</if>
+       	<if test="shipping_id != '' and shipping_id != null">
+       	  and sc.shipping_id = #{shipping_id,jdbcType=SMALLINT}
+       	</if>
+       	<if test="facility_id != '' and facility_id != null">
+       	  and sc.facility_id = #{facility_id,jdbcType=TINYINT}
+       	</if>
+    </where>
+  </select>
+  
+  <insert id="createStationCarriage" parameterType="java.util.List">
+    insert into
+    station_carriage
+    (station_id,shipping_id,region_id,interval_weight,interval_type,first_weight,first_fee,continued_fee,rule_id,
+    facility_id,create_user,created_time)
+    values
+      <foreach collection="list" index="index" item="item" separator="),(" open="(" close=")">
+        #{item.stationId,jdbcType=TINYINT},
+        #{item.shippingId,jdbcType=SMALLINT},
+        #{item.regionId,jdbcType=SMALLINT},
+        #{item.intervalWeight,jdbcType=VARCHAR},
+        #{item.intervalType,jdbcType=VARCHAR},
+        #{item.firstWeight,jdbcType=VARCHAR},
+        #{item.firstFee,jdbcType=VARCHAR},
+        #{item.continuedFee,jdbcType=VARCHAR},
+        #{item.ruleId,jdbcType=TINYINT},
+        #{item.facilityId,jdbcType=TINYINT},
+        #{item.createUser,jdbcType=VARCHAR},
+        #{item.createdTime,jdbcType=TIMESTAMP}
+      </foreach>
+  </insert>
+  
+  <insert id="createStationCarriageHistory" parameterType="java.lang.Integer">
+    insert into 
+    station_carriage_history
+    (station_carriage_id,station_id,shipping_id,region_id,facility_id,first_weight,first_fee,continued_fee,rule_id,created_time,create_user,is_now,start_time,end_time,interval_weight,interval_type)
+    select
+    station_carriage_id,station_id,shipping_id,region_id,facility_id,first_weight,first_fee,continued_fee,rule_id,now(),#{createUser,jdbcType=VARCHAR},1,now(),'2099-12-31 12:00:00',interval_weight,interval_type
+    from
+    station_carriage
+    where
+    station_id = #{stationId,jdbcType=TINYINT}
+  </insert>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from station_carriage
+    where station_carriage_id = #{stationCarriageId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from station_carriage
+    where station_carriage_id = #{stationCarriageId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.StationCarriage" >
+    insert into station_carriage (station_carriage_id, region_id, shipping_id, 
+      station_id, in_city, first_weight, 
+      first_fee, continued_fee, from_region_id, 
+      rule_id, timeliness, aftersale_rate, 
+      unreachable, created_time, create_user, 
+      interval_weight, interval_type,facility_id)
+    values (#{stationCarriageId,jdbcType=BIGINT}, #{regionId,jdbcType=SMALLINT}, #{shippingId,jdbcType=SMALLINT}, 
+      #{stationId,jdbcType=TINYINT}, #{inCity,jdbcType=BIT}, #{firstWeight,jdbcType=VARCHAR}, 
+      #{firstFee,jdbcType=VARCHAR}, #{continuedFee,jdbcType=VARCHAR}, #{fromRegionId,jdbcType=SMALLINT}, 
+      #{ruleId,jdbcType=TINYINT}, #{timeliness,jdbcType=TIMESTAMP}, #{aftersaleRate,jdbcType=DECIMAL}, 
+      #{unreachable,jdbcType=DECIMAL}, #{createdTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{intervalWeight,jdbcType=VARCHAR}, #{intervalType,jdbcType=VARCHAR},#{facilityId,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.StationCarriage" >
+    insert into station_carriage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stationCarriageId != null" >
+        station_carriage_id,
+      </if>
+      <if test="regionId != null" >
+        region_id,
+      </if>
+      <if test="shippingId != null" >
+        shipping_id,
+      </if>
+      <if test="stationId != null" >
+        station_id,
+      </if>
+      <if test="inCity != null" >
+        in_city,
+      </if>
+      <if test="firstWeight != null" >
+        first_weight,
+      </if>
+      <if test="firstFee != null" >
+        first_fee,
+      </if>
+      <if test="continuedFee != null" >
+        continued_fee,
+      </if>
+      <if test="fromRegionId != null" >
+        from_region_id,
+      </if>
+      <if test="ruleId != null" >
+        rule_id,
+      </if>
+      <if test="timeliness != null" >
+        timeliness,
+      </if>
+      <if test="aftersaleRate != null" >
+        aftersale_rate,
+      </if>
+      <if test="unreachable != null" >
+        unreachable,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="intervalWeight != null" >
+        interval_weight,
+      </if>
+      <if test="intervalType != null" >
+        interval_type,
+      </if>
+      <if test="facilityId != null">
+        facility_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stationCarriageId != null" >
+        #{stationCarriageId,jdbcType=BIGINT},
+      </if>
+      <if test="regionId != null" >
+        #{regionId,jdbcType=SMALLINT},
+      </if>
+      <if test="shippingId != null" >
+        #{shippingId,jdbcType=SMALLINT},
+      </if>
+      <if test="stationId != null" >
+        #{stationId,jdbcType=TINYINT},
+      </if>
+      <if test="inCity != null" >
+        #{inCity,jdbcType=BIT},
+      </if>
+      <if test="firstWeight != null" >
+        #{firstWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="firstFee != null" >
+        #{firstFee,jdbcType=VARCHAR},
+      </if>
+      <if test="continuedFee != null" >
+        #{continuedFee,jdbcType=VARCHAR},
+      </if>
+      <if test="fromRegionId != null" >
+        #{fromRegionId,jdbcType=SMALLINT},
+      </if>
+      <if test="ruleId != null" >
+        #{ruleId,jdbcType=TINYINT},
+      </if>
+      <if test="timeliness != null" >
+        #{timeliness,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aftersaleRate != null" >
+        #{aftersaleRate,jdbcType=DECIMAL},
+      </if>
+      <if test="unreachable != null" >
+        #{unreachable,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="intervalWeight != null" >
+        #{intervalWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="intervalType != null" >
+        #{intervalType,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityId != null">
+        #{facilityId,jdbcType=TINYINT}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.StationCarriage" >
+    update station_carriage
+    <set >
+      <if test="regionId != null" >
+        region_id = #{regionId,jdbcType=SMALLINT},
+      </if>
+      <if test="shippingId != null" >
+        shipping_id = #{shippingId,jdbcType=SMALLINT},
+      </if>
+      <if test="stationId != null" >
+        station_id = #{stationId,jdbcType=TINYINT},
+      </if>
+      <if test="inCity != null" >
+        in_city = #{inCity,jdbcType=BIT},
+      </if>
+      <if test="firstWeight != null" >
+        first_weight = #{firstWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="firstFee != null" >
+        first_fee = #{firstFee,jdbcType=VARCHAR},
+      </if>
+      <if test="continuedFee != null" >
+        continued_fee = #{continuedFee,jdbcType=VARCHAR},
+      </if>
+      <if test="fromRegionId != null" >
+        from_region_id = #{fromRegionId,jdbcType=SMALLINT},
+      </if>
+      <if test="ruleId != null" >
+        rule_id = #{ruleId,jdbcType=TINYINT},
+      </if>
+      <if test="timeliness != null" >
+        timeliness = #{timeliness,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aftersaleRate != null" >
+        aftersale_rate = #{aftersaleRate,jdbcType=DECIMAL},
+      </if>
+      <if test="unreachable != null" >
+        unreachable = #{unreachable,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="intervalWeight != null" >
+        interval_weight = #{intervalWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="intervalType != null" >
+        interval_type = #{intervalType,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityId != null">
+        facility_id = #{facilityId,jdbcType=TINYINT}
+      </if>
+    </set>
+    where station_carriage_id = #{stationCarriageId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.StationCarriage" >
+    update station_carriage
+    set region_id = #{regionId,jdbcType=SMALLINT},
+      shipping_id = #{shippingId,jdbcType=SMALLINT},
+      station_id = #{stationId,jdbcType=TINYINT},
+      in_city = #{inCity,jdbcType=BIT},
+      first_weight = #{firstWeight,jdbcType=VARCHAR},
+      first_fee = #{firstFee,jdbcType=VARCHAR},
+      continued_fee = #{continuedFee,jdbcType=VARCHAR},
+      from_region_id = #{fromRegionId,jdbcType=SMALLINT},
+      rule_id = #{ruleId,jdbcType=TINYINT},
+      timeliness = #{timeliness,jdbcType=TIMESTAMP},
+      aftersale_rate = #{aftersaleRate,jdbcType=DECIMAL},
+      unreachable = #{unreachable,jdbcType=DECIMAL},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      interval_weight = #{intervalWeight,jdbcType=VARCHAR},
+      interval_type = #{intervalType,jdbcType=VARCHAR},
+      facility_id = #{facilityId,jdbcType=TINYINT}
+    where station_carriage_id = #{stationCarriageId,jdbcType=BIGINT}
+  </update>
+</mapper>

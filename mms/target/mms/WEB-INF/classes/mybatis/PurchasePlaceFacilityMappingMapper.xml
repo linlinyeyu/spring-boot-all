@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibenben.mapper.PurchasePlaceFacilityMappingMapper" >
+  <resultMap id="BaseResultMap" type="com.ibenben.domain.PurchasePlaceFacilityMapping" >
+    <id column="purchase_place_id" property="purchasePlaceId" jdbcType="SMALLINT" />
+    <id column="facility_id" property="facilityId" jdbcType="TINYINT" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    purchase_place_id, facility_id, status
+  </sql>
+  
+  <select id="getPurchasePlaceFacility" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT
+    pfm.*,
+	f.facility_name facilityName,
+	pp.purchase_place_name purchasePlaceName
+	FROM purchase_place_facility_mapping pfm
+	INNER JOIN facility f ON f.facility_id = pfm.facility_id
+	INNER JOIN purchase_place pp ON pp.purchase_place_id = pfm.purchase_place_id
+	WHERE 
+		pfm.purchase_place_id IN (
+			SELECT purchase_place_id 
+			FROM purchase_place_facility_mapping
+			WHERE facility_id IN 
+			<foreach collection="facility_ids" index="index" item="id" open="(" separator="," close=")">
+			  #{id,jdbcType=TINYINT}
+			</foreach>
+		)
+		AND pfm.status = 'OK'
+		AND pp.status = 'OK'
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ibenben.domain.PurchasePlaceFacilityMappingKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_place_facility_mapping
+    where purchase_place_id = #{purchasePlaceId,jdbcType=SMALLINT}
+      and facility_id = #{facilityId,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ibenben.domain.PurchasePlaceFacilityMappingKey" >
+    delete from purchase_place_facility_mapping
+    where purchase_place_id = #{purchasePlaceId,jdbcType=SMALLINT}
+      and facility_id = #{facilityId,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="com.ibenben.domain.PurchasePlaceFacilityMapping" >
+    insert into purchase_place_facility_mapping (purchase_place_id, facility_id, status
+      )
+    values (#{purchasePlaceId,jdbcType=SMALLINT}, #{facilityId,jdbcType=TINYINT}, #{status,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibenben.domain.PurchasePlaceFacilityMapping" >
+    insert into purchase_place_facility_mapping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="purchasePlaceId != null" >
+        purchase_place_id,
+      </if>
+      <if test="facilityId != null" >
+        facility_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="purchasePlaceId != null" >
+        #{purchasePlaceId,jdbcType=SMALLINT},
+      </if>
+      <if test="facilityId != null" >
+        #{facilityId,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibenben.domain.PurchasePlaceFacilityMapping" >
+    update purchase_place_facility_mapping
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where purchase_place_id = #{purchasePlaceId,jdbcType=SMALLINT}
+      and facility_id = #{facilityId,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibenben.domain.PurchasePlaceFacilityMapping" >
+    update purchase_place_facility_mapping
+    set status = #{status,jdbcType=VARCHAR}
+    where purchase_place_id = #{purchasePlaceId,jdbcType=SMALLINT}
+      and facility_id = #{facilityId,jdbcType=TINYINT}
+  </update>
+</mapper>
