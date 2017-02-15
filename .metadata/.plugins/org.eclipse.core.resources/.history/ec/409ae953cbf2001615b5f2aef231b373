@@ -1,0 +1,36 @@
+package com.ybliu.specs;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.EntityType;
+
+import org.springframework.data.jpa.domain.Specification;
+
+/**
+* @author 作者 ybliu:
+* @version 创建时间：2017年2月14日 下午10:58:09
+* 类说明
+*/
+public class CustomerSpecs {
+	public static <T> Specification<T> byAuto(final EntityManager entityManager,final T example){
+		final Class<T> type = (Class<T>) example.getClass();
+		
+		return new Specification<T>() {
+
+			@Override
+			public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				List<Predicate> predicates = new ArrayList<>();
+				EntityType<T> entity = entityManager.getMetamodel().entity(type);
+				for(Attribute<T,?> attr:entity.getDeclaredAttributes())
+				return null;
+			}
+			
+		};
+	}
+}

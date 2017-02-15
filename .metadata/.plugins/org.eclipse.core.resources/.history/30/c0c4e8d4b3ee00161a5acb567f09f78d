@@ -1,9 +1,0 @@
-package com.ybliu;
-/**
-* @author 作者 ybliu:
-* @version 创建时间：2017年2月9日 下午6:33:55
-* 类说明
-*/
-public class WebSocketMessageBroker {
-
-}

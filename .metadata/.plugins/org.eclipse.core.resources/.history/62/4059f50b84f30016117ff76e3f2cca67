@@ -1,0 +1,12 @@
+package com.ybliu.support;
+
+import org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean;
+
+/**
+* @author 作者 ybliu:
+* @version 创建时间：2017年2月15日 下午9:24:22
+* 类说明
+*/
+public class CustomRepositoryFactoryBean extends JpaRepositoryFactoryBean<T, S, ID> {
+
+}

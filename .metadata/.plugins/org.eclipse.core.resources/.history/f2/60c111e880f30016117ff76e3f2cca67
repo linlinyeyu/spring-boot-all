@@ -1,0 +1,9 @@
+package com.ybliu.support;
+/**
+* @author 作者 ybliu:
+* @version 创建时间：2017年2月15日 下午8:51:57
+* 类说明
+*/
+public class CustomRepositoryImpl {
+
+}
