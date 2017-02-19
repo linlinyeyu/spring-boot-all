@@ -1,9 +1,0 @@
-package com.ybliu.domain;
-/**
-* @author 作者 ybliu:
-* @version 创建时间：2017年2月19日 上午12:00:37
-* 类说明
-*/
-public class Person {
-
-}

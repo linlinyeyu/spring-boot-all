@@ -1,0 +1,26 @@
+package com.ybliu.config;
+
+import org.springframework.beans.factory.ListableBeanFactory;
+import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
+import org.springframework.boot.autoconfigure.web.ResourceProperties;
+import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration.ResourceHandlerRegistrationCustomizer;
+import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter;
+import org.springframework.boot.autoconfigure.web.WebMvcProperties;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+
+/**
+* @author 作者 ybliu:
+* @version 创建时间：2017年2月19日 下午10:41:56
+* 类说明
+*/
+@Configuration
+public class WebMvcConfig extends WebMvcAutoConfigurationAdapter{
+
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/login").setViewName("login");
+	}
+	
+}

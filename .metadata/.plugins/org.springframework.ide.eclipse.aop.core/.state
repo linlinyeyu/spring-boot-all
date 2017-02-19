@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
-<aop-project name="WebSocket"/>
+<aop-project name="MongoDB"/>
+<aop-project name="dreamroom"/>
 <aop-project name="spring-data-rest"/>
+<aop-project name="SSL"/>
 <aop-project name="spring-data-jpa"/>
-<aop-project name="cache"/>
+<aop-project name="spring_security"/>
 <aop-project name="transaction"/>
+<aop-project name="redis"/>
 </aop-reference-model>

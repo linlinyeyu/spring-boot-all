@@ -35,6 +35,9 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="F:\javaWeb\dreamroom"/>
+			<item value="F:\javaWeb\SSL"/>
+			<item value="F:\javaWeb\WebSocket"/>
 			<item value="F:\javaWeb\restart"/>
 		</list>
 		<list key="projectNameTemplate">

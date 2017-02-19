@@ -7302,3 +7302,798 @@ org.eclipse.core.runtime.CoreException: Launch configuration TestStarterApplicat
 2017-02-19 21:23:01,751 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2017-02-19 21:23:01,765 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2017-02-19 21:23:01,765 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\redis\src\test\resources
+2017-02-19 22:00:41,315 [Worker-176] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ybliu:spring_security:0.0.1-SNAPSHOT @ F:\javaWeb\spring_security\pom.xml.
+2017-02-19 22:00:44,124 [Worker-176] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /spring_security/src/main/java
+2017-02-19 22:00:44,125 [Worker-176] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /spring_security/src/main/resources
+2017-02-19 22:00:44,131 [Worker-176] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /spring_security/src/main/resources
+2017-02-19 22:00:44,141 [Worker-176] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /spring_security/src/test/java
+2017-02-19 22:00:44,842 [Worker-176] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 4 sec
+2017-02-19 22:00:44,847 [Worker-176] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-02-19 22:00:45,305 [Worker-176] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ybliu:spring_security:0.0.1-SNAPSHOT @ F:\javaWeb\spring_security\pom.xml.
+2017-02-19 22:00:46,967 [Worker-176] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /spring_security/src/main/java
+2017-02-19 22:00:46,967 [Worker-176] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /spring_security/src/main/resources
+2017-02-19 22:00:46,970 [Worker-176] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /spring_security/src/main/resources
+2017-02-19 22:00:46,974 [Worker-176] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /spring_security/src/test/java
+2017-02-19 22:00:47,614 [Worker-176] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 2 sec
+2017-02-19 22:00:49,737 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:00:49,739 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:00:49,750 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:00:49,754 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:00:49,754 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:00:51,448 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:00:51,448 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:00:51,449 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:00:51,451 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:00:51,452 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:02:36,756 [Worker-177] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ybliu:spring_security:0.0.1-SNAPSHOT @ F:\javaWeb\spring_security\pom.xml.
+2017-02-19 22:02:38,554 [Worker-177] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/thymeleaf/extras/thymeleaf-extras-springsecurity4/2.1.3.RELEASE/thymeleaf-extras-springsecurity4-2.1.3.RELEASE.pom
+2017-02-19 22:02:38,943 [Worker-177] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/thymeleaf/extras/thymeleaf-extras-springsecurity4/2.1.3.RELEASE/thymeleaf-extras-springsecurity4-2.1.3.RELEASE.pom
+2017-02-19 22:02:39,335 [Worker-177] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/thymeleaf/extras/thymeleaf-extras-springsecurity4/2.1.3.RELEASE/thymeleaf-extras-springsecurity4-2.1.3.RELEASE.jar
+2017-02-19 22:02:40,511 [Worker-177] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/thymeleaf/extras/thymeleaf-extras-springsecurity4/2.1.3.RELEASE/thymeleaf-extras-springsecurity4-2.1.3.RELEASE.jar
+2017-02-19 22:02:41,371 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:02:41,371 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:02:41,371 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:02:41,374 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:02:41,374 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:02:43,242 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:02:43,243 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:02:43,245 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:02:43,248 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:02:43,249 [Worker-167] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:06:23,667 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:06:23,714 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:06:23,715 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:06:23,717 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:06:23,717 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:07:16,506 [Worker-177] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ybliu:webSocket:0.0.1-SNAPSHOT @ F:\javaWeb\WebSocket\pom.xml.
+2017-02-19 22:07:18,146 [Worker-177] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /WebSocket/src/main/java
+2017-02-19 22:07:18,146 [Worker-177] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /WebSocket/src/main/resources
+2017-02-19 22:07:18,147 [Worker-177] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /WebSocket/src/main/resources
+2017-02-19 22:07:18,147 [Worker-177] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /WebSocket/src/test/java
+2017-02-19 22:07:18,257 [Worker-177] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 2 sec
+2017-02-19 22:07:19,558 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:07:19,581 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:07:19,583 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 8 resources
+2017-02-19 22:07:20,109 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:07:20,110 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\WebSocket\src\test\resources
+2017-02-19 22:09:23,492 [Worker-179] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ybliu:ssl:0.0.1-SNAPSHOT @ F:\javaWeb\SSL\pom.xml.
+2017-02-19 22:09:24,415 [Worker-179] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /SSL/src/main/java
+2017-02-19 22:09:24,415 [Worker-179] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /SSL/src/main/resources
+2017-02-19 22:09:24,416 [Worker-179] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /SSL/src/main/resources
+2017-02-19 22:09:24,417 [Worker-179] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /SSL/src/test/java
+2017-02-19 22:09:24,535 [Worker-179] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 1 sec
+2017-02-19 22:09:25,399 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:09:25,399 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:09:25,400 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 18 resources
+2017-02-19 22:09:25,674 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:09:25,674 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\SSL\src\test\resources
+2017-02-19 22:09:53,437 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:09:53,437 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:09:53,438 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:09:53,442 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:09:53,442 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:09:56,371 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:09:56,371 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:09:56,372 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:09:56,377 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:09:56,377 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:10:12,094 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:10:12,095 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:10:12,097 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:10:12,099 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:10:12,100 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:10:25,657 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:10:25,658 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:10:25,660 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:10:25,664 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:10:25,665 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:21:08,226 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:21:08,227 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:21:08,230 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:21:08,232 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:21:08,233 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:22:09,320 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:22:09,321 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:22:09,322 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:22:09,325 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:22:09,326 [Worker-164] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring-data-jpa\src\test\resources
+2017-02-19 22:22:34,342 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:22:34,342 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:22:34,344 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:22:34,349 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:22:34,349 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:22:58,679 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:22:58,680 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:22:58,681 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:22:58,685 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:22:58,685 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring-data-jpa\src\test\resources
+2017-02-19 22:23:28,847 [Worker-181] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:23:28,850 [Worker-181] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:23:28,852 [Worker-181] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:23:28,862 [Worker-181] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:23:28,863 [Worker-181] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring-data-jpa\src\test\resources
+2017-02-19 22:23:40,556 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:23:40,558 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:23:40,560 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:23:40,563 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:23:40,563 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:24:00,278 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:24:00,279 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:24:00,280 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:24:00,286 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:24:00,286 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:26:15,013 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:26:15,014 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:26:15,016 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:26:15,019 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:26:15,019 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:26:33,169 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:26:33,170 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:26:33,171 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:26:33,177 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:26:33,177 [Worker-176] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:27:45,723 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:27:45,724 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:27:45,726 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:27:45,728 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:27:45,728 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:28:00,765 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:28:00,766 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:28:00,768 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:28:00,770 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:28:00,770 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:28:06,354 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:28:06,355 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:28:06,357 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:28:06,360 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:28:06,360 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:30:21,209 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:30:21,209 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:30:21,209 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:30:21,212 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:30:21,213 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:33:43,654 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:33:43,655 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:33:43,655 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:33:43,659 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:33:43,659 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:34:03,499 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:34:03,500 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:34:03,502 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:34:03,505 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:34:03,505 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:36:31,818 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:36:31,819 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:36:31,820 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:36:31,822 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:36:31,822 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:36:44,990 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:36:44,991 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:36:44,992 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:36:44,994 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:36:44,995 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:37:08,956 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:37:08,959 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:37:08,962 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:37:08,966 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:37:08,967 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:37:35,082 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:37:35,083 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:37:35,084 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:37:35,086 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:37:35,087 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:37:54,858 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:37:54,859 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:37:54,861 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:37:54,863 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:37:54,863 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:38:43,745 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:38:43,747 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:38:43,749 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:38:43,752 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:38:43,772 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:41:06,448 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:41:06,450 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:41:06,452 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:41:06,456 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:41:06,456 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:41:40,354 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:41:40,355 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:41:40,359 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:41:40,363 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:41:40,363 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:41:56,455 [Worker-181] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:41:56,456 [Worker-181] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:41:56,458 [Worker-181] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:41:56,461 [Worker-181] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:41:56,461 [Worker-181] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:43:47,850 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:43:47,851 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:43:47,853 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:43:47,855 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:43:47,855 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:43:53,508 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:43:53,509 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:43:53,510 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:43:53,513 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:43:53,513 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:47:18,383 [Worker-175] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ybliu:spring_security:0.0.1-SNAPSHOT @ F:\javaWeb\spring_security\pom.xml.
+2017-02-19 22:47:19,151 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:47:19,151 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:47:19,151 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:47:19,153 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:47:19,153 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:47:21,008 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:47:21,009 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:47:21,011 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:47:21,019 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:47:21,019 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:47:49,959 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:47:49,960 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:47:49,961 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:47:49,964 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:47:49,965 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:48:53,263 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/2.3.2/maven-compiler-plugin-2.3.2.jar
+2017-02-19 22:48:53,854 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/2.3.2/maven-compiler-plugin-2.3.2.jar
+2017-02-19 22:48:54,287 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/2.12.4/maven-surefire-plugin-2.12.4.jar
+2017-02-19 22:48:54,838 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/2.12.4/maven-surefire-plugin-2.12.4.jar
+2017-02-19 22:48:55,423 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-war-plugin/2.3/maven-war-plugin-2.3.jar
+2017-02-19 22:48:56,024 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-war-plugin/2.3/maven-war-plugin-2.3.jar
+2017-02-19 22:48:56,826 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-install-plugin/2.4/maven-install-plugin-2.4.jar
+2017-02-19 22:48:57,103 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-install-plugin/2.4/maven-install-plugin-2.4.jar
+2017-02-19 22:48:57,733 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-deploy-plugin/2.7/maven-deploy-plugin-2.7.jar
+2017-02-19 22:48:58,015 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-deploy-plugin/2.7/maven-deploy-plugin-2.7.jar
+2017-02-19 22:48:58,388 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-site-plugin/3.3/maven-site-plugin-3.3.jar
+2017-02-19 22:48:58,918 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-site-plugin/3.3/maven-site-plugin-3.3.jar
+2017-02-19 22:48:59,932 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/2.3.2/maven-compiler-plugin-2.3.2.pom
+2017-02-19 22:49:00,191 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/2.3.2/maven-compiler-plugin-2.3.2.pom
+2017-02-19 22:49:00,450 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-plugins/18/maven-plugins-18.pom
+2017-02-19 22:49:00,723 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-plugins/18/maven-plugins-18.pom
+2017-02-19 22:49:01,042 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/16/maven-parent-16.pom
+2017-02-19 22:49:01,302 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/16/maven-parent-16.pom
+2017-02-19 22:49:01,856 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/apache/7/apache-7.pom
+2017-02-19 22:49:02,117 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/apache/7/apache-7.pom
+2017-02-19 22:49:02,259 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/javaee-web-api/7.0/javaee-web-api-7.0.pom
+2017-02-19 22:49:02,539 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/javaee-web-api/7.0/javaee-web-api-7.0.pom
+2017-02-19 22:49:02,749 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/1.8.1/plexus-compiler-api-1.8.1.pom
+2017-02-19 22:49:03,018 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/1.8.1/plexus-compiler-api-1.8.1.pom
+2017-02-19 22:49:03,590 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler/1.8.1/plexus-compiler-1.8.1.pom
+2017-02-19 22:49:03,642 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-webmvc/4.3.4.RELEASE/spring-webmvc-4.3.4.RELEASE.pom
+2017-02-19 22:49:03,870 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler/1.8.1/plexus-compiler-1.8.1.pom
+2017-02-19 22:49:03,961 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-webmvc/4.3.4.RELEASE/spring-webmvc-4.3.4.RELEASE.pom
+2017-02-19 22:49:04,178 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/1.1.18/plexus-components-1.1.18.pom
+2017-02-19 22:49:04,231 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-aop/4.3.4.RELEASE/spring-aop-4.3.4.RELEASE.pom
+2017-02-19 22:49:04,434 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/1.1.18/plexus-components-1.1.18.pom
+2017-02-19 22:49:04,500 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-aop/4.3.4.RELEASE/spring-aop-4.3.4.RELEASE.pom
+2017-02-19 22:49:04,769 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.3.4.RELEASE/spring-beans-4.3.4.RELEASE.pom
+2017-02-19 22:49:04,789 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/1.8.1/plexus-compiler-manager-1.8.1.pom
+2017-02-19 22:49:05,038 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.3.4.RELEASE/spring-beans-4.3.4.RELEASE.pom
+2017-02-19 22:49:05,040 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/1.8.1/plexus-compiler-manager-1.8.1.pom
+2017-02-19 22:49:05,340 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-core/4.3.4.RELEASE/spring-core-4.3.4.RELEASE.pom
+2017-02-19 22:49:05,649 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-core/4.3.4.RELEASE/spring-core-4.3.4.RELEASE.pom
+2017-02-19 22:49:05,655 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/1.8.1/plexus-compiler-javac-1.8.1.pom
+2017-02-19 22:49:05,933 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/1.8.1/plexus-compiler-javac-1.8.1.pom
+2017-02-19 22:49:05,956 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.pom
+2017-02-19 22:49:06,201 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compilers/1.8.1/plexus-compilers-1.8.1.pom
+2017-02-19 22:49:06,587 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.pom
+2017-02-19 22:49:06,588 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compilers/1.8.1/plexus-compilers-1.8.1.pom
+2017-02-19 22:49:06,950 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-context/4.3.4.RELEASE/spring-context-4.3.4.RELEASE.pom
+2017-02-19 22:49:06,961 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/1.8.1/plexus-compiler-api-1.8.1.jar
+2017-02-19 22:49:07,330 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/1.8.1/plexus-compiler-api-1.8.1.jar
+2017-02-19 22:49:07,377 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-context/4.3.4.RELEASE/spring-context-4.3.4.RELEASE.pom
+2017-02-19 22:49:07,601 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/1.8.1/plexus-compiler-manager-1.8.1.jar
+2017-02-19 22:49:07,640 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-expression/4.3.4.RELEASE/spring-expression-4.3.4.RELEASE.pom
+2017-02-19 22:49:07,856 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/1.8.1/plexus-compiler-manager-1.8.1.jar
+2017-02-19 22:49:07,959 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-expression/4.3.4.RELEASE/spring-expression-4.3.4.RELEASE.pom
+2017-02-19 22:49:08,102 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/1.8.1/plexus-compiler-javac-1.8.1.jar
+2017-02-19 22:49:08,240 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-web/4.3.4.RELEASE/spring-web-4.3.4.RELEASE.pom
+2017-02-19 22:49:08,536 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-web/4.3.4.RELEASE/spring-web-4.3.4.RELEASE.pom
+2017-02-19 22:49:08,700 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/1.8.1/plexus-compiler-javac-1.8.1.jar
+2017-02-19 22:49:08,805 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.pom
+2017-02-19 22:49:09,073 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.pom
+2017-02-19 22:49:09,533 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.pom
+2017-02-19 22:49:09,798 [Worker-180] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.ybliu:dreamroom:2.0.0 @ F:\javaWeb\dreamroom\pom.xml.
+2017-02-19 22:49:09,840 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.pom
+2017-02-19 22:49:10,129 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/jsp/jsp-api/2.2/jsp-api-2.2.pom
+2017-02-19 22:49:10,407 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/jsp/jsp-api/2.2/jsp-api-2.2.pom
+2017-02-19 22:49:10,733 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/glassfish/web/jsp/2.2/jsp-2.2.pom
+2017-02-19 22:49:10,851 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.pom
+2017-02-19 22:49:11,031 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/glassfish/web/jsp/2.2/jsp-2.2.pom
+2017-02-19 22:49:11,297 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-tx/4.1.5.RELEASE/spring-tx-4.1.5.RELEASE.pom
+2017-02-19 22:49:11,350 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.pom
+2017-02-19 22:49:11,604 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-tx/4.1.5.RELEASE/spring-tx-4.1.5.RELEASE.pom
+2017-02-19 22:49:11,611 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-tx/4.1.5.RELEASE/spring-tx-4.1.5.RELEASE.pom
+2017-02-19 22:49:11,856 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-tx/4.1.5.RELEASE/spring-tx-4.1.5.RELEASE.pom
+2017-02-19 22:49:11,874 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.1.5.RELEASE/spring-beans-4.1.5.RELEASE.pom
+2017-02-19 22:49:12,155 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.1.5.RELEASE/spring-beans-4.1.5.RELEASE.pom
+2017-02-19 22:49:12,184 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-context/4.2.6.RELEASE/spring-context-4.2.6.RELEASE.pom
+2017-02-19 22:49:12,418 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-core/4.1.5.RELEASE/spring-core-4.1.5.RELEASE.pom
+2017-02-19 22:49:12,467 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-context/4.2.6.RELEASE/spring-context-4.2.6.RELEASE.pom
+2017-02-19 22:49:12,725 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-aop/4.2.6.RELEASE/spring-aop-4.2.6.RELEASE.pom
+2017-02-19 22:49:12,728 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-core/4.1.5.RELEASE/spring-core-4.1.5.RELEASE.pom
+2017-02-19 22:49:12,980 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-aop/4.2.6.RELEASE/spring-aop-4.2.6.RELEASE.pom
+2017-02-19 22:49:13,005 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-aop/4.2.6.RELEASE/spring-aop-4.2.6.RELEASE.pom
+2017-02-19 22:49:13,271 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.2.6.RELEASE/spring-beans-4.2.6.RELEASE.pom
+2017-02-19 22:49:13,279 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-aop/4.2.6.RELEASE/spring-aop-4.2.6.RELEASE.pom
+2017-02-19 22:49:13,525 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.2.6.RELEASE/spring-beans-4.2.6.RELEASE.pom
+2017-02-19 22:49:13,546 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.2.6.RELEASE/spring-beans-4.2.6.RELEASE.pom
+2017-02-19 22:49:13,785 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-core/4.2.6.RELEASE/spring-core-4.2.6.RELEASE.pom
+2017-02-19 22:49:13,824 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.2.6.RELEASE/spring-beans-4.2.6.RELEASE.pom
+2017-02-19 22:49:14,036 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-core/4.2.6.RELEASE/spring-core-4.2.6.RELEASE.pom
+2017-02-19 22:49:14,107 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-core/4.2.6.RELEASE/spring-core-4.2.6.RELEASE.pom
+2017-02-19 22:49:14,293 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-expression/4.2.6.RELEASE/spring-expression-4.2.6.RELEASE.pom
+2017-02-19 22:49:14,369 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-core/4.2.6.RELEASE/spring-core-4.2.6.RELEASE.pom
+2017-02-19 22:49:14,589 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-expression/4.2.6.RELEASE/spring-expression-4.2.6.RELEASE.pom
+2017-02-19 22:49:14,636 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-expression/4.2.6.RELEASE/spring-expression-4.2.6.RELEASE.pom
+2017-02-19 22:49:14,839 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-test/4.1.5.RELEASE/spring-test-4.1.5.RELEASE.pom
+2017-02-19 22:49:14,904 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-expression/4.2.6.RELEASE/spring-expression-4.2.6.RELEASE.pom
+2017-02-19 22:49:15,157 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-test/4.1.5.RELEASE/spring-test-4.1.5.RELEASE.pom
+2017-02-19 22:49:15,169 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-test/4.1.5.RELEASE/spring-test-4.1.5.RELEASE.pom
+2017-02-19 22:49:15,412 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.pom
+2017-02-19 22:49:15,463 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-test/4.1.5.RELEASE/spring-test-4.1.5.RELEASE.pom
+2017-02-19 22:49:15,723 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.pom
+2017-02-19 22:49:15,749 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.pom
+2017-02-19 22:49:16,003 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/slf4j/slf4j-parent/1.7.5/slf4j-parent-1.7.5.pom
+2017-02-19 22:49:16,059 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.pom
+2017-02-19 22:49:16,290 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/slf4j/slf4j-parent/1.7.5/slf4j-parent-1.7.5.pom
+2017-02-19 22:49:16,324 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/slf4j/slf4j-parent/1.7.5/slf4j-parent-1.7.5.pom
+2017-02-19 22:49:16,574 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/log4j/log4j/1.2.16/log4j-1.2.16.pom
+2017-02-19 22:49:16,682 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/slf4j/slf4j-parent/1.7.5/slf4j-parent-1.7.5.pom
+2017-02-19 22:49:16,951 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/log4j/log4j/1.2.16/log4j-1.2.16.pom
+2017-02-19 22:49:16,956 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/log4j/log4j/1.2.16/log4j-1.2.16.pom
+2017-02-19 22:49:17,215 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5.pom
+2017-02-19 22:49:17,301 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/log4j/log4j/1.2.16/log4j-1.2.16.pom
+2017-02-19 22:49:17,468 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5.pom
+2017-02-19 22:49:17,564 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5.pom
+2017-02-19 22:49:17,723 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13.pom
+2017-02-19 22:49:18,024 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13.pom
+2017-02-19 22:49:18,126 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5.pom
+2017-02-19 22:49:18,304 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/ch/qos/logback/logback-parent/1.0.13/logback-parent-1.0.13.pom
+2017-02-19 22:49:18,389 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/ch/qos/logback/logback-parent/1.0.13/logback-parent-1.0.13.pom
+2017-02-19 22:49:18,593 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/ch/qos/logback/logback-parent/1.0.13/logback-parent-1.0.13.pom
+2017-02-19 22:49:18,862 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/ch/qos/logback/logback-core/1.0.13/logback-core-1.0.13.pom
+2017-02-19 22:49:19,019 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/ch/qos/logback/logback-parent/1.0.13/logback-parent-1.0.13.pom
+2017-02-19 22:49:19,133 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/ch/qos/logback/logback-core/1.0.13/logback-core-1.0.13.pom
+2017-02-19 22:49:19,280 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/ch/qos/logback/logback-core/1.0.13/logback-core-1.0.13.pom
+2017-02-19 22:49:19,411 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/ch/qos/logback/logback-access/1.0.13/logback-access-1.0.13.pom
+2017-02-19 22:49:19,570 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/ch/qos/logback/logback-core/1.0.13/logback-core-1.0.13.pom
+2017-02-19 22:49:19,666 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/ch/qos/logback/logback-access/1.0.13/logback-access-1.0.13.pom
+2017-02-19 22:49:19,896 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/ch/qos/logback/logback-access/1.0.13/logback-access-1.0.13.pom
+2017-02-19 22:49:20,060 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/2.5.3/jackson-dataformat-xml-2.5.3.pom
+2017-02-19 22:49:20,274 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/ch/qos/logback/logback-access/1.0.13/logback-access-1.0.13.pom
+2017-02-19 22:49:20,367 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/2.5.3/jackson-dataformat-xml-2.5.3.pom
+2017-02-19 22:49:20,602 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/2.5.3/jackson-dataformat-xml-2.5.3.pom
+2017-02-19 22:49:20,624 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.5.1/jackson-parent-2.5.1.pom
+2017-02-19 22:49:20,876 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/2.5.3/jackson-dataformat-xml-2.5.3.pom
+2017-02-19 22:49:20,923 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.5.1/jackson-parent-2.5.1.pom
+2017-02-19 22:49:21,138 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.5.1/jackson-parent-2.5.1.pom
+2017-02-19 22:49:21,184 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/19/oss-parent-19.pom
+2017-02-19 22:49:21,461 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.5.1/jackson-parent-2.5.1.pom
+2017-02-19 22:49:21,722 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/19/oss-parent-19.pom
+2017-02-19 22:49:21,791 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/19/oss-parent-19.pom
+2017-02-19 22:49:22,040 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/19/oss-parent-19.pom
+2017-02-19 22:49:22,049 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.5.3/jackson-core-2.5.3.pom
+2017-02-19 22:49:22,389 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-fileupload/commons-fileupload/1.3.2/commons-fileupload-1.3.2.pom
+2017-02-19 22:49:22,648 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.5.3/jackson-core-2.5.3.pom
+2017-02-19 22:49:22,689 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-fileupload/commons-fileupload/1.3.2/commons-fileupload-1.3.2.pom
+2017-02-19 22:49:22,922 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.5.0/jackson-annotations-2.5.0.pom
+2017-02-19 22:49:22,954 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/40/commons-parent-40.pom
+2017-02-19 22:49:23,174 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.5.0/jackson-annotations-2.5.0.pom
+2017-02-19 22:49:23,429 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.5/jackson-parent-2.5.pom
+2017-02-19 22:49:23,583 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/40/commons-parent-40.pom
+2017-02-19 22:49:23,700 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.5/jackson-parent-2.5.pom
+2017-02-19 22:49:23,894 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/apache/17/apache-17.pom
+2017-02-19 22:49:23,988 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/18/oss-parent-18.pom
+2017-02-19 22:49:24,163 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/apache/17/apache-17.pom
+2017-02-19 22:49:24,551 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-io/commons-io/2.3/commons-io-2.3.pom
+2017-02-19 22:49:24,610 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/18/oss-parent-18.pom
+2017-02-19 22:49:24,811 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-io/commons-io/2.3/commons-io-2.3.pom
+2017-02-19 22:49:24,864 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.5.3/jackson-databind-2.5.3.pom
+2017-02-19 22:49:25,145 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.5.3/jackson-databind-2.5.3.pom
+2017-02-19 22:49:25,153 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/junit/junit/4.11/junit-4.11.pom
+2017-02-19 22:49:25,424 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.5.3/jackson-module-jaxb-annotations-2.5.3.pom
+2017-02-19 22:49:25,427 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/junit/junit/4.11/junit-4.11.pom
+2017-02-19 22:49:25,674 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.5.3/jackson-module-jaxb-annotations-2.5.3.pom
+2017-02-19 22:49:25,948 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.pom
+2017-02-19 22:49:26,218 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.pom
+2017-02-19 22:49:26,846 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.5.3/jackson-module-jaxb-annotations-2.5.3.pom
+2017-02-19 22:49:27,121 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.5.3/jackson-module-jaxb-annotations-2.5.3.pom
+2017-02-19 22:49:27,449 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-war-plugin/2.3/maven-war-plugin-2.3.pom
+2017-02-19 22:49:27,713 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-war-plugin/2.3/maven-war-plugin-2.3.pom
+2017-02-19 22:49:27,842 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/javaee-web-api/7.0/javaee-web-api-7.0.jar
+2017-02-19 22:49:29,478 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/javaee-web-api/7.0/javaee-web-api-7.0.jar
+2017-02-19 22:49:30,711 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/javaee-web-api/7.0/javaee-web-api-7.0.jar
+2017-02-19 22:49:30,989 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-webmvc/4.3.4.RELEASE/spring-webmvc-4.3.4.RELEASE.jar
+2017-02-19 22:49:32,259 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-webmvc/4.3.4.RELEASE/spring-webmvc-4.3.4.RELEASE.jar
+2017-02-19 22:49:32,508 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-aop/4.3.4.RELEASE/spring-aop-4.3.4.RELEASE.jar
+2017-02-19 22:49:33,095 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-aop/4.3.4.RELEASE/spring-aop-4.3.4.RELEASE.jar
+2017-02-19 22:49:33,350 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.3.4.RELEASE/spring-beans-4.3.4.RELEASE.jar
+2017-02-19 22:49:34,296 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.3.4.RELEASE/spring-beans-4.3.4.RELEASE.jar
+2017-02-19 22:49:34,571 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-core/4.3.4.RELEASE/spring-core-4.3.4.RELEASE.jar
+2017-02-19 22:49:34,650 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/javaee-web-api/7.0/javaee-web-api-7.0.jar
+2017-02-19 22:49:35,091 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-webmvc/4.3.4.RELEASE/spring-webmvc-4.3.4.RELEASE.jar
+2017-02-19 22:49:36,566 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-core/4.3.4.RELEASE/spring-core-4.3.4.RELEASE.jar
+2017-02-19 22:49:37,116 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar
+2017-02-19 22:49:37,455 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar
+2017-02-19 22:49:37,997 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-webmvc/4.3.4.RELEASE/spring-webmvc-4.3.4.RELEASE.jar
+2017-02-19 22:49:38,024 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-expression/4.3.4.RELEASE/spring-expression-4.3.4.RELEASE.jar
+2017-02-19 22:49:38,367 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-aop/4.3.4.RELEASE/spring-aop-4.3.4.RELEASE.jar
+2017-02-19 22:49:38,639 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-expression/4.3.4.RELEASE/spring-expression-4.3.4.RELEASE.jar
+2017-02-19 22:49:39,006 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.jar
+2017-02-19 22:49:39,981 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-aop/4.3.4.RELEASE/spring-aop-4.3.4.RELEASE.jar
+2017-02-19 22:49:40,119 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.jar
+2017-02-19 22:49:40,671 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar
+2017-02-19 22:49:40,762 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.3.4.RELEASE/spring-beans-4.3.4.RELEASE.jar
+2017-02-19 22:49:41,029 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar
+2017-02-19 22:49:41,289 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/jsp/jsp-api/2.2/jsp-api-2.2.jar
+2017-02-19 22:49:41,619 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/jsp/jsp-api/2.2/jsp-api-2.2.jar
+2017-02-19 22:49:41,882 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-tx/4.1.5.RELEASE/spring-tx-4.1.5.RELEASE.jar
+2017-02-19 22:49:43,008 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-tx/4.1.5.RELEASE/spring-tx-4.1.5.RELEASE.jar
+2017-02-19 22:49:43,261 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-context/4.2.6.RELEASE/spring-context-4.2.6.RELEASE.jar
+2017-02-19 22:49:43,486 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.3.4.RELEASE/spring-beans-4.3.4.RELEASE.jar
+2017-02-19 22:49:43,763 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-core/4.3.4.RELEASE/spring-core-4.3.4.RELEASE.jar
+2017-02-19 22:49:44,617 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-context/4.2.6.RELEASE/spring-context-4.2.6.RELEASE.jar
+2017-02-19 22:49:44,865 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-test/4.1.5.RELEASE/spring-test-4.1.5.RELEASE.jar
+2017-02-19 22:49:45,591 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-test/4.1.5.RELEASE/spring-test-4.1.5.RELEASE.jar
+2017-02-19 22:49:46,176 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-web/4.3.4.RELEASE/spring-web-4.3.4.RELEASE.jar
+2017-02-19 22:49:46,857 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-core/4.3.4.RELEASE/spring-core-4.3.4.RELEASE.jar
+2017-02-19 22:49:47,146 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar
+2017-02-19 22:49:47,342 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-web/4.3.4.RELEASE/spring-web-4.3.4.RELEASE.jar
+2017-02-19 22:49:47,492 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar
+2017-02-19 22:49:47,650 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar
+2017-02-19 22:49:47,793 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-expression/4.3.4.RELEASE/spring-expression-4.3.4.RELEASE.jar
+2017-02-19 22:49:47,929 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar
+2017-02-19 22:49:48,177 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/log4j/log4j/1.2.16/log4j-1.2.16.jar
+2017-02-19 22:49:48,512 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-expression/4.3.4.RELEASE/spring-expression-4.3.4.RELEASE.jar
+2017-02-19 22:49:48,811 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.jar
+2017-02-19 22:49:48,898 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/log4j/log4j/1.2.16/log4j-1.2.16.jar
+2017-02-19 22:49:49,166 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5.jar
+2017-02-19 22:49:49,452 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5.jar
+2017-02-19 22:49:49,694 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.jar
+2017-02-19 22:49:49,724 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13.jar
+2017-02-19 22:49:49,977 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar
+2017-02-19 22:49:50,242 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13.jar
+2017-02-19 22:49:50,346 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar
+2017-02-19 22:49:50,805 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/ch/qos/logback/logback-core/1.0.13/logback-core-1.0.13.jar
+2017-02-19 22:49:50,952 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/jsp/jsp-api/2.2/jsp-api-2.2.jar
+2017-02-19 22:49:51,333 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/jsp/jsp-api/2.2/jsp-api-2.2.jar
+2017-02-19 22:49:51,583 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/ch/qos/logback/logback-core/1.0.13/logback-core-1.0.13.jar
+2017-02-19 22:49:51,620 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-tx/4.1.5.RELEASE/spring-tx-4.1.5.RELEASE.jar
+2017-02-19 22:49:51,844 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/ch/qos/logback/logback-access/1.0.13/logback-access-1.0.13.jar
+2017-02-19 22:49:52,202 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-tx/4.1.5.RELEASE/spring-tx-4.1.5.RELEASE.jar
+2017-02-19 22:49:52,203 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/ch/qos/logback/logback-access/1.0.13/logback-access-1.0.13.jar
+2017-02-19 22:49:52,467 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/2.5.3/jackson-dataformat-xml-2.5.3.jar
+2017-02-19 22:49:52,788 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/2.5.3/jackson-dataformat-xml-2.5.3.jar
+2017-02-19 22:49:52,790 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-context/4.2.6.RELEASE/spring-context-4.2.6.RELEASE.jar
+2017-02-19 22:49:53,057 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.5.3/jackson-core-2.5.3.jar
+2017-02-19 22:49:53,487 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.5.3/jackson-core-2.5.3.jar
+2017-02-19 22:49:53,780 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.5.0/jackson-annotations-2.5.0.jar
+2017-02-19 22:49:54,086 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.5.0/jackson-annotations-2.5.0.jar
+2017-02-19 22:49:54,299 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-context/4.2.6.RELEASE/spring-context-4.2.6.RELEASE.jar
+2017-02-19 22:49:54,582 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/springframework/spring-web/4.3.4.RELEASE/spring-web-4.3.4.RELEASE.jar
+2017-02-19 22:49:54,650 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.5.3/jackson-databind-2.5.3.jar
+2017-02-19 22:49:55,738 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/springframework/spring-web/4.3.4.RELEASE/spring-web-4.3.4.RELEASE.jar
+2017-02-19 22:49:56,011 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar
+2017-02-19 22:49:56,074 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.5.3/jackson-databind-2.5.3.jar
+2017-02-19 22:49:56,304 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar
+2017-02-19 22:49:56,324 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.5.3/jackson-module-jaxb-annotations-2.5.3.jar
+2017-02-19 22:49:56,570 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/log4j/log4j/1.2.16/log4j-1.2.16.jar
+2017-02-19 22:49:56,597 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.5.3/jackson-module-jaxb-annotations-2.5.3.jar
+2017-02-19 22:49:56,845 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.jar
+2017-02-19 22:49:57,257 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.jar
+2017-02-19 22:49:57,324 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/log4j/log4j/1.2.16/log4j-1.2.16.jar
+2017-02-19 22:49:57,530 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-fileupload/commons-fileupload/1.3.2/commons-fileupload-1.3.2.jar
+2017-02-19 22:49:57,600 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5.jar
+2017-02-19 22:49:57,941 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-fileupload/commons-fileupload/1.3.2/commons-fileupload-1.3.2.jar
+2017-02-19 22:49:57,944 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/slf4j/jcl-over-slf4j/1.7.5/jcl-over-slf4j-1.7.5.jar
+2017-02-19 22:49:58,215 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-io/commons-io/2.3/commons-io-2.3.jar
+2017-02-19 22:49:58,227 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13.jar
+2017-02-19 22:49:58,652 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-io/commons-io/2.3/commons-io-2.3.jar
+2017-02-19 22:49:58,914 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/junit/junit/4.11/junit-4.11.jar
+2017-02-19 22:49:59,069 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13.jar
+2017-02-19 22:49:59,349 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/ch/qos/logback/logback-core/1.0.13/logback-core-1.0.13.jar
+2017-02-19 22:49:59,405 [Worker-175] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/junit/junit/4.11/junit-4.11.jar
+2017-02-19 22:50:00,040 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/ch/qos/logback/logback-core/1.0.13/logback-core-1.0.13.jar
+2017-02-19 22:50:00,359 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/ch/qos/logback/logback-access/1.0.13/logback-access-1.0.13.jar
+2017-02-19 22:50:00,805 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/ch/qos/logback/logback-access/1.0.13/logback-access-1.0.13.jar
+2017-02-19 22:50:01,075 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/2.5.3/jackson-dataformat-xml-2.5.3.jar
+2017-02-19 22:50:01,749 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/2.5.3/jackson-dataformat-xml-2.5.3.jar
+2017-02-19 22:50:02,018 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.5.3/jackson-core-2.5.3.jar
+2017-02-19 22:50:02,526 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.5.3/jackson-core-2.5.3.jar
+2017-02-19 22:50:03,090 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.5.0/jackson-annotations-2.5.0.jar
+2017-02-19 22:50:03,489 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.5.0/jackson-annotations-2.5.0.jar
+2017-02-19 22:50:03,755 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.5.3/jackson-databind-2.5.3.jar
+2017-02-19 22:50:05,673 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.5.3/jackson-databind-2.5.3.jar
+2017-02-19 22:50:05,938 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.5.3/jackson-module-jaxb-annotations-2.5.3.jar
+2017-02-19 22:50:06,567 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.5.3/jackson-module-jaxb-annotations-2.5.3.jar
+2017-02-19 22:50:06,831 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.jar
+2017-02-19 22:50:07,238 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.jar
+2017-02-19 22:50:07,514 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-fileupload/commons-fileupload/1.3.2/commons-fileupload-1.3.2.jar
+2017-02-19 22:50:07,821 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-fileupload/commons-fileupload/1.3.2/commons-fileupload-1.3.2.jar
+2017-02-19 22:50:08,109 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-io/commons-io/2.3/commons-io-2.3.jar
+2017-02-19 22:50:08,516 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-io/commons-io/2.3/commons-io-2.3.jar
+2017-02-19 22:50:12,090 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/2.12.4/maven-surefire-plugin-2.12.4.pom
+2017-02-19 22:50:12,356 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/2.12.4/maven-surefire-plugin-2.12.4.pom
+2017-02-19 22:50:12,630 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire/2.12.4/surefire-2.12.4.pom
+2017-02-19 22:50:13,375 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire/2.12.4/surefire-2.12.4.pom
+2017-02-19 22:50:14,054 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.5/plexus-io-2.0.5.pom
+2017-02-19 22:50:14,352 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.5/plexus-io-2.0.5.pom
+2017-02-19 22:50:14,656 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/2.2/plexus-archiver-2.2.pom
+2017-02-19 22:50:14,908 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/2.2/plexus-archiver-2.2.pom
+2017-02-19 22:50:15,167 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/1.1.20/plexus-components-1.1.20.pom
+2017-02-19 22:50:15,457 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/1.1.20/plexus-components-1.1.20.pom
+2017-02-19 22:50:15,713 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/3.1/plexus-3.1.pom
+2017-02-19 22:50:16,056 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/3.1/plexus-3.1.pom
+2017-02-19 22:50:16,309 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0.7/plexus-utils-3.0.7.pom
+2017-02-19 22:50:16,616 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0.7/plexus-utils-3.0.7.pom
+2017-02-19 22:50:16,869 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.4/plexus-io-2.0.4.pom
+2017-02-19 22:50:17,179 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.4/plexus-io-2.0.4.pom
+2017-02-19 22:50:17,459 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/thoughtworks/xstream/xstream/1.4.3/xstream-1.4.3.pom
+2017-02-19 22:50:17,755 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/thoughtworks/xstream/xstream/1.4.3/xstream-1.4.3.pom
+2017-02-19 22:50:18,009 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/thoughtworks/xstream/xstream-parent/1.4.3/xstream-parent-1.4.3.pom
+2017-02-19 22:50:18,328 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/thoughtworks/xstream/xstream-parent/1.4.3/xstream-parent-1.4.3.pom
+2017-02-19 22:50:18,920 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1.pom
+2017-02-19 22:50:19,176 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1.pom
+2017-02-19 22:50:19,462 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.pom
+2017-02-19 22:50:19,722 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.pom
+2017-02-19 22:50:20,040 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/1.0-beta-2/maven-filtering-1.0-beta-2.pom
+2017-02-19 22:50:20,291 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/1.0-beta-2/maven-filtering-1.0-beta-2.pom
+2017-02-19 22:50:20,547 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-components/10/maven-shared-components-10.pom
+2017-02-19 22:50:21,123 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-components/10/maven-shared-components-10.pom
+2017-02-19 22:50:21,374 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/9/maven-parent-9.pom
+2017-02-19 22:50:22,023 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/9/maven-parent-9.pom
+2017-02-19 22:50:22,301 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.5.6/plexus-utils-1.5.6.pom
+2017-02-19 22:50:22,890 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.5.6/plexus-utils-1.5.6.pom
+2017-02-19 22:50:23,145 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/1.0.12/plexus-1.0.12.pom
+2017-02-19 22:50:23,784 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/1.0.12/plexus-1.0.12.pom
+2017-02-19 22:50:24,092 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.6/plexus-interpolation-1.6.pom
+2017-02-19 22:50:24,361 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.6/plexus-interpolation-1.6.pom
+2017-02-19 22:50:24,703 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.5/plexus-io-2.0.5.jar
+2017-02-19 22:50:25,368 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.5/plexus-io-2.0.5.jar
+2017-02-19 22:50:25,632 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/2.2/plexus-archiver-2.2.jar
+2017-02-19 22:50:26,198 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/2.2/plexus-archiver-2.2.jar
+2017-02-19 22:50:26,461 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/thoughtworks/xstream/xstream/1.4.3/xstream-1.4.3.jar
+2017-02-19 22:50:27,109 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/thoughtworks/xstream/xstream/1.4.3/xstream-1.4.3.jar
+2017-02-19 22:50:27,353 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1.jar
+2017-02-19 22:50:27,906 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1.jar
+2017-02-19 22:50:28,150 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.jar
+2017-02-19 22:50:28,455 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.jar
+2017-02-19 22:50:28,703 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0.8/plexus-utils-3.0.8.jar
+2017-02-19 22:50:29,054 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0.8/plexus-utils-3.0.8.jar
+2017-02-19 22:50:29,305 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/1.0-beta-2/maven-filtering-1.0-beta-2.jar
+2017-02-19 22:50:29,648 [Worker-180] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/1.0-beta-2/maven-filtering-1.0-beta-2.jar
+2017-02-19 22:50:32,696 [Worker-180] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /dreamroom/src/main/java
+2017-02-19 22:50:32,696 [Worker-180] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /dreamroom/src/main/resources
+2017-02-19 22:50:32,697 [Worker-180] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /dreamroom/src/test/java
+2017-02-19 22:50:32,697 [Worker-180] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /dreamroom/src/test/resources
+2017-02-19 22:50:33,414 [Worker-180] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 101 sec
+2017-02-19 22:50:36,265 [Worker-185] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:50:36,266 [Worker-185] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2017-02-19 22:50:36,472 [Worker-185] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:50:36,473 [Worker-185] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:51:03,080 [Worker-180] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ybliu:spring_security:0.0.1-SNAPSHOT @ F:\javaWeb\spring_security\pom.xml.
+2017-02-19 22:51:03,701 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:51:03,702 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:51:03,702 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:51:03,705 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:51:03,705 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:51:05,793 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:51:05,794 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:51:05,796 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:51:05,803 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:51:05,803 [Worker-175] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:51:13,442 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:51:13,443 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:51:13,444 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:51:13,450 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:51:13,450 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:51:47,368 [Worker-182] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ybliu:spring_security:0.0.1-SNAPSHOT @ F:\javaWeb\spring_security\pom.xml.
+2017-02-19 22:51:47,949 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:51:47,949 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:51:47,949 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:51:47,951 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:51:47,951 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:51:49,995 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:51:49,995 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:51:49,997 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:51:50,005 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:51:50,005 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:51:54,942 [Worker-179] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ybliu:spring_security:0.0.1-SNAPSHOT @ F:\javaWeb\spring_security\pom.xml.
+2017-02-19 22:51:55,393 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:51:55,393 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:51:55,393 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:51:55,395 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:51:55,395 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:51:57,166 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:51:57,167 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:51:57,169 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:51:57,177 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:51:57,178 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:53:34,563 [Worker-182] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ybliu:spring_security:0.0.1-SNAPSHOT @ F:\javaWeb\spring_security\pom.xml.
+2017-02-19 22:53:35,102 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:53:35,102 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:53:35,102 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:53:35,104 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:53:35,104 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:53:36,842 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:53:36,843 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:53:36,845 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:53:36,849 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:53:36,849 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:56:00,374 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:56:00,375 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:56:00,377 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:56:00,379 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:56:00,379 [Worker-180] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 22:56:26,047 [Worker-178] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for dreamroom
+2017-02-19 22:56:26,391 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:56:26,392 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2017-02-19 22:56:26,416 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:56:26,416 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 22:56:26,416 [Worker-174] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of dreamroom
+2017-02-19 22:56:26,417 [Worker-174] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for dreamroom
+2017-02-19 22:56:26,422 [Worker-174] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.apache.maven.plugins:maven-clean-plugin:jar:2.5 is missing, no dependency information available
+2017-02-19 22:56:26,496 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:57:03,310 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:57:03,312 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 22:57:03,313 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 22:57:03,317 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 22:57:03,318 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:01:09,633 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:01:09,634 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:01:09,637 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-02-19 23:01:09,639 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:01:09,640 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:02:46,529 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:02:46,530 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:02:46,530 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:02:46,562 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:02:46,562 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:16:30,947 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:16:30,948 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:16:30,948 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:16:30,952 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:16:30,952 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:17:50,273 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:17:50,274 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:17:50,274 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:17:50,278 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:17:50,278 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:25:32,029 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:25:32,029 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:25:32,031 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-02-19 23:25:32,041 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:25:32,042 [Worker-174] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:27:15,015 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:27:15,016 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:27:15,017 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-02-19 23:27:15,029 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:27:15,030 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:27:24,834 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:27:24,834 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:27:24,835 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:27:24,839 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:27:24,840 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:28:15,825 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:28:15,825 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:28:15,825 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:28:15,829 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:28:15,830 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:28:18,693 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:28:18,694 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:28:18,694 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:28:18,699 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:28:18,699 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:28:24,146 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:28:24,147 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:28:24,147 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:28:24,150 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:28:24,150 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:28:32,641 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:28:32,642 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:28:32,642 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:28:32,646 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:28:32,647 [Worker-182] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:29:33,160 [Worker-174] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-02-19 23:29:33,481 [Worker-174] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.ybliu:dreamroom:2.0.0 @ F:\javaWeb\dreamroom\pom.xml.
+2017-02-19 23:29:34,768 [Worker-174] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /dreamroom/src/main/java
+2017-02-19 23:29:34,769 [Worker-174] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /dreamroom/src/main/resources
+2017-02-19 23:29:34,770 [Worker-174] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /dreamroom/src/test/java
+2017-02-19 23:29:34,770 [Worker-174] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /dreamroom/src/test/resources
+2017-02-19 23:29:35,317 [Worker-174] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for dreamroom
+2017-02-19 23:29:35,323 [Worker-174] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 2 sec
+2017-02-19 23:29:35,870 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:29:35,870 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2017-02-19 23:29:35,886 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:29:35,887 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:29:35,887 [Worker-179] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of dreamroom
+2017-02-19 23:29:35,887 [Worker-179] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for dreamroom
+2017-02-19 23:29:35,891 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:29:56,920 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:29:56,920 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:29:56,921 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:29:56,924 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:29:56,924 [Worker-178] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:31:37,575 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:31:37,575 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:31:37,576 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:31:37,580 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:31:37,580 [Worker-184] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:33:22,670 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:22,682 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:33:22,705 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:33:22,710 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:22,710 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\MongoDB\src\test\resources
+2017-02-19 23:33:25,019 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:25,020 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:33:25,024 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 18 resources
+2017-02-19 23:33:25,037 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:25,037 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\SSL\src\test\resources
+2017-02-19 23:33:25,533 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:25,534 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2017-02-19 23:33:25,537 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:25,538 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:33:27,362 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:27,363 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:33:27,365 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:33:27,368 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:27,368 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\redis\src\test\resources
+2017-02-19 23:33:29,255 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:29,256 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:33:29,258 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:33:29,261 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:29,261 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring-data-jpa\src\test\resources
+2017-02-19 23:33:30,802 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:30,803 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:33:30,805 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:33:30,808 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:30,808 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring-data-rest\src\test\resources
+2017-02-19 23:33:32,557 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:32,558 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:33:32,560 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-02-19 23:33:32,573 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:32,573 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:33:33,401 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:33,402 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:33:33,403 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:33:33,408 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:33:33,408 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\transaction\src\test\resources
+2017-02-19 23:43:15,807 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:43:15,812 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:43:15,813 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:43:15,819 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:43:15,819 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:44:29,241 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:44:29,257 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:44:29,260 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-02-19 23:44:29,264 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:44:29,264 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:45:07,841 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:45:07,842 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:45:07,845 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-02-19 23:45:07,848 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:45:07,848 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:46:26,976 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:46:26,979 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:46:26,983 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-02-19 23:46:26,986 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:46:26,987 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:46:30,428 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:46:30,429 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:46:30,431 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-02-19 23:46:30,435 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:46:30,435 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:47:33,009 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:47:33,009 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:47:33,012 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-02-19 23:47:33,030 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:47:33,031 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
+2017-02-19 23:48:19,280 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:48:19,294 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2017-02-19 23:48:19,306 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:48:19,306 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-02-19 23:48:22,898 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:48:22,900 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-02-19 23:48:22,914 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-02-19 23:48:22,927 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-02-19 23:48:22,927 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\javaWeb\spring_security\src\test\resources
