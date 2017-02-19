@@ -1,0 +1,23 @@
+package com.ybliu.domain;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+
+/**
+* @author 作者 ybliu:
+* @version 创建时间：2017年2月18日 上午11:20:15
+* 类说明
+*/
+@Entity
+public class Person {
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="mseq")
+	@SequenceGenerator(name="mseq",sequenceName="person_sequence",allocationSize=1)
+	@Column(name="id",unique=true,nullable=false)
+	private Long id;
+}

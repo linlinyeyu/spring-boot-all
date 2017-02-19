@@ -1,0 +1,9 @@
+package com.ybliu.dao;
+/**
+* @author 作者 ybliu:
+* @version 创建时间：2017年2月19日 下午6:59:50
+* 类说明
+*/
+public interface PersonRepository {
+
+}

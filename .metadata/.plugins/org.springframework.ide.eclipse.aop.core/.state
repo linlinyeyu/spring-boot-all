@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
 <aop-project name="WebSocket"/>
+<aop-project name="spring-data-rest"/>
 <aop-project name="spring-data-jpa"/>
+<aop-project name="cache"/>
+<aop-project name="transaction"/>
 </aop-reference-model>
